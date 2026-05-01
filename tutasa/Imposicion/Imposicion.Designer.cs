@@ -126,7 +126,7 @@
             label21.Font = new Font("Segoe UI", 9F);
             label21.Location = new Point(3, 146);
             label21.Name = "label21";
-            label21.Size = new Size(53, 15);
+            label21.Size = new Size(52, 15);
             label21.TabIndex = 9;
             label21.Text = "Teléfono";
             // 
@@ -262,7 +262,7 @@
             label13.Font = new Font("Segoe UI", 9F);
             label13.Location = new Point(3, 175);
             label13.Name = "label13";
-            label13.Size = new Size(31, 15);
+            label13.Size = new Size(30, 15);
             label13.TabIndex = 11;
             label13.Text = "Tipo";
             // 
@@ -428,7 +428,7 @@
             label20.Location = new Point(557, 66);
             label20.Name = "label20";
             label20.RightToLeft = RightToLeft.No;
-            label20.Size = new Size(84, 15);
+            label20.Size = new Size(83, 15);
             label20.TabIndex = 22;
             label20.Text = "Cantidad Total";
             // 
@@ -462,7 +462,7 @@
             label19.Font = new Font("Segoe UI", 9F);
             label19.Location = new Point(557, 37);
             label19.Name = "label19";
-            label19.Size = new Size(61, 15);
+            label19.Size = new Size(60, 15);
             label19.TabIndex = 20;
             label19.Text = "Peso Total";
             // 
@@ -517,7 +517,7 @@
             label18.Font = new Font("Segoe UI", 9F);
             label18.Location = new Point(15, 76);
             label18.Name = "label18";
-            label18.Size = new Size(93, 15);
+            label18.Size = new Size(92, 15);
             label18.TabIndex = 18;
             label18.Text = "Tipo Imposición";
             // 
@@ -565,7 +565,8 @@
             Controls.Add(label1);
             Controls.Add(label18);
             Name = "Imposicion";
-            Text = "Form2";
+            Text = "Imposición";
+            Load += Imposicion_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

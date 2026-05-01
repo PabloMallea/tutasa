@@ -10,7 +10,7 @@ using tutasa.Imposicion;
 
 namespace imposicion
 {
-    
+
     public partial class Imposicion : Form
     {
         //NO se toca!!
@@ -26,9 +26,14 @@ namespace imposicion
         {
             // 1ero Valido y luego hago el codigo
             // hago las validaciones minimas, y luego en el modelo hago mi funcion Validar 
-           
+
             // Aquí puedes agregar la lógica para confirmar la imposición
             MessageBox.Show("Imposición confirmada.");
+        }
+
+        private void Imposicion_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
