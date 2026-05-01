@@ -28,180 +28,231 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Cliente = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lvMovimientos = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            Cliente = new Label();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            lvMovimientos = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            button1 = new Button();
+            button2 = new Button();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
+            groupBox4 = new GroupBox();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox4.SuspendLayout();
+            SuspendLayout();
             // 
             // Cliente
             // 
-            this.Cliente.AutoSize = true;
-            this.Cliente.Location = new System.Drawing.Point(20, 25);
-            this.Cliente.Name = "Cliente";
-            this.Cliente.Size = new System.Drawing.Size(48, 16);
-            this.Cliente.TabIndex = 0;
-            this.Cliente.Text = "Cliente";
-            this.Cliente.Click += new System.EventHandler(this.Cliente_Click);
+            Cliente.AutoSize = true;
+            Cliente.Location = new Point(12, 45);
+            Cliente.Name = "Cliente";
+            Cliente.Size = new Size(55, 20);
+            Cliente.TabIndex = 0;
+            Cliente.Text = "Cliente";
+            Cliente.Click += Cliente_Click;
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(431, 24);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.Text = "cmbCliente";
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(77, 42);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(418, 28);
+            comboBox1.TabIndex = 1;
+            comboBox1.Text = "cmbCliente";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "CUIT";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 94);
+            label1.Name = "label1";
+            label1.Size = new Size(40, 20);
+            label1.TabIndex = 2;
+            label1.Text = "CUIT";
+            label1.Click += label1_Click;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(86, 66);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 22);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "txtCUIT";
+            textBox1.Location = new Point(77, 91);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(418, 27);
+            textBox1.TabIndex = 3;
+            textBox1.Text = "txtCUIT";
             // 
             // lvMovimientos
             // 
-            this.lvMovimientos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
-            this.lvMovimientos.FullRowSelect = true;
-            this.lvMovimientos.GridLines = true;
-            this.lvMovimientos.HideSelection = false;
-            this.lvMovimientos.Location = new System.Drawing.Point(23, 105);
-            this.lvMovimientos.Name = "lvMovimientos";
-            this.lvMovimientos.Size = new System.Drawing.Size(494, 261);
-            this.lvMovimientos.TabIndex = 4;
-            this.lvMovimientos.UseCompatibleStateImageBehavior = false;
-            this.lvMovimientos.View = System.Windows.Forms.View.Details;
+            lvMovimientos.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            lvMovimientos.FullRowSelect = true;
+            lvMovimientos.GridLines = true;
+            lvMovimientos.Location = new Point(12, 32);
+            lvMovimientos.Margin = new Padding(3, 4, 3, 4);
+            lvMovimientos.Name = "lvMovimientos";
+            lvMovimientos.Size = new Size(481, 96);
+            lvMovimientos.TabIndex = 4;
+            lvMovimientos.UseCompatibleStateImageBehavior = false;
+            lvMovimientos.View = View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Fecha";
-            this.columnHeader1.Width = 91;
+            columnHeader1.Text = "Fecha";
+            columnHeader1.Width = 91;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Tipo";
-            this.columnHeader2.Width = 90;
+            columnHeader2.Text = "Tipo";
+            columnHeader2.Width = 90;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Número";
-            this.columnHeader3.Width = 96;
+            columnHeader3.Text = "Número";
+            columnHeader3.Width = 96;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Importe";
-            this.columnHeader4.Width = 99;
+            columnHeader4.Text = "Importe";
+            columnHeader4.Width = 99;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Estado";
-            this.columnHeader5.Width = 97;
+            columnHeader5.Text = "Estado";
+            columnHeader5.Width = 97;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 410);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 16);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Total Deuda";
+            label2.AutoSize = true;
+            label2.Location = new Point(9, 34);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Total Deuda";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(124, 410);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "lblTotalDeuda";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            label3.AutoSize = true;
+            label3.Location = new Point(113, 34);
+            label3.Name = "label3";
+            label3.Size = new Size(103, 20);
+            label3.TabIndex = 6;
+            label3.Text = "lblTotalDeuda";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(124, 446);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 16);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "lblTotalPagado";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            label4.AutoSize = true;
+            label4.Location = new Point(113, 65);
+            label4.Name = "label4";
+            label4.Size = new Size(109, 20);
+            label4.TabIndex = 8;
+            label4.Text = "lblTotalPagado";
+            label4.Click += label4_Click;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 446);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Total Pagado";
+            label5.AutoSize = true;
+            label5.Location = new Point(11, 65);
+            label5.Name = "label5";
+            label5.Size = new Size(96, 20);
+            label5.TabIndex = 7;
+            label5.Text = "Total Pagado";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(183, 500);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Ver detalle";
-            this.button1.UseVisualStyleBackColor = true;
+            button1.Location = new Point(188, 433);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(164, 29);
+            button1.TabIndex = 9;
+            button1.Text = "Ver detalle";
+            button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(353, 500);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(164, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            button2.Location = new Point(358, 433);
+            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Name = "button2";
+            button2.Size = new Size(164, 29);
+            button2.TabIndex = 10;
+            button2.Text = "Cancelar";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Location = new Point(9, 308);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(513, 106);
+            groupBox1.TabIndex = 11;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Totales";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(groupBox3);
+            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(label1);
+            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Controls.Add(Cliente);
+            groupBox2.Location = new Point(9, 11);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(508, 130);
+            groupBox2.TabIndex = 12;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Datos del Cliente";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Location = new Point(4, 129);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(509, 354);
+            groupBox3.TabIndex = 4;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "groupBox3";
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(lvMovimientos);
+            groupBox4.Location = new Point(9, 152);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(509, 150);
+            groupBox4.TabIndex = 13;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Movimientos";
             // 
             // ConsultaCuentaCorrienteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 544);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lvMovimientos);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.Cliente);
-            this.Name = "ConsultaCuentaCorrienteForm";
-            this.Text = "ConsultaCuentaCorrienteForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(540, 680);
+            Controls.Add(groupBox4);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "ConsultaCuentaCorrienteForm";
+            Text = "ConsultaCuentaCorrienteForm";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 
@@ -223,5 +274,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private GroupBox groupBox4;
     }
 }
