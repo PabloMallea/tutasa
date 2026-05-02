@@ -11,10 +11,10 @@ using tutasa.Imposicion;
 namespace imposicion
 {
 
-    public partial class Imposicion : Form
+    public partial class FrmImposicion : Form
     {
         //NO se toca!!
-        public Imposicion()
+        public FrmImposicion()
         {
             InitializeComponent();
 
@@ -30,14 +30,10 @@ namespace imposicion
         private void Imposicion_Load(object sender, EventArgs e)
         {
             var destino = modelo.Destino;
-            var tipoimposicion = modelo.TipoImposicion;
             var dimension = modelo.Dimension;
 
             ComboDestino.DisplayMember = "Descripcion";
             ComboDestino.Items.Clear();
-
-            ComboTipoImposicion.DisplayMember = "Descripcion";
-            ComboTipoImposicion.Items.Clear();
 
             ComboDimension.DisplayMember = "Descripcion";
             ComboDimension.Items.Clear();
@@ -45,11 +41,6 @@ namespace imposicion
             foreach (var item in destino)
             {
                 ComboDestino.Items.Add(item);
-            }
-
-            foreach (var item in tipoimposicion)
-            {
-                ComboTipoImposicion.Items.Add(item);
             }
 
             foreach (var item in dimension)
@@ -74,6 +65,11 @@ namespace imposicion
         }
 
         private void LabelCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelDestino_Click(object sender, EventArgs e)
         {
 
         }
