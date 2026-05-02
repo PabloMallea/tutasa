@@ -217,9 +217,9 @@
             label12.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.Location = new Point(188, 48);
             label12.Name = "label12";
-            label12.Size = new Size(68, 18);
+            label12.Size = new Size(60, 18);
             label12.TabIndex = 20;
-            label12.Text = "Ventastxt";
+            label12.Text = "$90.000";
             // 
             // label13
             // 
@@ -237,9 +237,9 @@
             label9.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.Location = new Point(188, 142);
             label9.Name = "label9";
-            label9.Size = new Size(90, 18);
+            label9.Size = new Size(60, 18);
             label9.TabIndex = 18;
-            label9.Text = "Resultadotxt";
+            label9.Text = "$80.000";
             // 
             // label10
             // 
@@ -257,9 +257,9 @@
             label2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(188, 110);
             label2.Name = "label2";
-            label2.Size = new Size(73, 18);
+            label2.Size = new Size(57, 18);
             label2.TabIndex = 16;
-            label2.Text = "Margentxt";
+            label2.Text = "11,00%";
             // 
             // label6
             // 
@@ -286,9 +286,9 @@
             label5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(188, 81);
             label5.Name = "label5";
-            label5.Size = new Size(64, 18);
+            label5.Size = new Size(60, 18);
             label5.TabIndex = 13;
-            label5.Text = "Costotxt";
+            label5.Text = "$10.000";
             // 
             // label4
             // 
