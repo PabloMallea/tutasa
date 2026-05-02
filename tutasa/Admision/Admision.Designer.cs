@@ -48,15 +48,15 @@
             textBox2 = new TextBox();
             label4 = new Label();
             panel2 = new Panel();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label12 = new Label();
-            label14 = new Label();
-            label15 = new Label();
-            label16 = new Label();
-            label17 = new Label();
             label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label12 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -171,12 +171,12 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F);
-            label11.Location = new Point(99, 391);
+            label11.Location = new Point(180, 391);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(611, 15);
+            label11.Size = new Size(433, 15);
             label11.TabIndex = 28;
-            label11.Text = "Al confirmar acepta que la encomienda fue recibida en el Centro de Distribución y la HDR fue rendida por el fletero";
+            label11.Text = "Al confirmar acepta que la encomienda fue recibida en el Centro de Distribución ";
             // 
             // panel1
             // 
@@ -269,75 +269,15 @@
             panel2.Size = new Size(700, 100);
             panel2.TabIndex = 39;
             // 
-            // label8
+            // label18
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(0, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(74, 17);
-            label8.TabIndex = 0;
-            label8.Text = "Datos Guía";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(0, 38);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(64, 15);
-            label9.TabIndex = 1;
-            label9.Text = "Remitente:";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(0, 70);
-            label10.Margin = new Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(73, 15);
-            label10.TabIndex = 2;
-            label10.Text = "Destinatario:";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(324, 38);
-            label12.Margin = new Padding(4, 0, 4, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(99, 15);
-            label12.TabIndex = 3;
-            label12.Text = "Direccion Origen:";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(324, 70);
-            label14.Margin = new Padding(4, 0, 4, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(103, 15);
-            label14.TabIndex = 4;
-            label14.Text = "Direccion Destino:";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(113, 38);
-            label15.Margin = new Padding(4, 0, 4, 0);
-            label15.Name = "label15";
-            label15.Size = new Size(33, 15);
-            label15.TabIndex = 5;
-            label15.Text = "Pepe";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(113, 70);
-            label16.Margin = new Padding(4, 0, 4, 0);
-            label16.Name = "label16";
-            label16.Size = new Size(31, 15);
-            label16.TabIndex = 6;
-            label16.Text = "Juan";
+            label18.AutoSize = true;
+            label18.Location = new Point(467, 70);
+            label18.Margin = new Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new Size(89, 15);
+            label18.TabIndex = 8;
+            label18.Text = "Calle Falsa 1234";
             // 
             // label17
             // 
@@ -349,15 +289,75 @@
             label17.TabIndex = 7;
             label17.Text = "Calle Falsa 1234";
             // 
-            // label18
+            // label16
             // 
-            label18.AutoSize = true;
-            label18.Location = new Point(467, 70);
-            label18.Margin = new Padding(4, 0, 4, 0);
-            label18.Name = "label18";
-            label18.Size = new Size(89, 15);
-            label18.TabIndex = 8;
-            label18.Text = "Calle Falsa 1234";
+            label16.AutoSize = true;
+            label16.Location = new Point(113, 70);
+            label16.Margin = new Padding(4, 0, 4, 0);
+            label16.Name = "label16";
+            label16.Size = new Size(31, 15);
+            label16.TabIndex = 6;
+            label16.Text = "Juan";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(113, 38);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(33, 15);
+            label15.TabIndex = 5;
+            label15.Text = "Pepe";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(324, 70);
+            label14.Margin = new Padding(4, 0, 4, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(103, 15);
+            label14.TabIndex = 4;
+            label14.Text = "Direccion Destino:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(324, 38);
+            label12.Margin = new Padding(4, 0, 4, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(99, 15);
+            label12.TabIndex = 3;
+            label12.Text = "Direccion Origen:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(0, 70);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(73, 15);
+            label10.TabIndex = 2;
+            label10.Text = "Destinatario:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(0, 38);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(64, 15);
+            label9.TabIndex = 1;
+            label9.Text = "Remitente:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(0, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(74, 17);
+            label8.TabIndex = 0;
+            label8.Text = "Datos Guía";
             // 
             // Admision
             // 
