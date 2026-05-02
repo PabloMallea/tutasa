@@ -24,10 +24,6 @@ namespace imposicion
         private ImposicionModelo modelo = new ImposicionModelo();
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            // 1ero Valido y luego hago el codigo
-            // hago las validaciones minimas, y luego en el modelo hago mi funcion Validar 
-
-            // Aquí puedes agregar la lógica para confirmar la imposición
             MessageBox.Show("Imposición confirmada.");
         }
 
@@ -62,34 +58,24 @@ namespace imposicion
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void ButtonCancelar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonConfirmar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonBuscar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void LabelCliente_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
     }
 }

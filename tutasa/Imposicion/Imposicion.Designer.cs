@@ -30,6 +30,7 @@
         {
             LabelImposicion = new Label();
             PanelCliente = new Panel();
+            ButtonBuscar = new Button();
             TextCPC = new TextBox();
             LabelCPC = new Label();
             TextAlturaC = new TextBox();
@@ -38,12 +39,12 @@
             LabelTELC = new Label();
             TextTELC = new TextBox();
             LabelCalleC = new Label();
-            TextCUITDNIC = new TextBox();
+            TextCUIT = new TextBox();
             LabelApellidoC = new Label();
             TextApellidoC = new TextBox();
             LabelNombreC = new Label();
             TextNombreC = new TextBox();
-            LabelCUITDNIC = new Label();
+            LabelCUIT = new Label();
             LabelCliente = new Label();
             PanelDestinatario = new Panel();
             LabelTELD = new Label();
@@ -55,24 +56,23 @@
             LabelAlturaD = new Label();
             TextCalleD = new TextBox();
             LabelCalleD = new Label();
-            TextCUITDNID = new TextBox();
+            TextDNI = new TextBox();
             LabelApellidoD = new Label();
             TextApellidoD = new TextBox();
             LabelNombreD = new Label();
-            LabelCUITDNID = new Label();
+            LabelDNI = new Label();
             LabelDestinatario = new Label();
             PanelEncomienda = new Panel();
             ComboDimension = new ComboBox();
-            ComboPeso = new TextBox();
-            LabelPeso = new Label();
             LabelDimension = new Label();
             LabelEncomienda = new Label();
             ComboTipoImposicion = new ComboBox();
             LabelTipoImposcion = new Label();
-            BotonCancelar = new Button();
-            BotonConfirmar = new Button();
             LabelDestino = new Label();
             ComboDestino = new ComboBox();
+            ButtonCancelar = new Button();
+            ButtonConfirmar = new Button();
+            label1 = new Label();
             PanelCliente.SuspendLayout();
             PanelDestinatario.SuspendLayout();
             PanelEncomienda.SuspendLayout();
@@ -92,6 +92,7 @@
             // PanelCliente
             // 
             PanelCliente.BorderStyle = BorderStyle.FixedSingle;
+            PanelCliente.Controls.Add(ButtonBuscar);
             PanelCliente.Controls.Add(TextCPC);
             PanelCliente.Controls.Add(LabelCPC);
             PanelCliente.Controls.Add(TextAlturaC);
@@ -100,17 +101,27 @@
             PanelCliente.Controls.Add(LabelTELC);
             PanelCliente.Controls.Add(TextTELC);
             PanelCliente.Controls.Add(LabelCalleC);
-            PanelCliente.Controls.Add(TextCUITDNIC);
+            PanelCliente.Controls.Add(TextCUIT);
             PanelCliente.Controls.Add(LabelApellidoC);
             PanelCliente.Controls.Add(TextApellidoC);
             PanelCliente.Controls.Add(LabelNombreC);
             PanelCliente.Controls.Add(TextNombreC);
-            PanelCliente.Controls.Add(LabelCUITDNIC);
+            PanelCliente.Controls.Add(LabelCUIT);
             PanelCliente.Controls.Add(LabelCliente);
             PanelCliente.Location = new Point(12, 99);
             PanelCliente.Name = "PanelCliente";
             PanelCliente.Size = new Size(383, 252);
             PanelCliente.TabIndex = 1;
+            // 
+            // ButtonBuscar
+            // 
+            ButtonBuscar.Location = new Point(294, 34);
+            ButtonBuscar.Name = "ButtonBuscar";
+            ButtonBuscar.Size = new Size(75, 23);
+            ButtonBuscar.TabIndex = 21;
+            ButtonBuscar.Text = "Buscar";
+            ButtonBuscar.UseVisualStyleBackColor = true;
+            ButtonBuscar.Click += ButtonBuscar_Click;
             // 
             // TextCPC
             // 
@@ -180,18 +191,18 @@
             LabelCalleC.TabIndex = 7;
             LabelCalleC.Text = "Calle";
             // 
-            // TextCUITDNIC
+            // TextCUIT
             // 
-            TextCUITDNIC.Location = new Point(73, 94);
-            TextCUITDNIC.Name = "TextCUITDNIC";
-            TextCUITDNIC.Size = new Size(296, 23);
-            TextCUITDNIC.TabIndex = 6;
+            TextCUIT.Location = new Point(72, 34);
+            TextCUIT.Name = "TextCUIT";
+            TextCUIT.Size = new Size(216, 23);
+            TextCUIT.TabIndex = 6;
             // 
             // LabelApellidoC
             // 
             LabelApellidoC.AutoSize = true;
             LabelApellidoC.Font = new Font("Segoe UI", 9F);
-            LabelApellidoC.Location = new Point(4, 64);
+            LabelApellidoC.Location = new Point(4, 94);
             LabelApellidoC.Name = "LabelApellidoC";
             LabelApellidoC.Size = new Size(51, 15);
             LabelApellidoC.TabIndex = 5;
@@ -199,7 +210,7 @@
             // 
             // TextApellidoC
             // 
-            TextApellidoC.Location = new Point(73, 64);
+            TextApellidoC.Location = new Point(73, 94);
             TextApellidoC.Name = "TextApellidoC";
             TextApellidoC.Size = new Size(296, 23);
             TextApellidoC.TabIndex = 4;
@@ -208,29 +219,28 @@
             // 
             LabelNombreC.AutoSize = true;
             LabelNombreC.Font = new Font("Segoe UI", 9F);
-            LabelNombreC.Location = new Point(4, 34);
+            LabelNombreC.Location = new Point(4, 64);
             LabelNombreC.Name = "LabelNombreC";
             LabelNombreC.Size = new Size(51, 15);
             LabelNombreC.TabIndex = 3;
             LabelNombreC.Text = "Nombre";
-            LabelNombreC.Click += label5_Click;
             // 
             // TextNombreC
             // 
-            TextNombreC.Location = new Point(73, 34);
+            TextNombreC.Location = new Point(73, 64);
             TextNombreC.Name = "TextNombreC";
             TextNombreC.Size = new Size(296, 23);
             TextNombreC.TabIndex = 2;
             // 
-            // LabelCUITDNIC
+            // LabelCUIT
             // 
-            LabelCUITDNIC.AutoSize = true;
-            LabelCUITDNIC.Font = new Font("Segoe UI", 9F);
-            LabelCUITDNIC.Location = new Point(4, 94);
-            LabelCUITDNIC.Name = "LabelCUITDNIC";
-            LabelCUITDNIC.Size = new Size(57, 15);
-            LabelCUITDNIC.TabIndex = 1;
-            LabelCUITDNIC.Text = "CUIT/DNI";
+            LabelCUIT.AutoSize = true;
+            LabelCUIT.Font = new Font("Segoe UI", 9F);
+            LabelCUIT.Location = new Point(4, 34);
+            LabelCUIT.Name = "LabelCUIT";
+            LabelCUIT.Size = new Size(32, 15);
+            LabelCUIT.TabIndex = 1;
+            LabelCUIT.Text = "CUIT";
             // 
             // LabelCliente
             // 
@@ -254,11 +264,11 @@
             PanelDestinatario.Controls.Add(LabelAlturaD);
             PanelDestinatario.Controls.Add(TextCalleD);
             PanelDestinatario.Controls.Add(LabelCalleD);
-            PanelDestinatario.Controls.Add(TextCUITDNID);
+            PanelDestinatario.Controls.Add(TextDNI);
             PanelDestinatario.Controls.Add(LabelApellidoD);
             PanelDestinatario.Controls.Add(TextApellidoD);
             PanelDestinatario.Controls.Add(LabelNombreD);
-            PanelDestinatario.Controls.Add(LabelCUITDNID);
+            PanelDestinatario.Controls.Add(LabelDNI);
             PanelDestinatario.Controls.Add(LabelDestinatario);
             PanelDestinatario.Location = new Point(400, 99);
             PanelDestinatario.Name = "PanelDestinatario";
@@ -300,7 +310,7 @@
             // 
             LabelCPD.AutoSize = true;
             LabelCPD.Font = new Font("Segoe UI", 9F);
-            LabelCPD.Location = new Point(3, 214);
+            LabelCPD.Location = new Point(4, 214);
             LabelCPD.Name = "LabelCPD";
             LabelCPD.Size = new Size(67, 15);
             LabelCPD.TabIndex = 11;
@@ -317,7 +327,7 @@
             // 
             LabelAlturaD.AutoSize = true;
             LabelAlturaD.Font = new Font("Segoe UI", 9F);
-            LabelAlturaD.Location = new Point(3, 184);
+            LabelAlturaD.Location = new Point(4, 184);
             LabelAlturaD.Name = "LabelAlturaD";
             LabelAlturaD.Size = new Size(39, 15);
             LabelAlturaD.TabIndex = 9;
@@ -334,18 +344,18 @@
             // 
             LabelCalleD.AutoSize = true;
             LabelCalleD.Font = new Font("Segoe UI", 9F);
-            LabelCalleD.Location = new Point(3, 154);
+            LabelCalleD.Location = new Point(4, 154);
             LabelCalleD.Name = "LabelCalleD";
             LabelCalleD.Size = new Size(33, 15);
             LabelCalleD.TabIndex = 7;
             LabelCalleD.Text = "Calle";
             // 
-            // TextCUITDNID
+            // TextDNI
             // 
-            TextCUITDNID.Location = new Point(71, 94);
-            TextCUITDNID.Name = "TextCUITDNID";
-            TextCUITDNID.Size = new Size(296, 23);
-            TextCUITDNID.TabIndex = 6;
+            TextDNI.Location = new Point(71, 94);
+            TextDNI.Name = "TextDNI";
+            TextDNI.Size = new Size(296, 23);
+            TextDNI.TabIndex = 6;
             // 
             // LabelApellidoD
             // 
@@ -374,15 +384,15 @@
             LabelNombreD.TabIndex = 3;
             LabelNombreD.Text = "Nombre";
             // 
-            // LabelCUITDNID
+            // LabelDNI
             // 
-            LabelCUITDNID.AutoSize = true;
-            LabelCUITDNID.Font = new Font("Segoe UI", 9F);
-            LabelCUITDNID.Location = new Point(4, 94);
-            LabelCUITDNID.Name = "LabelCUITDNID";
-            LabelCUITDNID.Size = new Size(27, 15);
-            LabelCUITDNID.TabIndex = 1;
-            LabelCUITDNID.Text = "DNI";
+            LabelDNI.AutoSize = true;
+            LabelDNI.Font = new Font("Segoe UI", 9F);
+            LabelDNI.Location = new Point(4, 94);
+            LabelDNI.Name = "LabelDNI";
+            LabelDNI.Size = new Size(27, 15);
+            LabelDNI.TabIndex = 1;
+            LabelDNI.Text = "DNI";
             // 
             // LabelDestinatario
             // 
@@ -397,14 +407,13 @@
             // PanelEncomienda
             // 
             PanelEncomienda.BorderStyle = BorderStyle.FixedSingle;
+            PanelEncomienda.Controls.Add(label1);
             PanelEncomienda.Controls.Add(ComboDimension);
-            PanelEncomienda.Controls.Add(ComboPeso);
-            PanelEncomienda.Controls.Add(LabelPeso);
             PanelEncomienda.Controls.Add(LabelDimension);
             PanelEncomienda.Controls.Add(LabelEncomienda);
             PanelEncomienda.Location = new Point(12, 357);
             PanelEncomienda.Name = "PanelEncomienda";
-            PanelEncomienda.Size = new Size(771, 101);
+            PanelEncomienda.Size = new Size(771, 91);
             PanelEncomienda.TabIndex = 3;
             // 
             // ComboDimension
@@ -414,24 +423,6 @@
             ComboDimension.Name = "ComboDimension";
             ComboDimension.Size = new Size(682, 23);
             ComboDimension.TabIndex = 15;
-            ComboDimension.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
-            // 
-            // ComboPeso
-            // 
-            ComboPeso.Location = new Point(73, 64);
-            ComboPeso.Name = "ComboPeso";
-            ComboPeso.Size = new Size(683, 23);
-            ComboPeso.TabIndex = 21;
-            // 
-            // LabelPeso
-            // 
-            LabelPeso.AutoSize = true;
-            LabelPeso.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelPeso.Location = new Point(4, 64);
-            LabelPeso.Name = "LabelPeso";
-            LabelPeso.Size = new Size(32, 15);
-            LabelPeso.TabIndex = 20;
-            LabelPeso.Text = "Peso";
             // 
             // LabelDimension
             // 
@@ -461,7 +452,6 @@
             ComboTipoImposicion.Name = "ComboTipoImposicion";
             ComboTipoImposicion.Size = new Size(664, 23);
             ComboTipoImposicion.TabIndex = 19;
-            ComboTipoImposicion.SelectedIndexChanged += comboBox4_SelectedIndexChanged;
             // 
             // LabelTipoImposcion
             // 
@@ -472,29 +462,6 @@
             LabelTipoImposcion.Size = new Size(101, 17);
             LabelTipoImposcion.TabIndex = 18;
             LabelTipoImposcion.Text = "Tipo Imposición";
-            // 
-            // BotonCancelar
-            // 
-            BotonCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BotonCancelar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotonCancelar.Location = new Point(595, 464);
-            BotonCancelar.Name = "BotonCancelar";
-            BotonCancelar.Size = new Size(91, 23);
-            BotonCancelar.TabIndex = 21;
-            BotonCancelar.Text = "Cancelar";
-            BotonCancelar.UseVisualStyleBackColor = true;
-            BotonCancelar.Click += btnCancelar_Click;
-            // 
-            // BotonConfirmar
-            // 
-            BotonConfirmar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BotonConfirmar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotonConfirmar.Location = new Point(692, 464);
-            BotonConfirmar.Name = "BotonConfirmar";
-            BotonConfirmar.Size = new Size(91, 23);
-            BotonConfirmar.TabIndex = 20;
-            BotonConfirmar.Text = "Confirmar";
-            BotonConfirmar.UseVisualStyleBackColor = true;
             // 
             // LabelDestino
             // 
@@ -514,15 +481,45 @@
             ComboDestino.Size = new Size(664, 23);
             ComboDestino.TabIndex = 24;
             // 
+            // ButtonCancelar
+            // 
+            ButtonCancelar.Location = new Point(627, 454);
+            ButtonCancelar.Name = "ButtonCancelar";
+            ButtonCancelar.Size = new Size(75, 23);
+            ButtonCancelar.TabIndex = 26;
+            ButtonCancelar.Text = "Cancelar";
+            ButtonCancelar.UseVisualStyleBackColor = true;
+            ButtonCancelar.Click += ButtonCancelar_Click;
+            // 
+            // ButtonConfirmar
+            // 
+            ButtonConfirmar.Location = new Point(708, 454);
+            ButtonConfirmar.Name = "ButtonConfirmar";
+            ButtonConfirmar.Size = new Size(75, 23);
+            ButtonConfirmar.TabIndex = 27;
+            ButtonConfirmar.Text = "Confirmar";
+            ButtonConfirmar.UseVisualStyleBackColor = true;
+            ButtonConfirmar.Click += ButtonConfirmar_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(71, 60);
+            label1.Name = "label1";
+            label1.Size = new Size(308, 15);
+            label1.TabIndex = 16;
+            label1.Text = "S: hasta 2.5 kg | M: hasta 5 kg | L: hasta10 kg | XL: hasta 20";
+            // 
             // Imposicion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(797, 500);
+            ClientSize = new Size(797, 489);
+            Controls.Add(ButtonConfirmar);
+            Controls.Add(ButtonCancelar);
             Controls.Add(LabelDestino);
             Controls.Add(ComboDestino);
-            Controls.Add(BotonCancelar);
-            Controls.Add(BotonConfirmar);
             Controls.Add(PanelEncomienda);
             Controls.Add(PanelDestinatario);
             Controls.Add(PanelCliente);
@@ -549,38 +546,33 @@
         private Label LabelCliente;
         private TextBox TextTELC;
         private Label LabelCalleC;
-        private TextBox TextCUITDNIC;
+        private TextBox TextCUIT;
         private Label LabelApellidoC;
         private TextBox TextApellidoC;
         private Label LabelNombreC;
         private TextBox TextNombreC;
-        private Label LabelCUITDNIC;
+        private Label LabelCUIT;
         private Panel PanelDestinatario;
         private TextBox TextCalleD;
         private Label LabelCalleD;
-        private TextBox TextCUITDNID;
+        private TextBox TextDNI;
         private Label LabelApellidoD;
         private TextBox TextApellidoD;
         private Label LabelNombreD;
-        private Label LabelCUITDNID;
+        private Label LabelDNI;
         private Label LabelDestinatario;
         private TextBox TextAlturaD;
         private Label LabelAlturaD;
         private Label LabelCPD;
         private Panel PanelEncomienda;
         private Label LabelEncomienda;
-        private ComboBox ComboDimension;
         private Label LabelDimension;
         private ComboBox ComboTipoImposicion;
         private Label LabelTipoImposcion;
-        private TextBox ComboPeso;
-        private Label LabelPeso;
         private TextBox TextCalleC;
         private Label LabelTELC;
         private TextBox TextCPD;
         private TextBox TextNombreD;
-        private Button BotonCancelar;
-        private Button BotonConfirmar;
         private TextBox TextCPC;
         private Label LabelCPC;
         private TextBox TextAlturaC;
@@ -589,5 +581,10 @@
         private TextBox TextTELD;
         private Label LabelDestino;
         private ComboBox ComboDestino;
+        private Button ButtonBuscar;
+        private Button ButtonCancelar;
+        private Button ButtonConfirmar;
+        private ComboBox ComboDimension;
+        private Label label1;
     }
 }
