@@ -41,7 +41,6 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            button1 = new Button();
             listView1 = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -49,6 +48,7 @@
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -77,7 +77,7 @@
             // 
             // Buscar
             // 
-            Buscar.Location = new Point(830, 218);
+            Buscar.Location = new Point(830, 205);
             Buscar.Name = "Buscar";
             Buscar.Size = new Size(99, 35);
             Buscar.TabIndex = 10;
@@ -105,7 +105,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(18, 181);
+            label6.Location = new Point(19, 175);
             label6.Name = "label6";
             label6.Size = new Size(92, 18);
             label6.TabIndex = 7;
@@ -192,15 +192,6 @@
             groupBox2.Text = "Estado Cuenta";
             groupBox2.Enter += groupBox2_Enter;
             // 
-            // button1
-            // 
-            button1.Location = new Point(869, 419);
-            button1.Name = "button1";
-            button1.Size = new Size(99, 41);
-            button1.TabIndex = 11;
-            button1.Text = "Aceptar";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // listView1
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6 });
@@ -240,6 +231,15 @@
             // 
             columnHeader6.Text = "Saldo";
             columnHeader6.Width = 150;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(869, 419);
+            button1.Name = "button1";
+            button1.Size = new Size(99, 41);
+            button1.TabIndex = 11;
+            button1.Text = "Aceptar";
+            button1.UseVisualStyleBackColor = true;
             // 
             // CuentaCorrienteForm
             // 

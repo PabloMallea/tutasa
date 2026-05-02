@@ -36,14 +36,14 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            label6 = new Label();
-            label8 = new Label();
-            button1 = new Button();
-            button2 = new Button();
             listView1 = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
+            label6 = new Label();
+            label8 = new Label();
+            button1 = new Button();
+            button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -61,7 +61,7 @@
             groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(464, 175);
+            groupBox1.Size = new Size(503, 154);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Datos del Cliente";
@@ -70,7 +70,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(119, 128);
+            label4.Location = new Point(122, 116);
             label4.Name = "label4";
             label4.Size = new Size(76, 18);
             label4.TabIndex = 5;
@@ -80,7 +80,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(19, 128);
+            label5.Location = new Point(18, 116);
             label5.Name = "label5";
             label5.Size = new Size(62, 18);
             label5.TabIndex = 4;
@@ -90,7 +90,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(118, 85);
+            label3.Location = new Point(122, 82);
             label3.Name = "label3";
             label3.Size = new Size(56, 18);
             label3.TabIndex = 3;
@@ -100,7 +100,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(18, 85);
+            label2.Location = new Point(18, 82);
             label2.Name = "label2";
             label2.Size = new Size(79, 18);
             label2.TabIndex = 2;
@@ -132,14 +132,39 @@
             groupBox2.Controls.Add(listView1);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label8);
-            groupBox2.Location = new Point(12, 200);
+            groupBox2.Location = new Point(12, 187);
             groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(464, 191);
+            groupBox2.Size = new Size(503, 191);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Conceptos a Facturar";
+            // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
+            listView1.Location = new Point(20, 27);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(464, 113);
+            listView1.TabIndex = 17;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "N° Guía";
+            columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Concepto";
+            columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Monto";
+            columnHeader3.Width = 150;
             // 
             // label6
             // 
@@ -163,7 +188,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(272, 399);
+            button1.Location = new Point(416, 397);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(99, 50);
@@ -173,7 +198,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(377, 399);
+            button2.Location = new Point(311, 397);
             button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(99, 50);
@@ -181,36 +206,11 @@
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = true;
             // 
-            // listView1
-            // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
-            listView1.Location = new Point(20, 27);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(430, 113);
-            listView1.TabIndex = 17;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "N° Guía";
-            columnHeader1.Width = 150;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Concepto";
-            columnHeader2.Width = 150;
-            // 
-            // columnHeader3
-            // 
-            columnHeader3.Text = "Monto";
-            columnHeader3.Width = 150;
-            // 
             // EmitirFacturaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(484, 460);
+            ClientSize = new Size(533, 460);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(groupBox2);

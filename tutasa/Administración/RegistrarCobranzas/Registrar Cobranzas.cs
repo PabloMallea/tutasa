@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Pantallas_administración
 {
-    public partial class Registrar_Cobranzas : Form
+    public partial class RegistrarCobranzas : Form
     {
-        public Registrar_Cobranzas()
+        public RegistrarCobranzas()
         {
             InitializeComponent();
         }
