@@ -33,7 +33,63 @@ namespace imposicion
 
         private void Imposicion_Load(object sender, EventArgs e)
         {
+            var destino = modelo.Destino;
+            var tipoimposicion = modelo.TipoImposicion;
+            var dimension = modelo.Dimension;
 
+            ComboDestino.DisplayMember = "Descripcion";
+            ComboDestino.Items.Clear();
+
+            ComboTipoImposicion.DisplayMember = "Descripcion";
+            ComboTipoImposicion.Items.Clear();
+
+            ComboDimension.DisplayMember = "Descripcion";
+            ComboDimension.Items.Clear();
+
+            foreach (var item in destino)
+            {
+                ComboDestino.Items.Add(item);
+            }
+
+            foreach (var item in tipoimposicion)
+            {
+                ComboTipoImposicion.Items.Add(item);
+            }
+
+            foreach (var item in dimension)
+            {
+                ComboDimension.Items.Add(item);
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
