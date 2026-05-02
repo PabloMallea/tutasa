@@ -20,18 +20,6 @@ namespace tutasa.Imposicion
                 };
             }
         }
-        public List<TipoImposicion> TipoImposicion
-        {
-            get
-            {
-                return new List<TipoImposicion>
-                {
-                    new TipoImposicion { Id = 1, Descripcion = "Call Center" },
-                    new TipoImposicion { Id = 2, Descripcion = "Agencia" },
-                    new TipoImposicion { Id = 3, Descripcion = "Centro de Distribución" }
-                };
-            }
-        }
 
         public List<Dimension> Dimension
         {
