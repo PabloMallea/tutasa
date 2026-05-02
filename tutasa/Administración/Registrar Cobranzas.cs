@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pantallas_Administración
+namespace Pantallas_administración
 {
-    public partial class RegistrarCobroForm : Form
+    public partial class Registrar_Cobranzas : Form
     {
-        public RegistrarCobroForm()
+        public Registrar_Cobranzas()
         {
             InitializeComponent();
         }
