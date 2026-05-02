@@ -125,11 +125,11 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(119, 102);
+            label4.Location = new Point(125, 102);
             label4.Name = "label4";
-            label4.Size = new Size(76, 18);
+            label4.Size = new Size(91, 18);
             label4.TabIndex = 5;
-            label4.Text = "Nombrelbl";
+            label4.Text = "Empresa SA";
             // 
             // label5
             // 
@@ -137,19 +137,19 @@
             label5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(19, 102);
             label5.Name = "label5";
-            label5.Size = new Size(62, 18);
+            label5.Size = new Size(97, 18);
             label5.TabIndex = 4;
-            label5.Text = "Nombre";
+            label5.Text = "Razón Social";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(118, 68);
+            label3.Location = new Point(125, 68);
             label3.Name = "label3";
-            label3.Size = new Size(56, 18);
+            label3.Size = new Size(106, 18);
             label3.TabIndex = 3;
-            label3.Text = "CUITlbl";
+            label3.Text = "30-23456789-0";
             // 
             // label2
             // 
