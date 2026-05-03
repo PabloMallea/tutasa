@@ -1,6 +1,10 @@
+<<<<<<< HEAD:tutasa/Administración/CuentaCorriente/CuentaCorrienteForm.Designer.cs
 ﻿namespace tutasa.Administración.CuentaCorriente
+=======
+﻿namespace tutasa.CuentaCorriente
+>>>>>>> probar pantalla:tutasa/CuentaCorriente/CuentaCorrienteForm.Designer.cs
 {
-    partial class CuentaCorrienteForm
+    partial class CuentaCorrienteForm : Form
     {
         /// <summary>
         /// Variable del diseñador necesaria.
