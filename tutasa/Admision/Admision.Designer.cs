@@ -55,7 +55,7 @@
             txtCPorigen = new Label();
             label16 = new Label();
             txtDireccionDestino = new Label();
-            txtDirreccionOrigen = new Label();
+            txtDireccionOrigen = new Label();
             txtNombreDestinatario = new Label();
             txtNombreRemitente = new Label();
             label14 = new Label();
@@ -268,7 +268,7 @@
             panel2.Controls.Add(txtCPorigen);
             panel2.Controls.Add(label16);
             panel2.Controls.Add(txtDireccionDestino);
-            panel2.Controls.Add(txtDirreccionOrigen);
+            panel2.Controls.Add(txtDireccionOrigen);
             panel2.Controls.Add(txtNombreDestinatario);
             panel2.Controls.Add(txtNombreRemitente);
             panel2.Controls.Add(label14);
@@ -288,8 +288,9 @@
             txtFleteroAsignado.Location = new Point(114, 102);
             txtFleteroAsignado.Margin = new Padding(4, 0, 4, 0);
             txtFleteroAsignado.Name = "txtFleteroAsignado";
-            txtFleteroAsignado.Size = new Size(0, 15);
+            txtFleteroAsignado.Size = new Size(49, 15);
             txtFleteroAsignado.TabIndex = 14;
+            txtFleteroAsignado.Text = "Feltero1";
             // 
             // label17
             // 
@@ -351,15 +352,15 @@
             txtDireccionDestino.TabIndex = 8;
             txtDireccionDestino.Text = "Calle Falsa 1234";
             // 
-            // txtDirreccionOrigen
+            // txtDireccionOrigen
             // 
-            txtDirreccionOrigen.AutoSize = true;
-            txtDirreccionOrigen.Location = new Point(340, 38);
-            txtDirreccionOrigen.Margin = new Padding(4, 0, 4, 0);
-            txtDirreccionOrigen.Name = "txtDirreccionOrigen";
-            txtDirreccionOrigen.Size = new Size(89, 15);
-            txtDirreccionOrigen.TabIndex = 7;
-            txtDirreccionOrigen.Text = "Calle Falsa 1234";
+            txtDireccionOrigen.AutoSize = true;
+            txtDireccionOrigen.Location = new Point(340, 38);
+            txtDireccionOrigen.Margin = new Padding(4, 0, 4, 0);
+            txtDireccionOrigen.Name = "txtDireccionOrigen";
+            txtDireccionOrigen.Size = new Size(89, 15);
+            txtDireccionOrigen.TabIndex = 7;
+            txtDireccionOrigen.Text = "Calle Falsa 1234";
             // 
             // txtNombreDestinatario
             // 
@@ -485,7 +486,7 @@
         private Label label9;
         private Label label8;
         private Label txtDireccionDestino;
-        private Label txtDirreccionOrigen;
+        private Label txtDireccionOrigen;
         private Label txtNombreDestinatario;
         private Label txtNombreRemitente;
         private Label txtCPdestino;

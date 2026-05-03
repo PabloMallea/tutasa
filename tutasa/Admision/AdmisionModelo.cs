@@ -13,7 +13,7 @@ namespace tutasa.Admision
         public string NombreDestinatario { get; set; }
         public string DireccionDestino { get; set; }
         public string CPDestino { get; set; }
-        public string Dimension { get; set; }
+        public string DimensionSeleccionada { get; set; }
         public string FleteroAsignado { get; set; }
         public decimal Peso { get; set; }
         public decimal Alto { get; set; }
@@ -31,7 +31,7 @@ namespace tutasa.Admision
                 NombreDestinatario = "María Gómez",
                 DireccionDestino = "Calle Falsa 123",
                 CPDestino = "2000",
-                Dimension = "S",
+                DimensionSeleccionada = "S",
                 FleteroAsignado = "Fletero 1",
                 Peso = 15,
                 Alto = 10,
@@ -40,19 +40,14 @@ namespace tutasa.Admision
             };
         }
 
-        public List<Dimensiones> Dimensiones
+        public static readonly List<Dimensiones> Dimensiones = new()
         {
-            get
-            {
-                return new List<Dimensiones>
-                {
-                    new Dimensiones { tipo = "S" },
-                    new Dimensiones { tipo = "M" },
-                    new Dimensiones { tipo = "L" },
-                    new Dimensiones { tipo = "XL" },
-                };
-            }
-        }
+             new Dimensiones { tipo = "S" },
+             new Dimensiones { tipo = "M" },
+             new Dimensiones { tipo = "L" },
+             new Dimensiones { tipo = "XL" },
+
+        };
 
     }
 }
