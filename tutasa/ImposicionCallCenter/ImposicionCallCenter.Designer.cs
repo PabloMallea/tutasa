@@ -1,6 +1,6 @@
-﻿namespace tutasa.Imposicion
+﻿namespace tutasa.ImposicionCallCenter
 {
-    partial class FrmImposicion
+    partial class ImposicionCallCenter
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            LabelTipoImposcion = new Label();
             ButtonCancelar = new Button();
             ButtonConfirmar = new Button();
-            LabelTipoImposicion = new Label();
             GrupoCliente = new GroupBox();
             comboBox1 = new ComboBox();
             LabelDomicilio = new Label();
@@ -78,19 +76,9 @@
             GrupoEncomienda.SuspendLayout();
             SuspendLayout();
             // 
-            // LabelTipoImposcion
-            // 
-            LabelTipoImposcion.AutoSize = true;
-            LabelTipoImposcion.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelTipoImposcion.Location = new Point(12, 39);
-            LabelTipoImposcion.Name = "LabelTipoImposcion";
-            LabelTipoImposcion.Size = new Size(101, 17);
-            LabelTipoImposcion.TabIndex = 18;
-            LabelTipoImposcion.Text = "Tipo Imposición";
-            // 
             // ButtonCancelar
             // 
-            ButtonCancelar.Location = new Point(628, 459);
+            ButtonCancelar.Location = new Point(628, 422);
             ButtonCancelar.Name = "ButtonCancelar";
             ButtonCancelar.Size = new Size(75, 23);
             ButtonCancelar.TabIndex = 26;
@@ -100,24 +88,13 @@
             // 
             // ButtonConfirmar
             // 
-            ButtonConfirmar.Location = new Point(709, 459);
+            ButtonConfirmar.Location = new Point(709, 422);
             ButtonConfirmar.Name = "ButtonConfirmar";
             ButtonConfirmar.Size = new Size(75, 23);
             ButtonConfirmar.TabIndex = 27;
             ButtonConfirmar.Text = "Confirmar";
             ButtonConfirmar.UseVisualStyleBackColor = true;
             ButtonConfirmar.Click += ButtonConfirmar_Click;
-            // 
-            // LabelTipoImposicion
-            // 
-            LabelTipoImposicion.AccessibleRole = AccessibleRole.OutlineButton;
-            LabelTipoImposicion.AutoSize = true;
-            LabelTipoImposicion.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelTipoImposicion.Location = new Point(119, 39);
-            LabelTipoImposicion.Name = "LabelTipoImposicion";
-            LabelTipoImposicion.Size = new Size(270, 17);
-            LabelTipoImposicion.TabIndex = 28;
-            LabelTipoImposicion.Text = "Agencia | Centro de Distribución | Call Center";
             // 
             // GrupoCliente
             // 
@@ -139,7 +116,7 @@
             GrupoCliente.Controls.Add(LabelNombreC);
             GrupoCliente.Controls.Add(LabelCUIT);
             GrupoCliente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GrupoCliente.Location = new Point(12, 70);
+            GrupoCliente.Location = new Point(12, 33);
             GrupoCliente.Name = "GrupoCliente";
             GrupoCliente.Size = new Size(383, 286);
             GrupoCliente.TabIndex = 29;
@@ -149,9 +126,9 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(76, 150);
+            comboBox1.Location = new Point(77, 150);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(298, 25);
+            comboBox1.Size = new Size(297, 25);
             comboBox1.TabIndex = 41;
             // 
             // LabelDomicilio
@@ -331,7 +308,7 @@
             GrupoDestinatario.Controls.Add(LabelNombreD);
             GrupoDestinatario.Controls.Add(LabelDNI);
             GrupoDestinatario.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GrupoDestinatario.Location = new Point(401, 70);
+            GrupoDestinatario.Location = new Point(401, 33);
             GrupoDestinatario.Name = "GrupoDestinatario";
             GrupoDestinatario.Size = new Size(383, 286);
             GrupoDestinatario.TabIndex = 30;
@@ -410,7 +387,7 @@
             // 
             TextAltura.Location = new Point(76, 120);
             TextAltura.Name = "TextAltura";
-            TextAltura.Size = new Size(295, 25);
+            TextAltura.Size = new Size(297, 25);
             TextAltura.TabIndex = 34;
             // 
             // LabelAlturaD
@@ -427,7 +404,7 @@
             // 
             TextCalle.Location = new Point(76, 90);
             TextCalle.Name = "TextCalle";
-            TextCalle.Size = new Size(296, 25);
+            TextCalle.Size = new Size(297, 25);
             TextCalle.TabIndex = 32;
             // 
             // LabelCalleD
@@ -490,7 +467,7 @@
             GrupoEncomienda.Controls.Add(ComboDimension);
             GrupoEncomienda.Controls.Add(LabelDimension);
             GrupoEncomienda.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GrupoEncomienda.Location = new Point(12, 362);
+            GrupoEncomienda.Location = new Point(12, 325);
             GrupoEncomienda.Name = "GrupoEncomienda";
             GrupoEncomienda.Size = new Size(772, 91);
             GrupoEncomienda.TabIndex = 31;
@@ -531,24 +508,22 @@
             LabelImposicion.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelImposicion.Location = new Point(12, 9);
             LabelImposicion.Name = "LabelImposicion";
-            LabelImposicion.Size = new Size(91, 21);
+            LabelImposicion.Size = new Size(174, 21);
             LabelImposicion.TabIndex = 32;
-            LabelImposicion.Text = "Imposición";
+            LabelImposicion.Text = "Imposición Call Center";
             // 
-            // FrmImposicion
+            // ImposicionCallCenter
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(801, 496);
+            ClientSize = new Size(796, 461);
             Controls.Add(LabelImposicion);
             Controls.Add(GrupoEncomienda);
             Controls.Add(GrupoDestinatario);
             Controls.Add(GrupoCliente);
-            Controls.Add(LabelTipoImposicion);
             Controls.Add(ButtonConfirmar);
             Controls.Add(ButtonCancelar);
-            Controls.Add(LabelTipoImposcion);
-            Name = "FrmImposicion";
+            Name = "ImposicionCallCenter";
             Text = "Imposición";
             Load += Imposicion_Load;
             GrupoCliente.ResumeLayout(false);
@@ -562,10 +537,8 @@
         }
 
         #endregion
-        private Label LabelTipoImposcion;
         private Button ButtonCancelar;
         private Button ButtonConfirmar;
-        private Label LabelTipoImposicion;
         private GroupBox GrupoCliente;
         private ComboBox comboBox1;
         private Label LabelDomicilio;

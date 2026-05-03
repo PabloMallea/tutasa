@@ -1,6 +1,6 @@
-﻿namespace tutasa.Imposicion
+﻿namespace tutasa.ImposicionCallCenter
 {
-    internal class ImposicionModelo
+    internal class ImposicionCallCenterModelo
     {
         //Aca voy a llamar y completar todos los datos de prueba.
         public List<Destino> Destino

@@ -1,4 +1,4 @@
-﻿namespace tutasa.Imposicion
+﻿namespace tutasa.ImposicionCallCenter
 {
     internal class Destino
     {
