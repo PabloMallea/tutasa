@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            ButtonConfirmar = new Button();
+            comboBox1 = new ComboBox();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             label6 = new Label();
@@ -46,8 +48,6 @@
             ColumnaMonto = new ColumnHeader();
             ColumnaPago = new ColumnHeader();
             ColumnaSaldo = new ColumnHeader();
-            comboBox1 = new ComboBox();
-            ButtonConfirmar = new Button();
             button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -75,13 +75,31 @@
             groupBox1.Text = "Búsqueda";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // ButtonConfirmar
+            // 
+            ButtonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ButtonConfirmar.Location = new Point(567, 187);
+            ButtonConfirmar.Name = "ButtonConfirmar";
+            ButtonConfirmar.Size = new Size(75, 23);
+            ButtonConfirmar.TabIndex = 28;
+            ButtonConfirmar.Text = "Buscar";
+            ButtonConfirmar.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(110, 30);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(532, 28);
+            comboBox1.TabIndex = 11;
+            // 
             // dateTimePicker2
             // 
             dateTimePicker2.CustomFormat = "";
             dateTimePicker2.Font = new Font("Segoe UI", 9F);
             dateTimePicker2.Location = new Point(110, 150);
             dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(532, 23);
+            dateTimePicker2.Size = new Size(532, 27);
             dateTimePicker2.TabIndex = 9;
             // 
             // dateTimePicker1
@@ -90,7 +108,7 @@
             dateTimePicker1.Font = new Font("Segoe UI", 9F);
             dateTimePicker1.Location = new Point(110, 120);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(532, 23);
+            dateTimePicker1.Size = new Size(532, 27);
             dateTimePicker1.TabIndex = 8;
             // 
             // label6
@@ -99,7 +117,7 @@
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(18, 150);
             label6.Name = "label6";
-            label6.Size = new Size(71, 15);
+            label6.Size = new Size(89, 20);
             label6.TabIndex = 7;
             label6.Text = "Fecha Hasta";
             // 
@@ -109,7 +127,7 @@
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(18, 120);
             label7.Name = "label7";
-            label7.Size = new Size(73, 15);
+            label7.Size = new Size(93, 20);
             label7.TabIndex = 6;
             label7.Text = "Fecha Desde";
             // 
@@ -119,7 +137,7 @@
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(110, 90);
             label4.Name = "label4";
-            label4.Size = new Size(69, 15);
+            label4.Size = new Size(88, 20);
             label4.TabIndex = 5;
             label4.Text = "Empresa SA";
             // 
@@ -129,7 +147,7 @@
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(18, 90);
             label5.Name = "label5";
-            label5.Size = new Size(73, 15);
+            label5.Size = new Size(94, 20);
             label5.TabIndex = 4;
             label5.Text = "Razón Social";
             // 
@@ -139,7 +157,7 @@
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(110, 60);
             label3.Name = "label3";
-            label3.Size = new Size(83, 15);
+            label3.Size = new Size(109, 20);
             label3.TabIndex = 3;
             label3.Text = "30-23456789-0";
             // 
@@ -149,7 +167,7 @@
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(18, 60);
             label2.Name = "label2";
-            label2.Size = new Size(62, 15);
+            label2.Size = new Size(76, 20);
             label2.TabIndex = 2;
             label2.Text = "CUIT/CUIL";
             // 
@@ -159,7 +177,7 @@
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.Location = new Point(18, 30);
             label1.Name = "label1";
-            label1.Size = new Size(44, 15);
+            label1.Size = new Size(55, 20);
             label1.TabIndex = 0;
             label1.Text = "Cliente";
             // 
@@ -216,24 +234,6 @@
             ColumnaSaldo.Text = "Saldo";
             ColumnaSaldo.Width = 100;
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(110, 30);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(532, 23);
-            comboBox1.TabIndex = 11;
-            // 
-            // ButtonConfirmar
-            // 
-            ButtonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ButtonConfirmar.Location = new Point(567, 187);
-            ButtonConfirmar.Name = "ButtonConfirmar";
-            ButtonConfirmar.Size = new Size(75, 23);
-            ButtonConfirmar.TabIndex = 28;
-            ButtonConfirmar.Text = "Buscar";
-            ButtonConfirmar.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -246,7 +246,7 @@
             // 
             // CuentaCorrienteForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(685, 413);
             Controls.Add(button1);
