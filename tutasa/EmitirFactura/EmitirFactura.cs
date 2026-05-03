@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace tutasa.CuentaCorriente
+namespace tutasa.EmitirFactura
 {
-    public partial class CuentaCorrienteForm2 : Form
+    public partial class EmitirFactura : Form
     {
-        public CuentaCorrienteForm2()
+        public EmitirFactura()
         {
             InitializeComponent();
         }

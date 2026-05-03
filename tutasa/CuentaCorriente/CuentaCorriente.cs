@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace tutasa.Administración.RegistrarEntrega
+namespace tutasa.CuentaCorriente
 {
-    public partial class RegistrarEntregaForm : Form
+    public partial class CuentaCorriente : Form
     {
-        public RegistrarEntregaForm()
+        public CuentaCorriente()
         {
             InitializeComponent();
         }

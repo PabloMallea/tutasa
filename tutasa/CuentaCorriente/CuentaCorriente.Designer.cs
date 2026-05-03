@@ -4,17 +4,17 @@
 ﻿namespace tutasa.CuentaCorriente
 >>>>>>> probar pantalla:tutasa/CuentaCorriente/CuentaCorrienteForm.Designer.cs
 {
-    partial class CuentaCorrienteForm : Form
+    partial class CuentaCorriente
     {
         /// <summary>
-        /// Variable del diseñador necesaria.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén usando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -24,11 +24,11 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -71,20 +71,19 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(14, 14);
+            groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(658, 220);
-            groupBox1.TabIndex = 0;
+            groupBox1.Size = new Size(658, 242);
+            groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Búsqueda";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // ButtonConfirmar
             // 
             ButtonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ButtonConfirmar.Location = new Point(567, 187);
+            ButtonConfirmar.Location = new Point(567, 202);
             ButtonConfirmar.Name = "ButtonConfirmar";
-            ButtonConfirmar.Size = new Size(75, 23);
+            ButtonConfirmar.Size = new Size(75, 34);
             ButtonConfirmar.TabIndex = 28;
             ButtonConfirmar.Text = "Buscar";
             ButtonConfirmar.UseVisualStyleBackColor = true;
@@ -189,13 +188,12 @@
             // 
             groupBox2.Controls.Add(listView1);
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(14, 240);
+            groupBox2.Location = new Point(12, 260);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(658, 133);
-            groupBox2.TabIndex = 1;
+            groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Estado Cuenta";
-            groupBox2.Enter += groupBox2_Enter;
             // 
             // listView1
             // 
@@ -241,44 +239,44 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(597, 379);
+            button1.Location = new Point(595, 399);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 29;
+            button1.Size = new Size(75, 39);
+            button1.TabIndex = 30;
             button1.Text = "Aceptar";
             button1.UseVisualStyleBackColor = true;
             // 
-            // CuentaCorrienteForm
+            // CuentaCorriente
             // 
-            AutoScaleDimensions = new SizeF(9F, 18F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(685, 413);
+            ClientSize = new Size(685, 450);
             Controls.Add(button1);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "CuentaCorrienteForm";
-            Text = "Consultar Estado de Cuenta Corriente";
+            Name = "CuentaCorriente";
+            Text = "Estado Cuenta Corriente";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             ResumeLayout(false);
-
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private GroupBox groupBox1;
+        private Button ButtonConfirmar;
+        private ComboBox comboBox1;
+        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePicker1;
+        private Label label6;
+        private Label label7;
+        private Label label4;
+        private Label label5;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private GroupBox groupBox2;
         private ListView listView1;
         private ColumnHeader ColumnaFecha;
         private ColumnHeader ColumnaNComprobante;
@@ -286,9 +284,6 @@
         private ColumnHeader ColumnaMonto;
         private ColumnHeader ColumnaPago;
         private ColumnHeader ColumnaSaldo;
-        private ComboBox comboBox1;
-        private Button ButtonConfirmar;
         private Button button1;
     }
 }
-

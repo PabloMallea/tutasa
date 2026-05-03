@@ -1,6 +1,6 @@
-﻿namespace tutasa.Administración.RegistrarEntrega
+﻿namespace tutasa.RegistrarEntrega
 {
-    partial class RegistrarEntregaForm
+    partial class RegistrarEntrega
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            textBox1 = new TextBox();
             ButtonConfirmar = new Button();
             label5 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            button3 = new Button();
             listView1 = new ListView();
             ColumnaFecha = new ColumnHeader();
             ColumnaNComprobante = new ColumnHeader();
@@ -41,8 +43,6 @@
             ColumnaSaldo = new ColumnHeader();
             button1 = new Button();
             button2 = new Button();
-            textBox1 = new TextBox();
-            button3 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -57,9 +57,16 @@
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(556, 77);
-            groupBox1.TabIndex = 1;
+            groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Búsqueda";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(110, 27);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(289, 27);
+            textBox1.TabIndex = 29;
             // 
             // ButtonConfirmar
             // 
@@ -95,12 +102,21 @@
             groupBox2.Controls.Add(button3);
             groupBox2.Controls.Add(listView1);
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(12, 95);
+            groupBox2.Location = new Point(12, 105);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(556, 178);
-            groupBox2.TabIndex = 2;
+            groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Tabla de Resultados";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(362, 130);
+            button3.Name = "button3";
+            button3.Size = new Size(180, 30);
+            button3.TabIndex = 13;
+            button3.Text = "Seleccionar Todas";
+            button3.UseVisualStyleBackColor = true;
             // 
             // listView1
             // 
@@ -139,48 +155,32 @@
             // 
             // button1
             // 
-            button1.Location = new Point(200, 293);
+            button1.Location = new Point(186, 289);
             button1.Name = "button1";
-            button1.Size = new Size(180, 58);
-            button1.TabIndex = 3;
+            button1.Size = new Size(180, 45);
+            button1.TabIndex = 4;
             button1.Text = "Confirmar Entrega";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(445, 363);
+            button2.Location = new Point(445, 352);
             button2.Name = "button2";
             button2.Size = new Size(123, 36);
-            button2.TabIndex = 4;
+            button2.TabIndex = 5;
             button2.Text = "Cerrar";
             button2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(110, 27);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(289, 27);
-            textBox1.TabIndex = 29;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(362, 130);
-            button3.Name = "button3";
-            button3.Size = new Size(180, 30);
-            button3.TabIndex = 13;
-            button3.Text = "Seleccionar Todas";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // RegistrarEntregaForm
+            // RegistrarEntrega
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(588, 415);
+            ClientSize = new Size(590, 409);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Name = "RegistrarEntregaForm";
+            Name = "RegistrarEntrega";
             Text = "Registrar Entrega de Encomiendas";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -191,10 +191,12 @@
         #endregion
 
         private GroupBox groupBox1;
+        private TextBox textBox1;
         private Button ButtonConfirmar;
         private Label label5;
         private Label label1;
         private GroupBox groupBox2;
+        private Button button3;
         private ListView listView1;
         private ColumnHeader ColumnaFecha;
         private ColumnHeader ColumnaNComprobante;
@@ -202,8 +204,6 @@
         private ColumnHeader ColumnaMonto;
         private ColumnHeader ColumnaSaldo;
         private Button button1;
-        private TextBox textBox1;
         private Button button2;
-        private Button button3;
     }
 }
