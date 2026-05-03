@@ -178,6 +178,7 @@
             // listView1
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNComprobante, ColumnaConcepto, ColumnaMonto, ColumnaPago, ColumnaSaldo });
+            listView1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listView1.Location = new Point(18, 23);
             listView1.Name = "listView1";
             listView1.Size = new Size(624, 92);

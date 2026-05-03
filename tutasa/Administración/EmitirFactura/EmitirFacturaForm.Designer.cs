@@ -131,6 +131,7 @@
             // listView1
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaConcepto, ColumnaMonto });
+            listView1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listView1.Location = new Point(5, 20);
             listView1.Margin = new Padding(3, 2, 3, 2);
             listView1.Name = "listView1";
