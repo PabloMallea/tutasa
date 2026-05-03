@@ -1,8 +1,4 @@
-<<<<<<< HEAD:tutasa/EmitirFactura/EmitirFacturaForm.Designer.cs
-﻿namespace tutasa.Administración.EmitirFactura
-=======
 ﻿namespace tutasa.EmitirFactura
->>>>>>> sacar de carpeta de admin:tutasa/EmitirFactura/EmitirFactura.Designer.cs
 {
     partial class EmitirFactura
     {

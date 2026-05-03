@@ -1,8 +1,4 @@
-<<<<<<< HEAD:tutasa/ResultadosCostos/ResultadosCostos.Designer.cs
-﻿namespace tutasa.Administración.ResultadoCostos
-=======
-﻿namespace tutasa.ResultadosCostos
->>>>>>> sacar de carpeta de admin:tutasa/ResultadosCostos/ResultadoCostos.Designer.cs
+namespace tutasa.ResultadosCostos
 {
     partial class ResultadoCostos
     {
