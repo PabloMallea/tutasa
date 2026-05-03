@@ -1,4 +1,4 @@
-﻿namespace Ruteo.RuteoTransporte
+﻿namespace tutasa.RuteoTransporte
 {
     partial class FormRuteoTransporte
     {

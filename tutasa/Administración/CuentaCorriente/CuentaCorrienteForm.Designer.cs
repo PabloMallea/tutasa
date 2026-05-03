@@ -1,4 +1,4 @@
-﻿namespace Pantallas_administración
+﻿namespace tutasa.Administración.CuentaCorriente
 {
     partial class CuentaCorrienteForm
     {

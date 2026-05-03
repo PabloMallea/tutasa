@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-
-namespace CAI_TP.Imposicion
+﻿namespace tutasa.Imposicion
 {
     internal class Destino
     {

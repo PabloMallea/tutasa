@@ -1,8 +1,8 @@
-﻿namespace tutasa.Administración.EmitirFactura
+﻿namespace tutasa.Administración.RegistrarCobranzas
 {
-    public partial class EmitirFacturaForm : Form
+    public partial class RegistrarCobranzas : Form
     {
-        public EmitirFacturaForm()
+        public RegistrarCobranzas()
         {
             InitializeComponent();
         }

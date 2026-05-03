@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ruteo.EmisionHojasRuta
+﻿namespace tutasa.EmisionHojasRuta
 {
     internal class EmisionHojasRutaModelo
     {

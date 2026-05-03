@@ -1,4 +1,4 @@
-﻿namespace Pantallas_administración
+﻿namespace tutasa.Administración.ResultadoCostos
 {
     partial class ResultadosCostos
     {

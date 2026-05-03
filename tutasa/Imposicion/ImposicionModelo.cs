@@ -1,9 +1,4 @@
-﻿using CAI_TP.Imposicion;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tutasa.Imposicion
+﻿namespace tutasa.Imposicion
 {
     internal class ImposicionModelo
     {

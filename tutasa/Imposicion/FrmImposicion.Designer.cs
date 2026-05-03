@@ -1,4 +1,4 @@
-﻿namespace imposicion
+﻿namespace tutasa.Imposicion
 {
     partial class FrmImposicion
     {
