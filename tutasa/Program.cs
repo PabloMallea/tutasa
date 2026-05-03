@@ -1,7 +1,7 @@
 using imposicion;
 using System;
 using System.Windows.Forms;
-using ImposicionForm = imposicion.Imposicion;
+using ImposicionForm = imposicion.FrmImposicion;
 
 namespace tutasa
 {
@@ -13,6 +13,9 @@ namespace tutasa
         [STAThread]
         static void Main()
         {
+            ApplicationConfiguration.Initialize();
+
+            Application.Run(new tutasa.Admision.Admision());
         }
     }
 }
