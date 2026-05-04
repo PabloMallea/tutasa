@@ -1,8 +1,3 @@
-using imposicion;
-using System;
-using System.Windows.Forms;
-using ImposicionForm = imposicion.FrmImposicion;
-
 namespace tutasa
 {
     internal static class Program

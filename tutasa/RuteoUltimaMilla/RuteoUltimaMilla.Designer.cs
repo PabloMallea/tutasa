@@ -1,4 +1,4 @@
-﻿namespace Ruteo.RuteoUltimaMilla
+﻿namespace tutasa.RuteoUltimaMilla
 {
     partial class RuteoUltimaMilla
     {

@@ -6,14 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace tutasa.ConsultaEstado
+namespace tutasa.EmitirFactura
 {
-    public partial class ConsultaEstado : Form
+    public partial class EmitirFactura : Form
     {
-        public ConsultaEstado()
+        public EmitirFactura()
         {
             InitializeComponent();
         }
-
     }
 }

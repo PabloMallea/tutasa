@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pantallas_administración
+namespace tutasa.Imposicion_Agencia
 {
-    public partial class RegistrarCobranzas : Form
+    public partial class Imposicion_Agencia : Form
     {
-        public RegistrarCobranzas()
+        public Imposicion_Agencia()
         {
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Imposicion_Agencia_Load(object sender, EventArgs e)
         {
 
         }

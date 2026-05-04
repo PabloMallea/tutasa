@@ -1,11 +1,6 @@
-﻿using CAI_TP.Imposicion;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tutasa.Imposicion
+﻿namespace tutasa.ImposicionCallCenter
 {
-    internal class ImposicionModelo
+    internal class ImposicionCallCenterModelo
     {
         //Aca voy a llamar y completar todos los datos de prueba.
         public List<Destino> Destino

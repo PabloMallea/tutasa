@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Text;
-using System.Windows.Forms;
-using tutasa.Imposicion;
-
-namespace imposicion
+﻿namespace tutasa.ImposicionCallCenter
 {
 
-    public partial class FrmImposicion : Form
+    public partial class ImposicionCallCenter : Form
     {
         //NO se toca!!
-        public FrmImposicion()
+        public ImposicionCallCenter()
         {
             InitializeComponent();
 
         }
 
         // Instancia del modelo de imposición
-        private ImposicionModelo modelo = new ImposicionModelo();
+        private ImposicionCallCenterModelo modelo = new ImposicionCallCenterModelo();
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Imposición confirmada.");

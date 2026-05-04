@@ -1,4 +1,4 @@
-﻿namespace Ruteo.RuteoTransporte.EmisionHojasRuta
+﻿namespace tutasa.EmisionHojasRuta
 {
     partial class EmisonHojasRuta
     {

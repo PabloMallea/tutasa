@@ -10,17 +10,19 @@ namespace tutasa.Admision
 {
     public partial class Admision : Form
     {
-        private AdmisionModelo modelo = new();
+        
         public Admision()
         {
             InitializeComponent();
         }
 
+        private AdmisionModelo modelo = new();
+
         private void Admision_Load(object sender, EventArgs e)
         {
             // Limpio todos los campos al cargar la pantalla
             txtNombreRemitente.Text = "";
-            txtDirreccionOrigen.Text = "";
+            txtDireccionOrigen.Text = "";
             txtCPorigen.Text = "";
             txtNombreDestinatario.Text = "";
             txtDireccionDestino.Text = "";
@@ -32,7 +34,7 @@ namespace tutasa.Admision
             intLargo.Text = "";
 
             // Cargar elementos en combo box de dimensiones
-            var dimensiones = modelo.Dimensiones;
+            var dimensiones = AdmisionModelo.Dimensiones;
 
             cbxDimension.Items.Clear();
             foreach (var dimension in dimensiones)
@@ -51,14 +53,14 @@ namespace tutasa.Admision
             }
 
             // Obtener datos mockeados del modelo
-            var modelo = AdmisionModelo.ObtenerDatosMock();
+            modelo = AdmisionModelo.ObtenerDatosMock();
 
             // Simular validación del número de guía ingresado con el del modelo
             if (intNroGuia.Text == modelo.NumeroGuia)
             {
                 // Cargar los campos con los datos del modelo
                 txtNombreRemitente.Text = modelo.NombreRemitente;
-                txtDirreccionOrigen.Text = modelo.DireccionOrigen;
+                txtDireccionOrigen.Text = modelo.DireccionOrigen;
                 txtCPorigen.Text = modelo.CPOrigen;
 
                 txtNombreDestinatario.Text = modelo.NombreDestinatario;
@@ -67,7 +69,8 @@ namespace tutasa.Admision
 
                 txtFleteroAsignado.Text = modelo.FleteroAsignado;
 
-                cbxDimension.Text = modelo.Dimension;
+                cbxDimension.SelectedItem = modelo.DimensionSeleccionada;
+
                 intPeso.Text = modelo.Peso.ToString();
                 intAlto.Text = modelo.Alto.ToString();
                 intAncho.Text = modelo.Ancho.ToString();
@@ -79,7 +82,7 @@ namespace tutasa.Admision
             }
         }
 
-        
+
     }
 }
 
