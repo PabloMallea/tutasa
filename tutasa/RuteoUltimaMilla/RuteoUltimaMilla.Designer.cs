@@ -40,13 +40,14 @@
             columnHeader5 = new ColumnHeader();
             listView1 = new ListView();
             columnHeader11 = new ColumnHeader();
-            columnHeader13 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
+            columnHeader13 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
             columnHeader8 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
             groupBox2 = new GroupBox();
+            BtnAgregarTodos = new Button();
             BtnBajar = new Button();
             BtnQuitar = new Button();
             BtnSubir = new Button();
@@ -56,12 +57,11 @@
             BtnCancelar = new Button();
             BtnConfirmar = new Button();
             groupBox4 = new GroupBox();
+            BtnBuscar = new Button();
+            textBox1 = new TextBox();
             label1 = new Label();
             comboBox2 = new ComboBox();
             LbLocalidad = new Label();
-            textBox1 = new TextBox();
-            BtnBuscar = new Button();
-            BtnAgregarTodos = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -161,15 +161,15 @@
             columnHeader11.Text = "Orden";
             columnHeader11.Width = 112;
             // 
-            // columnHeader13
-            // 
-            columnHeader13.Text = "Cliente";
-            columnHeader13.Width = 112;
-            // 
             // columnHeader6
             // 
             columnHeader6.Text = "Nro Guía";
             columnHeader6.Width = 112;
+            // 
+            // columnHeader13
+            // 
+            columnHeader13.Text = "Cliente";
+            columnHeader13.Width = 112;
             // 
             // columnHeader7
             // 
@@ -206,6 +206,15 @@
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Guías";
+            // 
+            // BtnAgregarTodos
+            // 
+            BtnAgregarTodos.Location = new Point(407, 161);
+            BtnAgregarTodos.Name = "BtnAgregarTodos";
+            BtnAgregarTodos.Size = new Size(289, 23);
+            BtnAgregarTodos.TabIndex = 12;
+            BtnAgregarTodos.Text = "Agregar todos";
+            BtnAgregarTodos.UseVisualStyleBackColor = true;
             // 
             // BtnBajar
             // 
@@ -296,6 +305,22 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Criterios de búsqueda";
             // 
+            // BtnBuscar
+            // 
+            BtnBuscar.Location = new Point(0, 60);
+            BtnBuscar.Name = "BtnBuscar";
+            BtnBuscar.Size = new Size(714, 23);
+            BtnBuscar.TabIndex = 4;
+            BtnBuscar.Text = "Buscar";
+            BtnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(431, 25);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(265, 23);
+            textBox1.TabIndex = 3;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -323,31 +348,6 @@
             LbLocalidad.TabIndex = 0;
             LbLocalidad.Text = "Localidad";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(431, 25);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(265, 23);
-            textBox1.TabIndex = 3;
-            // 
-            // BtnBuscar
-            // 
-            BtnBuscar.Location = new Point(0, 60);
-            BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(714, 23);
-            BtnBuscar.TabIndex = 4;
-            BtnBuscar.Text = "Buscar";
-            BtnBuscar.UseVisualStyleBackColor = true;
-            // 
-            // BtnAgregarTodos
-            // 
-            BtnAgregarTodos.Location = new Point(407, 161);
-            BtnAgregarTodos.Name = "BtnAgregarTodos";
-            BtnAgregarTodos.Size = new Size(289, 23);
-            BtnAgregarTodos.TabIndex = 12;
-            BtnAgregarTodos.Text = "Agregar todos";
-            BtnAgregarTodos.UseVisualStyleBackColor = true;
-            // 
             // RuteoUltimaMilla
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -360,7 +360,7 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
             Name = "RuteoUltimaMilla";
-            Text = "RuteoUltimaMilla";
+            Text = "Ruteo de última milla";
             Load += RuteoUltimaMilla_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

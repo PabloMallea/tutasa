@@ -16,6 +16,7 @@ namespace tutasa
             ApplicationConfiguration.Initialize();
 
             Application.Run(new tutasa.Admision.Admision());
+
         }
     }
 }

@@ -6,16 +6,16 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Ruteo.RuteoTransporte.EmisionHojasRuta
+namespace tutasa.EmisionHojasRutaTransporte
 {
-    public partial class EmisonHojasRuta : Form
+    public partial class EmisionHojasRutaTransporte : Form
     {
-        public EmisonHojasRuta()
+        public EmisionHojasRutaTransporte()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void EmisionHojasRutaTransporte_Load(object sender, EventArgs e)
         {
 
         }

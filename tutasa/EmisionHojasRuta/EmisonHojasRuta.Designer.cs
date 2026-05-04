@@ -35,11 +35,7 @@
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             LbFeltero = new Label();
-            LbEmpresa = new Label();
             comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            RBtnRetiro = new RadioButton();
-            RBtnEntrega = new RadioButton();
             groupBox2 = new GroupBox();
             BtnDeseleccionar = new Button();
             button1 = new Button();
@@ -57,6 +53,8 @@
             groupBox3 = new GroupBox();
             BtnEmitirHojasRuta = new Button();
             BtnImprimirResumen = new Button();
+            LbTipo = new Label();
+            comboBox1 = new ComboBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -64,17 +62,15 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(LbTipo);
             groupBox1.Controls.Add(BtnBuscar);
             groupBox1.Controls.Add(LbFechaHasta);
             groupBox1.Controls.Add(LbFechaDesde);
             groupBox1.Controls.Add(dateTimePicker2);
             groupBox1.Controls.Add(dateTimePicker1);
             groupBox1.Controls.Add(LbFeltero);
-            groupBox1.Controls.Add(LbEmpresa);
             groupBox1.Controls.Add(comboBox2);
-            groupBox1.Controls.Add(comboBox3);
-            groupBox1.Controls.Add(RBtnRetiro);
-            groupBox1.Controls.Add(RBtnEntrega);
             groupBox1.Location = new Point(21, 12);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(700, 152);
@@ -84,7 +80,7 @@
             // 
             // BtnBuscar
             // 
-            BtnBuscar.Location = new Point(0, 123);
+            BtnBuscar.Location = new Point(1, 99);
             BtnBuscar.Name = "BtnBuscar";
             BtnBuscar.Size = new Size(700, 23);
             BtnBuscar.TabIndex = 9;
@@ -94,7 +90,7 @@
             // LbFechaHasta
             // 
             LbFechaHasta.AutoSize = true;
-            LbFechaHasta.Location = new Point(348, 90);
+            LbFechaHasta.Location = new Point(349, 66);
             LbFechaHasta.Name = "LbFechaHasta";
             LbFechaHasta.Size = new Size(69, 15);
             LbFechaHasta.TabIndex = 8;
@@ -103,7 +99,7 @@
             // LbFechaDesde
             // 
             LbFechaDesde.AutoSize = true;
-            LbFechaDesde.Location = new Point(8, 90);
+            LbFechaDesde.Location = new Point(9, 66);
             LbFechaDesde.Name = "LbFechaDesde";
             LbFechaDesde.Size = new Size(72, 15);
             LbFechaDesde.TabIndex = 7;
@@ -111,14 +107,14 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(426, 84);
+            dateTimePicker2.Location = new Point(427, 60);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(256, 23);
             dateTimePicker2.TabIndex = 6;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(86, 84);
+            dateTimePicker1.Location = new Point(87, 60);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(256, 23);
             dateTimePicker1.TabIndex = 1;
@@ -126,60 +122,19 @@
             // LbFeltero
             // 
             LbFeltero.AutoSize = true;
-            LbFeltero.Location = new Point(348, 55);
+            LbFeltero.Location = new Point(9, 31);
             LbFeltero.Name = "LbFeltero";
             LbFeltero.Size = new Size(43, 15);
             LbFeltero.TabIndex = 5;
             LbFeltero.Text = "Fletero";
             // 
-            // LbEmpresa
-            // 
-            LbEmpresa.AutoSize = true;
-            LbEmpresa.Location = new Point(8, 55);
-            LbEmpresa.Name = "LbEmpresa";
-            LbEmpresa.Size = new Size(52, 15);
-            LbEmpresa.TabIndex = 4;
-            LbEmpresa.Text = "Empresa";
-            // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(426, 52);
+            comboBox2.Location = new Point(87, 28);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(256, 23);
             comboBox2.TabIndex = 2;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(86, 52);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(256, 23);
-            comboBox3.TabIndex = 3;
-            // 
-            // RBtnRetiro
-            // 
-            RBtnRetiro.AutoSize = true;
-            RBtnRetiro.Location = new Point(196, 22);
-            RBtnRetiro.Name = "RBtnRetiro";
-            RBtnRetiro.RightToLeft = RightToLeft.Yes;
-            RBtnRetiro.Size = new Size(89, 19);
-            RBtnRetiro.TabIndex = 3;
-            RBtnRetiro.TabStop = true;
-            RBtnRetiro.Text = "Última milla";
-            RBtnRetiro.UseVisualStyleBackColor = true;
-            // 
-            // RBtnEntrega
-            // 
-            RBtnEntrega.AutoSize = true;
-            RBtnEntrega.Location = new Point(24, 22);
-            RBtnEntrega.Name = "RBtnEntrega";
-            RBtnEntrega.RightToLeft = RightToLeft.Yes;
-            RBtnEntrega.Size = new Size(80, 19);
-            RBtnEntrega.TabIndex = 2;
-            RBtnEntrega.TabStop = true;
-            RBtnEntrega.Text = "Transporte";
-            RBtnEntrega.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -234,7 +189,7 @@
             // 
             // columnHeader3
             // 
-            columnHeader3.Text = "Destino/Domicilio";
+            columnHeader3.Text = "Domicilio";
             columnHeader3.Width = 165;
             // 
             // columnHeader4
@@ -260,7 +215,7 @@
             // 
             // columnHeader6
             // 
-            columnHeader6.Text = "Dirección/Destino";
+            columnHeader6.Text = "Dirección";
             columnHeader6.Width = 132;
             // 
             // columnHeader7
@@ -306,6 +261,23 @@
             BtnImprimirResumen.Text = "Imprimir resumen";
             BtnImprimirResumen.UseVisualStyleBackColor = true;
             // 
+            // LbTipo
+            // 
+            LbTipo.AutoSize = true;
+            LbTipo.Location = new Point(349, 31);
+            LbTipo.Name = "LbTipo";
+            LbTipo.Size = new Size(30, 15);
+            LbTipo.TabIndex = 10;
+            LbTipo.Text = "Tipo";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(426, 28);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(256, 23);
+            comboBox1.TabIndex = 11;
+            // 
             // EmisonHojasRuta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -317,7 +289,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "EmisonHojasRuta";
-            Text = "Form1";
+            Text = "Emisión de hojas de ruta de última milla";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -329,13 +301,9 @@
         #endregion
 
         private GroupBox groupBox1;
-        private RadioButton RBtnRetiro;
-        private RadioButton RBtnEntrega;
         private DateTimePicker dateTimePicker1;
         private Label LbFeltero;
-        private Label LbEmpresa;
         private ComboBox comboBox2;
-        private ComboBox comboBox3;
         private Label LbFechaDesde;
         private DateTimePicker dateTimePicker2;
         private Button BtnBuscar;
@@ -357,5 +325,7 @@
         private GroupBox groupBox3;
         private Button BtnEmitirHojasRuta;
         private Button BtnImprimirResumen;
+        private ComboBox comboBox1;
+        private Label LbTipo;
     }
 }
