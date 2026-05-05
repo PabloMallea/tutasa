@@ -30,6 +30,8 @@
         {
             button2 = new Button();
             panel1 = new Panel();
+            comboBox1 = new ComboBox();
+            label5 = new Label();
             button1 = new Button();
             comboBox3 = new ComboBox();
             label4 = new Label();
@@ -47,6 +49,7 @@
             columnHeader14 = new ColumnHeader();
             columnHeader15 = new ColumnHeader();
             columnHeader16 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
             BtnAgregarSeleccion = new Button();
             LvGuiasDisponibles = new ListView();
             columnHeader11 = new ColumnHeader();
@@ -55,9 +58,6 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
-            comboBox1 = new ComboBox();
-            label5 = new Label();
-            columnHeader6 = new ColumnHeader();
             button4 = new Button();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -83,6 +83,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(709, 64);
             panel1.TabIndex = 19;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(370, 17);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(200, 23);
+            comboBox1.TabIndex = 4;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(318, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(51, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Servicio:";
             // 
             // button1
             // 
@@ -226,6 +243,11 @@
             columnHeader16.Text = "Fecha";
             columnHeader16.Width = 100;
             // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Servicio";
+            columnHeader6.Width = 100;
+            // 
             // BtnAgregarSeleccion
             // 
             BtnAgregarSeleccion.Location = new Point(14, 240);
@@ -272,32 +294,8 @@
             // 
             // columnHeader5
             // 
-            columnHeader5.DisplayIndex = 3;
             columnHeader5.Text = "Servicio";
             columnHeader5.Width = 100;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(370, 17);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(200, 23);
-            comboBox1.TabIndex = 4;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(318, 20);
-            label5.Name = "label5";
-            label5.Size = new Size(51, 15);
-            label5.TabIndex = 3;
-            label5.Text = "Servicio:";
-            // 
-            // columnHeader6
-            // 
-            columnHeader6.DisplayIndex = 3;
-            columnHeader6.Text = "Servicio";
-            columnHeader6.Width = 100;
             // 
             // button4
             // 

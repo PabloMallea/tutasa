@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             LabelImposicion = new Label();
-            GrupoEncomienda = new GroupBox();
             GrupoDestinatario = new GroupBox();
             BotonBuscarD = new Button();
             TextLocalidad = new TextBox();
@@ -60,19 +59,14 @@
             LabelCUIT = new Label();
             ButtonConfirmar = new Button();
             ButtonCancelar = new Button();
-            label7 = new Label();
-            intAncho = new TextBox();
-            label5 = new Label();
-            intLargo = new TextBox();
-            intPeso = new TextBox();
-            label4 = new Label();
-            intAlto = new TextBox();
-            label6 = new Label();
             LabelDimension = new Label();
+            label6 = new Label();
+            intAlto = new TextBox();
             LabelTamaño = new Label();
-            GrupoEncomienda.SuspendLayout();
+            GrupoEncomienda = new GroupBox();
             GrupoDestinatario.SuspendLayout();
             GrupoCliente.SuspendLayout();
+            GrupoEncomienda.SuspendLayout();
             SuspendLayout();
             // 
             // LabelImposicion
@@ -84,26 +78,6 @@
             LabelImposicion.Size = new Size(260, 21);
             LabelImposicion.TabIndex = 46;
             LabelImposicion.Text = "Imposición Centro de Distribución";
-            // 
-            // GrupoEncomienda
-            // 
-            GrupoEncomienda.Controls.Add(LabelTamaño);
-            GrupoEncomienda.Controls.Add(label7);
-            GrupoEncomienda.Controls.Add(intAncho);
-            GrupoEncomienda.Controls.Add(label5);
-            GrupoEncomienda.Controls.Add(intLargo);
-            GrupoEncomienda.Controls.Add(intPeso);
-            GrupoEncomienda.Controls.Add(label4);
-            GrupoEncomienda.Controls.Add(intAlto);
-            GrupoEncomienda.Controls.Add(label6);
-            GrupoEncomienda.Controls.Add(LabelDimension);
-            GrupoEncomienda.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GrupoEncomienda.Location = new Point(12, 331);
-            GrupoEncomienda.Name = "GrupoEncomienda";
-            GrupoEncomienda.Size = new Size(772, 141);
-            GrupoEncomienda.TabIndex = 45;
-            GrupoEncomienda.TabStop = false;
-            GrupoEncomienda.Text = "Datos de Encomienta";
             // 
             // GrupoDestinatario
             // 
@@ -174,7 +148,7 @@
             LabelTELD.Font = new Font("Segoe UI", 9F);
             LabelTELD.Location = new Point(9, 240);
             LabelTELD.Name = "LabelTELD";
-            LabelTELD.Size = new Size(52, 15);
+            LabelTELD.Size = new Size(53, 15);
             LabelTELD.TabIndex = 37;
             LabelTELD.Text = "Teléfono";
             // 
@@ -342,7 +316,7 @@
             LabelTELC.Font = new Font("Segoe UI", 9F);
             LabelTELC.Location = new Point(9, 120);
             LabelTELC.Name = "LabelTELC";
-            LabelTELC.Size = new Size(52, 15);
+            LabelTELC.Size = new Size(53, 15);
             LabelTELC.TabIndex = 30;
             LabelTELC.Text = "Teléfono";
             // 
@@ -379,7 +353,7 @@
             LabelCUIT.Font = new Font("Segoe UI", 9F);
             LabelCUIT.Location = new Point(9, 30);
             LabelCUIT.Name = "LabelCUIT";
-            LabelCUIT.Size = new Size(32, 15);
+            LabelCUIT.Size = new Size(33, 15);
             LabelCUIT.TabIndex = 25;
             LabelCUIT.Text = "CUIT";
             // 
@@ -401,70 +375,15 @@
             ButtonCancelar.Text = "Cancelar";
             ButtonCancelar.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // LabelDimension
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(389, 70);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(73, 15);
-            label7.TabIndex = 44;
-            label7.Text = "Ancho (cm):";
-            // 
-            // intAncho
-            // 
-            intAncho.Location = new Point(464, 65);
-            intAncho.Margin = new Padding(4, 3, 4, 3);
-            intAncho.Name = "intAncho";
-            intAncho.Size = new Size(298, 25);
-            intAncho.TabIndex = 43;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(389, 30);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(68, 15);
-            label5.TabIndex = 42;
-            label5.Text = "Largo (cm):";
-            // 
-            // intLargo
-            // 
-            intLargo.Location = new Point(77, 70);
-            intLargo.Margin = new Padding(4, 3, 4, 3);
-            intLargo.Name = "intLargo";
-            intLargo.Size = new Size(297, 25);
-            intLargo.TabIndex = 41;
-            // 
-            // intPeso
-            // 
-            intPeso.Location = new Point(465, 30);
-            intPeso.Margin = new Padding(4, 3, 4, 3);
-            intPeso.Name = "intPeso";
-            intPeso.Size = new Size(297, 25);
-            intPeso.TabIndex = 40;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(12, 70);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(60, 15);
-            label4.TabIndex = 39;
-            label4.Text = "Alto (cm):";
-            // 
-            // intAlto
-            // 
-            intAlto.Location = new Point(77, 30);
-            intAlto.Margin = new Padding(4, 3, 4, 3);
-            intAlto.Name = "intAlto";
-            intAlto.Size = new Size(297, 25);
-            intAlto.TabIndex = 37;
+            LabelDimension.AutoSize = true;
+            LabelDimension.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelDimension.Location = new Point(11, 75);
+            LabelDimension.Name = "LabelDimension";
+            LabelDimension.Size = new Size(64, 15);
+            LabelDimension.TabIndex = 17;
+            LabelDimension.Text = "Dimensión";
             // 
             // label6
             // 
@@ -477,25 +396,37 @@
             label6.TabIndex = 38;
             label6.Text = "Peso (Kg):";
             // 
-            // LabelDimension
+            // intAlto
             // 
-            LabelDimension.AutoSize = true;
-            LabelDimension.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelDimension.Location = new Point(8, 111);
-            LabelDimension.Name = "LabelDimension";
-            LabelDimension.Size = new Size(64, 15);
-            LabelDimension.TabIndex = 17;
-            LabelDimension.Text = "Dimensión";
+            intAlto.Location = new Point(77, 30);
+            intAlto.Margin = new Padding(4, 3, 4, 3);
+            intAlto.Name = "intAlto";
+            intAlto.Size = new Size(297, 25);
+            intAlto.TabIndex = 37;
             // 
             // LabelTamaño
             // 
             LabelTamaño.AutoSize = true;
             LabelTamaño.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelTamaño.Location = new Point(75, 111);
+            LabelTamaño.Location = new Point(78, 75);
             LabelTamaño.Name = "LabelTamaño";
             LabelTamaño.Size = new Size(73, 15);
             LabelTamaño.TabIndex = 45;
             LabelTamaño.Text = "S | M | L | XL ";
+            // 
+            // GrupoEncomienda
+            // 
+            GrupoEncomienda.Controls.Add(LabelTamaño);
+            GrupoEncomienda.Controls.Add(intAlto);
+            GrupoEncomienda.Controls.Add(label6);
+            GrupoEncomienda.Controls.Add(LabelDimension);
+            GrupoEncomienda.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            GrupoEncomienda.Location = new Point(12, 331);
+            GrupoEncomienda.Name = "GrupoEncomienda";
+            GrupoEncomienda.Size = new Size(772, 141);
+            GrupoEncomienda.TabIndex = 45;
+            GrupoEncomienda.TabStop = false;
+            GrupoEncomienda.Text = "Datos de Encomienta";
             // 
             // Impiscion_CD
             // 
@@ -510,12 +441,12 @@
             Controls.Add(ButtonCancelar);
             Name = "Impiscion_CD";
             Text = "Impiscion_CD";
-            GrupoEncomienda.ResumeLayout(false);
-            GrupoEncomienda.PerformLayout();
             GrupoDestinatario.ResumeLayout(false);
             GrupoDestinatario.PerformLayout();
             GrupoCliente.ResumeLayout(false);
             GrupoCliente.PerformLayout();
+            GrupoEncomienda.ResumeLayout(false);
+            GrupoEncomienda.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -523,7 +454,6 @@
         #endregion
 
         private Label LabelImposicion;
-        private GroupBox GrupoEncomienda;
         private GroupBox GrupoDestinatario;
         private Button BotonBuscarD;
         private TextBox TextLocalidad;
@@ -554,15 +484,10 @@
         private Label LabelCUIT;
         private Button ButtonConfirmar;
         private Button ButtonCancelar;
-        private Label label7;
-        private TextBox intAncho;
-        private Label label5;
-        private TextBox intLargo;
-        private TextBox intPeso;
-        private Label label4;
-        private TextBox intAlto;
-        private Label label6;
         private Label LabelDimension;
+        private Label label6;
+        private TextBox intAlto;
         private Label LabelTamaño;
+        private GroupBox GrupoEncomienda;
     }
 }

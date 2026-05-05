@@ -237,7 +237,7 @@
             LabelTELC.Font = new Font("Segoe UI", 9F);
             LabelTELC.Location = new Point(9, 120);
             LabelTELC.Name = "LabelTELC";
-            LabelTELC.Size = new Size(52, 15);
+            LabelTELC.Size = new Size(53, 15);
             LabelTELC.TabIndex = 30;
             LabelTELC.Text = "Teléfono";
             // 
@@ -284,7 +284,7 @@
             LabelCUIT.Font = new Font("Segoe UI", 9F);
             LabelCUIT.Location = new Point(9, 30);
             LabelCUIT.Name = "LabelCUIT";
-            LabelCUIT.Size = new Size(32, 15);
+            LabelCUIT.Size = new Size(33, 15);
             LabelCUIT.TabIndex = 25;
             LabelCUIT.Text = "CUIT";
             // 
@@ -357,7 +357,7 @@
             LabelTELD.Font = new Font("Segoe UI", 9F);
             LabelTELD.Location = new Point(9, 240);
             LabelTELD.Name = "LabelTELD";
-            LabelTELD.Size = new Size(52, 15);
+            LabelTELD.Size = new Size(53, 15);
             LabelTELD.TabIndex = 37;
             LabelTELD.Text = "Teléfono";
             // 

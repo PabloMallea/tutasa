@@ -32,21 +32,14 @@
             label2 = new Label();
             intNroGuia = new TextBox();
             btnBuscar = new Button();
-            label3 = new Label();
             label6 = new Label();
-            intAlto = new TextBox();
             btnConfirmar = new Button();
             btnCancelar = new Button();
             label13 = new Label();
             label11 = new Label();
             panel1 = new Panel();
-            txtDimension = new Label();
-            label7 = new Label();
-            intAncho = new TextBox();
-            label5 = new Label();
-            intLargo = new TextBox();
+            label3 = new Label();
             intPeso = new TextBox();
-            label4 = new Label();
             panel2 = new Panel();
             txtFleteroAsignado = new Label();
             label17 = new Label();
@@ -63,6 +56,7 @@
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
+            label4 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -107,33 +101,15 @@
             btnBuscar.UseVisualStyleBackColor = true;
             btnBuscar.Click += btnBuscar_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(0, 43);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Dimensión:";
-            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(254, 40);
+            label6.Location = new Point(33, 29);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(60, 15);
             label6.TabIndex = 10;
             label6.Text = "Peso (Kg):";
-            // 
-            // intAlto
-            // 
-            intAlto.Location = new Point(70, 96);
-            intAlto.Margin = new Padding(4, 3, 4, 3);
-            intAlto.Name = "intAlto";
-            intAlto.Size = new Size(119, 23);
-            intAlto.TabIndex = 9;
             // 
             // btnConfirmar
             // 
@@ -179,15 +155,9 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(txtDimension);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(intAncho);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(intLargo);
-            panel1.Controls.Add(intPeso);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(intAlto);
+            panel1.Controls.Add(intPeso);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(label6);
             panel1.Location = new Point(57, 239);
@@ -196,69 +166,23 @@
             panel1.Size = new Size(700, 140);
             panel1.TabIndex = 38;
             // 
-            // txtDimension
+            // label3
             // 
-            txtDimension.AutoSize = true;
-            txtDimension.Location = new Point(75, 43);
-            txtDimension.Margin = new Padding(4, 0, 4, 0);
-            txtDimension.Name = "txtDimension";
-            txtDimension.Size = new Size(52, 15);
-            txtDimension.TabIndex = 35;
-            txtDimension.Text = "S,M,L,XL";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(504, 99);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(73, 15);
-            label7.TabIndex = 34;
-            label7.Text = "Ancho (cm):";
-            // 
-            // intAncho
-            // 
-            intAncho.Location = new Point(580, 96);
-            intAncho.Margin = new Padding(4, 3, 4, 3);
-            intAncho.Name = "intAncho";
-            intAncho.Size = new Size(119, 23);
-            intAncho.TabIndex = 33;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(253, 99);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(68, 15);
-            label5.TabIndex = 32;
-            label5.Text = "Largo (cm):";
-            // 
-            // intLargo
-            // 
-            intLargo.Location = new Point(324, 96);
-            intLargo.Margin = new Padding(4, 3, 4, 3);
-            intLargo.Name = "intLargo";
-            intLargo.Size = new Size(119, 23);
-            intLargo.TabIndex = 31;
+            label3.AutoSize = true;
+            label3.Location = new Point(33, 78);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(222, 15);
+            label3.TabIndex = 31;
+            label3.Text = "ADVERTENCIA: Se modificará el tipo a XL";
             // 
             // intPeso
             // 
-            intPeso.Location = new Point(324, 37);
+            intPeso.Location = new Point(123, 26);
             intPeso.Margin = new Padding(4, 3, 4, 3);
             intPeso.Name = "intPeso";
             intPeso.Size = new Size(119, 23);
             intPeso.TabIndex = 30;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(0, 99);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(60, 15);
-            label4.TabIndex = 29;
-            label4.Text = "Alto (cm):";
             // 
             // panel2
             // 
@@ -433,6 +357,16 @@
             label8.TabIndex = 0;
             label8.Text = "Datos Guía";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(250, 29);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(296, 15);
+            label4.TabIndex = 32;
+            label4.Text = "Acá por validacion no dejás ingresar >20 directamente.";
+            // 
             // Admision
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -465,19 +399,12 @@
         private Label label2;
         private TextBox intNroGuia;
         private Button btnBuscar;
-        private Label label3;
         private Label label6;
-        private TextBox intAlto;
         private Button btnConfirmar;
         private Button btnCancelar;
         private Label label13;
         private Label label11;
         private Panel panel1;
-        private Label label4;
-        private Label label7;
-        private TextBox intAncho;
-        private Label label5;
-        private TextBox intLargo;
         private TextBox intPeso;
         private Panel panel2;
         private Label label14;
@@ -495,6 +422,7 @@
         private Label label16;
         private Label txtFleteroAsignado;
         private Label label17;
-        private Label txtDimension;
+        private Label label3;
+        private Label label4;
     }
 }

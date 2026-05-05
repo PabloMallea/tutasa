@@ -36,7 +36,6 @@
             fechaActualización = new ColumnHeader();
             estado = new ColumnHeader();
             ubicación = new ColumnHeader();
-            personaResponsable = new ColumnHeader();
             label3 = new Label();
             label5 = new Label();
             label6 = new Label();
@@ -46,8 +45,6 @@
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
-            label13 = new Label();
-            label14 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -87,7 +84,7 @@
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { fechaActualización, estado, ubicación, personaResponsable });
+            listView1.Columns.AddRange(new ColumnHeader[] { fechaActualización, estado, ubicación });
             listView1.Location = new Point(104, 250);
             listView1.Name = "listView1";
             listView1.Size = new Size(600, 264);
@@ -111,12 +108,6 @@
             ubicación.Text = "Ubicación";
             ubicación.TextAlign = HorizontalAlignment.Center;
             ubicación.Width = 150;
-            // 
-            // personaResponsable
-            // 
-            personaResponsable.Text = "Responsable";
-            personaResponsable.TextAlign = HorizontalAlignment.Center;
-            personaResponsable.Width = 150;
             // 
             // label3
             // 
@@ -202,31 +193,11 @@
             label12.TabIndex = 16;
             label12.Text = "01/05/2026 10:00";
             // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(450, 121);
-            label13.Name = "label13";
-            label13.Size = new Size(76, 15);
-            label13.TabIndex = 17;
-            label13.Text = "Responsable:";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(586, 121);
-            label14.Name = "label14";
-            label14.Size = new Size(28, 15);
-            label14.TabIndex = 18;
-            label14.Text = "Tito";
-            // 
             // ConsultaEstadoInterna
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 565);
-            Controls.Add(label14);
-            Controls.Add(label13);
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(label10);
@@ -257,7 +228,6 @@
         private ColumnHeader estado;
         private ColumnHeader ubicación;
         private ColumnHeader fechaActualización;
-        private ColumnHeader personaResponsable;
         private Label label3;
         private Label label5;
         private Label label6;
@@ -267,7 +237,5 @@
         private Label label10;
         private Label label11;
         private Label label12;
-        private Label label13;
-        private Label label14;
     }
 }
