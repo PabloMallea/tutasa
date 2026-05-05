@@ -33,7 +33,6 @@
             intNroGuia = new TextBox();
             btnBuscar = new Button();
             label3 = new Label();
-            cbxDimension = new ComboBox();
             label6 = new Label();
             intAlto = new TextBox();
             btnConfirmar = new Button();
@@ -41,6 +40,7 @@
             label13 = new Label();
             label11 = new Label();
             panel1 = new Panel();
+            txtDimension = new Label();
             label7 = new Label();
             intAncho = new TextBox();
             label5 = new Label();
@@ -117,15 +117,6 @@
             label3.TabIndex = 4;
             label3.Text = "Dimensión:";
             // 
-            // cbxDimension
-            // 
-            cbxDimension.FormattingEnabled = true;
-            cbxDimension.Location = new Point(70, 40);
-            cbxDimension.Margin = new Padding(4, 3, 4, 3);
-            cbxDimension.Name = "cbxDimension";
-            cbxDimension.Size = new Size(119, 23);
-            cbxDimension.TabIndex = 6;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -188,6 +179,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(txtDimension);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(intAncho);
             panel1.Controls.Add(label5);
@@ -195,7 +187,6 @@
             panel1.Controls.Add(intPeso);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(cbxDimension);
             panel1.Controls.Add(intAlto);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(label6);
@@ -204,6 +195,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(700, 140);
             panel1.TabIndex = 38;
+            // 
+            // txtDimension
+            // 
+            txtDimension.AutoSize = true;
+            txtDimension.Location = new Point(75, 43);
+            txtDimension.Margin = new Padding(4, 0, 4, 0);
+            txtDimension.Name = "txtDimension";
+            txtDimension.Size = new Size(52, 15);
+            txtDimension.TabIndex = 35;
+            txtDimension.Text = "S,M,L,XL";
             // 
             // label7
             // 
@@ -465,7 +466,6 @@
         private TextBox intNroGuia;
         private Button btnBuscar;
         private Label label3;
-        private ComboBox cbxDimension;
         private Label label6;
         private TextBox intAlto;
         private Button btnConfirmar;
@@ -495,5 +495,6 @@
         private Label label16;
         private Label txtFleteroAsignado;
         private Label label17;
+        private Label txtDimension;
     }
 }

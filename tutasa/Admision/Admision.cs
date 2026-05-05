@@ -27,20 +27,12 @@ namespace tutasa.Admision
             txtNombreDestinatario.Text = "";
             txtDireccionDestino.Text = "";
             txtCPdestino.Text = "";
-            cbxDimension.Text = "";
+            txtDimension.Text = "";
+            txtFleteroAsignado.Text = "";
             intPeso.Text = "";
             intAlto.Text = "";
             intAncho.Text = "";
             intLargo.Text = "";
-
-            // Cargar elementos en combo box de dimensiones
-            var dimensiones = AdmisionModelo.Dimensiones;
-
-            cbxDimension.Items.Clear();
-            foreach (var dimension in dimensiones)
-            {
-                cbxDimension.Items.Add(dimension.tipo);
-            }
 
 
         }
@@ -69,7 +61,7 @@ namespace tutasa.Admision
 
                 txtFleteroAsignado.Text = modelo.FleteroAsignado;
 
-                cbxDimension.SelectedItem = modelo.DimensionSeleccionada;
+                txtDimension.Text = modelo.DimensionSeleccionada;
 
                 intPeso.Text = modelo.Peso.ToString();
                 intAlto.Text = modelo.Alto.ToString();
