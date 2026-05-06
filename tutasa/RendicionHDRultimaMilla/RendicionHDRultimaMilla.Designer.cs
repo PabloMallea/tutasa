@@ -56,6 +56,8 @@
             label4 = new Label();
             button2 = new Button();
             button4 = new Button();
+            comboBox1 = new ComboBox();
+            label5 = new Label();
             groupBox2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -162,7 +164,7 @@
             // 
             // columnHeader7
             // 
-            columnHeader7.Text = "Tipo Entrega";
+            columnHeader7.Text = "Tipo ";
             columnHeader7.Width = 100;
             // 
             // columnHeader5
@@ -211,7 +213,7 @@
             // 
             // columnHeader6
             // 
-            columnHeader6.Text = "Tipo Entrega";
+            columnHeader6.Text = "Tipo ";
             columnHeader6.Width = 100;
             // 
             // label3
@@ -221,12 +223,15 @@
             label3.Location = new Point(47, 18);
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.No;
-            label3.Size = new Size(246, 21);
+            label3.Size = new Size(299, 21);
             label3.TabIndex = 12;
-            label3.Text = "Rendición HDR de Distribución";
+            label3.Text = "Rendición HDR de Retiro/Distribución";
+            label3.Click += label3_Click;
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(comboBox3);
             panel1.Controls.Add(label4);
@@ -237,7 +242,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(289, 17);
+            button1.Location = new Point(618, 16);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
@@ -279,6 +284,23 @@
             button4.TabIndex = 15;
             button4.Text = "Cancelar";
             button4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(337, 17);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(200, 23);
+            comboBox1.TabIndex = 4;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(301, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(30, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Tipo";
             // 
             // RendicionHDRultimaMilla
             // 
@@ -331,5 +353,7 @@
         private ColumnHeader columnHeader7;
         private Button button4;
         private ColumnHeader columnHeader5;
+        private ComboBox comboBox1;
+        private Label label5;
     }
 }

@@ -38,7 +38,6 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             listView1 = new ListView();
-            columnHeader11 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader13 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
@@ -46,9 +45,7 @@
             columnHeader9 = new ColumnHeader();
             groupBox2 = new GroupBox();
             BtnAgregarTodos = new Button();
-            BtnBajar = new Button();
             BtnQuitar = new Button();
-            BtnSubir = new Button();
             BtnAgregarSeleccion = new Button();
             groupBox3 = new GroupBox();
             comboBox1 = new ComboBox();
@@ -140,7 +137,7 @@
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader11, columnHeader6, columnHeader13, columnHeader7, columnHeader8, columnHeader9 });
+            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader13, columnHeader7, columnHeader8, columnHeader9 });
             listView1.Location = new Point(17, 224);
             listView1.Name = "listView1";
             listView1.Size = new Size(700, 150);
@@ -148,11 +145,6 @@
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
-            // 
-            // columnHeader11
-            // 
-            columnHeader11.Text = "Orden";
-            columnHeader11.Width = 50;
             // 
             // columnHeader6
             // 
@@ -182,15 +174,13 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(BtnAgregarTodos);
-            groupBox2.Controls.Add(BtnBajar);
             groupBox2.Controls.Add(BtnQuitar);
-            groupBox2.Controls.Add(BtnSubir);
             groupBox2.Controls.Add(BtnAgregarSeleccion);
             groupBox2.Controls.Add(listView1);
             groupBox2.Controls.Add(LvGuiasDisponibles);
             groupBox2.Location = new Point(39, 174);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(734, 474);
+            groupBox2.Size = new Size(734, 412);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Guías";
@@ -204,34 +194,14 @@
             BtnAgregarTodos.Text = "Agregar todos";
             BtnAgregarTodos.UseVisualStyleBackColor = true;
             // 
-            // BtnBajar
-            // 
-            BtnBajar.Location = new Point(16, 409);
-            BtnBajar.Name = "BtnBajar";
-            BtnBajar.Size = new Size(701, 23);
-            BtnBajar.TabIndex = 11;
-            BtnBajar.Text = "Bajar";
-            BtnBajar.UseVisualStyleBackColor = true;
-            BtnBajar.Click += button2_Click;
-            // 
             // BtnQuitar
             // 
-            BtnQuitar.Location = new Point(16, 438);
+            BtnQuitar.Location = new Point(16, 380);
             BtnQuitar.Name = "BtnQuitar";
             BtnQuitar.Size = new Size(701, 23);
             BtnQuitar.TabIndex = 10;
             BtnQuitar.Text = "Quitar";
             BtnQuitar.UseVisualStyleBackColor = true;
-            // 
-            // BtnSubir
-            // 
-            BtnSubir.Location = new Point(16, 380);
-            BtnSubir.Name = "BtnSubir";
-            BtnSubir.Size = new Size(701, 23);
-            BtnSubir.TabIndex = 9;
-            BtnSubir.Text = "Subir";
-            BtnSubir.UseVisualStyleBackColor = true;
-            BtnSubir.Click += BtnQuitar_Click;
             // 
             // BtnAgregarSeleccion
             // 
@@ -245,7 +215,7 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(comboBox1);
-            groupBox3.Location = new Point(39, 654);
+            groupBox3.Location = new Point(39, 592);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(734, 75);
             groupBox3.TabIndex = 8;
@@ -262,7 +232,7 @@
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(617, 745);
+            BtnCancelar.Location = new Point(619, 673);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(75, 23);
             BtnCancelar.TabIndex = 10;
@@ -272,7 +242,7 @@
             // 
             // BtnConfirmar
             // 
-            BtnConfirmar.Location = new Point(698, 745);
+            BtnConfirmar.Location = new Point(700, 673);
             BtnConfirmar.Name = "BtnConfirmar";
             BtnConfirmar.Size = new Size(75, 23);
             BtnConfirmar.TabIndex = 11;
@@ -314,7 +284,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(271, 29);
             label1.Name = "label1";
-            label1.Size = new Size(73, 15);
+            label1.Size = new Size(72, 15);
             label1.TabIndex = 2;
             label1.Text = "CUIT Cliente";
             label1.Click += label1_Click;
@@ -340,7 +310,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(816, 789);
+            ClientSize = new Size(816, 708);
             Controls.Add(groupBox4);
             Controls.Add(BtnConfirmar);
             Controls.Add(BtnCancelar);
@@ -374,11 +344,8 @@
         private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
-        private ColumnHeader columnHeader11;
         private GroupBox groupBox2;
         private Button BtnAgregarSeleccion;
-        private Button BtnSubir;
-        private Button BtnBajar;
         private Button BtnQuitar;
         private GroupBox groupBox3;
         private ComboBox comboBox1;

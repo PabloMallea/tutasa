@@ -36,6 +36,8 @@
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            columnHeader11 = new ColumnHeader();
             groupBox1 = new GroupBox();
             label2 = new Label();
             groupBox2 = new GroupBox();
@@ -47,6 +49,7 @@
             columnHeader8 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
+            columnHeader12 = new ColumnHeader();
             BtnAgregarSeleccion = new Button();
             groupBox3 = new GroupBox();
             comboBox2 = new ComboBox();
@@ -56,16 +59,17 @@
             BtnCancelar = new Button();
             BtnConfirmar = new Button();
             groupBox4 = new GroupBox();
-            comboBox3 = new ComboBox();
-            label4 = new Label();
-            label5 = new Label();
-            textBox1 = new TextBox();
-            comboBox4 = new ComboBox();
-            label6 = new Label();
             button1 = new Button();
-            columnHeader5 = new ColumnHeader();
-            columnHeader11 = new ColumnHeader();
-            columnHeader12 = new ColumnHeader();
+            label6 = new Label();
+            comboBox4 = new ComboBox();
+            textBox1 = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
+            comboBox3 = new ComboBox();
+            columnHeader13 = new ColumnHeader();
+            columnHeader14 = new ColumnHeader();
+            label3 = new Label();
+            comboBox5 = new ComboBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -100,7 +104,7 @@
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader11 });
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader13, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader11 });
             LvGuiasDisponibles.Location = new Point(14, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
             LvGuiasDisponibles.Size = new Size(700, 150);
@@ -122,14 +126,25 @@
             // columnHeader3
             // 
             columnHeader3.DisplayIndex = 3;
-            columnHeader3.Text = "Tipo";
+            columnHeader3.Text = "Dimensión";
             columnHeader3.Width = 116;
             // 
             // columnHeader4
             // 
             columnHeader4.DisplayIndex = 4;
-            columnHeader4.Text = "Dimensión";
+            columnHeader4.Text = "Peso";
             columnHeader4.Width = 116;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.DisplayIndex = 1;
+            columnHeader5.Text = "Cliente";
+            columnHeader5.Width = 116;
+            // 
+            // columnHeader11
+            // 
+            columnHeader11.Text = "CD Destino";
+            columnHeader11.Width = 117;
             // 
             // groupBox1
             // 
@@ -184,7 +199,7 @@
             // 
             // LvGuiasSeleccionadas
             // 
-            LvGuiasSeleccionadas.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader12 });
+            LvGuiasSeleccionadas.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader12, columnHeader14 });
             LvGuiasSeleccionadas.Location = new Point(14, 227);
             LvGuiasSeleccionadas.Name = "LvGuiasSeleccionadas";
             LvGuiasSeleccionadas.Size = new Size(700, 150);
@@ -209,13 +224,18 @@
             // 
             // columnHeader9
             // 
-            columnHeader9.Text = "Tipo";
+            columnHeader9.Text = "Dimensión";
             columnHeader9.Width = 116;
             // 
             // columnHeader10
             // 
-            columnHeader10.Text = "Dimensión";
+            columnHeader10.Text = "Peso";
             columnHeader10.Width = 116;
+            // 
+            // columnHeader12
+            // 
+            columnHeader12.Text = "CD Destino";
+            columnHeader12.Width = 117;
             // 
             // BtnAgregarSeleccion
             // 
@@ -295,6 +315,8 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(label3);
+            groupBox4.Controls.Add(comboBox5);
             groupBox4.Controls.Add(button1);
             groupBox4.Controls.Add(label6);
             groupBox4.Controls.Add(comboBox4);
@@ -309,46 +331,14 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Criterios de búsqueda";
             // 
-            // comboBox3
+            // button1
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(89, 34);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(170, 23);
-            comboBox3.TabIndex = 0;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(14, 38);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 15);
-            label4.TabIndex = 1;
-            label4.Text = "CD Destino:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(305, 38);
-            label5.Name = "label5";
-            label5.Size = new Size(33, 15);
-            label5.TabIndex = 2;
-            label5.Text = "CUIT";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(344, 34);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 23);
-            textBox1.TabIndex = 3;
-            // 
-            // comboBox4
-            // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(614, 35);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(100, 23);
-            comboBox4.TabIndex = 4;
+            button1.Location = new Point(14, 73);
+            button1.Name = "button1";
+            button1.Size = new Size(700, 23);
+            button1.TabIndex = 6;
+            button1.Text = "Buscar";
+            button1.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -359,30 +349,72 @@
             label6.TabIndex = 5;
             label6.Text = "Dimensión:";
             // 
-            // button1
+            // comboBox4
             // 
-            button1.Location = new Point(14, 73);
-            button1.Name = "button1";
-            button1.Size = new Size(700, 23);
-            button1.TabIndex = 6;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(614, 35);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(100, 23);
+            comboBox4.TabIndex = 4;
             // 
-            // columnHeader5
+            // textBox1
             // 
-            columnHeader5.DisplayIndex = 1;
-            columnHeader5.Text = "Cliente";
-            columnHeader5.Width = 116;
+            textBox1.Location = new Point(239, 34);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(102, 23);
+            textBox1.TabIndex = 3;
             // 
-            // columnHeader11
+            // label5
             // 
-            columnHeader11.Text = "CD Destino";
-            columnHeader11.Width = 117;
+            label5.AutoSize = true;
+            label5.Location = new Point(201, 37);
+            label5.Name = "label5";
+            label5.Size = new Size(32, 15);
+            label5.TabIndex = 2;
+            label5.Text = "CUIT";
             // 
-            // columnHeader12
+            // label4
             // 
-            columnHeader12.Text = "CD Destino";
-            columnHeader12.Width = 117;
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 38);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 15);
+            label4.TabIndex = 1;
+            label4.Text = "CD Destino:";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(89, 34);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(106, 23);
+            comboBox3.TabIndex = 0;
+            // 
+            // columnHeader13
+            // 
+            columnHeader13.DisplayIndex = 6;
+            columnHeader13.Text = "Localidad";
+            // 
+            // columnHeader14
+            // 
+            columnHeader14.Text = "Localidad";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(347, 37);
+            label3.Name = "label3";
+            label3.Size = new Size(58, 15);
+            label3.TabIndex = 8;
+            label3.Text = "Localidad";
+            // 
+            // comboBox5
+            // 
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(411, 34);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(124, 23);
+            comboBox5.TabIndex = 7;
             // 
             // FormRuteoTransporte
             // 
@@ -448,5 +480,9 @@
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader11;
         private ColumnHeader columnHeader12;
+        private ColumnHeader columnHeader13;
+        private ColumnHeader columnHeader14;
+        private Label label3;
+        private ComboBox comboBox5;
     }
 }
