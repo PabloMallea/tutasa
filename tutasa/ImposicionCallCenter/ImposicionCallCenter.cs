@@ -39,5 +39,14 @@
             }
         }
 
+        private void LabelTamaño_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonConfirmar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -24,5 +24,10 @@ namespace tutasa.EmisionHojasRutaTransporte
         {
 
         }
+
+        private void BtnImprimirResumen_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

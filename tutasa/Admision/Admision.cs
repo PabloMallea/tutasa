@@ -10,7 +10,7 @@ namespace tutasa.Admision
 {
     public partial class Admision : Form
     {
-        
+
         public Admision()
         {
             InitializeComponent();
@@ -22,17 +22,13 @@ namespace tutasa.Admision
         {
             // Limpio todos los campos al cargar la pantalla
             txtNombreRemitente.Text = "";
-            txtDireccionOrigen.Text = "";
-            txtCPorigen.Text = "";
+            txtCUITCliente.Text = "";
+            txtNGuia.Text = "";
             txtNombreDestinatario.Text = "";
             txtDireccionDestino.Text = "";
-            txtCPdestino.Text = "";
             txtDimension.Text = "";
             txtFleteroAsignado.Text = "";
             intPeso.Text = "";
-            intAlto.Text = "";
-            intAncho.Text = "";
-            intLargo.Text = "";
 
 
         }
@@ -52,8 +48,8 @@ namespace tutasa.Admision
             {
                 // Cargar los campos con los datos del modelo
                 txtNombreRemitente.Text = modelo.NombreRemitente;
-                txtDireccionOrigen.Text = modelo.DireccionOrigen;
-                txtCPorigen.Text = modelo.CPOrigen;
+                txtCUITCliente.Text = modelo.DireccionOrigen;
+                txtNGuia.Text = modelo.CPOrigen;
 
                 txtNombreDestinatario.Text = modelo.NombreDestinatario;
                 txtDireccionDestino.Text = modelo.DireccionDestino;
@@ -74,7 +70,10 @@ namespace tutasa.Admision
             }
         }
 
+        private void GrupoDatosGuia_Enter(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

@@ -30,28 +30,30 @@
         {
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            listView1 = new ListView();
-            fechaActualización = new ColumnHeader();
-            estado = new ColumnHeader();
-            ubicación = new ColumnHeader();
-            label3 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            button2 = new Button();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
+            TextNGuia = new TextBox();
+            BtnBuscar = new Button();
+            BtnCerrar = new Button();
+            GrupoDatosEncomienda = new GroupBox();
+            label4 = new Label();
+            label9 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            GrupoHistorial = new GroupBox();
+            ListViewHistorial = new ListView();
+            ColumnaFechaYHora = new ColumnHeader();
+            ColumnaEstado = new ColumnHeader();
+            ColumnaUbicacion = new ColumnHeader();
+            GrupoDatosEncomienda.SuspendLayout();
+            GrupoHistorial.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(104, 9);
+            label1.Location = new Point(15, 10);
             label1.Name = "label1";
             label1.Size = new Size(183, 21);
             label1.TabIndex = 1;
@@ -60,160 +62,160 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(104, 51);
+            label2.Location = new Point(15, 40);
             label2.Name = "label2";
             label2.Size = new Size(45, 15);
             label2.TabIndex = 2;
             label2.Text = "N°Guía";
             // 
-            // textBox1
+            // TextNGuia
             // 
-            textBox1.Location = new Point(155, 48);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(192, 23);
-            textBox1.TabIndex = 3;
+            TextNGuia.Location = new Point(71, 37);
+            TextNGuia.Name = "TextNGuia";
+            TextNGuia.Size = new Size(205, 23);
+            TextNGuia.TabIndex = 3;
             // 
-            // button1
+            // BtnBuscar
             // 
-            button1.Location = new Point(367, 48);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 4;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
+            BtnBuscar.Location = new Point(284, 35);
+            BtnBuscar.Name = "BtnBuscar";
+            BtnBuscar.Size = new Size(75, 25);
+            BtnBuscar.TabIndex = 4;
+            BtnBuscar.Text = "Buscar";
+            BtnBuscar.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // BtnCerrar
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { fechaActualización, estado, ubicación });
-            listView1.Location = new Point(104, 250);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(600, 264);
-            listView1.TabIndex = 5;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            BtnCerrar.Location = new Point(486, 434);
+            BtnCerrar.Name = "BtnCerrar";
+            BtnCerrar.Size = new Size(75, 25);
+            BtnCerrar.TabIndex = 12;
+            BtnCerrar.Text = "Cerrar";
+            BtnCerrar.UseVisualStyleBackColor = true;
             // 
-            // fechaActualización
+            // GrupoDatosEncomienda
             // 
-            fechaActualización.Text = "Fecha y Hora";
-            fechaActualización.Width = 150;
+            GrupoDatosEncomienda.Controls.Add(label4);
+            GrupoDatosEncomienda.Controls.Add(label9);
+            GrupoDatosEncomienda.Controls.Add(label13);
+            GrupoDatosEncomienda.Controls.Add(label14);
+            GrupoDatosEncomienda.Controls.Add(label15);
+            GrupoDatosEncomienda.Controls.Add(label16);
+            GrupoDatosEncomienda.Location = new Point(15, 70);
+            GrupoDatosEncomienda.Name = "GrupoDatosEncomienda";
+            GrupoDatosEncomienda.Size = new Size(545, 121);
+            GrupoDatosEncomienda.TabIndex = 17;
+            GrupoDatosEncomienda.TabStop = false;
+            GrupoDatosEncomienda.Text = "Datos de Encomienda";
             // 
-            // estado
+            // label4
             // 
-            estado.Text = "Estado";
-            estado.TextAlign = HorizontalAlignment.Center;
-            estado.Width = 150;
+            label4.AutoSize = true;
+            label4.Location = new Point(180, 90);
+            label4.Name = "label4";
+            label4.Size = new Size(95, 15);
+            label4.TabIndex = 22;
+            label4.Text = "01/05/2026 10:00";
             // 
-            // ubicación
+            // label9
             // 
-            ubicación.Text = "Ubicación";
-            ubicación.TextAlign = HorizontalAlignment.Center;
-            ubicación.Width = 150;
+            label9.AutoSize = true;
+            label9.Location = new Point(180, 60);
+            label9.Name = "label9";
+            label9.Size = new Size(94, 15);
+            label9.TabIndex = 21;
+            label9.Text = "CD Buenos Aires";
             // 
-            // label3
+            // label13
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(104, 90);
-            label3.Name = "label3";
-            label3.Size = new Size(140, 17);
-            label3.TabIndex = 6;
-            label3.Text = "Datos de Encomienda";
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.Location = new Point(180, 30);
+            label13.Name = "label13";
+            label13.Size = new Size(63, 17);
+            label13.TabIndex = 20;
+            label13.Text = "Admitida";
             // 
-            // label5
+            // label14
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(104, 121);
-            label5.Name = "label5";
-            label5.Size = new Size(79, 15);
-            label5.TabIndex = 8;
-            label5.Text = "Estado Actual";
+            label14.AutoSize = true;
+            label14.Location = new Point(9, 90);
+            label14.Name = "label14";
+            label14.Size = new Size(136, 15);
+            label14.TabIndex = 19;
+            label14.Text = "Ultima fecha actualizada";
             // 
-            // label6
+            // label15
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(104, 150);
-            label6.Name = "label6";
-            label6.Size = new Size(97, 15);
-            label6.TabIndex = 9;
-            label6.Text = "Ubicación Actual";
+            label15.AutoSize = true;
+            label15.Location = new Point(9, 60);
+            label15.Name = "label15";
+            label15.Size = new Size(97, 15);
+            label15.TabIndex = 18;
+            label15.Text = "Ubicación Actual";
             // 
-            // label7
+            // label16
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(104, 179);
-            label7.Name = "label7";
-            label7.Size = new Size(136, 15);
-            label7.TabIndex = 10;
-            label7.Text = "Ultima fecha actualizada";
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.Location = new Point(9, 30);
+            label16.Name = "label16";
+            label16.Size = new Size(91, 17);
+            label16.TabIndex = 17;
+            label16.Text = "Estado Actual";
             // 
-            // label8
+            // GrupoHistorial
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(104, 221);
-            label8.Name = "label8";
-            label8.Size = new Size(58, 17);
-            label8.TabIndex = 11;
-            label8.Text = "Historial";
+            GrupoHistorial.Controls.Add(ListViewHistorial);
+            GrupoHistorial.Location = new Point(15, 197);
+            GrupoHistorial.Name = "GrupoHistorial";
+            GrupoHistorial.Size = new Size(545, 231);
+            GrupoHistorial.TabIndex = 18;
+            GrupoHistorial.TabStop = false;
+            GrupoHistorial.Text = "Historial";
             // 
-            // button2
+            // ListViewHistorial
             // 
-            button2.Location = new Point(629, 529);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 12;
-            button2.Text = "Cerrar";
-            button2.UseVisualStyleBackColor = true;
+            ListViewHistorial.Columns.AddRange(new ColumnHeader[] { ColumnaFechaYHora, ColumnaEstado, ColumnaUbicacion });
+            ListViewHistorial.Location = new Point(9, 28);
+            ListViewHistorial.Name = "ListViewHistorial";
+            ListViewHistorial.Size = new Size(523, 188);
+            ListViewHistorial.TabIndex = 6;
+            ListViewHistorial.UseCompatibleStateImageBehavior = false;
+            ListViewHistorial.View = View.Details;
             // 
-            // label10
+            // ColumnaFechaYHora
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(274, 121);
-            label10.Name = "label10";
-            label10.Size = new Size(56, 15);
-            label10.TabIndex = 14;
-            label10.Text = "Admitida";
+            ColumnaFechaYHora.Text = "Fecha y Hora";
+            ColumnaFechaYHora.Width = 150;
             // 
-            // label11
+            // ColumnaEstado
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(274, 150);
-            label11.Name = "label11";
-            label11.Size = new Size(94, 15);
-            label11.TabIndex = 15;
-            label11.Text = "CD Buenos Aires";
+            ColumnaEstado.Text = "Estado";
+            ColumnaEstado.Width = 150;
             // 
-            // label12
+            // ColumnaUbicacion
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(274, 179);
-            label12.Name = "label12";
-            label12.Size = new Size(95, 15);
-            label12.TabIndex = 16;
-            label12.Text = "01/05/2026 10:00";
+            ColumnaUbicacion.Text = "Ubicación";
+            ColumnaUbicacion.Width = 150;
             // 
             // ConsultaEstadoInterna
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 565);
-            Controls.Add(label12);
-            Controls.Add(label11);
-            Controls.Add(label10);
-            Controls.Add(button2);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label3);
-            Controls.Add(listView1);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
+            ClientSize = new Size(573, 469);
+            Controls.Add(GrupoHistorial);
+            Controls.Add(GrupoDatosEncomienda);
+            Controls.Add(BtnCerrar);
+            Controls.Add(BtnBuscar);
+            Controls.Add(TextNGuia);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "ConsultaEstadoInterna";
             Text = "ConsultaEstadoInterna";
+            GrupoDatosEncomienda.ResumeLayout(false);
+            GrupoDatosEncomienda.PerformLayout();
+            GrupoHistorial.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -222,20 +224,20 @@
 
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
-        private Button button1;
-        private ListView listView1;
-        private ColumnHeader estado;
-        private ColumnHeader ubicación;
-        private ColumnHeader fechaActualización;
-        private Label label3;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Button button2;
-        private Label label10;
-        private Label label11;
-        private Label label12;
+        private TextBox TextNGuia;
+        private Button BtnBuscar;
+        private Button BtnCerrar;
+        private GroupBox GrupoDatosEncomienda;
+        private Label label4;
+        private Label label9;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label label16;
+        private GroupBox GrupoHistorial;
+        private ListView ListViewHistorial;
+        private ColumnHeader ColumnaFechaYHora;
+        private ColumnHeader ColumnaEstado;
+        private ColumnHeader ColumnaUbicacion;
     }
 }

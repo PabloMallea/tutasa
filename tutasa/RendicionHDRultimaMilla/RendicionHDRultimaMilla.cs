@@ -16,5 +16,10 @@
         {
 
         }
+
+        private void RendicionHDRultimaMilla_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
