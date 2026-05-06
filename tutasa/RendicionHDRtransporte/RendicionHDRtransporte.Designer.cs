@@ -45,18 +45,14 @@
             BtnQuitar = new Button();
             LvGuiasSeleccionadas = new ListView();
             columnHeader12 = new ColumnHeader();
-            columnHeader13 = new ColumnHeader();
             columnHeader14 = new ColumnHeader();
             columnHeader15 = new ColumnHeader();
-            columnHeader16 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             BtnAgregarSeleccion = new Button();
             LvGuiasDisponibles = new ListView();
             columnHeader11 = new ColumnHeader();
-            columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
             button4 = new Button();
             panel1.SuspendLayout();
@@ -210,7 +206,7 @@
             // 
             // LvGuiasSeleccionadas
             // 
-            LvGuiasSeleccionadas.Columns.AddRange(new ColumnHeader[] { columnHeader12, columnHeader13, columnHeader14, columnHeader15, columnHeader16, columnHeader6 });
+            LvGuiasSeleccionadas.Columns.AddRange(new ColumnHeader[] { columnHeader12, columnHeader14, columnHeader15, columnHeader6 });
             LvGuiasSeleccionadas.Location = new Point(14, 318);
             LvGuiasSeleccionadas.Name = "LvGuiasSeleccionadas";
             LvGuiasSeleccionadas.Size = new Size(679, 200);
@@ -223,11 +219,6 @@
             columnHeader12.Text = "N°HDR";
             columnHeader12.Width = 100;
             // 
-            // columnHeader13
-            // 
-            columnHeader13.Text = "N°Guia";
-            columnHeader13.Width = 100;
-            // 
             // columnHeader14
             // 
             columnHeader14.Text = "Empresa";
@@ -237,11 +228,6 @@
             // 
             columnHeader15.Text = "Estado";
             columnHeader15.Width = 100;
-            // 
-            // columnHeader16
-            // 
-            columnHeader16.Text = "Fecha";
-            columnHeader16.Width = 100;
             // 
             // columnHeader6
             // 
@@ -259,7 +245,7 @@
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader11, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader11, columnHeader2, columnHeader3, columnHeader5 });
             LvGuiasDisponibles.Location = new Point(14, 34);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
             LvGuiasDisponibles.Size = new Size(679, 200);
@@ -272,11 +258,6 @@
             columnHeader11.Text = "N°HDR";
             columnHeader11.Width = 100;
             // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "N° Guía";
-            columnHeader1.Width = 100;
-            // 
             // columnHeader2
             // 
             columnHeader2.Text = "Empresa";
@@ -286,11 +267,6 @@
             // 
             columnHeader3.Text = "Estado";
             columnHeader3.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            columnHeader4.Text = "Fecha";
-            columnHeader4.Width = 100;
             // 
             // columnHeader5
             // 
@@ -348,17 +324,13 @@
         private Button BtnQuitar;
         private ListView LvGuiasSeleccionadas;
         private ColumnHeader columnHeader12;
-        private ColumnHeader columnHeader13;
         private ColumnHeader columnHeader14;
         private ColumnHeader columnHeader15;
-        private ColumnHeader columnHeader16;
         private Button BtnAgregarSeleccion;
         private ListView LvGuiasDisponibles;
         private ColumnHeader columnHeader11;
-        private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
         private Button button4;

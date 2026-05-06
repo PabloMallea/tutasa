@@ -86,7 +86,7 @@
             GrupoEncomienda.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             GrupoEncomienda.Location = new Point(12, 331);
             GrupoEncomienda.Name = "GrupoEncomienda";
-            GrupoEncomienda.Size = new Size(772, 91);
+            GrupoEncomienda.Size = new Size(772, 94);
             GrupoEncomienda.TabIndex = 39;
             GrupoEncomienda.TabStop = false;
             GrupoEncomienda.Text = "Datos de Encomienta";
@@ -95,7 +95,7 @@
             // 
             LabelTamaño.AutoSize = true;
             LabelTamaño.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelTamaño.Location = new Point(78, 54);
+            LabelTamaño.Location = new Point(80, 62);
             LabelTamaño.Name = "LabelTamaño";
             LabelTamaño.Size = new Size(308, 15);
             LabelTamaño.TabIndex = 19;
@@ -106,7 +106,7 @@
             ComboDimension.FormattingEnabled = true;
             ComboDimension.Location = new Point(80, 25);
             ComboDimension.Name = "ComboDimension";
-            ComboDimension.Size = new Size(682, 25);
+            ComboDimension.Size = new Size(308, 25);
             ComboDimension.TabIndex = 18;
             // 
             // LabelDimension
@@ -188,7 +188,7 @@
             LabelTELD.Font = new Font("Segoe UI", 9F);
             LabelTELD.Location = new Point(9, 240);
             LabelTELD.Name = "LabelTELD";
-            LabelTELD.Size = new Size(52, 15);
+            LabelTELD.Size = new Size(53, 15);
             LabelTELD.TabIndex = 37;
             LabelTELD.Text = "Teléfono";
             // 
@@ -294,7 +294,7 @@
             // 
             // ButtonConfirmar
             // 
-            ButtonConfirmar.Location = new Point(711, 428);
+            ButtonConfirmar.Location = new Point(709, 439);
             ButtonConfirmar.Name = "ButtonConfirmar";
             ButtonConfirmar.Size = new Size(75, 23);
             ButtonConfirmar.TabIndex = 35;
@@ -303,7 +303,7 @@
             // 
             // ButtonCancelar
             // 
-            ButtonCancelar.Location = new Point(630, 428);
+            ButtonCancelar.Location = new Point(628, 439);
             ButtonCancelar.Name = "ButtonCancelar";
             ButtonCancelar.Size = new Size(75, 23);
             ButtonCancelar.TabIndex = 34;
@@ -316,7 +316,7 @@
             LabelCUIT.Font = new Font("Segoe UI", 9F);
             LabelCUIT.Location = new Point(9, 30);
             LabelCUIT.Name = "LabelCUIT";
-            LabelCUIT.Size = new Size(32, 15);
+            LabelCUIT.Size = new Size(33, 15);
             LabelCUIT.TabIndex = 25;
             LabelCUIT.Text = "CUIT";
             // 
@@ -353,7 +353,7 @@
             LabelTELC.Font = new Font("Segoe UI", 9F);
             LabelTELC.Location = new Point(9, 120);
             LabelTELC.Name = "LabelTELC";
-            LabelTELC.Size = new Size(52, 15);
+            LabelTELC.Size = new Size(53, 15);
             LabelTELC.TabIndex = 30;
             LabelTELC.Text = "Teléfono";
             // 
@@ -419,7 +419,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(796, 461);
+            ClientSize = new Size(796, 483);
             Controls.Add(LabelImposicion);
             Controls.Add(GrupoEncomienda);
             Controls.Add(GrupoDestinatario);

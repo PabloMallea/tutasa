@@ -36,7 +36,6 @@
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
             groupBox1 = new GroupBox();
             label2 = new Label();
             groupBox2 = new GroupBox();
@@ -56,10 +55,21 @@
             LabelEmpresa = new Label();
             BtnCancelar = new Button();
             BtnConfirmar = new Button();
-            label3 = new Label();
+            groupBox4 = new GroupBox();
+            comboBox3 = new ComboBox();
+            label4 = new Label();
+            label5 = new Label();
+            textBox1 = new TextBox();
+            comboBox4 = new ComboBox();
+            label6 = new Label();
+            button1 = new Button();
+            columnHeader5 = new ColumnHeader();
+            columnHeader11 = new ColumnHeader();
+            columnHeader12 = new ColumnHeader();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // LabelCDOrigen
@@ -85,15 +95,15 @@
             cmbCDDestino.FormattingEnabled = true;
             cmbCDDestino.Location = new Point(20, 101);
             cmbCDDestino.Name = "cmbCDDestino";
-            cmbCDDestino.Size = new Size(673, 23);
+            cmbCDDestino.Size = new Size(694, 23);
             cmbCDDestino.TabIndex = 3;
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
-            LvGuiasDisponibles.Location = new Point(20, 82);
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader11 });
+            LvGuiasDisponibles.Location = new Point(14, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
-            LvGuiasDisponibles.Size = new Size(679, 144);
+            LvGuiasDisponibles.Size = new Size(700, 150);
             LvGuiasDisponibles.TabIndex = 4;
             LvGuiasDisponibles.UseCompatibleStateImageBehavior = false;
             LvGuiasDisponibles.View = View.Details;
@@ -101,27 +111,25 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Nro Guía";
-            columnHeader1.Width = 135;
+            columnHeader1.Width = 116;
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Dirección destino";
-            columnHeader2.Width = 135;
+            columnHeader2.DisplayIndex = 2;
+            columnHeader2.Text = "Dirección";
+            columnHeader2.Width = 116;
             // 
             // columnHeader3
             // 
+            columnHeader3.DisplayIndex = 3;
             columnHeader3.Text = "Tipo";
-            columnHeader3.Width = 135;
+            columnHeader3.Width = 116;
             // 
             // columnHeader4
             // 
-            columnHeader4.Text = "Peso";
-            columnHeader4.Width = 135;
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "Fecha admisión";
-            columnHeader5.Width = 135;
+            columnHeader4.DisplayIndex = 4;
+            columnHeader4.Text = "Dimensión";
+            columnHeader4.Width = 116;
             // 
             // groupBox1
             // 
@@ -129,7 +137,7 @@
             groupBox1.Controls.Add(LabelCDOrigen);
             groupBox1.Location = new Point(26, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(709, 53);
+            groupBox1.Size = new Size(726, 53);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             // 
@@ -144,22 +152,21 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(BtnAgregarTodos);
             groupBox2.Controls.Add(BtnQuitar);
             groupBox2.Controls.Add(LvGuiasSeleccionadas);
             groupBox2.Controls.Add(BtnAgregarSeleccion);
             groupBox2.Controls.Add(LvGuiasDisponibles);
-            groupBox2.Location = new Point(26, 71);
+            groupBox2.Location = new Point(26, 189);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(709, 453);
+            groupBox2.Size = new Size(726, 439);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Guías";
             // 
             // BtnAgregarTodos
             // 
-            BtnAgregarTodos.Location = new Point(413, 232);
+            BtnAgregarTodos.Location = new Point(434, 188);
             BtnAgregarTodos.Name = "BtnAgregarTodos";
             BtnAgregarTodos.Size = new Size(280, 23);
             BtnAgregarTodos.TabIndex = 9;
@@ -168,19 +175,19 @@
             // 
             // BtnQuitar
             // 
-            BtnQuitar.Location = new Point(20, 413);
+            BtnQuitar.Location = new Point(14, 395);
             BtnQuitar.Name = "BtnQuitar";
-            BtnQuitar.Size = new Size(679, 23);
+            BtnQuitar.Size = new Size(700, 23);
             BtnQuitar.TabIndex = 8;
             BtnQuitar.Text = "Quitar";
             BtnQuitar.UseVisualStyleBackColor = true;
             // 
             // LvGuiasSeleccionadas
             // 
-            LvGuiasSeleccionadas.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10 });
-            LvGuiasSeleccionadas.Location = new Point(24, 277);
+            LvGuiasSeleccionadas.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader12 });
+            LvGuiasSeleccionadas.Location = new Point(14, 227);
             LvGuiasSeleccionadas.Name = "LvGuiasSeleccionadas";
-            LvGuiasSeleccionadas.Size = new Size(679, 130);
+            LvGuiasSeleccionadas.Size = new Size(700, 150);
             LvGuiasSeleccionadas.TabIndex = 7;
             LvGuiasSeleccionadas.UseCompatibleStateImageBehavior = false;
             LvGuiasSeleccionadas.View = View.Details;
@@ -188,31 +195,31 @@
             // columnHeader6
             // 
             columnHeader6.Text = "Nro Guía";
-            columnHeader6.Width = 135;
+            columnHeader6.Width = 116;
             // 
             // columnHeader7
             // 
-            columnHeader7.Text = "Dirección destino";
-            columnHeader7.Width = 135;
+            columnHeader7.Text = "Cliente";
+            columnHeader7.Width = 116;
             // 
             // columnHeader8
             // 
-            columnHeader8.Text = "Tipo";
-            columnHeader8.Width = 135;
+            columnHeader8.Text = "Dirección";
+            columnHeader8.Width = 116;
             // 
             // columnHeader9
             // 
-            columnHeader9.Text = "Peso";
-            columnHeader9.Width = 135;
+            columnHeader9.Text = "Tipo";
+            columnHeader9.Width = 116;
             // 
             // columnHeader10
             // 
-            columnHeader10.Text = "Fecha admisión";
-            columnHeader10.Width = 135;
+            columnHeader10.Text = "Dimensión";
+            columnHeader10.Width = 116;
             // 
             // BtnAgregarSeleccion
             // 
-            BtnAgregarSeleccion.Location = new Point(24, 232);
+            BtnAgregarSeleccion.Location = new Point(14, 188);
             BtnAgregarSeleccion.Name = "BtnAgregarSeleccion";
             BtnAgregarSeleccion.Size = new Size(280, 23);
             BtnAgregarSeleccion.TabIndex = 6;
@@ -227,9 +234,9 @@
             groupBox3.Controls.Add(comboBox1);
             groupBox3.Controls.Add(cmbCDDestino);
             groupBox3.Controls.Add(LabelEmpresa);
-            groupBox3.Location = new Point(26, 530);
+            groupBox3.Location = new Point(26, 634);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(709, 205);
+            groupBox3.Size = new Size(726, 205);
             groupBox3.TabIndex = 8;
             groupBox3.TabStop = false;
             groupBox3.Text = "Configuración del transporte";
@@ -239,7 +246,7 @@
             comboBox2.FormattingEnabled = true;
             comboBox2.Location = new Point(20, 158);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(673, 23);
+            comboBox2.Size = new Size(694, 23);
             comboBox2.TabIndex = 5;
             // 
             // label1
@@ -256,7 +263,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(20, 46);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(673, 23);
+            comboBox1.Size = new Size(694, 23);
             comboBox1.TabIndex = 1;
             // 
             // LabelEmpresa
@@ -270,7 +277,7 @@
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(579, 741);
+            BtnCancelar.Location = new Point(596, 854);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(75, 23);
             BtnCancelar.TabIndex = 9;
@@ -279,27 +286,110 @@
             // 
             // BtnConfirmar
             // 
-            BtnConfirmar.Location = new Point(660, 741);
+            BtnConfirmar.Location = new Point(677, 854);
             BtnConfirmar.Name = "BtnConfirmar";
             BtnConfirmar.Size = new Size(75, 23);
             BtnConfirmar.TabIndex = 10;
             BtnConfirmar.Text = "Confirmar";
             BtnConfirmar.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // groupBox4
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(29, 31);
-            label3.Name = "label3";
-            label3.Size = new Size(190, 15);
-            label3.TabIndex = 10;
-            label3.Text = "Filtro destino final, cliente, tamaño";
+            groupBox4.Controls.Add(button1);
+            groupBox4.Controls.Add(label6);
+            groupBox4.Controls.Add(comboBox4);
+            groupBox4.Controls.Add(textBox1);
+            groupBox4.Controls.Add(label5);
+            groupBox4.Controls.Add(label4);
+            groupBox4.Controls.Add(comboBox3);
+            groupBox4.Location = new Point(26, 71);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(726, 112);
+            groupBox4.TabIndex = 11;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Criterios de búsqueda";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(89, 34);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(170, 23);
+            comboBox3.TabIndex = 0;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 38);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 15);
+            label4.TabIndex = 1;
+            label4.Text = "CD Destino:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(305, 38);
+            label5.Name = "label5";
+            label5.Size = new Size(33, 15);
+            label5.TabIndex = 2;
+            label5.Text = "CUIT";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(344, 34);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(150, 23);
+            textBox1.TabIndex = 3;
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(614, 35);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(100, 23);
+            comboBox4.TabIndex = 4;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(541, 38);
+            label6.Name = "label6";
+            label6.Size = new Size(67, 15);
+            label6.TabIndex = 5;
+            label6.Text = "Dimensión:";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(14, 73);
+            button1.Name = "button1";
+            button1.Size = new Size(700, 23);
+            button1.TabIndex = 6;
+            button1.Text = "Buscar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.DisplayIndex = 1;
+            columnHeader5.Text = "Cliente";
+            columnHeader5.Width = 116;
+            // 
+            // columnHeader11
+            // 
+            columnHeader11.Text = "CD Destino";
+            columnHeader11.Width = 117;
+            // 
+            // columnHeader12
+            // 
+            columnHeader12.Text = "CD Destino";
+            columnHeader12.Width = 117;
             // 
             // FormRuteoTransporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(758, 776);
+            ClientSize = new Size(780, 890);
+            Controls.Add(groupBox4);
             Controls.Add(BtnConfirmar);
             Controls.Add(BtnCancelar);
             Controls.Add(groupBox3);
@@ -311,9 +401,10 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -332,7 +423,6 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
         private Button BtnAgregarSeleccion;
         private ListView LvGuiasSeleccionadas;
         private ColumnHeader columnHeader6;
@@ -347,6 +437,16 @@
         private Label label1;
         private Button BtnAgregarTodos;
         private Label label2;
-        private Label label3;
+        private GroupBox groupBox4;
+        private Button button1;
+        private Label label6;
+        private ComboBox comboBox4;
+        private TextBox textBox1;
+        private Label label5;
+        private Label label4;
+        private ComboBox comboBox3;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader11;
+        private ColumnHeader columnHeader12;
     }
 }

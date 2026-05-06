@@ -39,29 +39,5 @@
             }
         }
 
-        private void ButtonCancelar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ButtonConfirmar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ButtonBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelCliente_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelDestino_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

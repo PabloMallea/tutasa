@@ -31,8 +31,6 @@
             ButtonCancelar = new Button();
             ButtonConfirmar = new Button();
             GrupoCliente = new GroupBox();
-            comboBox1 = new ComboBox();
-            LabelDomicilio = new Label();
             LabelLocalidad = new Label();
             LabelAltura = new Label();
             LabelCalle = new Label();
@@ -78,28 +76,24 @@
             // 
             // ButtonCancelar
             // 
-            ButtonCancelar.Location = new Point(628, 422);
+            ButtonCancelar.Location = new Point(628, 434);
             ButtonCancelar.Name = "ButtonCancelar";
             ButtonCancelar.Size = new Size(75, 23);
             ButtonCancelar.TabIndex = 26;
             ButtonCancelar.Text = "Cancelar";
             ButtonCancelar.UseVisualStyleBackColor = true;
-            ButtonCancelar.Click += ButtonCancelar_Click;
             // 
             // ButtonConfirmar
             // 
-            ButtonConfirmar.Location = new Point(709, 422);
+            ButtonConfirmar.Location = new Point(709, 434);
             ButtonConfirmar.Name = "ButtonConfirmar";
             ButtonConfirmar.Size = new Size(75, 23);
             ButtonConfirmar.TabIndex = 27;
             ButtonConfirmar.Text = "Confirmar";
             ButtonConfirmar.UseVisualStyleBackColor = true;
-            ButtonConfirmar.Click += ButtonConfirmar_Click;
             // 
             // GrupoCliente
             // 
-            GrupoCliente.Controls.Add(comboBox1);
-            GrupoCliente.Controls.Add(LabelDomicilio);
             GrupoCliente.Controls.Add(LabelLocalidad);
             GrupoCliente.Controls.Add(LabelAltura);
             GrupoCliente.Controls.Add(LabelCalle);
@@ -123,29 +117,11 @@
             GrupoCliente.TabStop = false;
             GrupoCliente.Text = "Cliente";
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(77, 150);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(297, 25);
-            comboBox1.TabIndex = 41;
-            // 
-            // LabelDomicilio
-            // 
-            LabelDomicilio.AutoSize = true;
-            LabelDomicilio.Font = new Font("Segoe UI", 9F);
-            LabelDomicilio.Location = new Point(9, 150);
-            LabelDomicilio.Name = "LabelDomicilio";
-            LabelDomicilio.Size = new Size(68, 15);
-            LabelDomicilio.TabIndex = 40;
-            LabelDomicilio.Text = "Domicilio/s";
-            // 
             // LabelLocalidad
             // 
             LabelLocalidad.AutoSize = true;
             LabelLocalidad.Font = new Font("Segoe UI", 9F);
-            LabelLocalidad.Location = new Point(78, 240);
+            LabelLocalidad.Location = new Point(80, 210);
             LabelLocalidad.Name = "LabelLocalidad";
             LabelLocalidad.Size = new Size(64, 15);
             LabelLocalidad.TabIndex = 38;
@@ -155,7 +131,7 @@
             // 
             LabelAltura.AutoSize = true;
             LabelAltura.Font = new Font("Segoe UI", 9F);
-            LabelAltura.Location = new Point(76, 210);
+            LabelAltura.Location = new Point(78, 180);
             LabelAltura.Name = "LabelAltura";
             LabelAltura.Size = new Size(25, 15);
             LabelAltura.TabIndex = 37;
@@ -165,7 +141,7 @@
             // 
             LabelCalle.AutoSize = true;
             LabelCalle.Font = new Font("Segoe UI", 9F);
-            LabelCalle.Location = new Point(76, 180);
+            LabelCalle.Location = new Point(78, 150);
             LabelCalle.Name = "LabelCalle";
             LabelCalle.Size = new Size(62, 15);
             LabelCalle.TabIndex = 36;
@@ -215,7 +191,7 @@
             // 
             LabelLocalidadC.AutoSize = true;
             LabelLocalidadC.Font = new Font("Segoe UI", 9F);
-            LabelLocalidadC.Location = new Point(9, 240);
+            LabelLocalidadC.Location = new Point(9, 210);
             LabelLocalidadC.Name = "LabelLocalidadC";
             LabelLocalidadC.Size = new Size(58, 15);
             LabelLocalidadC.TabIndex = 32;
@@ -225,7 +201,7 @@
             // 
             LabelAlturaC.AutoSize = true;
             LabelAlturaC.Font = new Font("Segoe UI", 9F);
-            LabelAlturaC.Location = new Point(9, 210);
+            LabelAlturaC.Location = new Point(9, 180);
             LabelAlturaC.Name = "LabelAlturaC";
             LabelAlturaC.Size = new Size(39, 15);
             LabelAlturaC.TabIndex = 31;
@@ -245,7 +221,7 @@
             // 
             LabelCalleC.AutoSize = true;
             LabelCalleC.Font = new Font("Segoe UI", 9F);
-            LabelCalleC.Location = new Point(9, 180);
+            LabelCalleC.Location = new Point(9, 150);
             LabelCalleC.Name = "LabelCalleC";
             LabelCalleC.Size = new Size(33, 15);
             LabelCalleC.TabIndex = 29;
@@ -478,7 +454,7 @@
             // 
             LabelTamaño.AutoSize = true;
             LabelTamaño.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelTamaño.Location = new Point(78, 54);
+            LabelTamaño.Location = new Point(80, 62);
             LabelTamaño.Name = "LabelTamaño";
             LabelTamaño.Size = new Size(308, 15);
             LabelTamaño.TabIndex = 19;
@@ -489,14 +465,14 @@
             ComboDimension.FormattingEnabled = true;
             ComboDimension.Location = new Point(80, 25);
             ComboDimension.Name = "ComboDimension";
-            ComboDimension.Size = new Size(682, 25);
+            ComboDimension.Size = new Size(308, 25);
             ComboDimension.TabIndex = 18;
             // 
             // LabelDimension
             // 
             LabelDimension.AutoSize = true;
             LabelDimension.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelDimension.Location = new Point(11, 25);
+            LabelDimension.Location = new Point(10, 30);
             LabelDimension.Name = "LabelDimension";
             LabelDimension.Size = new Size(64, 15);
             LabelDimension.TabIndex = 17;
@@ -516,7 +492,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(796, 461);
+            ClientSize = new Size(796, 479);
             Controls.Add(LabelImposicion);
             Controls.Add(GrupoEncomienda);
             Controls.Add(GrupoDestinatario);
@@ -540,8 +516,6 @@
         private Button ButtonCancelar;
         private Button ButtonConfirmar;
         private GroupBox GrupoCliente;
-        private ComboBox comboBox1;
-        private Label LabelDomicilio;
         private Label LabelLocalidad;
         private Label LabelAltura;
         private Label LabelCalle;

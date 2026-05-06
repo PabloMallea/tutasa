@@ -359,7 +359,7 @@
             // 
             // ButtonConfirmar
             // 
-            ButtonConfirmar.Location = new Point(709, 478);
+            ButtonConfirmar.Location = new Point(709, 466);
             ButtonConfirmar.Name = "ButtonConfirmar";
             ButtonConfirmar.Size = new Size(75, 23);
             ButtonConfirmar.TabIndex = 42;
@@ -368,7 +368,7 @@
             // 
             // ButtonCancelar
             // 
-            ButtonCancelar.Location = new Point(628, 478);
+            ButtonCancelar.Location = new Point(628, 466);
             ButtonCancelar.Name = "ButtonCancelar";
             ButtonCancelar.Size = new Size(75, 23);
             ButtonCancelar.TabIndex = 41;
@@ -379,7 +379,7 @@
             // 
             LabelDimension.AutoSize = true;
             LabelDimension.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelDimension.Location = new Point(11, 75);
+            LabelDimension.Location = new Point(9, 75);
             LabelDimension.Name = "LabelDimension";
             LabelDimension.Size = new Size(64, 15);
             LabelDimension.TabIndex = 17;
@@ -389,7 +389,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(12, 30);
+            label6.Location = new Point(9, 35);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(60, 15);
@@ -408,7 +408,7 @@
             // 
             LabelTamaño.AutoSize = true;
             LabelTamaño.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelTamaño.Location = new Point(78, 75);
+            LabelTamaño.Location = new Point(91, 75);
             LabelTamaño.Name = "LabelTamaño";
             LabelTamaño.Size = new Size(73, 15);
             LabelTamaño.TabIndex = 45;
@@ -423,7 +423,7 @@
             GrupoEncomienda.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             GrupoEncomienda.Location = new Point(12, 331);
             GrupoEncomienda.Name = "GrupoEncomienda";
-            GrupoEncomienda.Size = new Size(772, 141);
+            GrupoEncomienda.Size = new Size(772, 110);
             GrupoEncomienda.TabIndex = 45;
             GrupoEncomienda.TabStop = false;
             GrupoEncomienda.Text = "Datos de Encomienta";
@@ -440,7 +440,7 @@
             Controls.Add(ButtonConfirmar);
             Controls.Add(ButtonCancelar);
             Name = "Impiscion_CD";
-            Text = "Impiscion_CD";
+            Text = "Imposción CD";
             GrupoDestinatario.ResumeLayout(false);
             GrupoDestinatario.PerformLayout();
             GrupoCliente.ResumeLayout(false);

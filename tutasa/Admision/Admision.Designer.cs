@@ -37,16 +37,10 @@
             btnCancelar = new Button();
             label13 = new Label();
             label11 = new Label();
-            panel1 = new Panel();
-            label3 = new Label();
             intPeso = new TextBox();
             panel2 = new Panel();
             txtFleteroAsignado = new Label();
             label17 = new Label();
-            txtCPdestino = new Label();
-            label18 = new Label();
-            txtCPorigen = new Label();
-            label16 = new Label();
             txtDireccionDestino = new Label();
             txtDireccionOrigen = new Label();
             txtNombreDestinatario = new Label();
@@ -57,7 +51,9 @@
             label9 = new Label();
             label8 = new Label();
             label4 = new Label();
-            panel1.SuspendLayout();
+            label5 = new Label();
+            label7 = new Label();
+            label15 = new Label();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,7 +61,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(57, 9);
+            label1.Location = new Point(43, 9);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(83, 21);
@@ -75,7 +71,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(57, 51);
+            label2.Location = new Point(43, 52);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(48, 15);
@@ -84,15 +80,15 @@
             // 
             // intNroGuia
             // 
-            intNroGuia.Location = new Point(111, 48);
+            intNroGuia.Location = new Point(97, 48);
             intNroGuia.Margin = new Padding(4, 3, 4, 3);
             intNroGuia.Name = "intNroGuia";
-            intNroGuia.Size = new Size(146, 23);
+            intNroGuia.Size = new Size(153, 23);
             intNroGuia.TabIndex = 2;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(262, 48);
+            btnBuscar.Location = new Point(258, 48);
             btnBuscar.Margin = new Padding(4, 3, 4, 3);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(75, 23);
@@ -104,7 +100,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(33, 29);
+            label6.Location = new Point(0, 169);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(60, 15);
@@ -113,7 +109,7 @@
             // 
             // btnConfirmar
             // 
-            btnConfirmar.Location = new Point(349, 444);
+            btnConfirmar.Location = new Point(336, 404);
             btnConfirmar.Margin = new Padding(4, 3, 4, 3);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(75, 23);
@@ -123,7 +119,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(681, 444);
+            btnCancelar.Location = new Point(668, 404);
             btnCancelar.Margin = new Padding(4, 3, 4, 3);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
@@ -134,18 +130,18 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(0, 0);
+            label13.Location = new Point(0, 135);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
-            label13.Size = new Size(376, 15);
+            label13.Size = new Size(232, 15);
             label13.TabIndex = 25;
-            label13.Text = "Modifique las dimensiones de la encomienda en caso de ser necesario";
+            label13.Text = "Modifique el peso en caso de ser necesario";
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F);
-            label11.Location = new Point(180, 401);
+            label11.Location = new Point(167, 361);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(433, 30);
@@ -153,32 +149,9 @@
             label11.Text = "Al confirmar acepta que la encomienda fue recibida en el Centro de Distribución \r\ny las HDR de retiro fueron rendidas por el fletero\r\n";
             label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(intPeso);
-            panel1.Controls.Add(label13);
-            panel1.Controls.Add(label6);
-            panel1.Location = new Point(57, 239);
-            panel1.Margin = new Padding(4, 3, 4, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(700, 140);
-            panel1.TabIndex = 38;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(33, 78);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(222, 15);
-            label3.TabIndex = 31;
-            label3.Text = "ADVERTENCIA: Se modificará el tipo a XL";
-            // 
             // intPeso
             // 
-            intPeso.Location = new Point(123, 26);
+            intPeso.Location = new Point(113, 166);
             intPeso.Margin = new Padding(4, 3, 4, 3);
             intPeso.Name = "intPeso";
             intPeso.Size = new Size(119, 23);
@@ -186,12 +159,15 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label5);
             panel2.Controls.Add(txtFleteroAsignado);
+            panel2.Controls.Add(intPeso);
             panel2.Controls.Add(label17);
-            panel2.Controls.Add(txtCPdestino);
-            panel2.Controls.Add(label18);
-            panel2.Controls.Add(txtCPorigen);
-            panel2.Controls.Add(label16);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(label13);
             panel2.Controls.Add(txtDireccionDestino);
             panel2.Controls.Add(txtDireccionOrigen);
             panel2.Controls.Add(txtNombreDestinatario);
@@ -201,16 +177,16 @@
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label8);
-            panel2.Location = new Point(57, 93);
+            panel2.Location = new Point(43, 93);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(700, 128);
+            panel2.Size = new Size(700, 244);
             panel2.TabIndex = 39;
             // 
             // txtFleteroAsignado
             // 
             txtFleteroAsignado.AutoSize = true;
-            txtFleteroAsignado.Location = new Point(114, 102);
+            txtFleteroAsignado.Location = new Point(113, 103);
             txtFleteroAsignado.Margin = new Padding(4, 0, 4, 0);
             txtFleteroAsignado.Name = "txtFleteroAsignado";
             txtFleteroAsignado.Size = new Size(49, 15);
@@ -220,57 +196,17 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(1, 102);
+            label17.Location = new Point(0, 103);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
             label17.Size = new Size(99, 15);
             label17.TabIndex = 13;
             label17.Text = "Fletero Asignado:";
             // 
-            // txtCPdestino
-            // 
-            txtCPdestino.AutoSize = true;
-            txtCPdestino.Location = new Point(577, 70);
-            txtCPdestino.Margin = new Padding(4, 0, 4, 0);
-            txtCPdestino.Name = "txtCPdestino";
-            txtCPdestino.Size = new Size(31, 15);
-            txtCPdestino.TabIndex = 12;
-            txtCPdestino.Text = "1234";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(492, 70);
-            label18.Margin = new Padding(4, 0, 4, 0);
-            label18.Name = "label18";
-            label18.Size = new Size(68, 15);
-            label18.TabIndex = 11;
-            label18.Text = "CP Destino:";
-            // 
-            // txtCPorigen
-            // 
-            txtCPorigen.AutoSize = true;
-            txtCPorigen.Location = new Point(577, 38);
-            txtCPorigen.Margin = new Padding(4, 0, 4, 0);
-            txtCPorigen.Name = "txtCPorigen";
-            txtCPorigen.Size = new Size(31, 15);
-            txtCPorigen.TabIndex = 10;
-            txtCPorigen.Text = "1234";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(492, 38);
-            label16.Margin = new Padding(4, 0, 4, 0);
-            label16.Name = "label16";
-            label16.Size = new Size(64, 15);
-            label16.TabIndex = 9;
-            label16.Text = "CP Origen:";
-            // 
             // txtDireccionDestino
             // 
             txtDireccionDestino.AutoSize = true;
-            txtDireccionDestino.Location = new Point(340, 70);
+            txtDireccionDestino.Location = new Point(367, 70);
             txtDireccionDestino.Margin = new Padding(4, 0, 4, 0);
             txtDireccionDestino.Name = "txtDireccionDestino";
             txtDireccionDestino.Size = new Size(89, 15);
@@ -280,12 +216,12 @@
             // txtDireccionOrigen
             // 
             txtDireccionOrigen.AutoSize = true;
-            txtDireccionOrigen.Location = new Point(340, 38);
+            txtDireccionOrigen.Location = new Point(586, 38);
             txtDireccionOrigen.Margin = new Padding(4, 0, 4, 0);
             txtDireccionOrigen.Name = "txtDireccionOrigen";
-            txtDireccionOrigen.Size = new Size(89, 15);
+            txtDireccionOrigen.Size = new Size(49, 15);
             txtDireccionOrigen.TabIndex = 7;
-            txtDireccionOrigen.Text = "Calle Falsa 1234";
+            txtDireccionOrigen.Text = "1234567";
             // 
             // txtNombreDestinatario
             // 
@@ -293,9 +229,9 @@
             txtNombreDestinatario.Location = new Point(113, 70);
             txtNombreDestinatario.Margin = new Padding(4, 0, 4, 0);
             txtNombreDestinatario.Name = "txtNombreDestinatario";
-            txtNombreDestinatario.Size = new Size(31, 15);
+            txtNombreDestinatario.Size = new Size(62, 15);
             txtNombreDestinatario.TabIndex = 6;
-            txtNombreDestinatario.Text = "Juan";
+            txtNombreDestinatario.Text = "Juan Perez";
             // 
             // txtNombreRemitente
             // 
@@ -303,14 +239,14 @@
             txtNombreRemitente.Location = new Point(113, 38);
             txtNombreRemitente.Margin = new Padding(4, 0, 4, 0);
             txtNombreRemitente.Name = "txtNombreRemitente";
-            txtNombreRemitente.Size = new Size(33, 15);
+            txtNombreRemitente.Size = new Size(79, 15);
             txtNombreRemitente.TabIndex = 5;
-            txtNombreRemitente.Text = "Pepe";
+            txtNombreRemitente.Text = "Pepe Sanchez";
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(215, 70);
+            label14.Location = new Point(242, 70);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(103, 15);
@@ -320,12 +256,12 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(215, 38);
+            label12.Location = new Point(521, 38);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(99, 15);
+            label12.Size = new Size(36, 15);
             label12.TabIndex = 3;
-            label12.Text = "Direccion Origen:";
+            label12.Text = "CUIT:";
             // 
             // label10
             // 
@@ -353,27 +289,56 @@
             label8.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.Location = new Point(0, 0);
             label8.Name = "label8";
-            label8.Size = new Size(74, 17);
+            label8.Size = new Size(93, 17);
             label8.TabIndex = 0;
-            label8.Text = "Datos Guía";
+            label8.Text = "Datos de Guía";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(250, 29);
+            label4.Location = new Point(367, 38);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(296, 15);
-            label4.TabIndex = 32;
-            label4.Text = "Acá por validacion no dejás ingresar >20 directamente.";
+            label4.Size = new Size(89, 15);
+            label4.TabIndex = 33;
+            label4.Text = "Calle Falsa 1234";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(242, 38);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(99, 15);
+            label5.TabIndex = 32;
+            label5.Text = "Direccion Origen:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(0, 204);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(67, 15);
+            label7.TabIndex = 34;
+            label7.Text = "Dimensión:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(113, 204);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(70, 15);
+            label15.TabIndex = 35;
+            label15.Text = "S | M | L | XL";
             // 
             // Admision
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 487);
+            ClientSize = new Size(784, 452);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Controls.Add(btnBuscar);
             Controls.Add(intNroGuia);
             Controls.Add(label2);
@@ -385,8 +350,6 @@
             Name = "Admision";
             Text = "Admision";
             Load += Admision_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -404,7 +367,6 @@
         private Button btnCancelar;
         private Label label13;
         private Label label11;
-        private Panel panel1;
         private TextBox intPeso;
         private Panel panel2;
         private Label label14;
@@ -416,13 +378,11 @@
         private Label txtDireccionOrigen;
         private Label txtNombreDestinatario;
         private Label txtNombreRemitente;
-        private Label txtCPdestino;
-        private Label label18;
-        private Label txtCPorigen;
-        private Label label16;
         private Label txtFleteroAsignado;
         private Label label17;
-        private Label label3;
+        private Label label15;
+        private Label label7;
         private Label label4;
+        private Label label5;
     }
 }
