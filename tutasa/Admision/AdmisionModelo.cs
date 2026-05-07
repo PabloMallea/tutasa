@@ -40,14 +40,5 @@ namespace tutasa.Admision
             };
         }
 
-        public static readonly List<Dimensiones> Dimensiones = new()
-        {
-             new Dimensiones { tipo = "S" },
-             new Dimensiones { tipo = "M" },
-             new Dimensiones { tipo = "L" },
-             new Dimensiones { tipo = "XL" },
-
-        };
-
     }
 }

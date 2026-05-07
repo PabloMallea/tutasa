@@ -14,5 +14,10 @@ namespace tutasa.RendicionHDRtransporte
         {
             InitializeComponent();
         }
+
+        private void LvGuiasDisponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

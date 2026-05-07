@@ -30,115 +30,113 @@
         {
             BtnImprimirResumen = new Button();
             BtnEmitirHojasRuta = new Button();
-            groupBox3 = new GroupBox();
-            listView1 = new ListView();
-            columnHeader5 = new ColumnHeader();
-            columnHeader6 = new ColumnHeader();
-            columnHeader7 = new ColumnHeader();
-            columnHeader8 = new ColumnHeader();
-            columnHeader9 = new ColumnHeader();
-            groupBox2 = new GroupBox();
+            GrupoDetalleGuias = new GroupBox();
+            ListViewGuias = new ListView();
+            ColumnaNGuia = new ColumnHeader();
+            ColumnaCliente = new ColumnHeader();
+            ColumnaDireccion = new ColumnHeader();
+            ColumnaTipo = new ColumnHeader();
+            ColumnaDimension = new ColumnHeader();
+            GrupoHDRPendientes = new GroupBox();
             BtnDeseleccionar = new Button();
             button1 = new Button();
-            LvRutasPendientes = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
-            groupBox1 = new GroupBox();
+            ListViewRutasPendientes = new ListView();
+            ColumnaNHDR = new ColumnHeader();
+            ColumnaEmpresa = new ColumnHeader();
+            ColumnaServicio = new ColumnHeader();
+            ColumnaCantGuias = new ColumnHeader();
+            GrupoBusqueda = new GroupBox();
             BtnBuscar = new Button();
-            LbFechaHasta = new Label();
-            LbFechaDesde = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
             LbServicio = new Label();
             LbEmpresa = new Label();
             comboBox2 = new ComboBox();
             comboBox3 = new ComboBox();
-            groupBox3.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox1.SuspendLayout();
+            label1 = new Label();
+            GrupoDetalleGuias.SuspendLayout();
+            GrupoHDRPendientes.SuspendLayout();
+            GrupoBusqueda.SuspendLayout();
             SuspendLayout();
             // 
             // BtnImprimirResumen
             // 
-            BtnImprimirResumen.Location = new Point(600, 598);
+            BtnImprimirResumen.Location = new Point(559, 509);
             BtnImprimirResumen.Name = "BtnImprimirResumen";
-            BtnImprimirResumen.Size = new Size(150, 23);
+            BtnImprimirResumen.Size = new Size(150, 25);
             BtnImprimirResumen.TabIndex = 9;
             BtnImprimirResumen.Text = "Imprimir resumen";
             BtnImprimirResumen.UseVisualStyleBackColor = true;
+            BtnImprimirResumen.Click += BtnImprimirResumen_Click;
             // 
             // BtnEmitirHojasRuta
             // 
-            BtnEmitirHojasRuta.Location = new Point(433, 598);
+            BtnEmitirHojasRuta.Location = new Point(403, 509);
             BtnEmitirHojasRuta.Name = "BtnEmitirHojasRuta";
-            BtnEmitirHojasRuta.Size = new Size(150, 23);
+            BtnEmitirHojasRuta.Size = new Size(150, 25);
             BtnEmitirHojasRuta.TabIndex = 8;
             BtnEmitirHojasRuta.Text = "Emitir hojas de ruta";
             BtnEmitirHojasRuta.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // GrupoDetalleGuias
             // 
-            groupBox3.Controls.Add(listView1);
-            groupBox3.Location = new Point(50, 374);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(700, 193);
-            groupBox3.TabIndex = 7;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Detalle de guías";
+            GrupoDetalleGuias.Controls.Add(ListViewGuias);
+            GrupoDetalleGuias.Location = new Point(9, 325);
+            GrupoDetalleGuias.Name = "GrupoDetalleGuias";
+            GrupoDetalleGuias.Size = new Size(700, 178);
+            GrupoDetalleGuias.TabIndex = 7;
+            GrupoDetalleGuias.TabStop = false;
+            GrupoDetalleGuias.Text = "Detalle de Guías";
             // 
-            // listView1
+            // ListViewGuias
             // 
-            listView1.CheckBoxes = true;
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader8, columnHeader9 });
-            listView1.Location = new Point(18, 32);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(664, 132);
-            listView1.TabIndex = 1;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            ListViewGuias.CheckBoxes = true;
+            ListViewGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaTipo, ColumnaDimension });
+            ListViewGuias.Location = new Point(9, 30);
+            ListViewGuias.Name = "ListViewGuias";
+            ListViewGuias.Size = new Size(673, 132);
+            ListViewGuias.TabIndex = 1;
+            ListViewGuias.UseCompatibleStateImageBehavior = false;
+            ListViewGuias.View = View.Details;
             // 
-            // columnHeader5
+            // ColumnaNGuia
             // 
-            columnHeader5.Text = "Nro Guía";
-            columnHeader5.Width = 132;
+            ColumnaNGuia.Text = "N° Guía";
+            ColumnaNGuia.Width = 130;
             // 
-            // columnHeader6
+            // ColumnaCliente
             // 
-            columnHeader6.Text = "CD Destino";
-            columnHeader6.Width = 132;
+            ColumnaCliente.Text = "Cliente";
+            ColumnaCliente.Width = 130;
             // 
-            // columnHeader7
+            // ColumnaDireccion
             // 
-            columnHeader7.Text = "Cliente";
-            columnHeader7.Width = 132;
+            ColumnaDireccion.Text = "Dirección";
+            ColumnaDireccion.Width = 130;
             // 
-            // columnHeader8
+            // ColumnaTipo
             // 
-            columnHeader8.Text = "Tipo";
-            columnHeader8.Width = 132;
+            ColumnaTipo.Text = "Tipo";
+            ColumnaTipo.Width = 130;
             // 
-            // columnHeader9
+            // ColumnaDimension
             // 
-            columnHeader9.Text = "Peso";
-            columnHeader9.Width = 132;
+            ColumnaDimension.Text = "Dimensión";
+            ColumnaDimension.Width = 130;
             // 
-            // groupBox2
+            // GrupoHDRPendientes
             // 
-            groupBox2.Controls.Add(BtnDeseleccionar);
-            groupBox2.Controls.Add(button1);
-            groupBox2.Controls.Add(LvRutasPendientes);
-            groupBox2.Location = new Point(50, 148);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(700, 220);
-            groupBox2.TabIndex = 6;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Hojas de ruta pendientes";
+            GrupoHDRPendientes.Controls.Add(BtnDeseleccionar);
+            GrupoHDRPendientes.Controls.Add(button1);
+            GrupoHDRPendientes.Controls.Add(ListViewRutasPendientes);
+            GrupoHDRPendientes.Location = new Point(9, 110);
+            GrupoHDRPendientes.Name = "GrupoHDRPendientes";
+            GrupoHDRPendientes.Size = new Size(700, 209);
+            GrupoHDRPendientes.TabIndex = 6;
+            GrupoHDRPendientes.TabStop = false;
+            GrupoHDRPendientes.Text = "HDR Pendientes";
             // 
             // BtnDeseleccionar
             // 
-            BtnDeseleccionar.Location = new Point(368, 165);
+            BtnDeseleccionar.Location = new Point(368, 168);
             BtnDeseleccionar.Name = "BtnDeseleccionar";
             BtnDeseleccionar.Size = new Size(314, 23);
             BtnDeseleccionar.TabIndex = 11;
@@ -147,116 +145,81 @@
             // 
             // button1
             // 
-            button1.Location = new Point(18, 165);
+            button1.Location = new Point(9, 168);
             button1.Name = "button1";
             button1.Size = new Size(314, 23);
             button1.TabIndex = 10;
             button1.Text = "Seleccionar todas";
             button1.UseVisualStyleBackColor = true;
             // 
-            // LvRutasPendientes
+            // ListViewRutasPendientes
             // 
-            LvRutasPendientes.CheckBoxes = true;
-            LvRutasPendientes.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
-            LvRutasPendientes.Location = new Point(18, 35);
-            LvRutasPendientes.Name = "LvRutasPendientes";
-            LvRutasPendientes.Size = new Size(664, 132);
-            LvRutasPendientes.TabIndex = 0;
-            LvRutasPendientes.UseCompatibleStateImageBehavior = false;
-            LvRutasPendientes.View = View.Details;
+            ListViewRutasPendientes.CheckBoxes = true;
+            ListViewRutasPendientes.Columns.AddRange(new ColumnHeader[] { ColumnaNHDR, ColumnaEmpresa, ColumnaServicio, ColumnaCantGuias });
+            ListViewRutasPendientes.Location = new Point(9, 30);
+            ListViewRutasPendientes.Name = "ListViewRutasPendientes";
+            ListViewRutasPendientes.Size = new Size(673, 132);
+            ListViewRutasPendientes.TabIndex = 0;
+            ListViewRutasPendientes.UseCompatibleStateImageBehavior = false;
+            ListViewRutasPendientes.View = View.Details;
             // 
-            // columnHeader1
+            // ColumnaNHDR
             // 
-            columnHeader1.Text = "CD Destino";
-            columnHeader1.Width = 165;
+            ColumnaNHDR.Text = "N° HDR";
+            ColumnaNHDR.Width = 165;
             // 
-            // columnHeader2
+            // ColumnaEmpresa
             // 
-            columnHeader2.Text = "Empresa";
-            columnHeader2.Width = 165;
+            ColumnaEmpresa.Text = "Empresa";
+            ColumnaEmpresa.Width = 165;
             // 
-            // columnHeader3
+            // ColumnaServicio
             // 
-            columnHeader3.Text = "Servicio";
-            columnHeader3.Width = 165;
+            ColumnaServicio.Text = "Servicio";
+            ColumnaServicio.Width = 165;
             // 
-            // columnHeader4
+            // ColumnaCantGuias
             // 
-            columnHeader4.Text = "Cant. Guías";
-            columnHeader4.Width = 165;
+            ColumnaCantGuias.Text = "Cant. Guías";
+            ColumnaCantGuias.Width = 165;
             // 
-            // groupBox1
+            // GrupoBusqueda
             // 
-            groupBox1.Controls.Add(BtnBuscar);
-            groupBox1.Controls.Add(LbFechaHasta);
-            groupBox1.Controls.Add(LbFechaDesde);
-            groupBox1.Controls.Add(dateTimePicker2);
-            groupBox1.Controls.Add(dateTimePicker1);
-            groupBox1.Controls.Add(LbServicio);
-            groupBox1.Controls.Add(LbEmpresa);
-            groupBox1.Controls.Add(comboBox2);
-            groupBox1.Controls.Add(comboBox3);
-            groupBox1.Location = new Point(50, 10);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(700, 123);
-            groupBox1.TabIndex = 5;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Filtros";
+            GrupoBusqueda.Controls.Add(BtnBuscar);
+            GrupoBusqueda.Controls.Add(LbServicio);
+            GrupoBusqueda.Controls.Add(LbEmpresa);
+            GrupoBusqueda.Controls.Add(comboBox2);
+            GrupoBusqueda.Controls.Add(comboBox3);
+            GrupoBusqueda.Location = new Point(9, 40);
+            GrupoBusqueda.Name = "GrupoBusqueda";
+            GrupoBusqueda.Size = new Size(700, 64);
+            GrupoBusqueda.TabIndex = 5;
+            GrupoBusqueda.TabStop = false;
+            GrupoBusqueda.Text = "Criterios de búsqueda";
             // 
             // BtnBuscar
             // 
-            BtnBuscar.Location = new Point(0, 93);
+            BtnBuscar.Location = new Point(607, 25);
             BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(700, 23);
+            BtnBuscar.Size = new Size(75, 25);
             BtnBuscar.TabIndex = 9;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
             // 
-            // LbFechaHasta
-            // 
-            LbFechaHasta.AutoSize = true;
-            LbFechaHasta.Location = new Point(348, 60);
-            LbFechaHasta.Name = "LbFechaHasta";
-            LbFechaHasta.Size = new Size(69, 15);
-            LbFechaHasta.TabIndex = 8;
-            LbFechaHasta.Text = "Fecha hasta";
-            // 
-            // LbFechaDesde
-            // 
-            LbFechaDesde.AutoSize = true;
-            LbFechaDesde.Location = new Point(8, 60);
-            LbFechaDesde.Name = "LbFechaDesde";
-            LbFechaDesde.Size = new Size(72, 15);
-            LbFechaDesde.TabIndex = 7;
-            LbFechaDesde.Text = "Fecha desde";
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Location = new Point(426, 54);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(256, 23);
-            dateTimePicker2.TabIndex = 6;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(86, 54);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(256, 23);
-            dateTimePicker1.TabIndex = 1;
-            // 
             // LbServicio
             // 
             LbServicio.AutoSize = true;
-            LbServicio.Location = new Point(348, 25);
+            LbServicio.Location = new Point(308, 30);
             LbServicio.Name = "LbServicio";
             LbServicio.Size = new Size(48, 15);
             LbServicio.TabIndex = 5;
             LbServicio.Text = "Servicio";
+            LbServicio.Click += LbServicio_Click;
             // 
             // LbEmpresa
             // 
             LbEmpresa.AutoSize = true;
-            LbEmpresa.Location = new Point(8, 25);
+            LbEmpresa.Location = new Point(9, 30);
             LbEmpresa.Name = "LbEmpresa";
             LbEmpresa.Size = new Size(52, 15);
             LbEmpresa.TabIndex = 4;
@@ -265,67 +228,76 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(426, 22);
+            comboBox2.Location = new Point(362, 27);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(256, 23);
+            comboBox2.Size = new Size(235, 23);
             comboBox2.TabIndex = 2;
             // 
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(86, 22);
+            comboBox3.Location = new Point(67, 27);
             comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(256, 23);
+            comboBox3.Size = new Size(235, 23);
             comboBox3.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(15, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(194, 21);
+            label1.TabIndex = 10;
+            label1.Text = "Emisión HDR Transporte";
             // 
             // EmisionHojasRutaTransporte
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 651);
+            ClientSize = new Size(720, 545);
+            Controls.Add(label1);
             Controls.Add(BtnImprimirResumen);
             Controls.Add(BtnEmitirHojasRuta);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            Controls.Add(GrupoDetalleGuias);
+            Controls.Add(GrupoHDRPendientes);
+            Controls.Add(GrupoBusqueda);
             Name = "EmisionHojasRutaTransporte";
             Text = "Emisión de hojas de ruta de transporte";
             Load += EmisionHojasRutaTransporte_Load;
-            groupBox3.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            GrupoDetalleGuias.ResumeLayout(false);
+            GrupoHDRPendientes.ResumeLayout(false);
+            GrupoBusqueda.ResumeLayout(false);
+            GrupoBusqueda.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button BtnImprimirResumen;
         private Button BtnEmitirHojasRuta;
-        private GroupBox groupBox3;
-        private ListView listView1;
-        private ColumnHeader columnHeader5;
-        private ColumnHeader columnHeader6;
-        private ColumnHeader columnHeader7;
-        private ColumnHeader columnHeader8;
-        private ColumnHeader columnHeader9;
-        private GroupBox groupBox2;
+        private GroupBox GrupoDetalleGuias;
+        private ListView ListViewGuias;
+        private ColumnHeader ColumnaNGuia;
+        private ColumnHeader ColumnaCliente;
+        private ColumnHeader ColumnaDireccion;
+        private ColumnHeader ColumnaTipo;
+        private GroupBox GrupoHDRPendientes;
         private Button BtnDeseleccionar;
         private Button button1;
-        private ListView LvRutasPendientes;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
-        private GroupBox groupBox1;
+        private ListView ListViewRutasPendientes;
+        private ColumnHeader ColumnaNHDR;
+        private ColumnHeader ColumnaEmpresa;
+        private ColumnHeader ColumnaServicio;
+        private ColumnHeader ColumnaCantGuias;
+        private GroupBox GrupoBusqueda;
         private Button BtnBuscar;
-        private Label LbFechaHasta;
-        private Label LbFechaDesde;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
         private Label LbServicio;
         private Label LbEmpresa;
         private ComboBox comboBox2;
         private ComboBox comboBox3;
+        private Label label1;
+        private ColumnHeader ColumnaDimension;
     }
 }

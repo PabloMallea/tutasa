@@ -14,5 +14,15 @@ namespace tutasa.CuentaCorriente
         {
             InitializeComponent();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CuentaCorriente_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

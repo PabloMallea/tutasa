@@ -19,5 +19,10 @@ namespace tutasa.Imposicion_Agencia
         {
 
         }
+
+        private void LabelTamaño_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

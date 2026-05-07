@@ -13,5 +13,15 @@ namespace tutasa.RuteoTransporte
         {
 
         }
+
+        private void BtnAgregarTodos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

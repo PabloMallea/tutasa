@@ -28,67 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
+            GrupoTipoRuteo = new GroupBox();
             RBtnRetiro = new RadioButton();
             RBtnEntrega = new RadioButton();
             LvGuiasDisponibles = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader12 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
+            ColumnaNGuia = new ColumnHeader();
+            ColumnaCliente = new ColumnHeader();
+            ColumnaDireccion = new ColumnHeader();
+            ColumnaTipo = new ColumnHeader();
+            ColumnaDimension = new ColumnHeader();
             listView1 = new ListView();
-            columnHeader11 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader13 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
             columnHeader8 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
-            columnHeader10 = new ColumnHeader();
-            groupBox2 = new GroupBox();
+            GrupoGuias = new GroupBox();
             BtnAgregarTodos = new Button();
-            BtnBajar = new Button();
             BtnQuitar = new Button();
-            BtnSubir = new Button();
             BtnAgregarSeleccion = new Button();
-            groupBox3 = new GroupBox();
-            comboBox1 = new ComboBox();
+            GrupoAsignarFletero = new GroupBox();
+            ComboAsignarFletero = new ComboBox();
             BtnCancelar = new Button();
             BtnConfirmar = new Button();
-            groupBox4 = new GroupBox();
+            GrupoBusqueda = new GroupBox();
             BtnBuscar = new Button();
             textBox1 = new TextBox();
-            label1 = new Label();
+            LabelCUIT = new Label();
             comboBox2 = new ComboBox();
             LbLocalidad = new Label();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
-            groupBox4.SuspendLayout();
+            label3 = new Label();
+            GrupoTipoRuteo.SuspendLayout();
+            GrupoGuias.SuspendLayout();
+            GrupoAsignarFletero.SuspendLayout();
+            GrupoBusqueda.SuspendLayout();
             SuspendLayout();
             // 
-            // groupBox1
+            // GrupoTipoRuteo
             // 
-            groupBox1.Controls.Add(RBtnRetiro);
-            groupBox1.Controls.Add(RBtnEntrega);
-            groupBox1.Location = new Point(45, 29);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(813, 95);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Tipo de ruteo";
+            GrupoTipoRuteo.Controls.Add(RBtnRetiro);
+            GrupoTipoRuteo.Controls.Add(RBtnEntrega);
+            GrupoTipoRuteo.Location = new Point(12, 40);
+            GrupoTipoRuteo.Name = "GrupoTipoRuteo";
+            GrupoTipoRuteo.Size = new Size(734, 70);
+            GrupoTipoRuteo.TabIndex = 0;
+            GrupoTipoRuteo.TabStop = false;
+            GrupoTipoRuteo.Text = "Tipo de Ruteo";
             // 
             // RBtnRetiro
             // 
             RBtnRetiro.AutoSize = true;
-            RBtnRetiro.Location = new Point(226, 43);
-            RBtnRetiro.Margin = new Padding(3, 4, 3, 4);
+            RBtnRetiro.Location = new Point(200, 30);
             RBtnRetiro.Name = "RBtnRetiro";
             RBtnRetiro.RightToLeft = RightToLeft.Yes;
-            RBtnRetiro.Size = new Size(183, 24);
+            RBtnRetiro.Size = new Size(146, 19);
             RBtnRetiro.TabIndex = 3;
             RBtnRetiro.TabStop = true;
             RBtnRetiro.Text = "Retiro de encomiendas";
@@ -98,11 +91,10 @@
             // RBtnEntrega
             // 
             RBtnEntrega.AutoSize = true;
-            RBtnEntrega.Location = new Point(19, 43);
-            RBtnEntrega.Margin = new Padding(3, 4, 3, 4);
+            RBtnEntrega.Location = new Point(9, 30);
             RBtnEntrega.Name = "RBtnEntrega";
             RBtnEntrega.RightToLeft = RightToLeft.Yes;
-            RBtnEntrega.Size = new Size(194, 24);
+            RBtnEntrega.Size = new Size(155, 19);
             RBtnEntrega.TabIndex = 2;
             RBtnEntrega.TabStop = true;
             RBtnEntrega.Text = "Entrega de encomiendas";
@@ -111,189 +103,139 @@
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader12, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
-            LvGuiasDisponibles.Location = new Point(19, 38);
-            LvGuiasDisponibles.Margin = new Padding(3, 4, 3, 4);
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaTipo, ColumnaDimension });
+            LvGuiasDisponibles.Location = new Point(9, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
-            LvGuiasDisponibles.Size = new Size(774, 172);
+            LvGuiasDisponibles.Size = new Size(708, 150);
             LvGuiasDisponibles.TabIndex = 5;
             LvGuiasDisponibles.UseCompatibleStateImageBehavior = false;
             LvGuiasDisponibles.View = View.Details;
             // 
-            // columnHeader1
+            // ColumnaNGuia
             // 
-            columnHeader1.Text = "Nro Guía";
-            columnHeader1.Width = 112;
+            ColumnaNGuia.Text = "Nro Guía";
+            ColumnaNGuia.Width = 140;
             // 
-            // columnHeader12
+            // ColumnaCliente
             // 
-            columnHeader12.Text = "Cliente";
-            columnHeader12.Width = 112;
+            ColumnaCliente.Text = "Cliente";
+            ColumnaCliente.Width = 140;
             // 
-            // columnHeader2
+            // ColumnaDireccion
             // 
-            columnHeader2.Text = "Dirección";
-            columnHeader2.Width = 112;
+            ColumnaDireccion.Text = "Dirección";
+            ColumnaDireccion.Width = 140;
             // 
-            // columnHeader3
+            // ColumnaTipo
             // 
-            columnHeader3.Text = "Tipo";
-            columnHeader3.Width = 112;
+            ColumnaTipo.Text = "Tipo";
+            ColumnaTipo.Width = 140;
             // 
-            // columnHeader4
+            // ColumnaDimension
             // 
-            columnHeader4.Text = "Peso";
-            columnHeader4.Width = 112;
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "Fecha admisión";
-            columnHeader5.Width = 150;
+            ColumnaDimension.Text = "Dimensión";
+            ColumnaDimension.Width = 140;
             // 
             // listView1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader11, columnHeader6, columnHeader13, columnHeader7, columnHeader8, columnHeader9, columnHeader10 });
-            listView1.Location = new Point(18, 261);
-            listView1.Margin = new Padding(3, 4, 3, 4);
+            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader13, columnHeader7, columnHeader8, columnHeader9 });
+            listView1.Location = new Point(9, 224);
             listView1.Name = "listView1";
-            listView1.Size = new Size(774, 172);
+            listView1.Size = new Size(708, 150);
             listView1.TabIndex = 6;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
-            // columnHeader11
-            // 
-            columnHeader11.Text = "Orden";
-            columnHeader11.Width = 112;
-            // 
             // columnHeader6
             // 
             columnHeader6.Text = "Nro Guía";
-            columnHeader6.Width = 112;
+            columnHeader6.Width = 130;
             // 
             // columnHeader13
             // 
             columnHeader13.Text = "Cliente";
-            columnHeader13.Width = 112;
+            columnHeader13.Width = 130;
             // 
             // columnHeader7
             // 
             columnHeader7.Text = "Dirección";
-            columnHeader7.Width = 100;
+            columnHeader7.Width = 130;
             // 
             // columnHeader8
             // 
             columnHeader8.Text = "Tipo";
-            columnHeader8.Width = 112;
+            columnHeader8.Width = 130;
             // 
             // columnHeader9
             // 
-            columnHeader9.Text = "Peso";
-            columnHeader9.Width = 100;
+            columnHeader9.Text = "Dimensión";
+            columnHeader9.Width = 130;
             // 
-            // columnHeader10
+            // GrupoGuias
             // 
-            columnHeader10.Text = "Fecha admisión";
-            columnHeader10.Width = 150;
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(BtnAgregarTodos);
-            groupBox2.Controls.Add(BtnBajar);
-            groupBox2.Controls.Add(BtnQuitar);
-            groupBox2.Controls.Add(BtnSubir);
-            groupBox2.Controls.Add(BtnAgregarSeleccion);
-            groupBox2.Controls.Add(listView1);
-            groupBox2.Controls.Add(LvGuiasDisponibles);
-            groupBox2.Location = new Point(45, 268);
-            groupBox2.Margin = new Padding(3, 4, 3, 4);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(816, 549);
-            groupBox2.TabIndex = 7;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Guías";
+            GrupoGuias.Controls.Add(BtnAgregarTodos);
+            GrupoGuias.Controls.Add(BtnQuitar);
+            GrupoGuias.Controls.Add(BtnAgregarSeleccion);
+            GrupoGuias.Controls.Add(listView1);
+            GrupoGuias.Controls.Add(LvGuiasDisponibles);
+            GrupoGuias.Location = new Point(12, 193);
+            GrupoGuias.Name = "GrupoGuias";
+            GrupoGuias.Size = new Size(734, 412);
+            GrupoGuias.TabIndex = 7;
+            GrupoGuias.TabStop = false;
+            GrupoGuias.Text = "Guías";
             // 
             // BtnAgregarTodos
             // 
-            BtnAgregarTodos.Location = new Point(465, 215);
-            BtnAgregarTodos.Margin = new Padding(3, 4, 3, 4);
+            BtnAgregarTodos.Location = new Point(428, 178);
             BtnAgregarTodos.Name = "BtnAgregarTodos";
-            BtnAgregarTodos.Size = new Size(330, 31);
+            BtnAgregarTodos.Size = new Size(289, 25);
             BtnAgregarTodos.TabIndex = 12;
             BtnAgregarTodos.Text = "Agregar todos";
             BtnAgregarTodos.UseVisualStyleBackColor = true;
             // 
-            // BtnBajar
-            // 
-            BtnBajar.Location = new Point(17, 461);
-            BtnBajar.Margin = new Padding(3, 4, 3, 4);
-            BtnBajar.Name = "BtnBajar";
-            BtnBajar.Size = new Size(776, 31);
-            BtnBajar.TabIndex = 11;
-            BtnBajar.Text = "Bajar";
-            BtnBajar.UseVisualStyleBackColor = true;
-            BtnBajar.Click += button2_Click;
-            // 
             // BtnQuitar
             // 
-            BtnQuitar.Location = new Point(17, 489);
-            BtnQuitar.Margin = new Padding(3, 4, 3, 4);
+            BtnQuitar.Location = new Point(9, 380);
             BtnQuitar.Name = "BtnQuitar";
-            BtnQuitar.Size = new Size(776, 31);
+            BtnQuitar.Size = new Size(708, 23);
             BtnQuitar.TabIndex = 10;
             BtnQuitar.Text = "Quitar";
             BtnQuitar.UseVisualStyleBackColor = true;
             // 
-            // BtnSubir
-            // 
-            BtnSubir.Location = new Point(17, 435);
-            BtnSubir.Margin = new Padding(3, 4, 3, 4);
-            BtnSubir.Name = "BtnSubir";
-            BtnSubir.Size = new Size(776, 31);
-            BtnSubir.TabIndex = 9;
-            BtnSubir.Text = "Subir";
-            BtnSubir.UseVisualStyleBackColor = true;
-            BtnSubir.Click += BtnQuitar_Click;
-            // 
             // BtnAgregarSeleccion
             // 
-            BtnAgregarSeleccion.Location = new Point(19, 215);
-            BtnAgregarSeleccion.Margin = new Padding(3, 4, 3, 4);
+            BtnAgregarSeleccion.Location = new Point(9, 178);
             BtnAgregarSeleccion.Name = "BtnAgregarSeleccion";
-            BtnAgregarSeleccion.Size = new Size(330, 31);
+            BtnAgregarSeleccion.Size = new Size(289, 25);
             BtnAgregarSeleccion.TabIndex = 7;
             BtnAgregarSeleccion.Text = "Agregar selección";
             BtnAgregarSeleccion.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // GrupoAsignarFletero
             // 
-            groupBox3.Controls.Add(comboBox1);
-            groupBox3.Location = new Point(45, 825);
-            groupBox3.Margin = new Padding(3, 4, 3, 4);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(3, 4, 3, 4);
-            groupBox3.Size = new Size(817, 100);
-            groupBox3.TabIndex = 8;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Asignación de fletero";
+            GrupoAsignarFletero.Controls.Add(ComboAsignarFletero);
+            GrupoAsignarFletero.Location = new Point(12, 611);
+            GrupoAsignarFletero.Name = "GrupoAsignarFletero";
+            GrupoAsignarFletero.Size = new Size(734, 75);
+            GrupoAsignarFletero.TabIndex = 8;
+            GrupoAsignarFletero.TabStop = false;
+            GrupoAsignarFletero.Text = "Asignación de Fletero";
             // 
-            // comboBox1
+            // ComboAsignarFletero
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(19, 29);
-            comboBox1.Margin = new Padding(3, 4, 3, 4);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(773, 28);
-            comboBox1.TabIndex = 0;
+            ComboAsignarFletero.FormattingEnabled = true;
+            ComboAsignarFletero.Location = new Point(9, 30);
+            ComboAsignarFletero.Name = "ComboAsignarFletero";
+            ComboAsignarFletero.Size = new Size(700, 23);
+            ComboAsignarFletero.TabIndex = 0;
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(688, 953);
-            BtnCancelar.Margin = new Padding(3, 4, 3, 4);
+            BtnCancelar.Location = new Point(590, 692);
             BtnCancelar.Name = "BtnCancelar";
-            BtnCancelar.Size = new Size(86, 31);
+            BtnCancelar.Size = new Size(75, 25);
             BtnCancelar.TabIndex = 10;
             BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = true;
@@ -301,135 +243,137 @@
             // 
             // BtnConfirmar
             // 
-            BtnConfirmar.Location = new Point(781, 953);
-            BtnConfirmar.Margin = new Padding(3, 4, 3, 4);
+            BtnConfirmar.Location = new Point(671, 692);
             BtnConfirmar.Name = "BtnConfirmar";
-            BtnConfirmar.Size = new Size(86, 31);
+            BtnConfirmar.Size = new Size(75, 25);
             BtnConfirmar.TabIndex = 11;
             BtnConfirmar.Text = "Confirmar";
             BtnConfirmar.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // GrupoBusqueda
             // 
-            groupBox4.Controls.Add(BtnBuscar);
-            groupBox4.Controls.Add(textBox1);
-            groupBox4.Controls.Add(label1);
-            groupBox4.Controls.Add(comboBox2);
-            groupBox4.Controls.Add(LbLocalidad);
-            groupBox4.Location = new Point(45, 129);
-            groupBox4.Margin = new Padding(3, 4, 3, 4);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(3, 4, 3, 4);
-            groupBox4.Size = new Size(813, 131);
-            groupBox4.TabIndex = 12;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Criterios de búsqueda";
+            GrupoBusqueda.Controls.Add(BtnBuscar);
+            GrupoBusqueda.Controls.Add(textBox1);
+            GrupoBusqueda.Controls.Add(LabelCUIT);
+            GrupoBusqueda.Controls.Add(comboBox2);
+            GrupoBusqueda.Controls.Add(LbLocalidad);
+            GrupoBusqueda.Location = new Point(12, 116);
+            GrupoBusqueda.Name = "GrupoBusqueda";
+            GrupoBusqueda.Size = new Size(734, 71);
+            GrupoBusqueda.TabIndex = 12;
+            GrupoBusqueda.TabStop = false;
+            GrupoBusqueda.Text = "Criterios de Búsqueda";
             // 
             // BtnBuscar
             // 
-            BtnBuscar.Location = new Point(0, 80);
-            BtnBuscar.Margin = new Padding(3, 4, 3, 4);
+            BtnBuscar.Location = new Point(637, 27);
             BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(816, 31);
+            BtnBuscar.Size = new Size(80, 25);
             BtnBuscar.TabIndex = 4;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(493, 33);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Location = new Point(401, 27);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(302, 27);
+            textBox1.Size = new Size(230, 23);
             textBox1.TabIndex = 3;
             // 
-            // label1
+            // LabelCUIT
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(403, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(90, 20);
-            label1.TabIndex = 2;
-            label1.Text = "CUIT Cliente";
-            label1.Click += label1_Click;
+            LabelCUIT.AutoSize = true;
+            LabelCUIT.Location = new Point(323, 30);
+            LabelCUIT.Name = "LabelCUIT";
+            LabelCUIT.Size = new Size(72, 15);
+            LabelCUIT.TabIndex = 2;
+            LabelCUIT.Text = "CUIT Cliente";
+            LabelCUIT.Click += label1_Click;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(94, 33);
-            comboBox2.Margin = new Padding(3, 4, 3, 4);
+            comboBox2.Location = new Point(73, 27);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(292, 28);
+            comboBox2.Size = new Size(230, 23);
             comboBox2.TabIndex = 1;
             // 
             // LbLocalidad
             // 
             LbLocalidad.AutoSize = true;
-            LbLocalidad.Location = new Point(17, 37);
+            LbLocalidad.Location = new Point(9, 30);
             LbLocalidad.Name = "LbLocalidad";
-            LbLocalidad.Size = new Size(74, 20);
+            LbLocalidad.Size = new Size(58, 15);
             LbLocalidad.TabIndex = 0;
             LbLocalidad.Text = "Localidad";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(15, 10);
+            label3.Name = "label3";
+            label3.RightToLeft = RightToLeft.No;
+            label3.Size = new Size(177, 21);
+            label3.TabIndex = 13;
+            label3.Text = "Ruteo de Última Milla";
+            // 
             // RuteoUltimaMilla
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(901, 1005);
-            Controls.Add(groupBox4);
+            ClientSize = new Size(757, 730);
+            Controls.Add(label3);
+            Controls.Add(GrupoBusqueda);
             Controls.Add(BtnConfirmar);
             Controls.Add(BtnCancelar);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox1);
-            Controls.Add(groupBox2);
-            Margin = new Padding(3, 4, 3, 4);
+            Controls.Add(GrupoAsignarFletero);
+            Controls.Add(GrupoTipoRuteo);
+            Controls.Add(GrupoGuias);
             Name = "RuteoUltimaMilla";
             Text = "Ruteo de última milla";
             Load += RuteoUltimaMilla_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox3.ResumeLayout(false);
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
+            GrupoTipoRuteo.ResumeLayout(false);
+            GrupoTipoRuteo.PerformLayout();
+            GrupoGuias.ResumeLayout(false);
+            GrupoAsignarFletero.ResumeLayout(false);
+            GrupoBusqueda.ResumeLayout(false);
+            GrupoBusqueda.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private GroupBox groupBox1;
+        private GroupBox GrupoTipoRuteo;
         private RadioButton RBtnEntrega;
         private RadioButton RBtnRetiro;
         private ListView LvGuiasDisponibles;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
+        private ColumnHeader ColumnaNGuia;
+        private ColumnHeader ColumnaDireccion;
+        private ColumnHeader ColumnaTipo;
+        private ColumnHeader ColumnaDimension;
         private ListView listView1;
         private ColumnHeader columnHeader6;
         private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
-        private ColumnHeader columnHeader10;
-        private ColumnHeader columnHeader11;
-        private GroupBox groupBox2;
+        private GroupBox GrupoGuias;
         private Button BtnAgregarSeleccion;
-        private Button BtnSubir;
-        private Button BtnBajar;
         private Button BtnQuitar;
-        private GroupBox groupBox3;
-        private ComboBox comboBox1;
+        private GroupBox GrupoAsignarFletero;
+        private ComboBox ComboAsignarFletero;
         private Button BtnCancelar;
         private Button BtnConfirmar;
-        private GroupBox groupBox4;
+        private GroupBox GrupoBusqueda;
         private Label LbLocalidad;
-        private ColumnHeader columnHeader12;
-        private Label label1;
+        private ColumnHeader ColumnaCliente;
+        private Label LabelCUIT;
         private ComboBox comboBox2;
         private ColumnHeader columnHeader13;
         private Button BtnBuscar;
         private TextBox textBox1;
         private Button BtnAgregarTodos;
+        private Label label3;
     }
 }
