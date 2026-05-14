@@ -10,7 +10,7 @@ namespace tutasa
         {
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new tutasa.RuteoUltimaMilla.RuteoUltimaMilla());
+            Application.Run(new tutasa.Imposicion_CD.Impiscion_CD());
 
         }
     }

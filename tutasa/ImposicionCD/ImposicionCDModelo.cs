@@ -1,9 +1,12 @@
-﻿namespace tutasa.ImposicionCallCenter
-{
-    internal class ImposicionCallCenterModelo
-    {
-     
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
+namespace tutasa.ImposicionCD
+{
+    internal class ImposicionCDModelo
+    {
+  
         public class Cliente
         {
             public string Cuit { get; set; }
@@ -13,12 +16,6 @@
             public string Apellido { get; set; }
 
             public string Telefono { get; set; }
-
-            public string Calle { get; set; }
-
-            public string Altura { get; set; }
-
-            public string Localidad { get; set; }
         }
 
 
@@ -41,6 +38,7 @@
         }
 
 
+
         public class Encomienda
         {
             public Cliente Cliente { get; set; }
@@ -61,10 +59,13 @@
 
             public string TelefonoDestinatario { get; set; }
 
+            public string Peso { get; set; }
+
             public string Dimension { get; set; }
         }
 
-        //Clientes de ejemplo
+        // CLIENTES ejemplos
+
 
         private List<Cliente> clientes = new List<Cliente>
         {
@@ -73,10 +74,7 @@
                 Cuit = "20333444556",
                 Nombre = "Juan",
                 Apellido = "Perez",
-                Telefono = "1122334455",
-                Calle = "Calle Falsa",
-                Altura = "123",
-                Localidad = "Tandil"
+                Telefono = "1122334455"
             },
 
             new Cliente
@@ -84,14 +82,12 @@
                 Cuit = "30777888999",
                 Nombre = "Maria",
                 Apellido = "Lopez",
-                Telefono = "1166677788",
-                Calle = "San Martin",
-                Altura = "456",
-                Localidad = "Villa Carlos Paz"
+                Telefono = "1166677788"
             }
         };
 
 
+        // LOCALIDADES ejemplos
 
         private List<Localidad> localidades = new List<Localidad>
         {
@@ -113,13 +109,6 @@
                         Nombre = "Agencia San Rafael",
                         Calle = "Av Belgrano",
                         Altura = "123"
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Agencia San Rafael Centro",
-                        Calle = "Av Libertador",
-                        Altura = "456"
                     },
 
                     new Destino
@@ -153,13 +142,6 @@
 
                     new Destino
                     {
-                        Nombre = "Agencia Mar del Plata Centro",
-                        Calle = "Av Luro",
-                        Altura = "789"
-                    },
-
-                    new Destino
-                    {
                         Nombre = "Centro de Distribución Mar del Plata",
                         Calle = "Av Independencia",
                         Altura = "456"
@@ -168,8 +150,7 @@
             }
         };
 
-        // Acá hice un método para obtener las dimensiones creando la lista directamente,
-        // ya que no se especificó una clase para eso, y es un dato fijo.
+     
 
         public List<string> ObtenerDimensiones()
         {
@@ -182,7 +163,7 @@
             };
         }
 
-
+    
 
         public Cliente BuscarCliente(string cuit)
         {

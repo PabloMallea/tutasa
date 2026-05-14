@@ -34,7 +34,7 @@
             LabelLocalidad = new Label();
             LabelAltura = new Label();
             LabelCalle = new Label();
-            LabelTEL = new Label();
+            LabelTelefono = new Label();
             LabelApellido = new Label();
             LabelNombre = new Label();
             BotonBuscarC = new Button();
@@ -42,7 +42,7 @@
             LabelAlturaC = new Label();
             LabelTELC = new Label();
             LabelCalleC = new Label();
-            textBox1 = new TextBox();
+            TxtCuit = new TextBox();
             LabelApellidoC = new Label();
             LabelNombreC = new Label();
             LabelCUIT = new Label();
@@ -51,7 +51,7 @@
             TextLocalidad = new TextBox();
             LabelLocalidadD = new Label();
             LabelDestinoD = new Label();
-            LabelTELD = new Label();
+            LabelTelefonoD = new Label();
             ComboDestino = new ComboBox();
             TextTEL = new TextBox();
             TextNombre = new TextBox();
@@ -59,7 +59,7 @@
             LabelAlturaD = new Label();
             TextCalle = new TextBox();
             LabelCalleD = new Label();
-            TextDNI = new TextBox();
+            TextDni = new TextBox();
             LabelApellidoD = new Label();
             TextApellido = new TextBox();
             LabelNombreD = new Label();
@@ -98,7 +98,7 @@
             GrupoCliente.Controls.Add(LabelLocalidad);
             GrupoCliente.Controls.Add(LabelAltura);
             GrupoCliente.Controls.Add(LabelCalle);
-            GrupoCliente.Controls.Add(LabelTEL);
+            GrupoCliente.Controls.Add(LabelTelefono);
             GrupoCliente.Controls.Add(LabelApellido);
             GrupoCliente.Controls.Add(LabelNombre);
             GrupoCliente.Controls.Add(BotonBuscarC);
@@ -106,7 +106,7 @@
             GrupoCliente.Controls.Add(LabelAlturaC);
             GrupoCliente.Controls.Add(LabelTELC);
             GrupoCliente.Controls.Add(LabelCalleC);
-            GrupoCliente.Controls.Add(textBox1);
+            GrupoCliente.Controls.Add(TxtCuit);
             GrupoCliente.Controls.Add(LabelApellidoC);
             GrupoCliente.Controls.Add(LabelNombreC);
             GrupoCliente.Controls.Add(LabelCUIT);
@@ -124,9 +124,8 @@
             LabelLocalidad.Font = new Font("Segoe UI", 9F);
             LabelLocalidad.Location = new Point(75, 210);
             LabelLocalidad.Name = "LabelLocalidad";
-            LabelLocalidad.Size = new Size(64, 15);
+            LabelLocalidad.Size = new Size(0, 15);
             LabelLocalidad.TabIndex = 38;
-            LabelLocalidad.Text = "Springfield";
             // 
             // LabelAltura
             // 
@@ -134,9 +133,8 @@
             LabelAltura.Font = new Font("Segoe UI", 9F);
             LabelAltura.Location = new Point(75, 180);
             LabelAltura.Name = "LabelAltura";
-            LabelAltura.Size = new Size(25, 15);
+            LabelAltura.Size = new Size(0, 15);
             LabelAltura.TabIndex = 37;
-            LabelAltura.Text = "123";
             // 
             // LabelCalle
             // 
@@ -144,20 +142,18 @@
             LabelCalle.Font = new Font("Segoe UI", 9F);
             LabelCalle.Location = new Point(75, 150);
             LabelCalle.Name = "LabelCalle";
-            LabelCalle.Size = new Size(62, 15);
+            LabelCalle.Size = new Size(0, 15);
             LabelCalle.TabIndex = 36;
-            LabelCalle.Text = "Calle Falsa";
             LabelCalle.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // LabelTEL
+            // LabelTelefono
             // 
-            LabelTEL.AutoSize = true;
-            LabelTEL.Font = new Font("Segoe UI", 9F);
-            LabelTEL.Location = new Point(75, 120);
-            LabelTEL.Name = "LabelTEL";
-            LabelTEL.Size = new Size(67, 15);
-            LabelTEL.TabIndex = 35;
-            LabelTEL.Text = "1122334455";
+            LabelTelefono.AutoSize = true;
+            LabelTelefono.Font = new Font("Segoe UI", 9F);
+            LabelTelefono.Location = new Point(75, 120);
+            LabelTelefono.Name = "LabelTelefono";
+            LabelTelefono.Size = new Size(0, 15);
+            LabelTelefono.TabIndex = 35;
             // 
             // LabelApellido
             // 
@@ -165,9 +161,8 @@
             LabelApellido.Font = new Font("Segoe UI", 9F);
             LabelApellido.Location = new Point(75, 90);
             LabelApellido.Name = "LabelApellido";
-            LabelApellido.Size = new Size(35, 15);
+            LabelApellido.Size = new Size(0, 15);
             LabelApellido.TabIndex = 34;
-            LabelApellido.Text = "Perez";
             // 
             // LabelNombre
             // 
@@ -175,9 +170,8 @@
             LabelNombre.Font = new Font("Segoe UI", 9F);
             LabelNombre.Location = new Point(75, 60);
             LabelNombre.Name = "LabelNombre";
-            LabelNombre.Size = new Size(31, 15);
+            LabelNombre.Size = new Size(0, 15);
             LabelNombre.TabIndex = 39;
-            LabelNombre.Text = "Juan";
             // 
             // BotonBuscarC
             // 
@@ -188,6 +182,7 @@
             BotonBuscarC.TabIndex = 33;
             BotonBuscarC.Text = "Buscar";
             BotonBuscarC.UseVisualStyleBackColor = true;
+            BotonBuscarC.Click += BotonBuscarC_Click;
             // 
             // LabelLocalidadC
             // 
@@ -229,12 +224,12 @@
             LabelCalleC.TabIndex = 29;
             LabelCalleC.Text = "Calle";
             // 
-            // textBox1
+            // TxtCuit
             // 
-            textBox1.Location = new Point(75, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(216, 25);
-            textBox1.TabIndex = 28;
+            TxtCuit.Location = new Point(75, 30);
+            TxtCuit.Name = "TxtCuit";
+            TxtCuit.Size = new Size(216, 25);
+            TxtCuit.TabIndex = 28;
             // 
             // LabelApellidoC
             // 
@@ -272,7 +267,7 @@
             GrupoDestinatario.Controls.Add(TextLocalidad);
             GrupoDestinatario.Controls.Add(LabelLocalidadD);
             GrupoDestinatario.Controls.Add(LabelDestinoD);
-            GrupoDestinatario.Controls.Add(LabelTELD);
+            GrupoDestinatario.Controls.Add(LabelTelefonoD);
             GrupoDestinatario.Controls.Add(ComboDestino);
             GrupoDestinatario.Controls.Add(TextTEL);
             GrupoDestinatario.Controls.Add(TextNombre);
@@ -280,7 +275,7 @@
             GrupoDestinatario.Controls.Add(LabelAlturaD);
             GrupoDestinatario.Controls.Add(TextCalle);
             GrupoDestinatario.Controls.Add(LabelCalleD);
-            GrupoDestinatario.Controls.Add(TextDNI);
+            GrupoDestinatario.Controls.Add(TextDni);
             GrupoDestinatario.Controls.Add(LabelApellidoD);
             GrupoDestinatario.Controls.Add(TextApellido);
             GrupoDestinatario.Controls.Add(LabelNombreD);
@@ -302,6 +297,7 @@
             BotonBuscarD.TabIndex = 41;
             BotonBuscarD.Text = "Buscar";
             BotonBuscarD.UseVisualStyleBackColor = true;
+            BotonBuscarD.Click += BotonBuscarLocalidad_Click;
             // 
             // TextLocalidad
             // 
@@ -330,15 +326,15 @@
             LabelDestinoD.TabIndex = 42;
             LabelDestinoD.Text = "Destino";
             // 
-            // LabelTELD
+            // LabelTelefonoD
             // 
-            LabelTELD.AutoSize = true;
-            LabelTELD.Font = new Font("Segoe UI", 9F);
-            LabelTELD.Location = new Point(9, 240);
-            LabelTELD.Name = "LabelTELD";
-            LabelTELD.Size = new Size(52, 15);
-            LabelTELD.TabIndex = 37;
-            LabelTELD.Text = "Teléfono";
+            LabelTelefonoD.AutoSize = true;
+            LabelTelefonoD.Font = new Font("Segoe UI", 9F);
+            LabelTelefonoD.Location = new Point(9, 240);
+            LabelTelefonoD.Name = "LabelTelefonoD";
+            LabelTelefonoD.Size = new Size(52, 15);
+            LabelTelefonoD.TabIndex = 37;
+            LabelTelefonoD.Text = "Teléfono";
             // 
             // ComboDestino
             // 
@@ -347,6 +343,7 @@
             ComboDestino.Name = "ComboDestino";
             ComboDestino.Size = new Size(297, 25);
             ComboDestino.TabIndex = 40;
+            ComboDestino.SelectedIndexChanged += ComboDestino_SelectedIndexChanged;
             // 
             // TextTEL
             // 
@@ -396,12 +393,12 @@
             LabelCalleD.TabIndex = 31;
             LabelCalleD.Text = "Calle";
             // 
-            // TextDNI
+            // TextDni
             // 
-            TextDNI.Location = new Point(76, 210);
-            TextDNI.Name = "TextDNI";
-            TextDNI.Size = new Size(297, 25);
-            TextDNI.TabIndex = 30;
+            TextDni.Location = new Point(76, 210);
+            TextDni.Name = "TextDni";
+            TextDni.Size = new Size(297, 25);
+            TextDni.TabIndex = 30;
             // 
             // LabelApellidoD
             // 
@@ -471,6 +468,7 @@
             ComboDimension.Name = "ComboDimension";
             ComboDimension.Size = new Size(308, 25);
             ComboDimension.TabIndex = 18;
+            ComboDimension.SelectedIndexChanged += ComboDimension_SelectedIndexChanged;
             // 
             // LabelDimension
             // 
@@ -500,9 +498,9 @@
             Controls.Add(LabelImposicion);
             Controls.Add(GrupoEncomienda);
             Controls.Add(GrupoDestinatario);
-            Controls.Add(GrupoCliente);
             Controls.Add(ButtonConfirmar);
             Controls.Add(ButtonCancelar);
+            Controls.Add(GrupoCliente);
             Name = "ImposicionCallCenter";
             Text = "Imposición";
             Load += Imposicion_Load;
@@ -523,7 +521,7 @@
         private Label LabelLocalidad;
         private Label LabelAltura;
         private Label LabelCalle;
-        private Label LabelTEL;
+        private Label LabelTelefono;
         private Label LabelApellido;
         private Label LabelNombre;
         private Button BotonBuscarC;
@@ -531,7 +529,7 @@
         private Label LabelAlturaC;
         private Label LabelTELC;
         private Label LabelCalleC;
-        private TextBox textBox1;
+        private TextBox TxtCuit;
         private Label LabelApellidoC;
         private Label LabelNombreC;
         private Label LabelCUIT;
@@ -540,7 +538,7 @@
         private TextBox TextLocalidad;
         private Label LabelLocalidadD;
         private Label LabelDestinoD;
-        private Label LabelTELD;
+        private Label LabelTelefonoD;
         private ComboBox ComboDestino;
         private TextBox TextTEL;
         private TextBox TextNombre;
@@ -548,7 +546,7 @@
         private Label LabelAlturaD;
         private TextBox TextCalle;
         private Label LabelCalleD;
-        private TextBox TextDNI;
+        private TextBox TextDni;
         private Label LabelApellidoD;
         private TextBox TextApellido;
         private Label LabelNombreD;
