@@ -53,7 +53,8 @@ namespace tutasa.Admision
 
                 txtNombreDestinatario.Text = modelo.NombreDestinatario;
                 txtDireccionDestino.Text = modelo.DireccionDestino;
-                txtCPdestino.Text = modelo.CPDestino;
+                //Chicos acá pincha algo con esta parte del código
+                /*txtCPdestino.Text = modelo.CPDestino;
 
                 txtFleteroAsignado.Text = modelo.FleteroAsignado;
 
@@ -62,7 +63,7 @@ namespace tutasa.Admision
                 intPeso.Text = modelo.Peso.ToString();
                 intAlto.Text = modelo.Alto.ToString();
                 intAncho.Text = modelo.Ancho.ToString();
-                intLargo.Text = modelo.Largo.ToString();
+                intLargo.Text = modelo.Largo.ToString();*/
             }
             else
             {
