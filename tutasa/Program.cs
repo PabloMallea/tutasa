@@ -9,7 +9,7 @@ namespace tutasa
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
+            //Acá se instancia el formulario correspondiente y se lo establece como formulario principal de ejecución de la aplicación.
             Application.Run(new tutasa.Imposicion_CD.Impiscion_CD());
 
         }

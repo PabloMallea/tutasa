@@ -340,6 +340,19 @@
 
                 return;
             }
+            long telefono;
+
+            if (!long.TryParse(TextTEL.Text, out telefono))
+            {
+                MessageBox.Show(
+                    "Debe ingresar un teléfono numérico.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
 
             // Validar dimensión seleccionada
             if (ComboDimension.SelectedIndex == -1)

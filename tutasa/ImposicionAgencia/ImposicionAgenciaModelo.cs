@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tutasa.Imposicion_CD
+namespace tutasa.Imposicion_Agencia
 {
-    internal class ImposicionCDModelo
+    internal class ImposicionAgenciaModelo
     {
-
+    
 
         public class Cliente
         {
@@ -19,7 +19,7 @@ namespace tutasa.Imposicion_CD
             public string Telefono { get; set; }
         }
 
-
+ 
 
         public class Destino
         {
@@ -31,14 +31,12 @@ namespace tutasa.Imposicion_CD
         }
 
 
-
         public class Localidad
         {
             public string Nombre { get; set; }
 
             public List<Destino> Destinos { get; set; }
         }
-
 
         public class Encomienda
         {
@@ -60,11 +58,10 @@ namespace tutasa.Imposicion_CD
 
             public string TelefonoDestinatario { get; set; }
 
-            public string Peso { get; set; }
-
             public string Dimension { get; set; }
         }
 
+   
 
         private List<Cliente> clientes = new List<Cliente>
         {
@@ -85,7 +82,7 @@ namespace tutasa.Imposicion_CD
             }
         };
 
-
+    
 
         private List<Localidad> localidades = new List<Localidad>
         {
@@ -149,27 +146,18 @@ namespace tutasa.Imposicion_CD
         };
 
 
-
-        public string ObtenerDimension(decimal peso)
+        public List<string> ObtenerDimensiones()
         {
-            if (peso <= 2.5m)
+            return new List<string>
             {
-                return "S";
-            }
-
-            if (peso <= 5)
-            {
-                return "M";
-            }
-
-            if (peso <= 10)
-            {
-                return "L";
-            }
-
-            return "XL";
+                "S",
+                "M",
+                "L",
+                "XL"
+            };
         }
 
+ 
 
         public Cliente BuscarCliente(string cuit)
         {
@@ -186,7 +174,6 @@ namespace tutasa.Imposicion_CD
             // Si no se encontró coincidencia, retornar null
             return null;
         }
-
 
 
         public Localidad BuscarLocalidad(string nombre)

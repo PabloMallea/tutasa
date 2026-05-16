@@ -11,8 +11,7 @@ namespace tutasa.Imposicion_CD
     public partial class Impiscion_CD : Form
     {
         // Instancia del modelo de imposición
-        private tutasa.ImposicionCD.ImposicionCDModelo modelo =
-            new tutasa.ImposicionCD.ImposicionCDModelo();
+        private ImposicionCDModelo modelo = new ImposicionCDModelo();
 
         public Impiscion_CD()
         {
@@ -33,11 +32,11 @@ namespace tutasa.Imposicion_CD
             }
 
             // Obtener localidad
-            tutasa.ImposicionCD.ImposicionCDModelo.Localidad localidad =
+            ImposicionCDModelo.Localidad localidad =
                 modelo.BuscarLocalidad(TextLocalidad.Text.Trim());
 
             // Buscar destino seleccionado
-            foreach (tutasa.ImposicionCD.ImposicionCDModelo.Destino destino
+            foreach (ImposicionCDModelo.Destino destino
                 in localidad.Destinos)
             {
                 // Si coincide nombre
@@ -106,7 +105,7 @@ namespace tutasa.Imposicion_CD
             }
 
             // Buscar cliente en el modelo
-            tutasa.ImposicionCD.ImposicionCDModelo.Cliente cliente =
+           ImposicionCDModelo.Cliente cliente =
                 modelo.BuscarCliente(cuit);
 
             // Validar existencia de cliente
@@ -148,7 +147,7 @@ namespace tutasa.Imposicion_CD
             }
 
             // Buscar localidad
-            tutasa.ImposicionCD.ImposicionCDModelo.Localidad localidad =
+            ImposicionCDModelo.Localidad localidad =
                 modelo.BuscarLocalidad(localidadIngresada);
 
             // Validar existencia
@@ -168,7 +167,7 @@ namespace tutasa.Imposicion_CD
             ComboDestino.Items.Clear();
 
             // Cargar destinos disponibles para la localidad
-            foreach (tutasa.ImposicionCD.ImposicionCDModelo.Destino destino
+            foreach (ImposicionCDModelo.Destino destino
                 in localidad.Destinos)
             {
                 ComboDestino.Items.Add(destino.Nombre);
@@ -222,40 +221,6 @@ namespace tutasa.Imposicion_CD
 
                 return;
             }
-
-            // Acá podríamos usar esta validación de "Solo validar calle y altura si es domicilio" pero
-            // para simplificar validamos calle y altura siempre ya que en agencias y cd se completa automáticamente y no se puede editar,
-            //Cualquier cosa me avisas y lo ajusto para que solo valide calle y altura si es domicilio
-            /* if (ComboDestino.SelectedItem.ToString() == "Domicilio Destinatario")
-             {
-                 // Validar calle destino
-                 if (string.IsNullOrEmpty(TextCalle.Text))
-                 {
-                     MessageBox.Show(
-                         "Debe ingresar una calle destino.",
-                         "Validación",
-                         MessageBoxButtons.OK,
-                         MessageBoxIcon.Warning
-                     );
-
-                     return;
-                 }
-
-                 // Validar altura numérica
-                 long altura;
-
-                 if (!long.TryParse(TextAltura.Text, out altura))
-                 {
-                     MessageBox.Show(
-                         "Debe ingresar una altura numérica.",
-                         "Validación",
-                         MessageBoxButtons.OK,
-                         MessageBoxIcon.Warning
-                     );
-
-                     return;
-                 }
-             }*/
 
             // Validar calle destino
             if (string.IsNullOrEmpty(TextCalle.Text))
@@ -326,6 +291,21 @@ namespace tutasa.Imposicion_CD
                 return;
             }
 
+            // Validar teléfono numérico
+            long telefono;
+
+            if (!long.TryParse(TextTEL.Text, out telefono))
+            {
+                MessageBox.Show(
+                    "Debe ingresar un teléfono numérico.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
             // Validar peso numérico
             decimal peso;
 
@@ -341,8 +321,41 @@ namespace tutasa.Imposicion_CD
                 return;
             }
 
+            // Validar peso positivo
+            if (peso <= 0)
+            {
+                MessageBox.Show(
+                    "El peso debe ser mayor a cero.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            // Obtener dimensión según peso
+            string dimension =
+                modelo.ObtenerDimension(peso);
+
+            // Crear encomienda
+            ImposicionCDModelo.Encomienda encomienda =
+                new ImposicionCDModelo.Encomienda
+                {
+                    LocalidadDestino = TextLocalidad.Text,
+                    Destino = ComboDestino.SelectedItem.ToString(),
+                    CalleDestino = TextCalle.Text,
+                    AlturaDestino = TextAltura.Text,
+                    NombreDestinatario = TextNombre.Text,
+                    ApellidoDestinatario = TextApellido.Text,
+                    DniDestinatario = TextDNI.Text,
+                    TelefonoDestinatario = TextTEL.Text,
+                    Peso = peso.ToString(),
+                    Dimension = dimension
+                };
+
             MessageBox.Show(
-                "Imposición confirmada.",
+                "Imposición confirmada.\nDimensión asignada: " + dimension,
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
@@ -365,12 +378,6 @@ namespace tutasa.Imposicion_CD
             LabelNombre.Text = "";
             LabelApellido.Text = "";
             LabelTelefono.Text = "";
-
-            // Rehabilitar edición
-            //TextCalle.Enabled = true;
-            //TextAltura.Enabled = true;
         }
-
-        
     }
 }
