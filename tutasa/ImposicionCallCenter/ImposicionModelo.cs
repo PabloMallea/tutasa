@@ -1,9 +1,11 @@
-﻿namespace tutasa.ImposicionCallCenter
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace tutasa.ImposicionCallCenter
 {
     internal class ImposicionCallCenterModelo
     {
-     
-
         public class Cliente
         {
             public string Cuit { get; set; }
@@ -21,8 +23,6 @@
             public string Localidad { get; set; }
         }
 
-
-
         public class Destino
         {
             public string Nombre { get; set; }
@@ -32,14 +32,12 @@
             public string Altura { get; set; }
         }
 
-
         public class Localidad
         {
             public string Nombre { get; set; }
 
             public List<Destino> Destinos { get; set; }
         }
-
 
         public class Encomienda
         {
@@ -90,8 +88,6 @@
                 Localidad = "Villa Carlos Paz"
             }
         };
-
-
 
         private List<Localidad> localidades = new List<Localidad>
         {
@@ -182,7 +178,10 @@
             };
         }
 
+        // Lista donde se almacenan las encomiendas generadas
 
+        private List<Encomienda> encomiendas =
+            new List<Encomienda>();
 
         public Cliente BuscarCliente(string cuit)
         {
@@ -200,7 +199,6 @@
             return null;
         }
 
-
         public Localidad BuscarLocalidad(string nombre)
         {
             // Recorrer lista de localidades
@@ -215,6 +213,14 @@
 
             // Si no se encontró coincidencia
             return null;
+        }
+
+        // Guardar encomienda generada
+
+        public void GuardarEncomienda(
+            Encomienda encomienda)
+        {
+            encomiendas.Add(encomienda);
         }
     }
 }

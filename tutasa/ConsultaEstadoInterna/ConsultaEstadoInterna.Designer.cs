@@ -34,9 +34,9 @@
             BtnBuscar = new Button();
             BtnCerrar = new Button();
             GrupoDatosEncomienda = new GroupBox();
-            label4 = new Label();
-            label9 = new Label();
-            label13 = new Label();
+            LabelFechaActualizacion = new Label();
+            LabelUbicacionActual = new Label();
+            LabelEstadoActual = new Label();
             label14 = new Label();
             label15 = new Label();
             label16 = new Label();
@@ -83,6 +83,7 @@
             BtnBuscar.TabIndex = 4;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // BtnCerrar
             // 
@@ -95,9 +96,9 @@
             // 
             // GrupoDatosEncomienda
             // 
-            GrupoDatosEncomienda.Controls.Add(label4);
-            GrupoDatosEncomienda.Controls.Add(label9);
-            GrupoDatosEncomienda.Controls.Add(label13);
+            GrupoDatosEncomienda.Controls.Add(LabelFechaActualizacion);
+            GrupoDatosEncomienda.Controls.Add(LabelUbicacionActual);
+            GrupoDatosEncomienda.Controls.Add(LabelEstadoActual);
             GrupoDatosEncomienda.Controls.Add(label14);
             GrupoDatosEncomienda.Controls.Add(label15);
             GrupoDatosEncomienda.Controls.Add(label16);
@@ -108,33 +109,30 @@
             GrupoDatosEncomienda.TabStop = false;
             GrupoDatosEncomienda.Text = "Datos de Encomienda";
             // 
-            // label4
+            // LabelFechaActualizacion
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(180, 90);
-            label4.Name = "label4";
-            label4.Size = new Size(95, 15);
-            label4.TabIndex = 22;
-            label4.Text = "01/05/2026 10:00";
+            LabelFechaActualizacion.AutoSize = true;
+            LabelFechaActualizacion.Location = new Point(180, 90);
+            LabelFechaActualizacion.Name = "LabelFechaActualizacion";
+            LabelFechaActualizacion.Size = new Size(0, 15);
+            LabelFechaActualizacion.TabIndex = 22;
             // 
-            // label9
+            // LabelUbicacionActual
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(180, 60);
-            label9.Name = "label9";
-            label9.Size = new Size(94, 15);
-            label9.TabIndex = 21;
-            label9.Text = "CD Buenos Aires";
+            LabelUbicacionActual.AutoSize = true;
+            LabelUbicacionActual.Location = new Point(180, 60);
+            LabelUbicacionActual.Name = "LabelUbicacionActual";
+            LabelUbicacionActual.Size = new Size(0, 15);
+            LabelUbicacionActual.TabIndex = 21;
             // 
-            // label13
+            // LabelEstadoActual
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(180, 30);
-            label13.Name = "label13";
-            label13.Size = new Size(63, 17);
-            label13.TabIndex = 20;
-            label13.Text = "Admitida";
+            LabelEstadoActual.AutoSize = true;
+            LabelEstadoActual.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelEstadoActual.Location = new Point(180, 30);
+            LabelEstadoActual.Name = "LabelEstadoActual";
+            LabelEstadoActual.Size = new Size(0, 17);
+            LabelEstadoActual.TabIndex = 20;
             // 
             // label14
             // 
@@ -197,7 +195,7 @@
             // ColumnaUbicacion
             // 
             ColumnaUbicacion.Text = "Ubicación";
-            ColumnaUbicacion.Width = 150;
+            ColumnaUbicacion.Width = 220;
             // 
             // ConsultaEstadoInterna
             // 
@@ -228,9 +226,9 @@
         private Button BtnBuscar;
         private Button BtnCerrar;
         private GroupBox GrupoDatosEncomienda;
-        private Label label4;
-        private Label label9;
-        private Label label13;
+        private Label LabelFechaActualizacion;
+        private Label LabelUbicacionActual;
+        private Label LabelEstadoActual;
         private Label label14;
         private Label label15;
         private Label label16;

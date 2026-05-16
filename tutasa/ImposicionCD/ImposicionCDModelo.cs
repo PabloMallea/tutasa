@@ -204,5 +204,16 @@ namespace tutasa.Imposicion_CD
             // Si no se encontró coincidencia
             return null;
         }
+        // Lista donde se almacenan las encomiendas generadas
+
+        private List<Encomienda> encomiendas = new List<Encomienda>();
+
+        // Guardar encomienda generada
+
+        public void GuardarEncomienda(
+            Encomienda encomienda)
+        {
+            encomiendas.Add(encomienda);
+        }
     }
 }

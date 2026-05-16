@@ -339,20 +339,42 @@ namespace tutasa.Imposicion_CD
                 modelo.ObtenerDimension(peso);
 
             // Crear encomienda
+            // Buscar cliente seleccionado
+            ImposicionCDModelo.Cliente cliente =
+                modelo.BuscarCliente(
+                    TxtCuit.Text.Trim()
+                );
+
+            // Crear encomienda
             ImposicionCDModelo.Encomienda encomienda =
                 new ImposicionCDModelo.Encomienda
                 {
+                    Cliente = cliente,
+
                     LocalidadDestino = TextLocalidad.Text,
-                    Destino = ComboDestino.SelectedItem.ToString(),
+
+                    Destino =
+                        ComboDestino.SelectedItem.ToString(),
+
                     CalleDestino = TextCalle.Text,
+
                     AlturaDestino = TextAltura.Text,
+
                     NombreDestinatario = TextNombre.Text,
+
                     ApellidoDestinatario = TextApellido.Text,
+
                     DniDestinatario = TextDNI.Text,
+
                     TelefonoDestinatario = TextTEL.Text,
+
                     Peso = peso.ToString(),
+
                     Dimension = dimension
                 };
+
+            // Guardar encomienda en el modelo
+            modelo.GuardarEncomienda(encomienda);
 
             MessageBox.Show(
                 "Imposición confirmada.\nDimensión asignada: " + dimension,

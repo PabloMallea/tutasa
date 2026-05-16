@@ -1,19 +1,33 @@
-﻿namespace tutasa.RuteoUltimaMilla
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace tutasa.RuteoUltimaMilla
 {
     public partial class RuteoUltimaMilla : Form
     {
-        private RuteoUltimaMillaModelo modelo = new RuteoUltimaMillaModelo();
+        private RuteoUltimaMillaModelo modelo =
+            new RuteoUltimaMillaModelo();
 
         public RuteoUltimaMilla()
         {
             InitializeComponent();
         }
 
-        private void RuteoUltimaMilla_Load(object sender, EventArgs e)
+        private void RuteoUltimaMilla_Load(
+            object sender,
+            EventArgs e)
         {
             // Obtener fleteros desde el modelo
-            List<string> fleteros = modelo.ObtenerFleteros();
-            List<string> localidades = modelo.ObtenerLocalidades();
+            List<string> fleteros =
+                modelo.ObtenerFleteros();
+
+            List<string> localidades =
+                modelo.ObtenerLocalidades();
 
             // Se lo asignamos al Combobox de asignación de fletero. Acá ver si la opción óptima según Andrés es usar un foreach
 
@@ -29,27 +43,37 @@
             }
         }
 
-        private void RbEntrega(object sender, EventArgs e)
+        private void RbEntrega(
+            object sender,
+            EventArgs e)
         {
 
         }
 
-        private void RbRetiro(object sender, EventArgs e)
+        private void RbRetiro(
+            object sender,
+            EventArgs e)
         {
 
         }
 
-        private void BtnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(
+            object sender,
+            EventArgs e)
         {
 
         }
 
-        private void ComboAsignarFletero_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboAsignarFletero_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
         {
 
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(
+            object sender,
+            EventArgs e)
         {
             // Obtener valor ingresado en el campo CUIT (acá en realidad podríamos usar txtBoxCuit.Text directamente, pero lo asignamos a una variable para mayor claridad)
             string cuit = txtBoxCuit.Text.Trim();
@@ -60,11 +84,13 @@
             // Si el usuario seleccionó una localidad, la guardamos
             if (CmbLocalidad.SelectedItem != null)
             {
-                localidad = CmbLocalidad.SelectedItem.ToString();
+                localidad =
+                    CmbLocalidad.SelectedItem.ToString();
             }
 
             // Validación: si se ingresó un CUIT, debe contener únicamente números. Noten que permitimos que el campo esté vacío, ya que la búsqueda podría realizarse sin filtrar por CUIT. Sin embargo, si se ingresa algo, debe ser numérico.
-            if (!string.IsNullOrEmpty(cuit) && !cuit.All(char.IsDigit))
+            if (!string.IsNullOrEmpty(cuit)
+                && !cuit.All(char.IsDigit))
             {
                 MessageBox.Show(
                     "El CUIT del cliente debe contener únicamente números.",
@@ -76,31 +102,38 @@
                 return;
             }
 
-            List<RuteoUltimaMillaModelo.Guia> guiasEncontradas = modelo.BuscarGuias(localidad, cuit);
+            List<RuteoUltimaMillaModelo.Encomienda>
+                encomiendasEncontradas =
+                    modelo.BuscarEncomiendas(
+                        localidad,
+                        cuit
+                    );
 
             // Limpiar ListView antes de mostrar los resultados. Sino si aplicamos devuelta el buscar se acumularían los viejos
             LvGuiasDisponibles.Items.Clear();
 
-            foreach (RuteoUltimaMillaModelo.Guia guia in guiasEncontradas)
+            foreach (
+                RuteoUltimaMillaModelo.Encomienda encomienda
+                in encomiendasEncontradas)
             {
-                ListViewItem item = new ListViewItem(guia.Numero);
+                ListViewItem item =
+                    new ListViewItem(encomienda.Numero);
 
-                item.Tag = guia;
+                item.Tag = encomienda;
 
-                item.SubItems.Add(guia.Cliente);
-                item.SubItems.Add(guia.Cuit);
-                item.SubItems.Add(guia.Localidad);
-                item.SubItems.Add(guia.Direccion);
-                item.SubItems.Add(guia.Dimension);
-                item.SubItems.Add(guia.TipoRuteo);
+                item.SubItems.Add(encomienda.Cliente);
+                item.SubItems.Add(encomienda.Cuit);
+                item.SubItems.Add(encomienda.Localidad);
+                item.SubItems.Add(encomienda.Direccion);
+                item.SubItems.Add(encomienda.Dimension);
 
                 LvGuiasDisponibles.Items.Add(item);
             }
 
-            if (guiasEncontradas.Count == 0)
+            if (encomiendasEncontradas.Count == 0)
             {
                 MessageBox.Show(
-                    "No se encontraron guías con los criterios ingresados.",
+                    "No se encontraron encomiendas con los criterios ingresados.",
                     "Búsqueda",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
@@ -108,13 +141,15 @@
             }
         }
 
-        private void BtnAgregarSeleccion_Click(object sender, EventArgs e)
+        private void BtnAgregarSeleccion_Click(
+            object sender,
+            EventArgs e)
         {
-            // Validación: debe seleccionarse al menos una guía
+            // Validación: debe seleccionarse al menos una encomienda
             if (LvGuiasDisponibles.SelectedItems.Count == 0)
             {
                 MessageBox.Show(
-                    "Debe seleccionar al menos una guía.",
+                    "Debe seleccionar al menos una encomienda.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -146,27 +181,34 @@
                 return;
             }
 
-            // Recorrer guías seleccionadas
-            foreach (ListViewItem itemSeleccionado in LvGuiasDisponibles.SelectedItems)
+            // Recorrer encomiendas seleccionadas
+            foreach (
+                ListViewItem itemSeleccionado
+                in LvGuiasDisponibles.SelectedItems)
             {
-                // Recuperamos la guía real guardada previamente en el Tag del ListViewItem.
+                // Recuperamos la encomienda real guardada previamente en el Tag del ListViewItem.
                 // Acá el Tag funciona como un "contenedor oculto" asociado a cada fila visual,
-                // permitiéndonos mantener referencia al objeto Guia original y no depender únicamente de los textos visibles en pantalla.
+                // permitiéndonos mantener referencia al objeto Encomienda original y no depender únicamente de los textos visibles en pantalla.
                 // Sino tendrías que agregarles index a cada columna y hacer algo como itemSeleccionado.SubItems[0].Text para recuperar el
-                // número de guía, lo cual es más frágil y propenso a errores si luego cambias el orden de las columnas o agregas nuevas.
-                RuteoUltimaMillaModelo.Guia guia =
-                    (RuteoUltimaMillaModelo.Guia)itemSeleccionado.Tag;
+                // número de encomienda, lo cual es más frágil y propenso a errores si luego cambias el orden de las columnas o agregas nuevas.
+                RuteoUltimaMillaModelo.Encomienda encomienda =
+                    (RuteoUltimaMillaModelo.Encomienda)
+                    itemSeleccionado.Tag;
 
                 // Validar duplicados
                 bool existe = false;
 
-                foreach (ListViewItem itemExistente in LvSeleccion.Items)
+                foreach (ListViewItem itemExistente
+                    in LvSeleccion.Items)
                 {
-                    RuteoUltimaMillaModelo.Guia guiaExistente =
-                        (RuteoUltimaMillaModelo.Guia)itemExistente.Tag;
+                    RuteoUltimaMillaModelo.Encomienda
+                        encomiendaExistente =
+                        (RuteoUltimaMillaModelo.Encomienda)
+                        itemExistente.Tag;
 
-                    // Si el número de guía ya existe, marcar duplicado
-                    if (guiaExistente.Numero == guia.Numero)
+                    // Si el número de encomienda ya existe, marcar duplicado
+                    if (encomiendaExistente.Numero
+                        == encomienda.Numero)
                     {
                         existe = true;
                         break;
@@ -178,22 +220,24 @@
                 {
                     // Crear fila para el ListView inferior
                     ListViewItem nuevoItem =
-                        new ListViewItem(guia.Numero);
+                        new ListViewItem(encomienda.Numero);
 
-                    nuevoItem.SubItems.Add(guia.Cliente);
-                    nuevoItem.SubItems.Add(guia.Direccion);
+                    nuevoItem.SubItems.Add(
+                        encomienda.Cliente);
 
-                    // Acá le asignamos el tipo de ruteo a la guía en el modelo,
-                    // para que quede guardado en el objeto y no solo en la fila visual.
-                    guia.TipoRuteo = tipoRuteo;
+                    nuevoItem.SubItems.Add(
+                        encomienda.Direccion);
 
-                    nuevoItem.SubItems.Add(tipoRuteo);
-                    nuevoItem.SubItems.Add(guia.Dimension);
+                    nuevoItem.SubItems.Add(
+                        tipoRuteo);
 
-                    // Guardamos nuevamente la guía en el Tag de la nueva fila.
+                    nuevoItem.SubItems.Add(
+                        encomienda.Dimension);
+
+                    // Guardamos nuevamente la encomienda en el Tag de la nueva fila.
                     // Esto permite recuperar posteriormente el objeto completo
                     // para validaciones, eliminación de elementos o confirmación del ruteo.
-                    nuevoItem.Tag = guia;
+                    nuevoItem.Tag = encomienda;
 
                     // Agregar fila al listado seleccionado
                     LvSeleccion.Items.Add(nuevoItem);
@@ -201,7 +245,9 @@
             }
         }
 
-        private void BtnAgregarTodos_Click_1(object sender, EventArgs e)
+        private void BtnAgregarTodos_Click_1(
+            object sender,
+            EventArgs e)
         {
             // Validación: debe seleccionarse tipo de ruteo
             string tipoRuteo = "";
@@ -226,27 +272,34 @@
                 return;
             }
 
-            // Recorremos todas las filas del ListView de guías disponibles.
+            // Recorremos todas las filas del ListView de encomiendas disponibles.
             // A diferencia del botón "Agregar selección", donde utilizábamos
             // SelectedItems (únicamente las filas marcadas por el usuario),
-            // acá utilizamos Items para incorporar todas las guías mostradas
+            // acá utilizamos Items para incorporar todas las encomiendas mostradas
             // en el resultado de búsqueda. Es casi igual.
-            foreach (ListViewItem itemDisponible in LvGuiasDisponibles.Items)
+            foreach (
+                ListViewItem itemDisponible
+                in LvGuiasDisponibles.Items)
             {
-                // Obtener guía desde el Tag
-                RuteoUltimaMillaModelo.Guia guia =
-                    (RuteoUltimaMillaModelo.Guia)itemDisponible.Tag;
+                // Obtener encomienda desde el Tag
+                RuteoUltimaMillaModelo.Encomienda encomienda =
+                    (RuteoUltimaMillaModelo.Encomienda)
+                    itemDisponible.Tag;
 
                 // Validar duplicados
                 bool existe = false;
 
-                foreach (ListViewItem itemExistente in LvSeleccion.Items)
+                foreach (ListViewItem itemExistente
+                    in LvSeleccion.Items)
                 {
-                    RuteoUltimaMillaModelo.Guia guiaExistente =
-                        (RuteoUltimaMillaModelo.Guia)itemExistente.Tag;
+                    RuteoUltimaMillaModelo.Encomienda
+                        encomiendaExistente =
+                        (RuteoUltimaMillaModelo.Encomienda)
+                        itemExistente.Tag;
 
-                    // Si ya existe el número de guía, marcar duplicado
-                    if (guiaExistente.Numero == guia.Numero)
+                    // Si ya existe el número de encomienda, marcar duplicado
+                    if (encomiendaExistente.Numero
+                        == encomienda.Numero)
                     {
                         existe = true;
                         break;
@@ -258,21 +311,22 @@
                 {
                     // Crear fila para ListView inferior
                     ListViewItem nuevoItem =
-                        new ListViewItem(guia.Numero);
+                        new ListViewItem(encomienda.Numero);
 
-                    nuevoItem.SubItems.Add(guia.Cliente);
-                    nuevoItem.SubItems.Add(guia.Direccion);
+                    nuevoItem.SubItems.Add(
+                        encomienda.Cliente);
 
-                    //acá le asigno el tipo de ruteo a la guía en el modelo,
-                    //para que quede guardado en el objeto y no solo en la fila visual.
-                    //Esto es importante para luego recuperar esta información al confirmar el ruteo o si queremos mostrarla en algún detalle.
-                    guia.TipoRuteo = tipoRuteo;
+                    nuevoItem.SubItems.Add(
+                        encomienda.Direccion);
 
-                    nuevoItem.SubItems.Add(tipoRuteo);
-                    nuevoItem.SubItems.Add(guia.Dimension);
+                    nuevoItem.SubItems.Add(
+                        tipoRuteo);
 
-                    // Guardar guía en Tag
-                    nuevoItem.Tag = guia;
+                    nuevoItem.SubItems.Add(
+                        encomienda.Dimension);
+
+                    // Guardar encomienda en Tag
+                    nuevoItem.Tag = encomienda;
 
                     // Agregar al ListView inferior
                     LvSeleccion.Items.Add(nuevoItem);
@@ -280,13 +334,15 @@
             }
         }
 
-        private void BtnQuitar_Click(object sender, EventArgs e)
+        private void BtnQuitar_Click(
+            object sender,
+            EventArgs e)
         {
-            // Validación: debe seleccionarse al menos una guía
+            // Validación: debe seleccionarse al menos una encomienda
             if (LvSeleccion.SelectedItems.Count == 0)
             {
                 MessageBox.Show(
-                    "Debe seleccionar al menos una guía para quitar.",
+                    "Debe seleccionar al menos una encomienda para quitar.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -296,14 +352,19 @@
             }
 
             // Recorremos las filas seleccionadas del ListView inferior
-            foreach (ListViewItem itemSeleccionado in LvSeleccion.SelectedItems)
+            foreach (
+                ListViewItem itemSeleccionado
+                in LvSeleccion.SelectedItems)
             {
                 // Eliminamos la fila del listado seleccionado
-                LvSeleccion.Items.Remove(itemSeleccionado);
+                LvSeleccion.Items.Remove(
+                    itemSeleccionado);
             }
         }
 
-        private void BtnConfirmar_Click(object sender, EventArgs e)
+        private void BtnConfirmar_Click(
+            object sender,
+            EventArgs e)
         {
             // Validar fletero seleccionado
             if (ComboAsignarFletero.SelectedIndex == -1)
@@ -318,11 +379,11 @@
                 return;
             }
 
-            // Validar que existan guías seleccionadas
+            // Validar que existan encomiendas seleccionadas
             if (LvSeleccion.Items.Count == 0)
             {
                 MessageBox.Show(
-                    "Debe agregar al menos una guía al ruteo.",
+                    "Debe agregar al menos una encomienda al ruteo.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -331,23 +392,59 @@
                 return;
             }
 
-            // Obtener fletero seleccionado
-            string fletero =
-                ComboAsignarFletero.SelectedItem.ToString();
+            // Determinar tipo de ruteo según radio button
+            string tipoRuteo = "";
 
-            // Recorrer guías seleccionadas
-            foreach (ListViewItem item in LvSeleccion.Items)
+            if (RBEntrega.Checked)
             {
-                // Recuperar guía desde el Tag
-                RuteoUltimaMillaModelo.Guia guia =
-                    (RuteoUltimaMillaModelo.Guia)item.Tag;
-
-                // Guardar fletero asignado en la guía
-                guia.Fletero = fletero;
+                tipoRuteo = "Entrega";
+            }
+            else
+            {
+                tipoRuteo = "Retiro";
             }
 
+            // Obtener fletero seleccionado
+            string fletero = ComboAsignarFletero.SelectedItem.ToString();
+
+            // Lista donde se guardarán las encomiendas de la hoja de ruta
+            List<RuteoUltimaMillaModelo.Encomienda>
+                encomiendasHojaRuta =
+                    new List<RuteoUltimaMillaModelo.Encomienda>();
+
+            // Recorrer encomiendas seleccionadas
+            foreach (ListViewItem item in LvSeleccion.Items)
+            {
+                // Recuperar encomienda desde el Tag
+                RuteoUltimaMillaModelo.Encomienda encomienda = (RuteoUltimaMillaModelo.Encomienda)item.Tag;
+
+                // Agregar encomienda a la hoja de ruta
+                encomiendasHojaRuta.Add(encomienda);
+            }
+
+            // Crear hoja de ruta final
+            RuteoUltimaMillaModelo.HojaRuta hojaRuta =
+                new RuteoUltimaMillaModelo.HojaRuta
+                {
+                    // Generación simple de número de hoja de ruta
+                    Numero =
+                        DateTime.Now
+                        .ToString("yyyyMMddHHmmss"),
+
+                    Fletero = fletero,
+
+                    TipoRuteo = tipoRuteo,
+
+                    Encomiendas =
+                        encomiendasHojaRuta
+                };
+
+            // Guardar hoja de ruta generada
+            modelo.GuardarHojaRuta(hojaRuta);
+
             MessageBox.Show(
-                "Ruteo generado correctamente.",
+                "Hoja de ruta generada correctamente.\n" +
+                "Número: " + hojaRuta.Numero,
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
@@ -355,6 +452,8 @@
 
             // Limpiar formulario
             LvSeleccion.Items.Clear();
+            txtBoxCuit.Clear();
+            CmbLocalidad.SelectedIndex = -1;
             LvGuiasDisponibles.Items.Clear();
             ComboAsignarFletero.SelectedIndex = -1;
         }

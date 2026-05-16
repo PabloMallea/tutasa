@@ -6,7 +6,7 @@ namespace tutasa.Imposicion_Agencia
 {
     internal class ImposicionAgenciaModelo
     {
-    
+
 
         public class Cliente
         {
@@ -19,7 +19,7 @@ namespace tutasa.Imposicion_Agencia
             public string Telefono { get; set; }
         }
 
- 
+
 
         public class Destino
         {
@@ -37,6 +37,7 @@ namespace tutasa.Imposicion_Agencia
 
             public List<Destino> Destinos { get; set; }
         }
+
 
         public class Encomienda
         {
@@ -61,9 +62,9 @@ namespace tutasa.Imposicion_Agencia
             public string Dimension { get; set; }
         }
 
-   
 
-        private List<Cliente> clientes = new List<Cliente>
+        private List<Cliente> clientes =
+            new List<Cliente>
         {
             new Cliente
             {
@@ -82,9 +83,9 @@ namespace tutasa.Imposicion_Agencia
             }
         };
 
-    
 
-        private List<Localidad> localidades = new List<Localidad>
+        private List<Localidad> localidades =
+            new List<Localidad>
         {
             new Localidad
             {
@@ -145,6 +146,10 @@ namespace tutasa.Imposicion_Agencia
             }
         };
 
+        //Acá almaceno las guias que se van generando.
+        //En una aplicación real esto se haría en una base de datos, pero para este ejemplo lo guardamos en memoria.
+        private List<Encomienda> encomiendas = new List<Encomienda>();
+
 
         public List<string> ObtenerDimensiones()
         {
@@ -157,21 +162,21 @@ namespace tutasa.Imposicion_Agencia
             };
         }
 
- 
+
 
         public Cliente BuscarCliente(string cuit)
         {
             // Recorrer lista de clientes
             foreach (Cliente cliente in clientes)
             {
-                // Si el CUIT coincide, retornar cliente encontrado
+                // Si el CUIT coincide
                 if (cliente.Cuit == cuit)
                 {
                     return cliente;
                 }
             }
 
-            // Si no se encontró coincidencia, retornar null
+            // Si no se encontró coincidencia
             return null;
         }
 
@@ -181,7 +186,7 @@ namespace tutasa.Imposicion_Agencia
             // Recorrer lista de localidades
             foreach (Localidad localidad in localidades)
             {
-                // Si coincide nombre, retornar localidad
+                // Si coincide nombre
                 if (localidad.Nombre == nombre)
                 {
                     return localidad;
@@ -190,6 +195,16 @@ namespace tutasa.Imposicion_Agencia
 
             // Si no se encontró coincidencia
             return null;
+        }
+
+
+        // GUARDAR ENCOMIENDA
+
+
+        public void GuardarEncomienda(
+            Encomienda encomienda)
+        {
+            encomiendas.Add(encomienda);
         }
     }
 }

@@ -39,7 +39,7 @@
             ColumnaClienteA = new ColumnHeader();
             ColumnaCDDestinoA = new ColumnHeader();
             GrupoGuias = new GroupBox();
-            listView1 = new ListView();
+            LvSeleccion = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
@@ -59,14 +59,14 @@
             BtnConfirmar = new Button();
             groupBox4 = new GroupBox();
             label3 = new Label();
-            comboBox5 = new ComboBox();
+            ComboLocalidad = new ComboBox();
             BtnBuscar = new Button();
             label6 = new Label();
-            comboBox4 = new ComboBox();
-            textBox1 = new TextBox();
+            ComboDimension = new ComboBox();
+            TxtCuit = new TextBox();
             label5 = new Label();
             label4 = new Label();
-            comboBox3 = new ComboBox();
+            ComboCDDestinoBusqueda = new ComboBox();
             label7 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -91,16 +91,19 @@
             ComboEmpresa.Name = "ComboEmpresa";
             ComboEmpresa.Size = new Size(778, 23);
             ComboEmpresa.TabIndex = 3;
+            ComboEmpresa.SelectedIndexChanged += ComboEmpresa_SelectedIndexChanged;
             // 
             // LvGuiasDisponibles
             // 
             LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuiaA, ColumnaLocalidadA, ColumnaDireccionA, ColumnaDimensionA, ColumnaPesoA, ColumnaClienteA, ColumnaCDDestinoA });
+            LvGuiasDisponibles.FullRowSelect = true;
             LvGuiasDisponibles.Location = new Point(9, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
             LvGuiasDisponibles.Size = new Size(778, 150);
             LvGuiasDisponibles.TabIndex = 4;
             LvGuiasDisponibles.UseCompatibleStateImageBehavior = false;
             LvGuiasDisponibles.View = View.Details;
+            LvGuiasDisponibles.SelectedIndexChanged += LvGuiasDisponibles_SelectedIndexChanged;
             // 
             // ColumnaNGuiaA
             // 
@@ -139,7 +142,7 @@
             // 
             // GrupoGuias
             // 
-            GrupoGuias.Controls.Add(listView1);
+            GrupoGuias.Controls.Add(LvSeleccion);
             GrupoGuias.Controls.Add(BtnAgregarTodos);
             GrupoGuias.Controls.Add(BtnQuitar);
             GrupoGuias.Controls.Add(BtnAgregarSeleccion);
@@ -151,15 +154,16 @@
             GrupoGuias.TabStop = false;
             GrupoGuias.Text = "Guías";
             // 
-            // listView1
+            // LvSeleccion
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
-            listView1.Location = new Point(9, 223);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(778, 150);
-            listView1.TabIndex = 10;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            LvSeleccion.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
+            LvSeleccion.FullRowSelect = true;
+            LvSeleccion.Location = new Point(9, 223);
+            LvSeleccion.Name = "LvSeleccion";
+            LvSeleccion.Size = new Size(778, 150);
+            LvSeleccion.TabIndex = 10;
+            LvSeleccion.UseCompatibleStateImageBehavior = false;
+            LvSeleccion.View = View.Details;
             // 
             // columnHeader1
             // 
@@ -214,6 +218,7 @@
             BtnQuitar.TabIndex = 8;
             BtnQuitar.Text = "Quitar";
             BtnQuitar.UseVisualStyleBackColor = true;
+            BtnQuitar.Click += BtnQuitar_Click;
             // 
             // BtnAgregarSeleccion
             // 
@@ -223,6 +228,7 @@
             BtnAgregarSeleccion.TabIndex = 6;
             BtnAgregarSeleccion.Text = "Agregar selección";
             BtnAgregarSeleccion.UseVisualStyleBackColor = true;
+            BtnAgregarSeleccion.Click += BtnAgregarSeleccion_Click;
             // 
             // GrupoConfigTransporte
             // 
@@ -238,7 +244,6 @@
             GrupoConfigTransporte.TabIndex = 8;
             GrupoConfigTransporte.TabStop = false;
             GrupoConfigTransporte.Text = "Configuración del Transporte";
-            GrupoConfigTransporte.Enter += groupBox3_Enter;
             // 
             // ComboServicio
             // 
@@ -291,18 +296,19 @@
             BtnConfirmar.TabIndex = 10;
             BtnConfirmar.Text = "Confirmar";
             BtnConfirmar.UseVisualStyleBackColor = true;
+            BtnConfirmar.Click += BtnConfirmar_Click;
             // 
             // groupBox4
             // 
             groupBox4.Controls.Add(label3);
-            groupBox4.Controls.Add(comboBox5);
+            groupBox4.Controls.Add(ComboLocalidad);
             groupBox4.Controls.Add(BtnBuscar);
             groupBox4.Controls.Add(label6);
-            groupBox4.Controls.Add(comboBox4);
-            groupBox4.Controls.Add(textBox1);
+            groupBox4.Controls.Add(ComboDimension);
+            groupBox4.Controls.Add(TxtCuit);
             groupBox4.Controls.Add(label5);
             groupBox4.Controls.Add(label4);
-            groupBox4.Controls.Add(comboBox3);
+            groupBox4.Controls.Add(ComboCDDestinoBusqueda);
             groupBox4.Location = new Point(12, 70);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(796, 70);
@@ -319,13 +325,13 @@
             label3.TabIndex = 8;
             label3.Text = "Localidad";
             // 
-            // comboBox5
+            // ComboLocalidad
             // 
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(408, 27);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(105, 23);
-            comboBox5.TabIndex = 7;
+            ComboLocalidad.FormattingEnabled = true;
+            ComboLocalidad.Location = new Point(408, 27);
+            ComboLocalidad.Name = "ComboLocalidad";
+            ComboLocalidad.Size = new Size(105, 23);
+            ComboLocalidad.TabIndex = 7;
             // 
             // BtnBuscar
             // 
@@ -335,6 +341,7 @@
             BtnBuscar.TabIndex = 6;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // label6
             // 
@@ -345,20 +352,20 @@
             label6.TabIndex = 5;
             label6.Text = "Dimensión";
             // 
-            // comboBox4
+            // ComboDimension
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(590, 27);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(105, 23);
-            comboBox4.TabIndex = 4;
+            ComboDimension.FormattingEnabled = true;
+            ComboDimension.Location = new Point(590, 27);
+            ComboDimension.Name = "ComboDimension";
+            ComboDimension.Size = new Size(105, 23);
+            ComboDimension.TabIndex = 4;
             // 
-            // textBox1
+            // TxtCuit
             // 
-            textBox1.Location = new Point(233, 27);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(105, 23);
-            textBox1.TabIndex = 3;
+            TxtCuit.Location = new Point(233, 27);
+            TxtCuit.Name = "TxtCuit";
+            TxtCuit.Size = new Size(105, 23);
+            TxtCuit.TabIndex = 3;
             // 
             // label5
             // 
@@ -378,13 +385,13 @@
             label4.TabIndex = 1;
             label4.Text = "CD Destino";
             // 
-            // comboBox3
+            // ComboCDDestinoBusqueda
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(84, 27);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(105, 23);
-            comboBox3.TabIndex = 0;
+            ComboCDDestinoBusqueda.FormattingEnabled = true;
+            ComboCDDestinoBusqueda.Location = new Point(84, 27);
+            ComboCDDestinoBusqueda.Name = "ComboCDDestinoBusqueda";
+            ComboCDDestinoBusqueda.Size = new Size(105, 23);
+            ComboCDDestinoBusqueda.TabIndex = 0;
             // 
             // label7
             // 
@@ -443,7 +450,7 @@
         #endregion
         private Label LabelCDDestino;
         private ComboBox ComboEmpresa;
-        private ListView LvGuiasDisponibles;
+        private ListView LvSeleccion;
         private GroupBox GrupoGuias;
         private GroupBox GrupoConfigTransporte;
         private Label LabelEmpresa;
@@ -462,20 +469,20 @@
         private GroupBox groupBox4;
         private Button BtnBuscar;
         private Label label6;
-        private ComboBox comboBox4;
-        private TextBox textBox1;
+        private ComboBox ComboDimension;
+        private TextBox TxtCuit;
         private Label label5;
         private Label label4;
-        private ComboBox comboBox3;
+        private ComboBox ComboCDDestinoBusqueda;
         private ColumnHeader ColumnaClienteA;
         private ColumnHeader ColumnaCDDestinoA;
         private ColumnHeader ColumnaLocalidadA;
         private Label label3;
-        private ComboBox comboBox5;
+        private ComboBox ComboLocalidad;
         private Label label7;
         private Label label9;
         private Label label8;
-        private ListView listView1;
+        private ListView LvGuiasDisponibles;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;

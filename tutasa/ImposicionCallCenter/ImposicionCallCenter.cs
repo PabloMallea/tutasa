@@ -340,6 +340,7 @@
 
                 return;
             }
+
             long telefono;
 
             if (!long.TryParse(TextTEL.Text, out telefono))
@@ -366,6 +367,49 @@
 
                 return;
             }
+
+            // Buscar cliente seleccionado
+            ImposicionCallCenterModelo.Cliente cliente =
+                modelo.BuscarCliente(
+                    TxtCuit.Text.Trim()
+                );
+
+            // Crear encomienda
+            ImposicionCallCenterModelo.Encomienda encomienda =
+                new ImposicionCallCenterModelo.Encomienda
+                {
+                    Cliente = cliente,
+
+                    LocalidadDestino =
+                        TextLocalidad.Text,
+
+                    Destino =
+                        ComboDestino.SelectedItem.ToString(),
+
+                    CalleDestino =
+                        TextCalle.Text,
+
+                    AlturaDestino =
+                        TextAltura.Text,
+
+                    NombreDestinatario =
+                        TextNombre.Text,
+
+                    ApellidoDestinatario =
+                        TextApellido.Text,
+
+                    DniDestinatario =
+                        TextDni.Text,
+
+                    TelefonoDestinatario =
+                        TextTEL.Text,
+
+                    Dimension =
+                        ComboDimension.SelectedItem.ToString()
+                };
+
+            // Guardar encomienda en el modelo
+            modelo.GuardarEncomienda(encomienda);
 
             MessageBox.Show(
                 "Imposición confirmada.",

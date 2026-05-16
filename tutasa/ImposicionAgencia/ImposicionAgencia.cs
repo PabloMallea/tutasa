@@ -313,6 +313,8 @@ namespace tutasa.Imposicion_Agencia
 
                 return;
             }
+
+            // Validar teléfono numérico
             long telefono;
 
             if (!long.TryParse(TextTEL.Text, out telefono))
@@ -339,6 +341,49 @@ namespace tutasa.Imposicion_Agencia
 
                 return;
             }
+
+            // Buscar cliente seleccionado
+            ImposicionAgenciaModelo.Cliente cliente =
+                modelo.BuscarCliente(
+                    TxtCuit.Text.Trim()
+                );
+
+            // Crear encomienda
+            ImposicionAgenciaModelo.Encomienda encomienda =
+                new ImposicionAgenciaModelo.Encomienda
+                {
+                    Cliente = cliente,
+
+                    LocalidadDestino =
+                        TextLocalidad.Text,
+
+                    Destino =
+                        ComboDestino.SelectedItem.ToString(),
+
+                    CalleDestino =
+                        TextCalle.Text,
+
+                    AlturaDestino =
+                        TextAltura.Text,
+
+                    NombreDestinatario =
+                        TextNombre.Text,
+
+                    ApellidoDestinatario =
+                        TextApellido.Text,
+
+                    DniDestinatario =
+                        TextDNI.Text,
+
+                    TelefonoDestinatario =
+                        TextTEL.Text,
+
+                    Dimension =
+                        ComboDimension.SelectedItem.ToString()
+                };
+
+            // Guardar encomienda en el modelo
+            modelo.GuardarEncomienda(encomienda);
 
             MessageBox.Show(
                 "Imposición confirmada.",
@@ -370,6 +415,6 @@ namespace tutasa.Imposicion_Agencia
             TextAltura.Enabled = true;
         }
 
-    
+
     }
 }
