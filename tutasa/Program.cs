@@ -10,7 +10,7 @@ namespace tutasa
         {
             ApplicationConfiguration.Initialize();
             //Acá se instancia el formulario correspondiente y se lo establece como formulario principal de ejecución de la aplicación.
-            Application.Run(new tutasa.RuteoTransporte.FormRuteoTransporte());
+            Application.Run(new tutasa.CuentaCorriente.CuentaCorriente());
 
         }
     }
