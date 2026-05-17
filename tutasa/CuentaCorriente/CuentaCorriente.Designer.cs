@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             GrupoBusqueda = new GroupBox();
+            button2 = new Button();
+            textBox1 = new TextBox();
             ButtonConfirmar = new Button();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
@@ -47,8 +49,8 @@
             ColumnaSaldo = new ColumnHeader();
             button1 = new Button();
             label8 = new Label();
-            textBox1 = new TextBox();
-            button2 = new Button();
+            label4 = new Label();
+            label5 = new Label();
             GrupoBusqueda.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -66,22 +68,37 @@
             GrupoBusqueda.Controls.Add(label2);
             GrupoBusqueda.Controls.Add(label1);
             GrupoBusqueda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            GrupoBusqueda.Location = new Point(15, 40);
-            GrupoBusqueda.Margin = new Padding(3, 2, 3, 2);
+            GrupoBusqueda.Location = new Point(17, 53);
             GrupoBusqueda.Name = "GrupoBusqueda";
-            GrupoBusqueda.Padding = new Padding(3, 2, 3, 2);
-            GrupoBusqueda.Size = new Size(745, 187);
+            GrupoBusqueda.Size = new Size(851, 249);
             GrupoBusqueda.TabIndex = 1;
             GrupoBusqueda.TabStop = false;
             GrupoBusqueda.Text = "Búsqueda";
             // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.Location = new Point(339, 31);
+            button2.Name = "button2";
+            button2.Size = new Size(86, 33);
+            button2.TabIndex = 30;
+            button2.Text = "Buscar";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(91, 33);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(241, 27);
+            textBox1.TabIndex = 29;
+            // 
             // ButtonConfirmar
             // 
             ButtonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ButtonConfirmar.Location = new Point(672, 148);
-            ButtonConfirmar.Margin = new Padding(3, 2, 3, 2);
+            ButtonConfirmar.Location = new Point(768, 197);
             ButtonConfirmar.Name = "ButtonConfirmar";
-            ButtonConfirmar.Size = new Size(66, 26);
+            ButtonConfirmar.Size = new Size(75, 35);
             ButtonConfirmar.TabIndex = 28;
             ButtonConfirmar.Text = "Buscar";
             ButtonConfirmar.UseVisualStyleBackColor = true;
@@ -90,29 +107,27 @@
             // 
             dateTimePicker2.CustomFormat = "";
             dateTimePicker2.Font = new Font("Segoe UI", 9F);
-            dateTimePicker2.Location = new Point(84, 119);
-            dateTimePicker2.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker2.Location = new Point(96, 159);
             dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(654, 23);
+            dateTimePicker2.Size = new Size(747, 27);
             dateTimePicker2.TabIndex = 9;
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.CustomFormat = "";
             dateTimePicker1.Font = new Font("Segoe UI", 9F);
-            dateTimePicker1.Location = new Point(84, 88);
-            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker1.Location = new Point(96, 117);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(654, 23);
+            dateTimePicker1.Size = new Size(747, 27);
             dateTimePicker1.TabIndex = 8;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(9, 120);
+            label6.Location = new Point(10, 160);
             label6.Name = "label6";
-            label6.Size = new Size(71, 15);
+            label6.Size = new Size(89, 20);
             label6.TabIndex = 7;
             label6.Text = "Fecha Hasta";
             // 
@@ -120,9 +135,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(9, 90);
+            label7.Location = new Point(10, 120);
             label7.Name = "label7";
-            label7.Size = new Size(73, 15);
+            label7.Size = new Size(93, 20);
             label7.TabIndex = 6;
             label7.Text = "Fecha Desde";
             // 
@@ -130,9 +145,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(80, 60);
+            label3.Location = new Point(91, 80);
             label3.Name = "label3";
-            label3.Size = new Size(62, 15);
+            label3.Size = new Size(77, 20);
             label3.TabIndex = 3;
             label3.Text = "Juan Pérez";
             // 
@@ -140,9 +155,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(9, 30);
+            label2.Location = new Point(10, 40);
             label2.Name = "label2";
-            label2.Size = new Size(62, 15);
+            label2.Size = new Size(76, 20);
             label2.TabIndex = 2;
             label2.Text = "CUIT/CUIL";
             // 
@@ -150,21 +165,21 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(9, 60);
+            label1.Location = new Point(10, 80);
             label1.Name = "label1";
-            label1.Size = new Size(44, 15);
+            label1.Size = new Size(55, 20);
             label1.TabIndex = 0;
             label1.Text = "Cliente";
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(listView1);
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(15, 231);
-            groupBox2.Margin = new Padding(3, 2, 3, 2);
+            groupBox2.Location = new Point(17, 308);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(745, 298);
+            groupBox2.Size = new Size(851, 397);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Estado Cuenta";
@@ -173,10 +188,9 @@
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNComprobante, ColumnaConcepto, ColumnaMonto, ColumnaPago, ColumnaSaldo });
             listView1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            listView1.Location = new Point(6, 20);
-            listView1.Margin = new Padding(3, 2, 3, 2);
+            listView1.Location = new Point(7, 27);
             listView1.Name = "listView1";
-            listView1.Size = new Size(728, 264);
+            listView1.Size = new Size(831, 291);
             listView1.TabIndex = 12;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
@@ -214,10 +228,9 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(685, 533);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(783, 711);
             button1.Name = "button1";
-            button1.Size = new Size(75, 25);
+            button1.Size = new Size(86, 33);
             button1.TabIndex = 30;
             button1.Text = "Aceptar";
             button1.UseVisualStyleBackColor = true;
@@ -226,47 +239,50 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(15, 10);
+            label8.Location = new Point(17, 13);
             label8.Name = "label8";
-            label8.Size = new Size(217, 21);
+            label8.Size = new Size(270, 28);
             label8.TabIndex = 31;
             label8.Text = "Estado de Cuenta Corriente";
             label8.Click += label8_Click;
             // 
-            // textBox1
+            // label4
             // 
-            textBox1.Location = new Point(80, 25);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(211, 23);
-            textBox1.TabIndex = 29;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(12, 342);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 20);
+            label4.TabIndex = 13;
+            label4.Text = "Total Saldo";
+            label4.Click += label4_Click;
             // 
-            // button2
+            // label5
             // 
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(297, 23);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 25);
-            button2.TabIndex = 30;
-            button2.Text = "Buscar";
-            button2.UseVisualStyleBackColor = true;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(116, 342);
+            label5.Name = "label5";
+            label5.Size = new Size(60, 20);
+            label5.TabIndex = 14;
+            label5.Text = "$10.500";
             // 
             // CuentaCorriente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(769, 565);
+            ClientSize = new Size(879, 753);
             Controls.Add(label8);
             Controls.Add(button1);
             Controls.Add(groupBox2);
             Controls.Add(GrupoBusqueda);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CuentaCorriente";
             Text = "Estado Cuenta Corriente";
             Load += CuentaCorriente_Load;
             GrupoBusqueda.ResumeLayout(false);
             GrupoBusqueda.PerformLayout();
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -294,5 +310,7 @@
         private Label label8;
         private Button button2;
         private TextBox textBox1;
+        private Label label4;
+        private Label label5;
     }
 }
