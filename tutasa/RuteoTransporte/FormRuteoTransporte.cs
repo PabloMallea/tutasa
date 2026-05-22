@@ -522,8 +522,7 @@ namespace tutasa.RuteoTransporte
                 new FormRuteoTransporteModelo.HojaRutaTransporte
                 {
                     Numero =
-                        DateTime.Now
-                        .ToString("yyyyMMddHHmmss"),
+                        DateTime.Now.ToString("yyyyMMddHHmmss"),
 
                     Empresa = empresa,
 

@@ -37,6 +37,7 @@
             ColumnaDireccion = new ColumnHeader();
             ColumnaTipo = new ColumnHeader();
             ColumnaDimension = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
             LvSeleccion = new ListView();
             columnHeader6 = new ColumnHeader();
             columnHeader13 = new ColumnHeader();
@@ -102,7 +103,7 @@
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaTipo, ColumnaDimension });
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaTipo, ColumnaDimension, columnHeader1 });
             LvGuiasDisponibles.FullRowSelect = true;
             LvGuiasDisponibles.Location = new Point(9, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
@@ -114,27 +115,32 @@
             // ColumnaNGuia
             // 
             ColumnaNGuia.Text = "Nro Guía";
-            ColumnaNGuia.Width = 140;
+            ColumnaNGuia.Width = 120;
             // 
             // ColumnaCliente
             // 
             ColumnaCliente.Text = "Cliente";
-            ColumnaCliente.Width = 140;
+            ColumnaCliente.Width = 120;
             // 
             // ColumnaDireccion
             // 
-            ColumnaDireccion.Text = "Dirección";
-            ColumnaDireccion.Width = 140;
+            ColumnaDireccion.Text = "CUIT";
+            ColumnaDireccion.Width = 120;
             // 
             // ColumnaTipo
             // 
-            ColumnaTipo.Text = "Tipo";
-            ColumnaTipo.Width = 140;
+            ColumnaTipo.Text = "Localidad";
+            ColumnaTipo.Width = 120;
             // 
             // ColumnaDimension
             // 
-            ColumnaDimension.Text = "Dimensión";
-            ColumnaDimension.Width = 140;
+            ColumnaDimension.Text = "Dirección";
+            ColumnaDimension.Width = 120;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Dimensión";
+            columnHeader1.Width = 120;
             // 
             // LvSeleccion
             // 
@@ -392,5 +398,6 @@
         private Button BtnAgregarTodos;
         private Label LbRuteoUltimaMilla;
         private Label LbFletero;
+        private ColumnHeader columnHeader1;
     }
 }

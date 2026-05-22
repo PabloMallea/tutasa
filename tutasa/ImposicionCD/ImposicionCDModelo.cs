@@ -28,6 +28,8 @@ namespace tutasa.Imposicion_CD
             public string Calle { get; set; }
 
             public string Altura { get; set; }
+
+
         }
 
 
@@ -97,6 +99,7 @@ namespace tutasa.Imposicion_CD
                 {
                     new Destino
                     {
+                       
                         Nombre = "Domicilio Destinatario",
                         Calle = "",
                         Altura = ""
