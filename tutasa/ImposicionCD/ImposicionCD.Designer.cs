@@ -48,12 +48,12 @@
             LabelNombreD = new Label();
             LabelDNI = new Label();
             GrupoCliente = new GroupBox();
-            LabelTEL = new Label();
+            LabelTelefono = new Label();
             LabelApellido = new Label();
             LabelNombre = new Label();
             BotonBuscarC = new Button();
             LabelTELC = new Label();
-            textBox1 = new TextBox();
+            TxtCuit = new TextBox();
             LabelApellidoC = new Label();
             LabelNombreC = new Label();
             LabelCUIT = new Label();
@@ -61,7 +61,7 @@
             ButtonCancelar = new Button();
             LabelDimension = new Label();
             label6 = new Label();
-            intAlto = new TextBox();
+            TextPeso = new TextBox();
             LabelTamaño = new Label();
             GrupoEncomienda = new GroupBox();
             GrupoDestinatario.SuspendLayout();
@@ -115,6 +115,7 @@
             BotonBuscarD.TabIndex = 41;
             BotonBuscarD.Text = "Buscar";
             BotonBuscarD.UseVisualStyleBackColor = true;
+            BotonBuscarD.Click += BotonBuscarLocalidad_Click;
             // 
             // TextLocalidad
             // 
@@ -160,6 +161,7 @@
             ComboDestino.Name = "ComboDestino";
             ComboDestino.Size = new Size(297, 25);
             ComboDestino.TabIndex = 40;
+            ComboDestino.SelectedIndexChanged += ComboDestino_SelectedIndexChanged1;
             // 
             // TextTEL
             // 
@@ -255,12 +257,12 @@
             // 
             // GrupoCliente
             // 
-            GrupoCliente.Controls.Add(LabelTEL);
+            GrupoCliente.Controls.Add(LabelTelefono);
             GrupoCliente.Controls.Add(LabelApellido);
             GrupoCliente.Controls.Add(LabelNombre);
             GrupoCliente.Controls.Add(BotonBuscarC);
             GrupoCliente.Controls.Add(LabelTELC);
-            GrupoCliente.Controls.Add(textBox1);
+            GrupoCliente.Controls.Add(TxtCuit);
             GrupoCliente.Controls.Add(LabelApellidoC);
             GrupoCliente.Controls.Add(LabelNombreC);
             GrupoCliente.Controls.Add(LabelCUIT);
@@ -272,35 +274,29 @@
             GrupoCliente.TabStop = false;
             GrupoCliente.Text = "Cliente";
             // 
-            // LabelTEL
+            // LabelTelefono
             // 
-            LabelTEL.AutoSize = true;
-            LabelTEL.Font = new Font("Segoe UI", 9F);
-            LabelTEL.Location = new Point(75, 120);
-            LabelTEL.Name = "LabelTEL";
-            LabelTEL.Size = new Size(67, 15);
-            LabelTEL.TabIndex = 35;
-            LabelTEL.Text = "1122334455";
+            LabelTelefono.AutoSize = true;
+            LabelTelefono.Location = new Point(73, 118);
+            LabelTelefono.Name = "LabelTelefono";
+            LabelTelefono.Size = new Size(0, 17);
+            LabelTelefono.TabIndex = 36;
             // 
             // LabelApellido
             // 
             LabelApellido.AutoSize = true;
-            LabelApellido.Font = new Font("Segoe UI", 9F);
             LabelApellido.Location = new Point(75, 90);
             LabelApellido.Name = "LabelApellido";
-            LabelApellido.Size = new Size(35, 15);
-            LabelApellido.TabIndex = 34;
-            LabelApellido.Text = "Perez";
+            LabelApellido.Size = new Size(0, 17);
+            LabelApellido.TabIndex = 35;
             // 
             // LabelNombre
             // 
             LabelNombre.AutoSize = true;
-            LabelNombre.Font = new Font("Segoe UI", 9F);
-            LabelNombre.Location = new Point(75, 60);
+            LabelNombre.Location = new Point(75, 63);
             LabelNombre.Name = "LabelNombre";
-            LabelNombre.Size = new Size(31, 15);
-            LabelNombre.TabIndex = 39;
-            LabelNombre.Text = "Juan";
+            LabelNombre.Size = new Size(0, 17);
+            LabelNombre.TabIndex = 34;
             // 
             // BotonBuscarC
             // 
@@ -311,6 +307,7 @@
             BotonBuscarC.TabIndex = 33;
             BotonBuscarC.Text = "Buscar";
             BotonBuscarC.UseVisualStyleBackColor = true;
+            BotonBuscarC.Click += BotonBuscarC_Click;
             // 
             // LabelTELC
             // 
@@ -322,12 +319,12 @@
             LabelTELC.TabIndex = 30;
             LabelTELC.Text = "Teléfono";
             // 
-            // textBox1
+            // TxtCuit
             // 
-            textBox1.Location = new Point(75, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(216, 25);
-            textBox1.TabIndex = 28;
+            TxtCuit.Location = new Point(75, 30);
+            TxtCuit.Name = "TxtCuit";
+            TxtCuit.Size = new Size(216, 25);
+            TxtCuit.TabIndex = 28;
             // 
             // LabelApellidoC
             // 
@@ -367,6 +364,7 @@
             ButtonConfirmar.TabIndex = 42;
             ButtonConfirmar.Text = "Confirmar";
             ButtonConfirmar.UseVisualStyleBackColor = true;
+            ButtonConfirmar.Click += ButtonConfirmar_Click;
             // 
             // ButtonCancelar
             // 
@@ -398,13 +396,13 @@
             label6.TabIndex = 38;
             label6.Text = "Peso (Kg):";
             // 
-            // intAlto
+            // TextPeso
             // 
-            intAlto.Location = new Point(80, 30);
-            intAlto.Margin = new Padding(4, 3, 4, 3);
-            intAlto.Name = "intAlto";
-            intAlto.Size = new Size(308, 25);
-            intAlto.TabIndex = 37;
+            TextPeso.Location = new Point(80, 30);
+            TextPeso.Margin = new Padding(4, 3, 4, 3);
+            TextPeso.Name = "TextPeso";
+            TextPeso.Size = new Size(308, 25);
+            TextPeso.TabIndex = 37;
             // 
             // LabelTamaño
             // 
@@ -419,7 +417,7 @@
             // GrupoEncomienda
             // 
             GrupoEncomienda.Controls.Add(LabelTamaño);
-            GrupoEncomienda.Controls.Add(intAlto);
+            GrupoEncomienda.Controls.Add(TextPeso);
             GrupoEncomienda.Controls.Add(label6);
             GrupoEncomienda.Controls.Add(LabelDimension);
             GrupoEncomienda.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -475,12 +473,9 @@
         private Label LabelNombreD;
         private Label LabelDNI;
         private GroupBox GrupoCliente;
-        private Label LabelTEL;
-        private Label LabelApellido;
-        private Label LabelNombre;
         private Button BotonBuscarC;
         private Label LabelTELC;
-        private TextBox textBox1;
+        private TextBox TxtCuit;
         private Label LabelApellidoC;
         private Label LabelNombreC;
         private Label LabelCUIT;
@@ -488,8 +483,11 @@
         private Button ButtonCancelar;
         private Label LabelDimension;
         private Label label6;
-        private TextBox intAlto;
+        private TextBox TextPeso;
         private Label LabelTamaño;
         private GroupBox GrupoEncomienda;
+        private Label LabelTelefono;
+        private Label LabelApellido;
+        private Label LabelNombre;
     }
 }
