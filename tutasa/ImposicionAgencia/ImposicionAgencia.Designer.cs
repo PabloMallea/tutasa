@@ -56,7 +56,7 @@
             LabelCUIT = new Label();
             LabelNombreC = new Label();
             LabelApellidoC = new Label();
-            textBox1 = new TextBox();
+            TxtCuit = new TextBox();
             LabelTELC = new Label();
             BotonBuscarC = new Button();
             LabelNombre = new Label();
@@ -156,6 +156,7 @@
             BotonBuscarD.TabIndex = 41;
             BotonBuscarD.Text = "Buscar";
             BotonBuscarD.UseVisualStyleBackColor = true;
+            BotonBuscarD.Click += BotonBuscarD_Click;
             // 
             // TextLocalidad
             // 
@@ -201,6 +202,7 @@
             ComboDestino.Name = "ComboDestino";
             ComboDestino.Size = new Size(297, 25);
             ComboDestino.TabIndex = 40;
+            ComboDestino.SelectedIndexChanged += ComboDestino_SelectedIndexChanged1;
             // 
             // TextTEL
             // 
@@ -302,6 +304,7 @@
             ButtonConfirmar.TabIndex = 35;
             ButtonConfirmar.Text = "Confirmar";
             ButtonConfirmar.UseVisualStyleBackColor = true;
+            ButtonConfirmar.Click += ButtonConfirmar_Click;
             // 
             // ButtonCancelar
             // 
@@ -342,12 +345,12 @@
             LabelApellidoC.TabIndex = 27;
             LabelApellidoC.Text = "Apellido";
             // 
-            // textBox1
+            // TxtCuit
             // 
-            textBox1.Location = new Point(75, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(216, 25);
-            textBox1.TabIndex = 28;
+            TxtCuit.Location = new Point(75, 30);
+            TxtCuit.Name = "TxtCuit";
+            TxtCuit.Size = new Size(216, 25);
+            TxtCuit.TabIndex = 28;
             // 
             // LabelTELC
             // 
@@ -368,6 +371,7 @@
             BotonBuscarC.TabIndex = 33;
             BotonBuscarC.Text = "Buscar";
             BotonBuscarC.UseVisualStyleBackColor = true;
+            BotonBuscarC.Click += BotonBuscarC_Click;
             // 
             // LabelNombre
             // 
@@ -375,9 +379,8 @@
             LabelNombre.Font = new Font("Segoe UI", 9F);
             LabelNombre.Location = new Point(75, 60);
             LabelNombre.Name = "LabelNombre";
-            LabelNombre.Size = new Size(31, 15);
+            LabelNombre.Size = new Size(0, 15);
             LabelNombre.TabIndex = 39;
-            LabelNombre.Text = "Juan";
             // 
             // LabelApellido
             // 
@@ -385,9 +388,8 @@
             LabelApellido.Font = new Font("Segoe UI", 9F);
             LabelApellido.Location = new Point(75, 90);
             LabelApellido.Name = "LabelApellido";
-            LabelApellido.Size = new Size(35, 15);
+            LabelApellido.Size = new Size(0, 15);
             LabelApellido.TabIndex = 34;
-            LabelApellido.Text = "Perez";
             // 
             // LabelTEL
             // 
@@ -395,9 +397,8 @@
             LabelTEL.Font = new Font("Segoe UI", 9F);
             LabelTEL.Location = new Point(75, 120);
             LabelTEL.Name = "LabelTEL";
-            LabelTEL.Size = new Size(67, 15);
+            LabelTEL.Size = new Size(0, 15);
             LabelTEL.TabIndex = 35;
-            LabelTEL.Text = "1122334455";
             // 
             // GrupoCliente
             // 
@@ -406,7 +407,7 @@
             GrupoCliente.Controls.Add(LabelNombre);
             GrupoCliente.Controls.Add(BotonBuscarC);
             GrupoCliente.Controls.Add(LabelTELC);
-            GrupoCliente.Controls.Add(textBox1);
+            GrupoCliente.Controls.Add(TxtCuit);
             GrupoCliente.Controls.Add(LabelApellidoC);
             GrupoCliente.Controls.Add(LabelNombreC);
             GrupoCliente.Controls.Add(LabelCUIT);
@@ -472,7 +473,7 @@
         private Label LabelCUIT;
         private Label LabelNombreC;
         private Label LabelApellidoC;
-        private TextBox textBox1;
+        private TextBox TxtCuit;
         private Label LabelTELC;
         private Button BotonBuscarC;
         private Label LabelNombre;

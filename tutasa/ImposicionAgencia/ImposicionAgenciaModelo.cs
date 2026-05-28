@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tutasa.ImposicionCallCenter
+namespace tutasa.Imposicion_Agencia
 {
-    internal class ImposicionCallCenterModelo
+    internal class ImposicionAgenciaModelo
     {
+
+
         public class Cliente
         {
             public string Cuit { get; set; }
@@ -15,13 +17,9 @@ namespace tutasa.ImposicionCallCenter
             public string Apellido { get; set; }
 
             public string Telefono { get; set; }
-
-            public string Calle { get; set; }
-
-            public string Altura { get; set; }
-
-            public string Localidad { get; set; }
         }
+
+
 
         public class Destino
         {
@@ -32,12 +30,14 @@ namespace tutasa.ImposicionCallCenter
             public string Altura { get; set; }
         }
 
+
         public class Localidad
         {
             public string Nombre { get; set; }
 
             public List<Destino> Destinos { get; set; }
         }
+
 
         public class Encomienda
         {
@@ -62,19 +62,16 @@ namespace tutasa.ImposicionCallCenter
             public string Dimension { get; set; }
         }
 
-        //Clientes de ejemplo
 
-        private List<Cliente> clientes = new List<Cliente>
+        private List<Cliente> clientes =
+            new List<Cliente>
         {
             new Cliente
             {
                 Cuit = "20333444556",
                 Nombre = "Juan",
                 Apellido = "Perez",
-                Telefono = "1122334455",
-                Calle = "Calle Falsa",
-                Altura = "123",
-                Localidad = "Tandil"
+                Telefono = "1122334455"
             },
 
             new Cliente
@@ -82,14 +79,13 @@ namespace tutasa.ImposicionCallCenter
                 Cuit = "30777888999",
                 Nombre = "Maria",
                 Apellido = "Lopez",
-                Telefono = "1166677788",
-                Calle = "San Martin",
-                Altura = "456",
-                Localidad = "Villa Carlos Paz"
+                Telefono = "1166677788"
             }
         };
 
-        private List<Localidad> localidades = new List<Localidad>
+
+        private List<Localidad> localidades =
+            new List<Localidad>
         {
             new Localidad
             {
@@ -109,13 +105,6 @@ namespace tutasa.ImposicionCallCenter
                         Nombre = "Agencia San Rafael",
                         Calle = "Av Belgrano",
                         Altura = "123"
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Agencia San Rafael Centro",
-                        Calle = "Av Libertador",
-                        Altura = "456"
                     },
 
                     new Destino
@@ -149,13 +138,6 @@ namespace tutasa.ImposicionCallCenter
 
                     new Destino
                     {
-                        Nombre = "Agencia Mar del Plata Centro",
-                        Calle = "Av Luro",
-                        Altura = "789"
-                    },
-
-                    new Destino
-                    {
                         Nombre = "Centro de Distribución Mar del Plata",
                         Calle = "Av Independencia",
                         Altura = "456"
@@ -164,8 +146,10 @@ namespace tutasa.ImposicionCallCenter
             }
         };
 
-        // Acá hice un método para obtener las dimensiones creando la lista directamente,
-        // ya que no se especificó una clase para eso, y es un dato fijo.
+        //Acá almaceno las guias que se van generando.
+        //En una aplicación real esto se haría en una base de datos, pero para este ejemplo lo guardamos en memoria.
+        private List<Encomienda> encomiendas = new List<Encomienda>();
+
 
         public List<string> ObtenerDimensiones()
         {
@@ -178,33 +162,31 @@ namespace tutasa.ImposicionCallCenter
             };
         }
 
-        // Lista donde se almacenan las encomiendas generadas
 
-        private List<Encomienda> encomiendas =
-            new List<Encomienda>();
 
         public Cliente BuscarCliente(string cuit)
         {
             // Recorrer lista de clientes
             foreach (Cliente cliente in clientes)
             {
-                // Si el CUIT coincide, retornar cliente encontrado
+                // Si el CUIT coincide
                 if (cliente.Cuit == cuit)
                 {
                     return cliente;
                 }
             }
 
-            // Si no se encontró coincidencia, retornar null
+            // Si no se encontró coincidencia
             return null;
         }
+
 
         public Localidad BuscarLocalidad(string nombre)
         {
             // Recorrer lista de localidades
             foreach (Localidad localidad in localidades)
             {
-                // Si coincide nombre, retornar localidad
+                // Si coincide nombre
                 if (localidad.Nombre == nombre)
                 {
                     return localidad;
@@ -215,7 +197,9 @@ namespace tutasa.ImposicionCallCenter
             return null;
         }
 
-        // Guardar encomienda generada
+
+        // GUARDAR ENCOMIENDA
+
 
         public void GuardarEncomienda(
             Encomienda encomienda)

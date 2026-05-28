@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             GrupoBusqueda = new GroupBox();
-            button2 = new Button();
-            textBox1 = new TextBox();
-            ButtonConfirmar = new Button();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
+            BotonBuscarCuit = new Button();
+            TextCuit = new TextBox();
+            BotonConfirmar = new Button();
+            FechaHasta = new DateTimePicker();
+            FechaDesde = new DateTimePicker();
             label6 = new Label();
             label7 = new Label();
-            label3 = new Label();
+            LabelNombreCliente = new Label();
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            listView1 = new ListView();
+            LvEstadoCuenta = new ListView();
             ColumnaFecha = new ColumnHeader();
             ColumnaNComprobante = new ColumnHeader();
             ColumnaConcepto = new ColumnHeader();
@@ -49,22 +49,20 @@
             ColumnaSaldo = new ColumnHeader();
             button1 = new Button();
             label8 = new Label();
-            label4 = new Label();
-            label5 = new Label();
             GrupoBusqueda.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // GrupoBusqueda
             // 
-            GrupoBusqueda.Controls.Add(button2);
-            GrupoBusqueda.Controls.Add(textBox1);
-            GrupoBusqueda.Controls.Add(ButtonConfirmar);
-            GrupoBusqueda.Controls.Add(dateTimePicker2);
-            GrupoBusqueda.Controls.Add(dateTimePicker1);
+            GrupoBusqueda.Controls.Add(BotonBuscarCuit);
+            GrupoBusqueda.Controls.Add(TextCuit);
+            GrupoBusqueda.Controls.Add(BotonConfirmar);
+            GrupoBusqueda.Controls.Add(FechaHasta);
+            GrupoBusqueda.Controls.Add(FechaDesde);
             GrupoBusqueda.Controls.Add(label6);
             GrupoBusqueda.Controls.Add(label7);
-            GrupoBusqueda.Controls.Add(label3);
+            GrupoBusqueda.Controls.Add(LabelNombreCliente);
             GrupoBusqueda.Controls.Add(label2);
             GrupoBusqueda.Controls.Add(label1);
             GrupoBusqueda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -75,51 +73,61 @@
             GrupoBusqueda.TabStop = false;
             GrupoBusqueda.Text = "Búsqueda";
             // 
-            // button2
+            // BotonBuscarCuit
             // 
-            button2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(339, 31);
-            button2.Name = "button2";
-            button2.Size = new Size(86, 33);
-            button2.TabIndex = 30;
-            button2.Text = "Buscar";
-            button2.UseVisualStyleBackColor = true;
+            BotonBuscarCuit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BotonBuscarCuit.Location = new Point(297, 23);
+            BotonBuscarCuit.Margin = new Padding(3, 2, 3, 2);
+            BotonBuscarCuit.Name = "BotonBuscarCuit";
+            BotonBuscarCuit.Size = new Size(75, 25);
+            BotonBuscarCuit.TabIndex = 30;
+            BotonBuscarCuit.Text = "Buscar";
+            BotonBuscarCuit.UseVisualStyleBackColor = true;
+            BotonBuscarCuit.Click += BotonBuscarCuit_Click;
             // 
-            // textBox1
+            // TextCuit
             // 
-            textBox1.Location = new Point(91, 33);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(241, 27);
-            textBox1.TabIndex = 29;
+            TextCuit.Location = new Point(80, 25);
+            TextCuit.Name = "TextCuit";
+            TextCuit.Size = new Size(211, 23);
+            TextCuit.TabIndex = 29;
+            TextCuit.TextChanged += TextCuit_TextChanged;
             // 
-            // ButtonConfirmar
+            // BotonConfirmar
             // 
-            ButtonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ButtonConfirmar.Location = new Point(768, 197);
-            ButtonConfirmar.Name = "ButtonConfirmar";
-            ButtonConfirmar.Size = new Size(75, 35);
-            ButtonConfirmar.TabIndex = 28;
-            ButtonConfirmar.Text = "Buscar";
-            ButtonConfirmar.UseVisualStyleBackColor = true;
+            BotonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BotonConfirmar.Location = new Point(672, 148);
+            BotonConfirmar.Margin = new Padding(3, 2, 3, 2);
+            BotonConfirmar.Name = "BotonConfirmar";
+            BotonConfirmar.Size = new Size(66, 26);
+            BotonConfirmar.TabIndex = 28;
+            BotonConfirmar.Text = "Buscar";
+            BotonConfirmar.UseVisualStyleBackColor = true;
+            BotonConfirmar.Click += BotonConfirmar_Click;
             // 
-            // dateTimePicker2
+            // FechaHasta
             // 
-            dateTimePicker2.CustomFormat = "";
-            dateTimePicker2.Font = new Font("Segoe UI", 9F);
-            dateTimePicker2.Location = new Point(96, 159);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(747, 27);
-            dateTimePicker2.TabIndex = 9;
+            FechaHasta.CustomFormat = "";
+            FechaHasta.Font = new Font("Segoe UI", 9F);
+            FechaHasta.Location = new Point(84, 119);
+            FechaHasta.Margin = new Padding(3, 2, 3, 2);
+            FechaHasta.Name = "FechaHasta";
+            FechaHasta.Size = new Size(654, 23);
+            FechaHasta.TabIndex = 9;
+            FechaHasta.Value = new DateTime(2026, 5, 17, 17, 19, 19, 0);
+            FechaHasta.ValueChanged += FechaHasta_ValueChanged;
             // 
-            // dateTimePicker1
+            // FechaDesde
             // 
-            dateTimePicker1.CustomFormat = "";
-            dateTimePicker1.Font = new Font("Segoe UI", 9F);
-            dateTimePicker1.Location = new Point(96, 117);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(747, 27);
-            dateTimePicker1.TabIndex = 8;
+            FechaDesde.CustomFormat = "";
+            FechaDesde.Font = new Font("Segoe UI", 9F);
+            FechaDesde.Location = new Point(84, 88);
+            FechaDesde.Margin = new Padding(3, 2, 3, 2);
+            FechaDesde.Name = "FechaDesde";
+            FechaDesde.Size = new Size(654, 23);
+            FechaDesde.TabIndex = 8;
+            FechaDesde.Value = new DateTime(2026, 5, 17, 17, 19, 28, 0);
+            FechaDesde.ValueChanged += FechaDesde_ValueChanged;
             // 
             // label6
             // 
@@ -141,15 +149,15 @@
             label7.TabIndex = 6;
             label7.Text = "Fecha Desde";
             // 
-            // label3
+            // LabelNombreCliente
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(91, 80);
-            label3.Name = "label3";
-            label3.Size = new Size(77, 20);
-            label3.TabIndex = 3;
-            label3.Text = "Juan Pérez";
+            LabelNombreCliente.AutoSize = true;
+            LabelNombreCliente.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelNombreCliente.Location = new Point(80, 60);
+            LabelNombreCliente.Name = "LabelNombreCliente";
+            LabelNombreCliente.Size = new Size(0, 15);
+            LabelNombreCliente.TabIndex = 3;
+            LabelNombreCliente.Click += LabelNombreCliente_Click;
             // 
             // label2
             // 
@@ -173,9 +181,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(listView1);
+            groupBox2.Controls.Add(LvEstadoCuenta);
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(17, 308);
             groupBox2.Name = "groupBox2";
@@ -184,16 +190,18 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Estado Cuenta";
             // 
-            // listView1
+            // LvEstadoCuenta
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNComprobante, ColumnaConcepto, ColumnaMonto, ColumnaPago, ColumnaSaldo });
-            listView1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            listView1.Location = new Point(7, 27);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(831, 291);
-            listView1.TabIndex = 12;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            LvEstadoCuenta.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNComprobante, ColumnaConcepto, ColumnaMonto, ColumnaPago, ColumnaSaldo });
+            LvEstadoCuenta.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LvEstadoCuenta.Location = new Point(6, 20);
+            LvEstadoCuenta.Margin = new Padding(3, 2, 3, 2);
+            LvEstadoCuenta.Name = "LvEstadoCuenta";
+            LvEstadoCuenta.Size = new Size(728, 264);
+            LvEstadoCuenta.TabIndex = 12;
+            LvEstadoCuenta.UseCompatibleStateImageBehavior = false;
+            LvEstadoCuenta.View = View.Details;
+            LvEstadoCuenta.SelectedIndexChanged += LvEstadoCuenta_SelectedIndexChanged;
             // 
             // ColumnaFecha
             // 
@@ -244,28 +252,6 @@
             label8.Size = new Size(270, 28);
             label8.TabIndex = 31;
             label8.Text = "Estado de Cuenta Corriente";
-            label8.Click += label8_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(12, 342);
-            label4.Name = "label4";
-            label4.Size = new Size(84, 20);
-            label4.TabIndex = 13;
-            label4.Text = "Total Saldo";
-            label4.Click += label4_Click;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(116, 342);
-            label5.Name = "label5";
-            label5.Size = new Size(60, 20);
-            label5.TabIndex = 14;
-            label5.Text = "$10.500";
             // 
             // CuentaCorriente
             // 
@@ -291,15 +277,15 @@
 
         private GroupBox GrupoBusqueda;
         private Button ButtonConfirmar;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker FechaDesde;
+        private DateTimePicker FechaHasta;
         private Label label6;
         private Label label7;
         private Label label3;
         private Label label2;
         private Label label1;
         private GroupBox groupBox2;
-        private ListView listView1;
+        private ListView LvEstadoCuenta;
         private ColumnHeader ColumnaFecha;
         private ColumnHeader ColumnaNComprobante;
         private ColumnHeader ColumnaConcepto;
@@ -308,9 +294,10 @@
         private ColumnHeader ColumnaSaldo;
         private Button button1;
         private Label label8;
-        private Button button2;
-        private TextBox textBox1;
-        private Label label4;
-        private Label label5;
+        private Button BotonBuscarCuit;
+        private TextBox TextCuit;
+        private Label LabelNombreCliente;
+        private Button BotonConfirmar;
+
     }
 }
