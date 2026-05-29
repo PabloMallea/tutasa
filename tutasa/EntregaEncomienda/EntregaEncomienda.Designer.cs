@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            TextNGuia = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            txtNumeroGuia = new TextBox();
+            btnBuscar = new Button();
+            btnConfirmarEntrega = new Button();
+            btnCancelar = new Button();
             label7 = new Label();
             GrupoDetalleGuia = new GroupBox();
-            listView1 = new ListView();
+            lvDetalle = new ListView();
             ColumnaCliente = new ColumnHeader();
             ColumnaDestinatario = new ColumnHeader();
             ColumnaDNIDestinatario = new ColumnHeader();
@@ -45,80 +45,81 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 40);
+            label1.Location = new Point(17, 53);
             label1.Name = "label1";
-            label1.Size = new Size(48, 15);
+            label1.Size = new Size(60, 20);
             label1.TabIndex = 0;
             label1.Text = "N° Guía";
             // 
-            // TextNGuia
+            // txtNumeroGuia
             // 
-            TextNGuia.Location = new Point(69, 37);
-            TextNGuia.Margin = new Padding(3, 2, 3, 2);
-            TextNGuia.Name = "TextNGuia";
-            TextNGuia.Size = new Size(205, 23);
-            TextNGuia.TabIndex = 1;
+            txtNumeroGuia.Location = new Point(79, 49);
+            txtNumeroGuia.Name = "txtNumeroGuia";
+            txtNumeroGuia.Size = new Size(234, 27);
+            txtNumeroGuia.TabIndex = 1;
             // 
-            // button1
+            // btnBuscar
             // 
-            button1.Location = new Point(280, 35);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 25);
-            button1.TabIndex = 2;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
+            btnBuscar.Location = new Point(320, 47);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(86, 33);
+            btnBuscar.TabIndex = 2;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
-            // button2
+            // btnConfirmarEntrega
             // 
-            button2.Location = new Point(375, 278);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(124, 25);
-            button2.TabIndex = 5;
-            button2.Text = "Confirmar Entrega";
-            button2.UseVisualStyleBackColor = true;
+            btnConfirmarEntrega.Location = new Point(429, 371);
+            btnConfirmarEntrega.Name = "btnConfirmarEntrega";
+            btnConfirmarEntrega.Size = new Size(142, 33);
+            btnConfirmarEntrega.TabIndex = 5;
+            btnConfirmarEntrega.Text = "Confirmar Entrega";
+            btnConfirmarEntrega.UseVisualStyleBackColor = true;
+            btnConfirmarEntrega.Click += btnConfirmarEntrega_Click;
             // 
-            // button3
+            // btnCancelar
             // 
-            button3.Location = new Point(294, 278);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 25);
-            button3.TabIndex = 6;
-            button3.Text = "Cancelar";
-            button3.UseVisualStyleBackColor = true;
+            btnCancelar.Location = new Point(336, 371);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(86, 33);
+            btnCancelar.TabIndex = 6;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(15, 10);
+            label7.Location = new Point(17, 13);
             label7.Name = "label7";
-            label7.Size = new Size(191, 21);
+            label7.Size = new Size(235, 28);
             label7.TabIndex = 37;
             label7.Text = "Entrega de Encomienda";
             // 
             // GrupoDetalleGuia
             // 
-            GrupoDetalleGuia.Controls.Add(listView1);
-            GrupoDetalleGuia.Location = new Point(15, 65);
+            GrupoDetalleGuia.Controls.Add(lvDetalle);
+            GrupoDetalleGuia.Location = new Point(17, 87);
+            GrupoDetalleGuia.Margin = new Padding(3, 4, 3, 4);
             GrupoDetalleGuia.Name = "GrupoDetalleGuia";
-            GrupoDetalleGuia.Size = new Size(484, 208);
+            GrupoDetalleGuia.Padding = new Padding(3, 4, 3, 4);
+            GrupoDetalleGuia.Size = new Size(553, 277);
             GrupoDetalleGuia.TabIndex = 38;
             GrupoDetalleGuia.TabStop = false;
             GrupoDetalleGuia.Text = "Detalle de Guía";
             // 
-            // listView1
+            // lvDetalle
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { ColumnaCliente, ColumnaDestinatario, ColumnaDNIDestinatario });
-            listView1.Location = new Point(6, 21);
-            listView1.Margin = new Padding(3, 2, 3, 2);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(465, 171);
-            listView1.TabIndex = 4;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            lvDetalle.Columns.AddRange(new ColumnHeader[] { ColumnaCliente, ColumnaDestinatario, ColumnaDNIDestinatario });
+            lvDetalle.Location = new Point(7, 28);
+            lvDetalle.Name = "lvDetalle";
+            lvDetalle.Size = new Size(531, 227);
+            lvDetalle.TabIndex = 4;
+            lvDetalle.UseCompatibleStateImageBehavior = false;
+            lvDetalle.View = View.Details;
+            lvDetalle.Click += EntregaEncomienda_Load;
             // 
             // ColumnaCliente
             // 
@@ -137,17 +138,16 @@
             // 
             // EntregaEncomienda
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(510, 312);
+            ClientSize = new Size(583, 416);
             Controls.Add(GrupoDetalleGuia);
             Controls.Add(label7);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(TextNGuia);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnConfirmarEntrega);
+            Controls.Add(btnBuscar);
+            Controls.Add(txtNumeroGuia);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "EntregaEncomienda";
             Text = "EntregaEncomienda";
             GrupoDetalleGuia.ResumeLayout(false);
@@ -158,13 +158,13 @@
         #endregion
 
         private Label label1;
-        private TextBox TextNGuia;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private TextBox txtNumeroGuia;
+        private Button btnBuscar;
+        private Button btnConfirmarEntrega;
+        private Button btnCancelar;
         private Label label7;
         private GroupBox GrupoDetalleGuia;
-        private ListView listView1;
+        private ListView lvDetalle;
         private ColumnHeader ColumnaCliente;
         private ColumnHeader ColumnaDestinatario;
         private ColumnHeader ColumnaDNIDestinatario;
