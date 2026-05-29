@@ -6,7 +6,7 @@
         private ImposicionCallCenterModelo modelo =
             new ImposicionCallCenterModelo();
 
-        // NO se toca!!
+        // NO se toca!!!
         public ImposicionCallCenter()
         {
             InitializeComponent();
