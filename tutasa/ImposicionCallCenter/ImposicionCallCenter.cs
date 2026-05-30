@@ -1,4 +1,6 @@
-﻿namespace tutasa.ImposicionCallCenter
+﻿using static tutasa.ImposicionCallCenter.ImposicionCallCenterModelo;
+
+namespace tutasa.ImposicionCallCenter
 {
     public partial class ImposicionCallCenter : Form
     {
@@ -37,21 +39,100 @@
         {
 
         }
-
-        private void ComboDestino_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboDestino_SelectedIndexChanged(object sender,EventArgs e)
         {
-            // Validar selección
             if (ComboDestino.SelectedItem == null)
             {
                 return;
             }
 
-            // Obtener localidad
-            ImposicionCallCenterModelo.Localidad localidad =
-                modelo.BuscarLocalidad(TextLocalidad.Text.Trim());
+            string destino =
+                ComboDestino.SelectedItem.ToString();
 
-            // Buscar destino seleccionado
-            foreach (ImposicionCallCenterModelo.Destino destino
+            // Opción manual
+            if (destino
+                == "Domicilio Destinatario")
+            {
+                TextCalle.Enabled = true;
+                TextAltura.Enabled = true;
+
+                TextCalle.Clear();
+                TextAltura.Clear();
+
+                return;
+            }
+
+            string localidad =
+                TextLocalidad.Text.Trim();
+
+            List<ImposicionCallCenterModelo.Agencia>
+                agencias =
+                    modelo.ObtenerAgencias(
+                        localidad);
+
+            List<ImposicionCallCenterModelo.CentroDistribucion>
+                cds =
+                    modelo.ObtenerCD(localidad);
+
+            // Buscar agencia
+            foreach (
+                ImposicionCallCenterModelo.Agencia
+                agencia
+                in agencias)
+            {
+                if (agencia.Nombre
+                    == destino)
+                {
+                    TextCalle.Text =
+                        agencia.Calle;
+
+                    TextAltura.Text =
+                        agencia.Altura.ToString();
+
+                    TextCalle.Enabled = false;
+                    TextAltura.Enabled = false;
+
+                    return;
+                }
+            }
+
+            // Buscar CD
+            foreach (
+                ImposicionCallCenterModelo.CentroDistribucion
+                cd
+                in cds)
+            {
+                if (cd.Nombre
+                    == destino)
+                {
+                    TextCalle.Text =
+                        cd.Calle;
+
+                    TextAltura.Text =
+                        cd.Altura.ToString();
+
+                    TextCalle.Enabled = false;
+                    TextAltura.Enabled = false;
+
+                    return;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*foreach (ImposicionCallCenterModelo.Destino destino
                 in localidad.Destinos)
             {
                 // Si coincide nombre
@@ -83,8 +164,7 @@
 
                     break;
                 }
-            }
-        }
+            }*/
 
         private void BotonBuscarC_Click(object sender, EventArgs e)
         {
@@ -185,10 +265,22 @@
             ComboDestino.Items.Clear();
 
             // Cargar destinos disponibles para la localidad
-            foreach (ImposicionCallCenterModelo.Destino destino
-                in localidad.Destinos)
+            ComboDestino.Items.Add("Domicilio Destinatario");
+
+            List<ImposicionCallCenterModelo.Agencia> agencias = modelo.ObtenerAgencias(localidadIngresada);
+
+            List<ImposicionCallCenterModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidadIngresada);
+
+            // Agregar agencias
+            foreach (ImposicionCallCenterModelo.Agencia agencia in agencias)
             {
-                ComboDestino.Items.Add(destino.Nombre);
+                ComboDestino.Items.Add(agencia.Nombre);
+            }
+
+            // Agregar CDs
+            foreach (ImposicionCallCenterModelo.CentroDistribucion cd in cds)
+            {
+                ComboDestino.Items.Add(cd.Nombre);
             }
 
             MessageBox.Show(
