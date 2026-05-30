@@ -1,58 +1,65 @@
-﻿namespace tutasa.EntregaEncomienda
-{
-    internal enum ResultadoBusqueda
-    {
-        Encontrada,
-        NoExiste,
-        EstadoInvalido
-    }
+﻿using System;
+using System.Collections.Generic;
 
+namespace tutasa.EntregaEncomienda
+{
     internal class EntregaEncomiendaModelo
     {
-        // Aca voy a llamar y completar todos los datos de prueba.
-        private List<Guia> Guias = new List<Guia>
+        // Lista de guías de ejemplo (simula almacén <Guías>)
+        private List<Guia> guias = new List<Guia>
         {
-            new Guia { NroGuia = "AG001-0001", Cliente = "Juan Perez",    Destinatario = "Maria Lopez",  DniDestinatario = "30123456", Estado = new Estado { Id = 1, Descripcion = "Pendiente de entrega" } },
-            new Guia { NroGuia = "AG001-0002", Cliente = "Carlos Gomez",  Destinatario = "Ana Martinez", DniDestinatario = "28654321", Estado = new Estado { Id = 1, Descripcion = "Pendiente de entrega" } },
-            new Guia { NroGuia = "CD001-0001", Cliente = "Laura Sanchez", Destinatario = "Pedro Ruiz",   DniDestinatario = "35987654", Estado = new Estado { Id = 3, Descripcion = "Admitida" } }
+            new Guia
+            {
+                NroGuia = "G001",
+                Cliente = "Juan Perez",
+                Destinatario = "Carlos Lopez",
+                DniDestinatario = "32111222",
+                EstadoActual = "Pendiente de retiro"
+            },
+
+            new Guia
+            {
+                NroGuia = "G002",
+                Cliente = "Maria Gomez",
+                Destinatario = "Ana Torres",
+                DniDestinatario = "28444555",
+                EstadoActual = "Pendiente de retiro"
+            },
+
+            new Guia
+            {
+                NroGuia = "G003",
+                Cliente = "Roberto Diaz",
+                Destinatario = "Luis Fernandez",
+                DniDestinatario = "35777888",
+                EstadoActual = "Entregada"
+            }
         };
 
-        public ResultadoBusqueda BuscarGuia(string nroGuia, TipoEntrega tipo, out Guia? guiaEncontrada)
+        // Busca una guía por NroGuia y devuelve solo si está en estado "Pendiente de retiro"
+        public Guia BuscarGuia(string nroGuia)
         {
-            guiaEncontrada = null;
-
-            foreach (Guia guia in Guias)
+            foreach (Guia guia in guias)
             {
-                if (guia.NroGuia == nroGuia)
+                if (guia.NroGuia == nroGuia &&
+                    guia.EstadoActual == "Pendiente de retiro")
                 {
-                    bool estadoValido = tipo == TipoEntrega.Agencia
-                        ? guia.Estado.Id == 1   // Pendiente de entrega
-                        : guia.Estado.Id == 3;  // Admitida
-
-                    if (!estadoValido)
-                    {
-                        return ResultadoBusqueda.EstadoInvalido;
-                    }
-
-                    guiaEncontrada = guia;
-                    return ResultadoBusqueda.Encontrada;
+                    return guia;
                 }
             }
-            return ResultadoBusqueda.NoExiste;
+
+            return null;
         }
 
-        public void ActualizarEstadoEntregada(string nroGuia, TipoEntrega tipo)
+        // Actualiza el estado de la guía identificada por nroGuia a "Entregada"
+        public void ActualizarEstado(string nroGuia)
         {
-            foreach (Guia guia in Guias)
+            foreach (Guia guia in guias)
             {
                 if (guia.NroGuia == nroGuia)
                 {
-                    string descripcion = tipo == TipoEntrega.Agencia
-                        ? "Entregada en agencia"
-                        : "Entregada en CD";
-
-                    guia.Estado = new Estado { Id = 2, Descripcion = descripcion };
-                    return;
+                    guia.EstadoActual = "Entregada";
+                    break;
                 }
             }
         }
