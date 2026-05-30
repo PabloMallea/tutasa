@@ -45,39 +45,55 @@ namespace tutasa.EmisionHojasRutaTransporte
             public string Estado { get; set; }
         }
 
-        // =====================================
-        // HDR
-        // =====================================
 
-        public class HojaRutaTransporte
+        public class MovimientoGuia
         {
-            public string Numero { get; set; }
+            public int Id { get; set; }
 
-            public string Empresa { get; set; }
-
-            public string Servicio { get; set; }
+            public DateTime Fecha { get; set; }
 
             public string Estado { get; set; }
         }
 
-        // =====================================
-        // RELACION HDR - GUIA
-        // =====================================
+            public class GuiaMovimiento
+            {
+                public string NumeroGuia { get; set; }
 
-        public class GuiaHDRTransporte
-        {
-            public string NumeroHDR { get; set; }
+                public int IdMovimiento { get; set; }
+            }
+            // =====================================
+            // HDR
+            // =====================================
 
-            public string NumeroGuia { get; set; }
-        }
+            public class HojaRutaTransporte
+            {
+                public string Numero { get; set; }
 
-        // =====================================
-        // EMPRESAS
-        // =====================================
+                public string Empresa { get; set; }
 
-        private List<EmpresaTransporte> empresas =
-            new List<EmpresaTransporte>
-        {
+                public string Servicio { get; set; }
+
+                public string Estado { get; set; }
+            }
+
+            // =====================================
+            // RELACION HDR - GUIA
+            // =====================================
+
+            public class GuiaHDRTransporte
+            {
+                public string NumeroHDR { get; set; }
+
+                public string NumeroGuia { get; set; }
+            }
+
+            // =====================================
+            // EMPRESAS
+            // =====================================
+
+            private List<EmpresaTransporte> empresas =
+                new List<EmpresaTransporte>
+            {
             new EmpresaTransporte
             {
                 Nombre = "Transportes SRL"
@@ -92,15 +108,15 @@ namespace tutasa.EmisionHojasRutaTransporte
             {
                 Nombre = "Vía Cargo"
             }
-        };
+            };
 
-        // =====================================
-        // SERVICIOS
-        // =====================================
+            // =====================================
+            // SERVICIOS
+            // =====================================
 
-        private List<ServicioTransporte> servicios =
-            new List<ServicioTransporte>
-        {
+            private List<ServicioTransporte> servicios =
+                new List<ServicioTransporte>
+            {
             new ServicioTransporte
             {
                 Nombre = "Córdoba - 21:30",
@@ -124,15 +140,15 @@ namespace tutasa.EmisionHojasRutaTransporte
                 Nombre = "Mendoza - 22:00",
                 Empresa = "Logística Express"
             }
-        };
+            };
 
-        // =====================================
-        // GUIAS
-        // =====================================
+            // =====================================
+            // GUIAS
+            // =====================================
 
-        private List<Guia> guias =
-            new List<Guia>
-        {
+            private List<Guia> guias =
+                new List<Guia>
+            {
             new Guia
             {
                 Numero = "0001",
@@ -165,15 +181,15 @@ namespace tutasa.EmisionHojasRutaTransporte
                 Estado =
                     "Pendiente de impresión para chofer"
             }
-        };
+            };
 
-        // =====================================
-        // HDR
-        // =====================================
+            // =====================================
+            // HDR
+            // =====================================
 
-        private List<HojaRutaTransporte> hdrs =
-            new List<HojaRutaTransporte>
-        {
+            private List<HojaRutaTransporte> hdrs =
+                new List<HojaRutaTransporte>
+            {
             new HojaRutaTransporte
             {
                 Numero = "HDR0001",
@@ -189,16 +205,14 @@ namespace tutasa.EmisionHojasRutaTransporte
                 Servicio = "Rosario - 18:00",
                 Estado = "Pendiente de Emisión"
             }
-        };
+            };
 
-        // =====================================
-        // RELACIONES
-        // =====================================
+            // =====================================
+            // RELACIONES
+            // =====================================
 
-        private List<GuiaHDRTransporte>
-            guiasHDR =
-            new List<GuiaHDRTransporte>
-        {
+            private List<GuiaHDRTransporte>guiasHDR = new List<GuiaHDRTransporte>
+            {
             new GuiaHDRTransporte
             {
                 NumeroHDR = "HDR0001",
@@ -216,106 +230,98 @@ namespace tutasa.EmisionHojasRutaTransporte
                 NumeroHDR = "HDR0002",
                 NumeroGuia = "0003"
             }
-        };
+            };
 
-        // =====================================
-        // METODOS
-        // =====================================
+            // =====================================
+            // METODOS
+            // =====================================
 
-        public List<string> ObtenerEmpresas()
-        {
-            List<string> resultado =
-                new List<string>();
-
-            foreach (EmpresaTransporte empresa
-                in empresas)
+            public List<string> ObtenerEmpresas()
             {
-                resultado.Add(
-                    empresa.Nombre);
-            }
+                List<string> resultado =
+                    new List<string>();
 
-            return resultado;
-        }
-
-        public List<string>
-            ObtenerServicios(string empresa)
-        {
-            List<string> resultado =
-                new List<string>();
-
-            foreach (
-                ServicioTransporte servicio
-                in servicios)
-            {
-                if (servicio.Empresa
-                    == empresa)
+                foreach (EmpresaTransporte empresa
+                    in empresas)
                 {
                     resultado.Add(
-                        servicio.Nombre);
+                        empresa.Nombre);
                 }
+
+                return resultado;
             }
 
-            return resultado;
-        }
-
-        public List<HojaRutaTransporte>
-            BuscarHDRPendientes(
-                string empresa,
-                string servicio)
-        {
-            return hdrs
-                .Where(h =>
-                    h.Empresa == empresa
-                    && h.Servicio == servicio
-                    && h.Estado ==
-                       "Pendiente de Emisión")
-                .ToList();
-        }
-
-        public List<Guia>
-            ObtenerGuiasHDR(string numeroHDR)
-        {
-            List<Guia> resultado =new List<Guia>();
-
-            foreach (GuiaHDRTransporte relacion in guiasHDR)
+            public List<string>
+                ObtenerServicios(string empresa)
             {
-                if (relacion.NumeroHDR == numeroHDR)
+                List<string> resultado =
+                    new List<string>();
+
+                foreach (
+                    ServicioTransporte servicio
+                    in servicios)
                 {
-                    Guia guia = guias.FirstOrDefault(g => g.Numero == relacion.NumeroGuia);
-                    if (guia != null)
+                    if (servicio.Empresa
+                        == empresa)
                     {
-                        resultado.Add(guia);
+                        resultado.Add(
+                            servicio.Nombre);
                     }
                 }
+
+                return resultado;
             }
 
-            return resultado;
-        }
-
-        public void EmitirHDR(string numeroHDR)
-        {
-            HojaRutaTransporte hdr = hdrs.FirstOrDefault(h => h.Numero ==numeroHDR);
-
-            if (hdr != null)
+            public List<HojaRutaTransporte>
+                BuscarHDRPendientes(string empresa,string servicio)
             {
-                hdr.Estado = "Emitida";
+                return hdrs.Where(h =>h.Empresa == empresa && h.Servicio == servicio && h.Estado == "Pendiente de Emisión").ToList();
             }
-        }
 
-        public void ActualizarEstadoGuias(string numeroHDR)
-        {
-            foreach (GuiaHDRTransporte relacion in guiasHDR)
+            public List<Guia>
+                ObtenerGuiasHDR(string numeroHDR)
             {
-                if (relacion.NumeroHDR == numeroHDR)
+                List<Guia> resultado = new List<Guia>();
+
+                foreach (GuiaHDRTransporte relacion in guiasHDR)
                 {
-                    Guia guia = guias.FirstOrDefault(g =>g.Numero ==relacion.NumeroGuia);
-
-                    if (guia != null)
+                    if (relacion.NumeroHDR == numeroHDR)
                     {
-                        guia.Estado = "Pendiente de transporte a CD";
+                        Guia guia = guias.FirstOrDefault(g => g.Numero == relacion.NumeroGuia);
+                        if (guia != null)
+                        {
+                            resultado.Add(guia);
+                        }
+                    }
+                }
+
+                return resultado;
+            }
+
+            public void EmitirHDR(string numeroHDR)
+            {
+                HojaRutaTransporte hdr = hdrs.FirstOrDefault(h => h.Numero == numeroHDR);
+
+                if (hdr != null)
+                {
+                    hdr.Estado = "Emitida";
+                }
+            }
+
+            public void ActualizarEstadoGuias(string numeroHDR)
+            {
+                foreach (GuiaHDRTransporte relacion in guiasHDR)
+                {
+                    if (relacion.NumeroHDR == numeroHDR)
+                    {
+                        Guia guia = guias.FirstOrDefault(g => g.Numero == relacion.NumeroGuia);
+
+                        if (guia != null)
+                        {
+                            guia.Estado = "Pendiente de transporte a CD";
+                        }
                     }
                 }
             }
         }
     }
-}

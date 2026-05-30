@@ -42,6 +42,7 @@ namespace tutasa.EmisionHojasRutaTransporte
             // Cargar servicios de la empresa seleccionada
 
             ComboServicio.Items.Clear();
+            ComboServicio.Text = "";
 
 
             if (ComboEmpresa.SelectedItem == null)
@@ -79,13 +80,9 @@ namespace tutasa.EmisionHojasRutaTransporte
 
             // Limpiar resultados anteriores
 
-            ListViewRutasPendientes
-                .Items
-                .Clear();
+            ListViewRutasPendientes.Items.Clear();
 
-            ListViewGuias
-                .Items
-                .Clear();
+            ListViewGuias.Items.Clear();
 
             // Buscar HDR pendientes
 
@@ -244,16 +241,9 @@ namespace tutasa.EmisionHojasRutaTransporte
             // Actualizar estado de guías
             // a Pendiente de transporte a CD
 
-            foreach (
-                ListViewItem item
-                in ListViewRutasPendientes
-                .SelectedItems)
+            foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
             {
-                EmisionHojasRutaTransporteModelo
-                    .HojaRutaTransporte hdr =
-                    (EmisionHojasRutaTransporteModelo
-                    .HojaRutaTransporte)
-                    item.Tag;
+                EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr =(EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
 
                 modelo.ActualizarEstadoGuias(
                     hdr.Numero);
@@ -278,15 +268,11 @@ namespace tutasa.EmisionHojasRutaTransporte
 
             ComboServicio.SelectedIndex = -1;
 
-            ListViewRutasPendientes
-                .Items
-                .Clear();
+            ListViewRutasPendientes.Items.Clear();
 
-            ListViewGuias
-                .Items
-                .Clear();
+            ListViewGuias.Items.Clear();
 
-            Close();
+
         }
 
         private void ComboServicio_SelectedIndexChanged(

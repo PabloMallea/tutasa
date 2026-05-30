@@ -90,7 +90,6 @@
             // 
             // ListViewGuias
             // 
-            ListViewGuias.CheckBoxes = true;
             ListViewGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaTipo, ColumnaDimension });
             ListViewGuias.Location = new Point(9, 30);
             ListViewGuias.Name = "ListViewGuias";
@@ -159,7 +158,6 @@
             // 
             // ListViewRutasPendientes
             // 
-            ListViewRutasPendientes.CheckBoxes = true;
             ListViewRutasPendientes.Columns.AddRange(new ColumnHeader[] { ColumnaNHDR, ColumnaEmpresa, ColumnaServicio, ColumnaCantGuias });
             ListViewRutasPendientes.Location = new Point(9, 30);
             ListViewRutasPendientes.Name = "ListViewRutasPendientes";
