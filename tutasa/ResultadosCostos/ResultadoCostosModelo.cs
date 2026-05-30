@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace tutasa.ResultadosCostos
 {
@@ -18,6 +19,8 @@ namespace tutasa.ResultadosCostos
 
             public string EmpresaTransporte { get; set; }
 
+            //DateTime FechaAlta { get; set; }
+
             public int Mes { get; set; }
 
             public int Anio { get; set; }
@@ -33,6 +36,7 @@ namespace tutasa.ResultadosCostos
                     Tamanio = "S",
                     ImporteGuia = 15000,
                     EmpresaTransporte = "Via Cargo",
+                //    FechaAlta = new DateTime(2025, 5, 1),
                     Mes = 5,
                     Anio = 2025
                 },
@@ -58,18 +62,36 @@ namespace tutasa.ResultadosCostos
                 }
             };
 
-       
+
         // EMPRESAS
-        
+
+        //Clase empresa transporte
+        //Lista de empresa transporte
+        //Obtener empresas transporte
+
+        public class EmpresaTransporte
+        {
+            public string Nombre { get; set; }
+            public decimal CostoMensual { get; set; }
+        }
+
+        private List<EmpresaTransporte> empresasTransporte = new List<EmpresaTransporte>
+
+         {
+              new EmpresaTransporte { Nombre = "Via Cargo", CostoMensual = 10000 },
+              new EmpresaTransporte { Nombre = "Chevallier", CostoMensual = 20000 },
+              new EmpresaTransporte { Nombre = "Flechabus", CostoMensual = 15000 }
+         };
+
 
         public List<string> ObtenerEmpresasTransporte()
         {
-            return new List<string>
+            List<string> nombresEmpresas = new List<string>();
+            foreach (EmpresaTransporte empresa in empresasTransporte)
             {
-                "Via Cargo",
-                "Chevallier",
-                "Flechabus"
-            };
+                nombresEmpresas.Add(empresa.Nombre);
+            }
+            return nombresEmpresas.ToList();
         }
 
        
@@ -91,29 +113,19 @@ namespace tutasa.ResultadosCostos
                 .ToList();
         }
 
-        
+
         // COSTO MENSUAL
-        
 
-        public decimal ObtenerCostoMensual(
-            string empresa)
-        {
-            if (empresa == "Via Cargo")
-            {
-                return 10000;
-            }
 
-            if (empresa == "Chevallier")
-            {
-                return 20000;
-            }
+        public decimal ObtenerCostoMensual(string empresa)
+         {
+             var empresaTransporte = empresasTransporte.FirstOrDefault(e => e.Nombre == empresa);
+             if (empresaTransporte != null)
+             {
+                 return empresaTransporte.CostoMensual;
+             }
+             return 0;
+         }
 
-            if (empresa == "Flechabus")
-            {
-                return 15000;
-            }
-
-            return 0;
-        }
     }
 }

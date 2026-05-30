@@ -23,7 +23,7 @@
 
         // Instancia del modelo de entrega de encomienda
         private EntregaEncomiendaModelo modelo = new EntregaEncomiendaModelo();
-
+         
         private void EntregaEncomienda_Load(object sender, EventArgs e)
         {
             lvDetalle.FullRowSelect = true;
