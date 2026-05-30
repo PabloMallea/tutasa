@@ -68,6 +68,7 @@
             BtnConfirmar.TabIndex = 20;
             BtnConfirmar.Text = "Confirmar Rendición";
             BtnConfirmar.UseVisualStyleBackColor = true;
+            BtnConfirmar.Click += BtnConfirmar_Click;
             // 
             // LabelCD
             // 
@@ -107,6 +108,7 @@
             BtnCancelar.TabIndex = 21;
             BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = true;
+            BtnCancelar.Click += BtnCancelar_Click;
             // 
             // GrupoBusqueda
             // 
@@ -129,6 +131,7 @@
             ComboServicio.Name = "ComboServicio";
             ComboServicio.Size = new Size(210, 23);
             ComboServicio.TabIndex = 9;
+            ComboServicio.SelectedIndexChanged += ComboServicio_SelectedIndexChanged;
             // 
             // LabelServicio
             // 
@@ -147,6 +150,7 @@
             BtnBuscar.TabIndex = 7;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // ComboEmpresa
             // 
@@ -155,6 +159,7 @@
             ComboEmpresa.Name = "ComboEmpresa";
             ComboEmpresa.Size = new Size(210, 23);
             ComboEmpresa.TabIndex = 6;
+            ComboEmpresa.SelectedIndexChanged += ComboEmpresa_SelectedIndexChanged;
             // 
             // LabelEmpresa
             // 
@@ -164,6 +169,7 @@
             LabelEmpresa.Size = new Size(48, 15);
             LabelEmpresa.TabIndex = 5;
             LabelEmpresa.Text = "Empesa";
+            LabelEmpresa.Click += LabelEmpresa_Click;
             // 
             // ListViewHDRAsignadas
             // 
@@ -204,6 +210,7 @@
             BtnAgregarSeleccion.TabIndex = 6;
             BtnAgregarSeleccion.Text = "Agregar selección";
             BtnAgregarSeleccion.UseVisualStyleBackColor = true;
+            BtnAgregarSeleccion.Click += BtnAgregarSeleccion_Click;
             // 
             // BtnAgregarTodos
             // 
@@ -213,6 +220,7 @@
             BtnAgregarTodos.TabIndex = 9;
             BtnAgregarTodos.Text = "Agregar Todo";
             BtnAgregarTodos.UseVisualStyleBackColor = true;
+            BtnAgregarTodos.Click += BtnAgregarTodos_Click;
             // 
             // GrupoHDRAsignadas
             // 
@@ -246,6 +254,7 @@
             BtnQuitarTodo.TabIndex = 13;
             BtnQuitarTodo.Text = "Quitar Todo";
             BtnQuitarTodo.UseVisualStyleBackColor = true;
+            BtnQuitarTodo.Click += BtnQuitarTodo_Click;
             // 
             // BtnQuitar
             // 
@@ -255,6 +264,7 @@
             BtnQuitar.TabIndex = 12;
             BtnQuitar.Text = "Quitar selección";
             BtnQuitar.UseVisualStyleBackColor = true;
+            BtnQuitar.Click += BtnQuitar_Click;
             // 
             // ListViewHDRRendidas
             // 
@@ -265,6 +275,7 @@
             ListViewHDRRendidas.TabIndex = 8;
             ListViewHDRRendidas.UseCompatibleStateImageBehavior = false;
             ListViewHDRRendidas.View = View.Details;
+            ListViewHDRRendidas.SelectedIndexChanged += ListViewHDRRendidas_SelectedIndexChanged;
             // 
             // ColumnaNHDRRendidas
             // 
