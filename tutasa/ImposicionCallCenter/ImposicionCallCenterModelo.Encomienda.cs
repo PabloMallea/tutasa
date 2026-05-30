@@ -4,6 +4,10 @@
     {
         public class Encomienda
         {
+            public string Tracking { get; set; }
+
+            public string Estado { get; set; }
+
             public Cliente Cliente { get; set; }
 
             public string LocalidadDestino { get; set; }
