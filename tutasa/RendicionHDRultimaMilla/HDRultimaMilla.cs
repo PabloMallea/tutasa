@@ -10,7 +10,6 @@
 
             public string tipo { get; set; }
             public DateTime fecha { get; set; }
-
             public string cumplida { get; set; }
 
         }

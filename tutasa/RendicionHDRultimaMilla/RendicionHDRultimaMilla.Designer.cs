@@ -43,6 +43,7 @@
             btn_confirmar = new Button();
             btn_cancelar = new Button();
             GrupoBusqueda = new GroupBox();
+            btn_limpiar_campos = new Button();
             cbox_tipo = new ComboBox();
             LabelServicio = new Label();
             btn_buscar = new Button();
@@ -88,19 +89,20 @@
             GrupoHDRAsignadas.Controls.Add(listview_hdr_asignadas);
             GrupoHDRAsignadas.Location = new Point(12, 141);
             GrupoHDRAsignadas.Name = "GrupoHDRAsignadas";
-            GrupoHDRAsignadas.Size = new Size(645, 275);
+            GrupoHDRAsignadas.Size = new Size(680, 275);
             GrupoHDRAsignadas.TabIndex = 10;
             GrupoHDRAsignadas.TabStop = false;
             GrupoHDRAsignadas.Text = "HDR Asignadas";
             // 
             // btn_agregar_no_cumplida
             // 
-            btn_agregar_no_cumplida.Location = new Point(349, 236);
+            btn_agregar_no_cumplida.Location = new Point(394, 236);
             btn_agregar_no_cumplida.Name = "btn_agregar_no_cumplida";
             btn_agregar_no_cumplida.Size = new Size(280, 23);
             btn_agregar_no_cumplida.TabIndex = 9;
             btn_agregar_no_cumplida.Text = "Agregar selección No Cumplidas";
             btn_agregar_no_cumplida.UseVisualStyleBackColor = true;
+            btn_agregar_no_cumplida.Click += btn_agregar_no_cumplida_Click;
             // 
             // btn_agregar_seleccion
             // 
@@ -110,13 +112,14 @@
             btn_agregar_seleccion.TabIndex = 6;
             btn_agregar_seleccion.Text = "Agregar selección Cumplidas";
             btn_agregar_seleccion.UseVisualStyleBackColor = true;
+            btn_agregar_seleccion.Click += btn_agregar_seleccion_Click;
             // 
             // listview_hdr_asignadas
             // 
             listview_hdr_asignadas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRAsignadas, ColumnaFleteroAsignadas, ColumnaEstadoAsignadas, ColumnaFechaAsignadas, ColumnaTipoAsignadas });
             listview_hdr_asignadas.Location = new Point(9, 30);
             listview_hdr_asignadas.Name = "listview_hdr_asignadas";
-            listview_hdr_asignadas.Size = new Size(620, 200);
+            listview_hdr_asignadas.Size = new Size(665, 200);
             listview_hdr_asignadas.TabIndex = 4;
             listview_hdr_asignadas.UseCompatibleStateImageBehavior = false;
             listview_hdr_asignadas.View = View.Details;
@@ -159,24 +162,27 @@
             // 
             // btn_confirmar
             // 
-            btn_confirmar.Location = new Point(527, 703);
+            btn_confirmar.Location = new Point(556, 703);
             btn_confirmar.Name = "btn_confirmar";
             btn_confirmar.Size = new Size(130, 25);
             btn_confirmar.TabIndex = 14;
             btn_confirmar.Text = "Confirmar Rendición";
             btn_confirmar.UseVisualStyleBackColor = true;
+            btn_confirmar.Click += btn_confirmar_Click;
             // 
             // btn_cancelar
             // 
-            btn_cancelar.Location = new Point(446, 703);
+            btn_cancelar.Location = new Point(475, 705);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(75, 25);
             btn_cancelar.TabIndex = 15;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.Click += btn_cancelar_Click;
             // 
             // GrupoBusqueda
             // 
+            GrupoBusqueda.Controls.Add(btn_limpiar_campos);
             GrupoBusqueda.Controls.Add(cbox_tipo);
             GrupoBusqueda.Controls.Add(LabelServicio);
             GrupoBusqueda.Controls.Add(btn_buscar);
@@ -184,23 +190,33 @@
             GrupoBusqueda.Controls.Add(LabelEmpresa);
             GrupoBusqueda.Location = new Point(12, 70);
             GrupoBusqueda.Name = "GrupoBusqueda";
-            GrupoBusqueda.Size = new Size(645, 65);
+            GrupoBusqueda.Size = new Size(680, 65);
             GrupoBusqueda.TabIndex = 23;
             GrupoBusqueda.TabStop = false;
             GrupoBusqueda.Text = "Criterios de Búsqueda";
             // 
+            // btn_limpiar_campos
+            // 
+            btn_limpiar_campos.Location = new Point(567, 28);
+            btn_limpiar_campos.Name = "btn_limpiar_campos";
+            btn_limpiar_campos.Size = new Size(107, 25);
+            btn_limpiar_campos.TabIndex = 27;
+            btn_limpiar_campos.Text = "Limpiar Campos";
+            btn_limpiar_campos.UseVisualStyleBackColor = true;
+            btn_limpiar_campos.Click += btn_limpiar_campos_Click;
+            // 
             // cbox_tipo
             // 
             cbox_tipo.FormattingEnabled = true;
-            cbox_tipo.Location = new Point(339, 30);
+            cbox_tipo.Location = new Point(318, 30);
             cbox_tipo.Name = "cbox_tipo";
-            cbox_tipo.Size = new Size(210, 23);
+            cbox_tipo.Size = new Size(141, 23);
             cbox_tipo.TabIndex = 9;
             // 
             // LabelServicio
             // 
             LabelServicio.AutoSize = true;
-            LabelServicio.Location = new Point(303, 33);
+            LabelServicio.Location = new Point(282, 33);
             LabelServicio.Name = "LabelServicio";
             LabelServicio.Size = new Size(31, 15);
             LabelServicio.TabIndex = 8;
@@ -208,7 +224,7 @@
             // 
             // btn_buscar
             // 
-            btn_buscar.Location = new Point(555, 30);
+            btn_buscar.Location = new Point(486, 28);
             btn_buscar.Name = "btn_buscar";
             btn_buscar.Size = new Size(75, 25);
             btn_buscar.TabIndex = 7;
@@ -240,19 +256,20 @@
             GrupoHDRRendidas.Controls.Add(listview_hdr_rendidas);
             GrupoHDRRendidas.Location = new Point(12, 422);
             GrupoHDRRendidas.Name = "GrupoHDRRendidas";
-            GrupoHDRRendidas.Size = new Size(645, 275);
+            GrupoHDRRendidas.Size = new Size(680, 275);
             GrupoHDRRendidas.TabIndex = 26;
             GrupoHDRRendidas.TabStop = false;
             GrupoHDRRendidas.Text = "HDR Rendidas";
             // 
             // btn_quitar_todo
             // 
-            btn_quitar_todo.Location = new Point(349, 236);
+            btn_quitar_todo.Location = new Point(394, 236);
             btn_quitar_todo.Name = "btn_quitar_todo";
             btn_quitar_todo.Size = new Size(280, 25);
             btn_quitar_todo.TabIndex = 13;
             btn_quitar_todo.Text = "Quitar Todo";
             btn_quitar_todo.UseVisualStyleBackColor = true;
+            btn_quitar_todo.Click += btn_quitar_todo_Click;
             // 
             // btn_quitar_seleccion
             // 
@@ -262,13 +279,14 @@
             btn_quitar_seleccion.TabIndex = 12;
             btn_quitar_seleccion.Text = "Quitar selección";
             btn_quitar_seleccion.UseVisualStyleBackColor = true;
+            btn_quitar_seleccion.Click += btn_quitar_seleccion_Click;
             // 
             // listview_hdr_rendidas
             // 
             listview_hdr_rendidas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRRendidas, ColumnaFleteroRendidas, ColumnaEstadoRendidas, ColumnaFechaRendidas, ColumnaTipoRendidas, ColumnaCumplida });
             listview_hdr_rendidas.Location = new Point(9, 30);
             listview_hdr_rendidas.Name = "listview_hdr_rendidas";
-            listview_hdr_rendidas.Size = new Size(620, 200);
+            listview_hdr_rendidas.Size = new Size(665, 200);
             listview_hdr_rendidas.TabIndex = 8;
             listview_hdr_rendidas.UseCompatibleStateImageBehavior = false;
             listview_hdr_rendidas.View = View.Details;
@@ -307,7 +325,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(674, 742);
+            ClientSize = new Size(704, 742);
             Controls.Add(GrupoHDRRendidas);
             Controls.Add(GrupoBusqueda);
             Controls.Add(btn_cancelar);
@@ -358,5 +376,6 @@
         private ColumnHeader ColumnaFechaRendidas;
         private ColumnHeader ColumnaTipoRendidas;
         private ColumnHeader ColumnaCumplida;
+        private Button btn_limpiar_campos;
     }
 }
