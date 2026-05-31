@@ -36,7 +36,7 @@ namespace tutasa.EntregaEncomienda
             }
         };
 
-        // Busca una guía por NroGuia y devuelve solo si está en estado "Pendiente de retiro"
+        // Busca una guía por NroGuia y devuelve solo si está en estado "Admitida"
         public Guia BuscarGuia(string nroGuia)
         {
             foreach (Guia guia in guias)
