@@ -14,7 +14,7 @@ namespace tutasa.EntregaEncomienda
                 Cliente = "Juan Perez",
                 Destinatario = "Carlos Lopez",
                 DniDestinatario = "32111222",
-                EstadoActual = "Pendiente de retiro"
+                EstadoActual = "Admitida"
             },
 
             new Guia
@@ -23,7 +23,7 @@ namespace tutasa.EntregaEncomienda
                 Cliente = "Maria Gomez",
                 Destinatario = "Ana Torres",
                 DniDestinatario = "28444555",
-                EstadoActual = "Pendiente de retiro"
+                EstadoActual = "Admitida"
             },
 
             new Guia
@@ -42,7 +42,7 @@ namespace tutasa.EntregaEncomienda
             foreach (Guia guia in guias)
             {
                 if (guia.NroGuia == nroGuia &&
-                    guia.EstadoActual == "Pendiente de retiro")
+                    guia.EstadoActual == "Admitida")
                 {
                     return guia;
                 }
