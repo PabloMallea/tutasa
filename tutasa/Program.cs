@@ -9,9 +9,22 @@ namespace tutasa
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            //Ac� se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
-            Application.Run(new tutasa.Imposicion_Agencia.Imposicion_Agencia());
 
+          
+
+            //Pantalla de Admisión 
+            //Application.Run(new tutasa.Admision.Admision());
+
+            //Pantalla de Consulta de Estado Interna
+            Application.Run(new tutasa.ConsultaEstadoInterna.ConsultaEstadoInterna());
+
+            //Pantalla de Imposición Agencia
+            //Application.Run(new tutasa.Imposicion_Agencia.Imposicion_Agencia());
+
+            //Pantalla de Rendición HDR Transporte
+            //Application.Run(new tutasa.RendicionHDRtransporte.RendicionHDRtransporte());
+
+            
         }
     }
 }
