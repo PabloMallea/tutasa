@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace tutasa.Admision
@@ -20,61 +15,207 @@ namespace tutasa.Admision
 
         private void Admision_Load(object sender, EventArgs e)
         {
-            // Limpio todos los campos al cargar la pantalla
-            txtNombreRemitente.Text = "";
-            txtCUITCliente.Text = "";
-            txtNGuia.Text = "";
-            txtNombreDestinatario.Text = "";
-            txtDireccionDestino.Text = "";
-            txtDimension.Text = "";
-            txtFleteroAsignado.Text = "";
-            intPeso.Text = "";
-
-
+            LimpiarFormulario();
+            btnConfirmar.Enabled = false; // Deshabilitar hasta que se busque una guía
         }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(intNroGuia.Text, out _))
+            // Validar que se haya ingresado un número de guía
+            if (string.IsNullOrWhiteSpace(intNroGuia.Text))
             {
-                MessageBox.Show("Por favor, ingrese un número de guía válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese un número de guía.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Obtener datos mockeados del modelo
-            modelo = AdmisionModelo.ObtenerDatosMock();
+            //// Validar que sea un número válido
+            //if (!int.TryParse(intNroGuia.Text, out string numeroGuia))
+            //{
+            //    MessageBox.Show("Por favor, ingrese un número de guía válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            // Simular validación del número de guía ingresado con el del modelo
-            if (intNroGuia.Text == modelo.NumeroGuia)
+            // Buscar la guía usando el modelo (datos mock por ahora)
+            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(intNroGuia.Text);
+
+            // Verificar si se encontró la guía
+            if (guiaEncontrada == null)
             {
-                // Cargar los campos con los datos del modelo
-                txtNombreRemitente.Text = modelo.NombreRemitente;
-                txtCUITCliente.Text = modelo.DireccionOrigen;
-                txtNGuia.Text = modelo.CPOrigen;
+                MessageBox.Show("No se encontró ninguna guía con ese número.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
+                return;
+            }
 
-                txtNombreDestinatario.Text = modelo.NombreDestinatario;
-                txtDireccionDestino.Text = modelo.DireccionDestino;
-                //Chicos acá pincha algo con esta parte del código
-                /*txtCPdestino.Text = modelo.CPDestino;
+            // Cargar los datos del cliente (remitente) en la pantalla
+            txtNombreRemitente.Text = $"{guiaEncontrada.Cliente.Nombre} {guiaEncontrada.Cliente.Apellido}";
+            txtCUITCliente.Text = guiaEncontrada.Cliente.CUIT;
+            txtDireccionOrigen.Text = guiaEncontrada.Cliente.Direccion;
 
-                txtFleteroAsignado.Text = modelo.FleteroAsignado;
+            // Cargar los datos del destinatario en la pantalla
+            txtNombreDestinatario.Text = $"{guiaEncontrada.NombreDestinatario} {guiaEncontrada.ApellidoDestinatario}";
+            txtDNIDestinatario.Text = guiaEncontrada.DniDestinatario;
+            txtDireccionDestino.Text = guiaEncontrada.DireccionDestino ;
 
-                txtDimension.Text = modelo.DimensionSeleccionada;
+            // Cargar peso y dimensión precargados
+            intPeso.Text = guiaEncontrada.Peso.ToString("0.00");
+            txtDimension.Text = guiaEncontrada.Dimension;
 
-                intPeso.Text = modelo.Peso.ToString();
-                intAlto.Text = modelo.Alto.ToString();
-                intAncho.Text = modelo.Ancho.ToString();
-                intLargo.Text = modelo.Largo.ToString();*/
+            // Habilitar el botón Confirmar
+            btnConfirmar.Enabled = true;
+
+            MessageBox.Show("Guía encontrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtNombreRemitente.Text = "";
+            txtCUITCliente.Text = "";
+            txtDireccionOrigen.Text = "";
+            txtNombreDestinatario.Text = "";
+            txtDNIDestinatario.Text = "";
+            txtDireccionDestino.Text = "";
+            txtDimension.Text = "";
+            intPeso.Text = "";
+            btnConfirmar.Enabled = false;
+        }
+
+        private void intPeso_TextChanged(object sender, EventArgs e)
+        {
+            // Recalcular la dimensión automáticamente cuando cambia el peso
+            ActualizarDimension();
+        }
+
+        private void ActualizarDimension()
+        {
+            // Solo actualizar si el peso es válido
+            if (decimal.TryParse(intPeso.Text, out decimal peso) && peso > 0)
+            {
+                string dimensionCalculada = modelo.CalcularDimension(peso);
+                txtDimension.Text = dimensionCalculada;
+            }
+            else if (string.IsNullOrWhiteSpace(intPeso.Text))
+            {
+                // Si el campo está vacío, limpiar la dimensión
+                txtDimension.Text = "";
+            }
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            // Validar que se haya ingresado un número de guía
+            if (string.IsNullOrWhiteSpace(intNroGuia.Text) || string.IsNullOrWhiteSpace(txtNGuia.Text))
+            {
+                MessageBox.Show("Primero debe buscar una guía antes de confirmar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //TODO: Validar que sea un número válido segun el formato que se maneje (puede ser alfanumérico)
+           
+
+            // Buscar la guía nuevamente para confirmar
+            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(intNroGuia.Text);
+
+            if (guiaEncontrada == null)
+            {
+                MessageBox.Show("No se pudo encontrar la guía. Por favor, búsquela nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validar que se haya ingresado un peso
+            if (string.IsNullOrWhiteSpace(intPeso.Text))
+            {
+                MessageBox.Show("Por favor, ingrese el peso del paquete.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                intPeso.Focus();
+                return;
+            }
+
+            // Validar que el peso sea un número válido
+            if (!decimal.TryParse(intPeso.Text, out decimal peso))
+            {
+                MessageBox.Show("Por favor, ingrese un peso válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                intPeso.Focus();
+                return;
+            }
+
+            // Validar que el peso sea positivo
+            if (peso <= 0)
+            {
+                MessageBox.Show("El peso debe ser mayor a cero.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                intPeso.Focus();
+                return;
+            }
+
+            // Calcular la dimensión según el peso ingresado
+            string dimensionCalculada = modelo.CalcularDimension(peso);
+
+            // Mostrar la dimensión calculada
+            txtDimension.Text = dimensionCalculada;
+
+            // Confirmar con el usuario antes de registrar
+            DialogResult resultado = MessageBox.Show(
+                $"¿Confirma la admisión de la guía N° {guiaEncontrada.NumeroGuia}?\n\n" +
+                $"Peso: {peso:0.00} Kg\n" +
+                $"Dimensión: {dimensionCalculada}",
+                "Confirmar Admisión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.No)
+            {
+                return;
+            }
+
+            // Registrar la admisión en el modelo
+            bool exitoso = modelo.RegistrarAdmision(guiaEncontrada, peso, dimensionCalculada);
+
+            if (exitoso)
+            {
+                MessageBox.Show(
+                    $"La guía N° {guiaEncontrada.NumeroGuia} ha sido admitida correctamente.\n\n" +
+                    $"Estado: Admitida\n" +
+                    $"Peso: {peso:0.00} Kg\n" +
+                    $"Dimensión: {dimensionCalculada}",
+                    "Admisión Exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                // Limpiar el formulario para una nueva admisión
+                intNroGuia.Text = "";
+                LimpiarFormulario();
+                intNroGuia.Focus();
             }
             else
             {
-                MessageBox.Show("No se encontró ninguna guía con ese número.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Ocurrió un error al registrar la admisión. Por favor, intente nuevamente.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
-        private void GrupoDatosGuia_Enter(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
+            // Confirmar si realmente quiere cancelar
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea cancelar la operación?",
+                "Cancelar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
+            if (resultado == DialogResult.Yes)
+            {
+                // Limpiar el formulario
+                intNroGuia.Text = "";
+                LimpiarFormulario();
+                intNroGuia.Focus();
+            }
         }
     }
 }
+
 

@@ -8,15 +8,9 @@ namespace tutasa.Admision
     {
         public int NumeroGuia { get; set; }
 
-        public string Cuit { get; set; } = string.Empty;
+        public Cliente Cliente { get; set; }
 
-        public string LocalidadDestino { get; set; } = string.Empty;
-
-        public string Destino { get; set; } = string.Empty;
-
-        public string CalleDestino { get; set; } = string.Empty;
-
-        public string AlturaDestino { get; set; } = string.Empty;
+        public string DireccionDestino { get; set; } = string.Empty;
 
         public string NombreDestinatario { get; set; } = string.Empty;
 
@@ -24,18 +18,8 @@ namespace tutasa.Admision
 
         public string DniDestinatario { get; set; } = string.Empty;
 
-        public string TelefonoDestinatario { get; set; } = string.Empty;
-
         public string Dimension { get; set; } = string.Empty;
 
         public decimal Peso { get; set; }
-
-        public decimal MontoFacturar { get; set; }
-
-        public DateTime FechaAlta { get; set; }
-
-        public int IntentosEntrega { get; set; }
-
-        public bool Facturada { get; set; }
     }
 }

@@ -96,6 +96,7 @@
             btnConfirmar.TabIndex = 15;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // btnCancelar
             // 
@@ -106,6 +107,7 @@
             btnCancelar.TabIndex = 16;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // GrupoDatosGuia
             // 
@@ -115,9 +117,9 @@
             GrupoDatosGuia.Controls.Add(label7);
             GrupoDatosGuia.Controls.Add(txtDireccionOrigen);
             GrupoDatosGuia.Controls.Add(label5);
-            GrupoDatosGuia.Controls.Add(txtFleteroAsignado);
+            //GrupoDatosGuia.Controls.Add(txtFleteroAsignado);
             GrupoDatosGuia.Controls.Add(intPeso);
-            GrupoDatosGuia.Controls.Add(label17);
+            //GrupoDatosGuia.Controls.Add(label17);
             GrupoDatosGuia.Controls.Add(label6);
             GrupoDatosGuia.Controls.Add(label13);
             GrupoDatosGuia.Controls.Add(txtDireccionDestino);
@@ -134,7 +136,6 @@
             GrupoDatosGuia.TabIndex = 40;
             GrupoDatosGuia.TabStop = false;
             GrupoDatosGuia.Text = "Datos de Guía";
-            GrupoDatosGuia.Enter += GrupoDatosGuia_Enter;
             // 
             // txtDNIDestinatario
             // 
@@ -198,13 +199,13 @@
             // 
             // txtFleteroAsignado
             // 
-            txtFleteroAsignado.AutoSize = true;
-            txtFleteroAsignado.Location = new Point(115, 90);
-            txtFleteroAsignado.Margin = new Padding(4, 0, 4, 0);
-            txtFleteroAsignado.Name = "txtFleteroAsignado";
-            txtFleteroAsignado.Size = new Size(49, 15);
-            txtFleteroAsignado.TabIndex = 48;
-            txtFleteroAsignado.Text = "Feltero1";
+            //txtFleteroAsignado.AutoSize = true;
+            //txtFleteroAsignado.Location = new Point(115, 90);
+            //txtFleteroAsignado.Margin = new Padding(4, 0, 4, 0);
+            //txtFleteroAsignado.Name = "txtFleteroAsignado";
+            //txtFleteroAsignado.Size = new Size(49, 15);
+            //txtFleteroAsignado.TabIndex = 48;
+            //txtFleteroAsignado.Text = "Feltero1";
             // 
             // intPeso
             // 
@@ -213,16 +214,17 @@
             intPeso.Name = "intPeso";
             intPeso.Size = new Size(177, 23);
             intPeso.TabIndex = 50;
+            intPeso.TextChanged += intPeso_TextChanged;
             // 
             // label17
             // 
-            label17.AutoSize = true;
-            label17.Location = new Point(9, 90);
-            label17.Margin = new Padding(4, 0, 4, 0);
-            label17.Name = "label17";
-            label17.Size = new Size(99, 15);
-            label17.TabIndex = 47;
-            label17.Text = "Fletero Asignado:";
+            //label17.AutoSize = true;
+            //label17.Location = new Point(9, 90);
+            //label17.Margin = new Padding(4, 0, 4, 0);
+            //label17.Name = "label17";
+            //label17.Size = new Size(99, 15);
+            //label17.TabIndex = 47;
+            //label17.Text = "Fletero Asignado:";
             // 
             // label6
             // 
@@ -331,7 +333,7 @@
             txtNGuia.Name = "txtNGuia";
             txtNGuia.Size = new Size(48, 15);
             txtNGuia.TabIndex = 41;
-            txtNGuia.Text = "N° Guía";
+            txtNGuia.Text = "N° Guía:";
             // 
             // Admision
             // 
