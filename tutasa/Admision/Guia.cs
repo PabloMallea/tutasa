@@ -8,7 +8,7 @@ namespace tutasa.Admision
     {
         public int NumeroGuia { get; set; }
 
-        public Cliente Cliente { get; set; }
+        public string CuitCliente { get; set; } = string.Empty;
 
         public string DireccionDestino { get; set; } = string.Empty;
 

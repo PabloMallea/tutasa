@@ -1,31 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using static tutasa.ConsultaEstadoInterna.ConsultaEstadoInternaModelo;
 
 namespace tutasa.Admision
 {
     internal class AdmisionModelo
     {
-        // Método que busca una guía en el almacén por su número
+        // Método que busca un cliente por CUIT
         // TODO: Implementar lógica real de búsqueda en almacén
-        public Guia BuscarGuiaPorNumero(string numeroGuia)
+        public Cliente BuscarClientePorCuit(string cuit)
         {
-            // Aquí se buscaría en el almacén real
+            // Aquí se buscaría en el almacén real (ClienteAlmacen)
             // Por ahora retorna datos mock para pruebas
 
-            if (numeroGuia == 10001.ToString())
+            if (cuit == "30-12345678-9")
+            {
+                return new Cliente
+                {
+                    CUIT = "30-12345678-9",
+                    Nombre = "Pepe",
+                    Apellido = "Sanchez",
+                    Direccion = "Av. Libertador 1500"
+                };
+            }
+            else if (cuit == "27-98765432-1")
+            {
+                return new Cliente
+                {
+                    CUIT = "27-98765432-1",
+                    Nombre = "Maria",
+                    Apellido = "Lopez",
+                    Direccion = "Calle 9 de Julio 450"
+                };
+            }
+
+            return null;
+        }
+
+        // Método que busca una guía en el almacén por su número
+        // TODO: Implementar lógica real de búsqueda en almacén
+        public Guia BuscarGuiaPorNumero(int numeroGuia)
+        {
+            // Aquí se buscaría en el almacén real (GuiaAlmacen)
+            // Por ahora retorna datos mock para pruebas
+
+            if (numeroGuia == 10001)
             {
                 return new Guia
                 {
                     NumeroGuia = 10001,
-                    Cliente = new Cliente
-                    {
-                        CUIT = "30-12345678-9",
-                        Nombre = "Pepe",
-                        Apellido = "Sanchez",
-                        Direccion = "Calle Falsa 1234, Tandil"
-                    },
+                    CuitCliente = "30-12345678-9",
                     DireccionDestino = "Av. Siempre Viva 742",
                     NombreDestinatario = "Juan",
                     ApellidoDestinatario = "Perez",
@@ -34,18 +57,12 @@ namespace tutasa.Admision
                     Peso = 8.5m
                 };
             }
-            else if (numeroGuia == 10002.ToString())
+            else if (numeroGuia == 10002)
             {
                 return new Guia
                 {
                     NumeroGuia = 10002,
-                    Cliente = new Cliente
-                    {
-                        CUIT = "27-98765432-1",
-                        Nombre = "Maria",
-                        Apellido = "Lopez",
-                        Direccion = "Av. Principal 456, Mar del Plata"
-                    },
+                    CuitCliente = "27-98765432-1",
                     DireccionDestino = "Av Colon 951",
                     NombreDestinatario = "Carlos",
                     ApellidoDestinatario = "Gomez",
@@ -68,9 +85,9 @@ namespace tutasa.Admision
             return new List<Dimension>
             {
                 new Dimension { Tipo = "S", PesoDesde = 0, PesoHasta = 5 },
-                new Dimension { Tipo = "M", PesoDesde = 5.01m, PesoHasta = 10 },
-                new Dimension { Tipo = "L", PesoDesde = 10.01m, PesoHasta = 15 },
-                new Dimension { Tipo = "XL", PesoDesde = 15.01m, PesoHasta = 20 }
+                new Dimension { Tipo = "M", PesoDesde = 5.01m, PesoHasta = 15 },
+                new Dimension { Tipo = "L", PesoDesde = 15.01m, PesoHasta = 30 },
+                new Dimension { Tipo = "XL", PesoDesde = 30.01m, PesoHasta = 100 }
             };
         }
 
@@ -113,16 +130,10 @@ namespace tutasa.Admision
                 Ubicacion = "Agencia Origen"
             };
 
-            //TODO: Calcular el costo de envío según la dimensión y guardar en almacén
-
-
             // TODO: Guardar la guía actualizada en el almacén
-
             // TODO: Guardar el movimiento de estado en el almacén
 
             return true;
         }
-
-      
     }
 }

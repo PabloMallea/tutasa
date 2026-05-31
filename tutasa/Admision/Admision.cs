@@ -35,8 +35,15 @@ namespace tutasa.Admision
             //    return;
             //}
 
+            // Validar que sea un número válido
+            if (!int.TryParse(intNroGuia.Text, out int numeroGuia))
+            {
+                MessageBox.Show("Por favor, ingrese un número de guía válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Buscar la guía usando el modelo (datos mock por ahora)
-            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(intNroGuia.Text);
+            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(numeroGuia);
 
             // Verificar si se encontró la guía
             if (guiaEncontrada == null)
@@ -46,15 +53,25 @@ namespace tutasa.Admision
                 return;
             }
 
+            // Buscar el cliente usando el CUIT de la guía
+            Cliente clienteEncontrado = modelo.BuscarClientePorCuit(guiaEncontrada.CuitCliente);
+
+            if (clienteEncontrado == null)
+            {
+                MessageBox.Show("No se encontró el cliente asociado a la guía.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LimpiarFormulario();
+                return;
+            }
+
             // Cargar los datos del cliente (remitente) en la pantalla
-            txtNombreRemitente.Text = $"{guiaEncontrada.Cliente.Nombre} {guiaEncontrada.Cliente.Apellido}";
-            txtCUITCliente.Text = guiaEncontrada.Cliente.CUIT;
-            txtDireccionOrigen.Text = guiaEncontrada.Cliente.Direccion;
+            txtNombreRemitente.Text = $"{clienteEncontrado.Nombre} {clienteEncontrado.Apellido}";
+            txtCUITCliente.Text = clienteEncontrado.CUIT;
+            txtDireccionOrigen.Text = clienteEncontrado.Direccion;
 
             // Cargar los datos del destinatario en la pantalla
             txtNombreDestinatario.Text = $"{guiaEncontrada.NombreDestinatario} {guiaEncontrada.ApellidoDestinatario}";
             txtDNIDestinatario.Text = guiaEncontrada.DniDestinatario;
-            txtDireccionDestino.Text = guiaEncontrada.DireccionDestino ;
+            txtDireccionDestino.Text = guiaEncontrada.DireccionDestino;
 
             // Cargar peso y dimensión precargados
             intPeso.Text = guiaEncontrada.Peso.ToString("0.00");
@@ -109,11 +126,15 @@ namespace tutasa.Admision
                 return;
             }
 
-            //TODO: Validar que sea un número válido segun el formato que se maneje (puede ser alfanumérico)
-           
+            // Validar que sea un número válido
+            if (!int.TryParse(intNroGuia.Text, out int numeroGuia))
+            {
+                MessageBox.Show("Número de guía inválido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Buscar la guía nuevamente para confirmar
-            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(intNroGuia.Text);
+            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(numeroGuia);
 
             if (guiaEncontrada == null)
             {
