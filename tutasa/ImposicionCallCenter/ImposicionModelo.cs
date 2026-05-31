@@ -6,13 +6,6 @@ namespace tutasa.ImposicionCallCenter
 {
     internal partial class ImposicionCallCenterModelo
     {
-        public class Agencia
-        {
-            public string Nombre { get; set; }
-            public string Calle { get; set; }
-            public long Altura { get; set; }
-            public string Localidad { get; set; }
-        }
 
         private List<Agencia> agencias = new List<Agencia>
         {
@@ -24,14 +17,6 @@ namespace tutasa.ImposicionCallCenter
                 Localidad = "San Rafael",
             }
         };
-
-        public class CentroDistribucion
-        {
-            public string Nombre { get; set; }
-            public string Calle { get; set; }
-            public long Altura { get; set; }
-            public string Localidad { get; set; }
-        }
 
         private List <CentroDistribucion> centrosdistrucion = new List <CentroDistribucion>
         {

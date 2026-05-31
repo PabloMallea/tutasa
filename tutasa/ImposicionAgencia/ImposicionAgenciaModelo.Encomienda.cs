@@ -1,6 +1,6 @@
-﻿namespace tutasa.ImposicionCallCenter
+﻿namespace tutasa.Imposicion_Agencia
 {
-    internal partial class ImposicionCallCenterModelo
+    internal partial class ImposicionAgenciaModelo
     {
         public class Encomienda
         {

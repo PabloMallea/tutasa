@@ -269,7 +269,7 @@ namespace tutasa.ImposicionCallCenter
             if (string.IsNullOrEmpty(TextAltura.Text))
             {
                 MessageBox.Show(
-                    "Todos los campos y desplegables obligatorios deben ser completados",
+                    "Debe ingresar una altura destino.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -289,7 +289,7 @@ namespace tutasa.ImposicionCallCenter
                 return;
             }
 
-            // Validar nombre destinatario (Que sea texto) //Se puede especiales?
+            // Validar nombre destinatario (Que sea texto)
             if (TextNombre.Text.Any(char.IsDigit))
             {
                 MessageBox.Show(
@@ -314,7 +314,7 @@ namespace tutasa.ImposicionCallCenter
                 return;
             }
 
-            // Validar apellido destinatario (Que sea texto) //Se puede especiales?
+            // Validar apellido destinatario (Que sea texto)
             if (TextApellido.Text.Any(char.IsDigit))
             {
                 MessageBox.Show(
@@ -331,7 +331,7 @@ namespace tutasa.ImposicionCallCenter
             if (string.IsNullOrEmpty(dniTexto))
             {
                 MessageBox.Show(
-                    "Debe ingresar un DNI",
+                    "Debe ingresar un DNI.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -356,7 +356,7 @@ namespace tutasa.ImposicionCallCenter
             if (string.IsNullOrEmpty(telefonoTexto))
             {
                 MessageBox.Show(
-                   "Todos los campos y desplegables obligatorios deben ser completados",
+                   "Debe ingresar un Telefono.",
                    "Validación",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Warning
