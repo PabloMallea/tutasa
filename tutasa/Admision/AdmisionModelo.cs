@@ -117,9 +117,13 @@ namespace tutasa.Admision
                 return false;
             }
 
+            //TODO: Con CUIT de cliente y dimension voy al almacen de convenios y busco la tarifa. ConvenioCliente
+            //Desarrollar lógica para obtener montoafacturar
+
             // Actualizar datos de la guía
             guia.Peso = peso;
             guia.Dimension = dimension;
+            //guia.MontoAFacturar = montoAFacturar; 
 
             // Crear movimiento de estado para la admisión
             MovimientoEstado movimiento = new MovimientoEstado
@@ -131,6 +135,8 @@ namespace tutasa.Admision
             };
 
             // TODO: Guardar la guía actualizada en el almacén
+
+
             // TODO: Guardar el movimiento de estado en el almacén
 
             return true;
