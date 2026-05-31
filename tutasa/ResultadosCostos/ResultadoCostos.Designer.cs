@@ -78,7 +78,6 @@ namespace tutasa.ResultadosCostos
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Criterios de Búsqueda";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // btnBuscar
             // 
@@ -219,9 +218,10 @@ namespace tutasa.ResultadosCostos
             txtVentasMes.Font = new Font("Segoe UI", 9F);
             txtVentasMes.Location = new Point(126, 40);
             txtVentasMes.Name = "txtVentasMes";
-            txtVentasMes.Size = new Size(60, 20);
+            txtVentasMes.Size = new Size(25, 20);
             txtVentasMes.TabIndex = 20;
-            txtVentasMes.Text = "$90.000";
+            txtVentasMes.Text = "$0";
+            txtVentasMes.Click += txtVentasMes_Click;
             // 
             // label13
             // 
@@ -239,9 +239,9 @@ namespace tutasa.ResultadosCostos
             txtResultado.Font = new Font("Segoe UI", 9F);
             txtResultado.Location = new Point(126, 160);
             txtResultado.Name = "txtResultado";
-            txtResultado.Size = new Size(92, 20);
+            txtResultado.Size = new Size(25, 20);
             txtResultado.TabIndex = 18;
-            txtResultado.Text = "Resultadotxt";
+            txtResultado.Text = "$0";
             // 
             // label10
             // 
@@ -261,7 +261,7 @@ namespace tutasa.ResultadosCostos
             txtMargen.Name = "txtMargen";
             txtMargen.Size = new Size(56, 20);
             txtMargen.TabIndex = 16;
-            txtMargen.Text = "%11,00";
+            txtMargen.Text = "%00,00";
             // 
             // label6
             // 
@@ -288,9 +288,9 @@ namespace tutasa.ResultadosCostos
             txtCostoMensual.Font = new Font("Segoe UI", 9F);
             txtCostoMensual.Location = new Point(126, 80);
             txtCostoMensual.Name = "txtCostoMensual";
-            txtCostoMensual.Size = new Size(60, 20);
+            txtCostoMensual.Size = new Size(25, 20);
             txtCostoMensual.TabIndex = 13;
-            txtCostoMensual.Text = "$10.000";
+            txtCostoMensual.Text = "$0";
             // 
             // label4
             // 
