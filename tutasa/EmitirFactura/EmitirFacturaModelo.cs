@@ -32,6 +32,10 @@ namespace tutasa.EmitirFactura
 
         public class Factura
         {
+            public string NumeroFactura { get; set; }
+
+            public DateTime FechaEmision { get; set; }
+
             public Cliente Cliente { get; set; }
 
             public List<Encomienda> Encomiendas { get; set; }
@@ -57,7 +61,7 @@ namespace tutasa.EmitirFactura
             }
         };
 
- 
+
 
         private List<Encomienda> encomiendas =
             new List<Encomienda>
@@ -131,6 +135,21 @@ namespace tutasa.EmitirFactura
         };
 
 
+        //Correlativo Factura
+        private static int ultimoNumeroFactura = 1;
+
+        public string GenerarNumeroFactura()
+        {
+            string numero = ultimoNumeroFactura
+                .ToString()
+                .PadLeft(8, '0');
+
+            ultimoNumeroFactura++;
+
+            return numero;
+        }
+
+
         //Obtener clientes
         public List<Cliente> ObtenerClientes()
         {
@@ -162,6 +181,66 @@ namespace tutasa.EmitirFactura
             return pendientes;
         }
 
+
+        public string ObtenerDetalleFactura(Factura factura)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("EMISIÓN DE FACTURA");
+            sb.AppendLine("================================================");
+            sb.AppendLine();
+
+            sb.AppendLine("Factura N°: " + factura.NumeroFactura);
+
+            sb.AppendLine(
+                "Fecha: " +
+                factura.FechaEmision.ToString("dd/MM/yyyy"));
+
+            sb.AppendLine();
+
+            sb.AppendLine(
+                "Cliente: " +
+                factura.Cliente.Nombre);
+
+            sb.AppendLine(
+                "CUIT: " +
+                factura.Cliente.Cuit);
+
+            sb.AppendLine();
+
+            sb.AppendLine("Conceptos Facturados");
+            sb.AppendLine("------------------------------------------------");
+
+            sb.AppendLine(
+                String.Format(
+                    "{0,-12}{1,-25}{2,12}",
+                    "N° Guía",
+                    "Concepto",
+                    "Importe"));
+
+            sb.AppendLine("------------------------------------------------");
+
+            foreach (Encomienda e in factura.Encomiendas)
+            {
+                sb.AppendLine(
+                    String.Format(
+                        "{0,-12}{1,-25}{2,12}",
+                        e.NumeroGuia,
+                        e.TipoEntrega,
+                        e.MontoFacturar.ToString("C")));
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("------------------------------------------------");
+
+            sb.AppendLine(
+                "TOTAL FACTURADO: " +
+                factura.Total.ToString("C"));
+
+            sb.AppendLine("================================================");
+
+            return sb.ToString();
+        }
 
     }
 }
