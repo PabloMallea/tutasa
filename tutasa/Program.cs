@@ -9,8 +9,8 @@ namespace tutasa
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            //Ac· se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuciÛn de la aplicaciÛn.
-            Application.Run(new tutasa.EmitirFactura.EmitirFactura());
+            //Ac√° se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci√≥n de la aplicaci√≥n.
+            Application.Run(new tutasa.Imposicion_Agencia.Imposicion_Agencia());
 
         }
     }

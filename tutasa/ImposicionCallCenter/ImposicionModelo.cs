@@ -4,63 +4,30 @@ using System.Text;
 
 namespace tutasa.ImposicionCallCenter
 {
-    internal class ImposicionCallCenterModelo
+    internal partial class ImposicionCallCenterModelo
     {
-        public class Cliente
+
+        private List<Agencia> agencias = new List<Agencia>
         {
-            public string Cuit { get; set; }
+            new Agencia
+            {
+                Nombre = "Agencia San Rafael - Centro",
+                Calle = "Calle Falsa",
+                Altura = 37,
+                Localidad = "San Rafael",
+            }
+        };
 
-            public string Nombre { get; set; }
-
-            public string Apellido { get; set; }
-
-            public string Telefono { get; set; }
-
-            public string Calle { get; set; }
-
-            public string Altura { get; set; }
-
-            public string Localidad { get; set; }
-        }
-
-        public class Destino
+        private List <CentroDistribucion> centrosdistrucion = new List <CentroDistribucion>
         {
-            public string Nombre { get; set; }
-
-            public string Calle { get; set; }
-
-            public string Altura { get; set; }
-        }
-
-        public class Localidad
-        {
-            public string Nombre { get; set; }
-
-            public List<Destino> Destinos { get; set; }
-        }
-
-        public class Encomienda
-        {
-            public Cliente Cliente { get; set; }
-
-            public string LocalidadDestino { get; set; }
-
-            public string Destino { get; set; }
-
-            public string CalleDestino { get; set; }
-
-            public string AlturaDestino { get; set; }
-
-            public string NombreDestinatario { get; set; }
-
-            public string ApellidoDestinatario { get; set; }
-
-            public string DniDestinatario { get; set; }
-
-            public string TelefonoDestinatario { get; set; }
-
-            public string Dimension { get; set; }
-        }
+            new CentroDistribucion
+            {
+                Nombre = "CD  San Rafael - Centro",
+                Calle = "Calle Re Falsa",
+                Altura = 38,
+                Localidad = "San Rafael",
+            }
+        };
 
         //Clientes de ejemplo
 
@@ -94,73 +61,11 @@ namespace tutasa.ImposicionCallCenter
             new Localidad
             {
                 Nombre = "San Rafael",
-
-                Destinos = new List<Destino>
-                {
-                    new Destino
-                    {
-                        Nombre = "Domicilio Destinatario",
-                        Calle = "",
-                        Altura = ""
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Agencia San Rafael",
-                        Calle = "Av Belgrano",
-                        Altura = "123"
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Agencia San Rafael Centro",
-                        Calle = "Av Libertador",
-                        Altura = "456"
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Centro de Distribución San Rafael",
-                        Calle = "Av Pergollini",
-                        Altura = "5122"
-                    }
-                }
             },
 
             new Localidad
             {
                 Nombre = "Mar del Plata",
-
-                Destinos = new List<Destino>
-                {
-                    new Destino
-                    {
-                        Nombre = "Domicilio Destinatario",
-                        Calle = "",
-                        Altura = ""
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Agencia Mar del Plata",
-                        Calle = "Av Colon",
-                        Altura = "123"
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Agencia Mar del Plata Centro",
-                        Calle = "Av Luro",
-                        Altura = "789"
-                    },
-
-                    new Destino
-                    {
-                        Nombre = "Centro de Distribución Mar del Plata",
-                        Calle = "Av Independencia",
-                        Altura = "456"
-                    }
-                }
             }
         };
 
@@ -180,8 +85,7 @@ namespace tutasa.ImposicionCallCenter
 
         // Lista donde se almacenan las encomiendas generadas
 
-        private List<Encomienda> encomiendas =
-            new List<Encomienda>();
+        private List<Encomienda> encomiendas = new List<Encomienda>();
 
         public Cliente BuscarCliente(string cuit)
         {
@@ -215,11 +119,47 @@ namespace tutasa.ImposicionCallCenter
             return null;
         }
 
-        // Guardar encomienda generada
-
-        public void GuardarEncomienda(
-            Encomienda encomienda)
+        // Método para devolver Agencias
+        public List <Agencia> ObtenerAgencias(string localidad)
         {
+            List<Agencia> resultado = new List<Agencia>();
+            foreach (Agencia agencia in agencias)
+            {
+                if (agencia.Localidad == localidad)
+                {
+                    resultado.Add (agencia);
+                }
+            }
+            return resultado;
+        }
+
+        // Método para devolver CD
+        public List<CentroDistribucion> ObtenerCD(string localidad)
+        {
+            List<CentroDistribucion> resultado = new List<CentroDistribucion>();
+            foreach (CentroDistribucion CD in centrosdistrucion)
+            {
+                if (CD.Localidad == localidad)
+                {
+                    resultado.Add(CD);
+                }
+            }
+            return resultado;
+        }
+
+        // Guardar encomienda generada
+        public void GuardarEncomienda(Encomienda encomienda)
+        {
+            //Por el momento no me preocupo de esto
+
+            // 1. Asignamos el estado inicial que pide el caso de uso
+            // encomienda.Estado = "Impuesta";
+            // 2. Generamos el tracking correlativo. Contamos cuántas hay en la lista y le sumamos 1.
+            // int numeroCorrelativo = encomiendas.Count + 1;
+            // Decimos que va a ser impuesta en CD porque el fletero lo lleva a alguno -> ¿¿¿¿¿¿¿¿¿¿¿No va así!!!!!!¿?
+            // encomienda.Tracking = "CD - " + numeroCorrelativo.ToString();
+            
+            // 3. Finalmente, la guardamos en la lista
             encomiendas.Add(encomienda);
         }
     }
