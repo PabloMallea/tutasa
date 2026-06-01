@@ -39,7 +39,6 @@
             ColumnaCliente = new ColumnHeader();
             ColumnaDestinatario = new ColumnHeader();
             ColumnaDNIDestinatario = new ColumnHeader();
-            ColumnaEstadoActual = new ColumnHeader();
             GrupoDetalleGuia.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,7 +70,7 @@
             // 
             // btnConfirmarEntrega
             // 
-            btnConfirmarEntrega.Location = new Point(429, 371);
+            btnConfirmarEntrega.Location = new Point(337, 371);
             btnConfirmarEntrega.Name = "btnConfirmarEntrega";
             btnConfirmarEntrega.Size = new Size(142, 33);
             btnConfirmarEntrega.TabIndex = 5;
@@ -81,7 +80,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(336, 371);
+            btnCancelar.Location = new Point(245, 371);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(86, 33);
             btnCancelar.TabIndex = 6;
@@ -106,21 +105,20 @@
             GrupoDetalleGuia.Margin = new Padding(3, 4, 3, 4);
             GrupoDetalleGuia.Name = "GrupoDetalleGuia";
             GrupoDetalleGuia.Padding = new Padding(3, 4, 3, 4);
-            GrupoDetalleGuia.Size = new Size(643, 277);
+            GrupoDetalleGuia.Size = new Size(486, 277);
             GrupoDetalleGuia.TabIndex = 38;
             GrupoDetalleGuia.TabStop = false;
             GrupoDetalleGuia.Text = "Detalle de Guía";
             // 
             // lvDetalle
             // 
-            lvDetalle.Columns.AddRange(new ColumnHeader[] { ColumnaCliente, ColumnaDestinatario, ColumnaDNIDestinatario, ColumnaEstadoActual });
+            lvDetalle.Columns.AddRange(new ColumnHeader[] { ColumnaCliente, ColumnaDestinatario, ColumnaDNIDestinatario });
             lvDetalle.Location = new Point(6, 27);
             lvDetalle.Name = "lvDetalle";
-            lvDetalle.Size = new Size(612, 228);
+            lvDetalle.Size = new Size(456, 228);
             lvDetalle.TabIndex = 4;
             lvDetalle.UseCompatibleStateImageBehavior = false;
             lvDetalle.View = View.Details;
-            lvDetalle.SelectedIndexChanged += lvDetalle_SelectedIndexChanged;
             // 
             // ColumnaCliente
             // 
@@ -137,16 +135,11 @@
             ColumnaDNIDestinatario.Text = "DNI Destinatario";
             ColumnaDNIDestinatario.Width = 150;
             // 
-            // ColumnaEstadoActual
-            // 
-            ColumnaEstadoActual.Text = "Estado Actual";
-            ColumnaEstadoActual.Width = 158;
-            // 
             // EntregaEncomienda
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(735, 416);
+            ClientSize = new Size(513, 416);
             Controls.Add(GrupoDetalleGuia);
             Controls.Add(label7);
             Controls.Add(btnCancelar);
@@ -174,6 +167,5 @@
         private ColumnHeader ColumnaCliente;
         private ColumnHeader ColumnaDestinatario;
         private ColumnHeader ColumnaDNIDestinatario;
-        private ColumnHeader ColumnaEstadoActual;
     }
 }

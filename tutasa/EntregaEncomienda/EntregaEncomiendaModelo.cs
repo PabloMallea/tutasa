@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace tutasa.EntregaEncomienda
 {
     internal class EntregaEncomiendaModelo
     {
-        // Lista de guías de ejemplo (simula almacén <Guías>)
         private List<Guia> guias = new List<Guia>
         {
             new Guia
@@ -14,7 +12,7 @@ namespace tutasa.EntregaEncomienda
                 Cliente = "Juan Perez",
                 Destinatario = "Carlos Lopez",
                 DniDestinatario = "32111222",
-                EstadoActual = "Pendiente de retiro"
+                EstadoActual = "Admitida"
             },
 
             new Guia
@@ -23,7 +21,7 @@ namespace tutasa.EntregaEncomienda
                 Cliente = "Maria Gomez",
                 Destinatario = "Ana Torres",
                 DniDestinatario = "28444555",
-                EstadoActual = "Pendiente de retiro"
+                EstadoActual = "Admitida"
             },
 
             new Guia
@@ -36,13 +34,12 @@ namespace tutasa.EntregaEncomienda
             }
         };
 
-        // Busca una guía por NroGuia y devuelve solo si está en estado "Pendiente de retiro"
         public Guia BuscarGuia(string nroGuia)
         {
             foreach (Guia guia in guias)
             {
                 if (guia.NroGuia == nroGuia &&
-                    guia.EstadoActual == "Pendiente de retiro")
+                    guia.EstadoActual == "Admitida")
                 {
                     return guia;
                 }
@@ -51,7 +48,6 @@ namespace tutasa.EntregaEncomienda
             return null;
         }
 
-        // Actualiza el estado de la guía identificada por nroGuia a "Entregada"
         public void ActualizarEstado(string nroGuia)
         {
             foreach (Guia guia in guias)
