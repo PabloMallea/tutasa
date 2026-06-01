@@ -180,7 +180,6 @@
             LabelEmpresa.Size = new Size(48, 15);
             LabelEmpresa.TabIndex = 5;
             LabelEmpresa.Text = "Empesa";
-            LabelEmpresa.Click += LabelEmpresa_Click;
             // 
             // listview_hdr_asignadas
             // 
