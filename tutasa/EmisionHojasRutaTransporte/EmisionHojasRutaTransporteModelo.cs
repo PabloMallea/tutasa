@@ -38,7 +38,6 @@ namespace tutasa.EmisionHojasRutaTransporte
 
             public string Direccion { get; set; }
 
-            public string Tipo { get; set; }
 
             public string Dimension { get; set; }
 
@@ -142,101 +141,176 @@ namespace tutasa.EmisionHojasRutaTransporte
             }
             };
 
-            // =====================================
-            // GUIAS
-            // =====================================
+        // =====================================
+        // GUIAS
+        // =====================================
 
-            private List<Guia> guias =
-                new List<Guia>
-            {
-            new Guia
-            {
-                Numero = "0001",
-                Cliente = "ACME",
-                Direccion = "Av Siempre Viva 123",
-                Tipo = "Transporte",
-                Dimension = "S",
-                Estado =
-                    "Pendiente de impresión para chofer"
-            },
+        private List<Guia> guias =
+ new List<Guia>
+{
+    new Guia
+    {
+        Numero = "0001",
+        Cliente = "ACME",
+        Direccion = "Av Siempre Viva 123",
+        Dimension = "S",
+        Estado = ""
+    },
 
-            new Guia
-            {
-                Numero = "0002",
-                Cliente = "Tech SA",
-                Direccion = "San Martín 456",
-                Tipo = "Transporte",
-                Dimension = "XL",
-                Estado =
-                    "Pendiente de impresión para chofer"
-            },
+    new Guia
+    {
+        Numero = "0002",
+        Cliente = "Tech SA",
+        Direccion = "San Martín 456",
+        Dimension = "XL",
+        Estado = ""
+    },
 
-            new Guia
-            {
-                Numero = "0003",
-                Cliente = "Mercurio",
-                Direccion = "Belgrano 789",
-                Tipo = "Transporte",
-                Dimension = "M",
-                Estado =
-                    "Pendiente de impresión para chofer"
-            }
-            };
+    new Guia
+    {
+        Numero = "0003",
+        Cliente = "Mercurio",
+        Direccion = "Belgrano 789",
+        Dimension = "M",
+        Estado = ""
+    },
 
-            // =====================================
-            // HDR
-            // =====================================
+    new Guia
+    {
+        Numero = "0004",
+        Cliente = "Farmacia Central",
+        Direccion = "Mitre 1200",
+        Dimension = "L",
+        Estado = ""
+    },
 
-            private List<HojaRutaTransporte> hdrs =
-                new List<HojaRutaTransporte>
-            {
-            new HojaRutaTransporte
-            {
-                Numero = "HDR0001",
-                Empresa = "Transportes SRL",
-                Servicio = "Córdoba - 21:30",
-                Estado = "Pendiente de Emisión"
-            },
+    new Guia
+    {
+        Numero = "0005",
+        Cliente = "Electro SRL",
+        Direccion = "Rivadavia 900",
+        Dimension = "M",
+        Estado = ""
+    },
 
-            new HojaRutaTransporte
-            {
-                Numero = "HDR0002",
-                Empresa = "Transportes SRL",
-                Servicio = "Rosario - 18:00",
-                Estado = "Pendiente de Emisión"
-            }
-            };
+    new Guia
+    {
+        Numero = "0006",
+        Cliente = "Supermercado Norte",
+        Direccion = "Sarmiento 150",
+        Dimension = "XL",
+        Estado = ""
+    },
 
-            // =====================================
-            // RELACIONES
-            // =====================================
+    new Guia
+    {
+        Numero = "0007",
+        Cliente = "Distribuidora Sur",
+        Direccion = "Colón 350",
+        Dimension = "S",
+        Estado = ""
+    }
+};
 
-            private List<GuiaHDRTransporte>guiasHDR = new List<GuiaHDRTransporte>
-            {
-            new GuiaHDRTransporte
-            {
-                NumeroHDR = "HDR0001",
-                NumeroGuia = "0001"
-            },
+        // =====================================
+        // HDR
+        // =====================================
 
-            new GuiaHDRTransporte
-            {
-                NumeroHDR = "HDR0001",
-                NumeroGuia = "0002"
-            },
+        private List<HojaRutaTransporte> hdrs =
+    new List<HojaRutaTransporte>
+{
+    new HojaRutaTransporte
+    {
+        Numero = "HDR0001",
+        Empresa = "Transportes SRL",
+        Servicio = "Córdoba - 21:30",
+        Estado = "Pendiente de Emisión"
+    },
 
-            new GuiaHDRTransporte
-            {
-                NumeroHDR = "HDR0002",
-                NumeroGuia = "0003"
-            }
-            };
+    new HojaRutaTransporte
+    {
+        Numero = "HDR0002",
+        Empresa = "Transportes SRL",
+        Servicio = "Córdoba - 21:30",
+        Estado = "Pendiente de Emisión"
+    },
 
-            // =====================================
-            // METODOS
-            // =====================================
+    new HojaRutaTransporte
+    {
+        Numero = "HDR0003",
+        Empresa = "Transportes SRL",
+        Servicio = "Rosario - 18:00",
+        Estado = "Pendiente de Emisión"
+    },
 
-            public List<string> ObtenerEmpresas()
+    new HojaRutaTransporte
+    {
+        Numero = "HDR0004",
+        Empresa = "Transportes SRL",
+        Servicio = "Rosario - 18:00",
+        Estado = "Pendiente de Emisión"
+    }
+};
+
+        // =====================================
+        // RELACIONES
+        // =====================================
+
+        private List<GuiaHDRTransporte> guiasHDR =
+    new List<GuiaHDRTransporte>
+{
+    // HDR0001
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0001",
+        NumeroGuia = "0001"
+    },
+
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0001",
+        NumeroGuia = "0002"
+    },
+
+    // HDR0002
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0002",
+        NumeroGuia = "0003"
+    },
+
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0002",
+        NumeroGuia = "0004"
+    },
+
+    // HDR0003
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0003",
+        NumeroGuia = "0005"
+    },
+
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0003",
+        NumeroGuia = "0006"
+    },
+
+    // HDR0004
+    new GuiaHDRTransporte
+    {
+        NumeroHDR = "HDR0004",
+        NumeroGuia = "0007"
+    }
+};
+
+        // =====================================
+        // METODOS
+        // =====================================
+
+        public List<string> ObtenerEmpresas()
             {
                 List<string> resultado =
                     new List<string>();

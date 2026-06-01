@@ -141,7 +141,6 @@ namespace tutasa.EmisionHojasRutaTransporte
 
                     fila.SubItems.Add(guia.Direccion);
 
-                    fila.SubItems.Add(guia.Tipo);
 
                     fila.SubItems.Add(guia.Dimension);
 
@@ -152,9 +151,7 @@ namespace tutasa.EmisionHojasRutaTransporte
             }
         }
 
-        private void BotonSeleccionar_Click(
-            object sender,
-            EventArgs e)
+        private void BotonSeleccionar_Click(object sender, EventArgs e)
         {
             // Seleccionar todas las HDR
 
@@ -175,14 +172,11 @@ namespace tutasa.EmisionHojasRutaTransporte
             }
         }
 
-        private void BtnDeseleccionar_Click(
-            object sender,
-            EventArgs e)
+        private void BtnDeseleccionar_Click(object sender,EventArgs e)
         {
             // Deseleccionar todas las HDR
 
-            foreach (ListViewItem item in ListViewRutasPendientes
-                .Items)
+            foreach (ListViewItem item in ListViewRutasPendientes.Items)
             {
                 item.Selected = false;
             }
@@ -190,7 +184,7 @@ namespace tutasa.EmisionHojasRutaTransporte
             ListViewGuias.Items.Clear();
         }
 
-        private void BtnEmitirHojasRuta_Click(object sender, EventArgs e)
+        private void BtnEmitirHojasRuta_Click(object sender,EventArgs e)
         {
             // Validar selección
 
@@ -205,25 +199,43 @@ namespace tutasa.EmisionHojasRutaTransporte
                 return;
             }
 
-            // Emitir HDR seleccionadas
+            string mensaje ="EMISIÓN DE HOJAS DE RUTA\n\n";
 
             foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
             {
                 EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr = (EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
 
+                // Emitir HDR
+
                 modelo.EmitirHDR(hdr.Numero);
+
+                mensaje += "====================================\n";
+                mensaje += "Hoja de Ruta: " + hdr.Numero + "\n";
+                mensaje += "Empresa: " + hdr.Empresa + "\n";
+                mensaje += "Servicio: " + hdr.Servicio + "\n\n";
+
+                mensaje += "Detalle de Guías:\n\n";
+
+                List<EmisionHojasRutaTransporteModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.Numero);
+
+                foreach (EmisionHojasRutaTransporteModelo.Guia guia in guias)
+                {
+                    mensaje += "Número: " + guia.Numero + "\n";
+                    mensaje += "Cliente: " + guia.Cliente + "\n";
+                    mensaje += "Dirección: " + guia.Direccion + "\n\n";
+                }
             }
 
             MessageBox.Show(
-                "Las hojas de ruta fueron emitidas correctamente.",
+                mensaje,
                 "Emisión",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
 
         private void BtnImprimirResumen_Click(
-            object sender,
-            EventArgs e)
+    object sender,
+    EventArgs e)
         {
             // Validar selección
 
@@ -238,20 +250,38 @@ namespace tutasa.EmisionHojasRutaTransporte
                 return;
             }
 
-            // Actualizar estado de guías
-            // a Pendiente de transporte a CD
+            string mensaje =
+                "RESUMEN DE HOJAS DE RUTA\n\n";
 
             foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
             {
-                EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr =(EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
+                EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr =
+                    (EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
+
+                // Emitir HDR
+
+                modelo.EmitirHDR(
+                    hdr.Numero);
+
+                // Actualizar estado de guías
 
                 modelo.ActualizarEstadoGuias(
                     hdr.Numero);
+
+                List<EmisionHojasRutaTransporteModelo.Guia> guias =
+                    modelo.ObtenerGuiasHDR(
+                        hdr.Numero);
+
+                mensaje += "====================================\n";
+                mensaje += "Hoja de Ruta: " + hdr.Numero + "\n";
+                mensaje += "Empresa: " + hdr.Empresa + "\n";
+                mensaje += "Servicio: " + hdr.Servicio + "\n";
+                mensaje += "Cantidad de Guías: " + guias.Count + "\n\n";
             }
 
             MessageBox.Show(
-                "Resumen impreso correctamente.",
-                "Impresión",
+                mensaje,
+                "Resumen Impreso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }

@@ -35,7 +35,6 @@
             ColumnaNGuia = new ColumnHeader();
             ColumnaCliente = new ColumnHeader();
             ColumnaDireccion = new ColumnHeader();
-            ColumnaTipo = new ColumnHeader();
             ColumnaDimension = new ColumnHeader();
             GrupoHDRPendientes = new GroupBox();
             BtnDeseleccionar = new Button();
@@ -90,7 +89,7 @@
             // 
             // ListViewGuias
             // 
-            ListViewGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaTipo, ColumnaDimension });
+            ListViewGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccion, ColumnaDimension });
             ListViewGuias.Location = new Point(9, 30);
             ListViewGuias.Name = "ListViewGuias";
             ListViewGuias.Size = new Size(673, 132);
@@ -113,11 +112,6 @@
             // 
             ColumnaDireccion.Text = "Dirección";
             ColumnaDireccion.Width = 130;
-            // 
-            // ColumnaTipo
-            // 
-            ColumnaTipo.Text = "Tipo";
-            ColumnaTipo.Width = 130;
             // 
             // ColumnaDimension
             // 
@@ -300,7 +294,6 @@
         private ColumnHeader ColumnaNGuia;
         private ColumnHeader ColumnaCliente;
         private ColumnHeader ColumnaDireccion;
-        private ColumnHeader ColumnaTipo;
         private GroupBox GrupoHDRPendientes;
         private Button BtnDeseleccionar;
         private Button BotonSeleccionar;

@@ -45,14 +45,14 @@
             ColumnaCantGuias = new ColumnHeader();
             ListViewGuias = new ListView();
             ColumnaNGuia = new ColumnHeader();
-            ColumnaDireccionG = new ColumnHeader();
             ColumnaCliente = new ColumnHeader();
-            ColumnaTipoG = new ColumnHeader();
+            ColumnaDireccionG = new ColumnHeader();
             ColumnaDimension = new ColumnHeader();
             GrupoGuias = new GroupBox();
             BtnEmitirHojasRuta = new Button();
             BtnImprimirResumen = new Button();
             label1 = new Label();
+            BotonCancelar = new Button();
             GrupoBusqueda.SuspendLayout();
             GrupoHDRPendientes.SuspendLayout();
             GrupoGuias.SuspendLayout();
@@ -79,6 +79,7 @@
             ComboTipo.Name = "ComboTipo";
             ComboTipo.Size = new Size(250, 23);
             ComboTipo.TabIndex = 11;
+            ComboTipo.SelectedIndexChanged += ComboTipo_SelectedIndexChanged;
             // 
             // LbTipo
             // 
@@ -97,6 +98,7 @@
             BtnBuscar.TabIndex = 9;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
+            BtnBuscar.Click += BtnBuscar_Click;
             // 
             // LbFeltero
             // 
@@ -114,6 +116,7 @@
             ComboFletero.Name = "ComboFletero";
             ComboFletero.Size = new Size(250, 23);
             ComboFletero.TabIndex = 2;
+            ComboFletero.SelectedIndexChanged += ComboFletero_SelectedIndexChanged;
             // 
             // GrupoHDRPendientes
             // 
@@ -135,6 +138,7 @@
             BtnDeseleccionar.TabIndex = 11;
             BtnDeseleccionar.Text = "Deseleccionar todas";
             BtnDeseleccionar.UseVisualStyleBackColor = true;
+            BtnDeseleccionar.Click += BtnDeseleccionar_Click;
             // 
             // BtnSeleccionarTodas
             // 
@@ -144,10 +148,10 @@
             BtnSeleccionarTodas.TabIndex = 10;
             BtnSeleccionarTodas.Text = "Seleccionar todas";
             BtnSeleccionarTodas.UseVisualStyleBackColor = true;
+            BtnSeleccionarTodas.Click += BtnSeleccionarTodas_Click;
             // 
             // ListViewRutasPendientes
             // 
-            ListViewRutasPendientes.CheckBoxes = true;
             ListViewRutasPendientes.Columns.AddRange(new ColumnHeader[] { ColumnaNHDR, ColumnaTipo, ColumnaFletero, ColumnaDireccion, ColumnaCantGuias });
             ListViewRutasPendientes.Location = new Point(9, 30);
             ListViewRutasPendientes.Name = "ListViewRutasPendientes";
@@ -155,6 +159,7 @@
             ListViewRutasPendientes.TabIndex = 0;
             ListViewRutasPendientes.UseCompatibleStateImageBehavior = false;
             ListViewRutasPendientes.View = View.Details;
+            ListViewRutasPendientes.SelectedIndexChanged += ListViewRutasPendientes_SelectedIndexChanged;
             // 
             // ColumnaNHDR
             // 
@@ -183,36 +188,29 @@
             // 
             // ListViewGuias
             // 
-            ListViewGuias.CheckBoxes = true;
-            ListViewGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaDireccionG, ColumnaCliente, ColumnaTipoG, ColumnaDimension });
+            ListViewGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaCliente, ColumnaDireccionG, ColumnaDimension });
             ListViewGuias.Location = new Point(9, 30);
             ListViewGuias.Name = "ListViewGuias";
             ListViewGuias.Size = new Size(673, 132);
             ListViewGuias.TabIndex = 1;
             ListViewGuias.UseCompatibleStateImageBehavior = false;
             ListViewGuias.View = View.Details;
+            ListViewGuias.SelectedIndexChanged += ListViewGuias_SelectedIndexChanged;
             // 
             // ColumnaNGuia
             // 
             ColumnaNGuia.Text = "N° Guía";
             ColumnaNGuia.Width = 130;
             // 
-            // ColumnaDireccionG
-            // 
-            ColumnaDireccionG.DisplayIndex = 2;
-            ColumnaDireccionG.Text = "Dirección";
-            ColumnaDireccionG.Width = 130;
-            // 
             // ColumnaCliente
             // 
-            ColumnaCliente.DisplayIndex = 1;
             ColumnaCliente.Text = "Cliente";
             ColumnaCliente.Width = 130;
             // 
-            // ColumnaTipoG
+            // ColumnaDireccionG
             // 
-            ColumnaTipoG.Text = "Tipo";
-            ColumnaTipoG.Width = 130;
+            ColumnaDireccionG.Text = "Dirección";
+            ColumnaDireccionG.Width = 130;
             // 
             // ColumnaDimension
             // 
@@ -237,6 +235,7 @@
             BtnEmitirHojasRuta.TabIndex = 3;
             BtnEmitirHojasRuta.Text = "Emitir hojas de ruta";
             BtnEmitirHojasRuta.UseVisualStyleBackColor = true;
+            BtnEmitirHojasRuta.Click += BtnEmitirHojasRuta_Click;
             // 
             // BtnImprimirResumen
             // 
@@ -246,6 +245,7 @@
             BtnImprimirResumen.TabIndex = 4;
             BtnImprimirResumen.Text = "Imprimir resumen";
             BtnImprimirResumen.UseVisualStyleBackColor = true;
+            BtnImprimirResumen.Click += BtnImprimirResumen_Click;
             // 
             // label1
             // 
@@ -257,11 +257,22 @@
             label1.TabIndex = 5;
             label1.Text = "Emisión HDR ultima milla";
             // 
+            // BotonCancelar
+            // 
+            BotonCancelar.Location = new Point(247, 508);
+            BotonCancelar.Name = "BotonCancelar";
+            BotonCancelar.Size = new Size(150, 25);
+            BotonCancelar.TabIndex = 6;
+            BotonCancelar.Text = "Cancelar";
+            BotonCancelar.UseVisualStyleBackColor = true;
+            BotonCancelar.Click += BotonCancelar_Click;
+            // 
             // EmisonHojasRuta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(720, 545);
+            Controls.Add(BotonCancelar);
             Controls.Add(label1);
             Controls.Add(BtnImprimirResumen);
             Controls.Add(BtnEmitirHojasRuta);
@@ -295,7 +306,6 @@
         private ColumnHeader ColumnaNGuia;
         private ColumnHeader ColumnaDireccionG;
         private ColumnHeader ColumnaCliente;
-        private ColumnHeader ColumnaTipoG;
         private ColumnHeader ColumnaDimension;
         private Button BtnDeseleccionar;
         private Button BtnSeleccionarTodas;
@@ -306,5 +316,6 @@
         private Label LbTipo;
         private Label label1;
         private ColumnHeader ColumnaNHDR;
+        private Button BotonCancelar;
     }
 }
