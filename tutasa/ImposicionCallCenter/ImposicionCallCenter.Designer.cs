@@ -83,6 +83,7 @@
             ButtonCancelar.TabIndex = 26;
             ButtonCancelar.Text = "Cancelar";
             ButtonCancelar.UseVisualStyleBackColor = true;
+            ButtonCancelar.Click += ButtonCancelar_Click;
             // 
             // ButtonConfirmar
             // 

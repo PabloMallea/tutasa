@@ -33,14 +33,14 @@ namespace tutasa.EntregaEncomienda
                 return;
             }
 
-            // Buscar guía en el modelo (solo devuelve si está en estado "Pendiente de retiro")
+            // Buscar guía en el modelo (solo devuelve si está en estado "Admitida")
             Guia guia = modelo.BuscarGuia(nroGuia);
 
             // Validar existencia y estado de la guía
             if (guia == null)
             {
                 MessageBox.Show(
-                    "El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado pendiente de retiro.",
+                    "El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado Admitida.",
                     "Búsqueda",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information

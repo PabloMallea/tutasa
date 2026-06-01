@@ -9,4 +9,8 @@
     <StartupObject>tutasa.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Almacenes\" />
+  </ItemGroup>
+
 </Project>
