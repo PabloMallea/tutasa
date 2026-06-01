@@ -1,106 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace tutasa.ConsultaEstadoInterna
 {
     internal class ConsultaEstadoInternaModelo
     {
-  
 
-        public class MovimientoEstado
+        public Guia BuscarGuiaPorIdentificador(int numeroGuia)
         {
-            public DateTime FechaHora { get; set; }
-
-            public string Estado { get; set; }
-
-            public string Ubicacion { get; set; }
-        }
-
-        public class Encomienda
-        {
-            public string NumeroGuia { get; set; }
-
-            public List<MovimientoEstado> Historial { get; set; }
-        }
-
-
-        private List<Encomienda> encomiendas =
-            new List<Encomienda>
-        {
-            new Encomienda
+            if (numeroGuia == 10001)
             {
-                NumeroGuia = "0001",
-
-                Historial = new List<MovimientoEstado>
+                return new Guia
                 {
-                    new MovimientoEstado
-                    {
-                        FechaHora = new DateTime(2026, 5, 1, 10, 0, 0),
-                        Estado = "Impuesta",
-                        Ubicacion = "Agencia Flores"
-                    },
-                    new MovimientoEstado
-                    {
-                        FechaHora = new DateTime(2026, 5, 1, 11, 30, 0),
-                        Estado = "En distribución",
-                        Ubicacion = "Camino a CD Buenos Aires"
-                    },
+                    NumeroGuia = 10001,
+                    CuitCliente = "30-12345678-9",
+                    DireccionDestino = "Av. Siempre Viva 742",
+                    NombreDestinatario = "Juan",
+                    ApellidoDestinatario = "Perez",
+                    DniDestinatario = "12345678",
+                    Dimension = "M",
+                    Peso = 8.5m
+                };
+            }
+            else if (numeroGuia == 10002)
+            {
+                return new Guia
+                {
+                    NumeroGuia = 10002,
+                    CuitCliente = "27-98765432-1",
+                    DireccionDestino = "Av Colon 951",
+                    NombreDestinatario = "Carlos",
+                    ApellidoDestinatario = "Gomez",
+                    DniDestinatario = "87654321",
+                    Dimension = "L",
+                    Peso = 18.2m
+                };
+            }
 
-                    new MovimientoEstado
-                    {
-                        FechaHora = new DateTime(2026, 5, 1, 14, 30, 0),
-                        Estado = "Entregada esperando admisión",
-                        Ubicacion = "CD Buenos Aires"
-                    },
+            return null;
+        
+           
+        }
 
-                    new MovimientoEstado
-                    {
-                        FechaHora = new DateTime(2026, 5, 2, 8, 15, 0),
-                        Estado = "Admitida",
-                        Ubicacion = "CD Buenos Aires"
-                    }
-                }
+        public List<MovimientoEstado> BuscarMovimientosPorGuia(int numeroGuia)
+        {
+            List<MovimientoEstado> movimientos = new List<MovimientoEstado>
+        {
+            // Historial para guía 10001
+            new MovimientoEstado
+            {
+                NumeroGuia = 10001,
+                FechaHora = new DateTime(2026, 5, 1, 10, 0, 0),
+                Estado = "Impuesta",
+                Ubicacion = "Agencia Flores"
+            },
+            new MovimientoEstado
+            {
+                NumeroGuia = 10001,
+                FechaHora = new DateTime(2026, 5, 1, 11, 30, 0),
+                Estado = "En distribución",
+                Ubicacion = "Camino a CD Buenos Aires"
+            },
+            new MovimientoEstado
+            {
+                NumeroGuia = 10001,
+                FechaHora = new DateTime(2026, 5, 1, 14, 30, 0),
+                Estado = "Entregada esperando admisión",
+                Ubicacion = "CD Buenos Aires"
+            },
+            new MovimientoEstado
+            {
+                NumeroGuia = 10001,
+                FechaHora = new DateTime(2026, 5, 2, 8, 15, 0),
+                Estado = "Admitida",
+                Ubicacion = "CD Buenos Aires"
             },
 
-            new Encomienda
-            {
-                NumeroGuia = "0002",
-
-                Historial = new List<MovimientoEstado>
-                {
-                    new MovimientoEstado
-                    {
-                        FechaHora = new DateTime(2026, 5, 3, 9, 0, 0),
-                        Estado = "Admitida",
-                        Ubicacion = "CD Córdoba"
-                    },
-
-                    new MovimientoEstado
-                    {
-                        FechaHora = new DateTime(2026, 5, 3, 13, 45, 0),
-                        Estado = "En distribución",
-                        Ubicacion = "En camino a Agencia Villa Carlos Paz"
-                    }
-                }
-            }
+            // Historial para guía 10002
+            //new MovimientoEstado
+            //{
+            //    NumeroGuia = 10002,
+            //    FechaHora = new DateTime(2026, 5, 3, 9, 0, 0),
+            //    Estado = "Admitida",
+            //    Ubicacion = "CD Córdoba"
+            //},
+            //new MovimientoEstado
+            //{
+            //    NumeroGuia = 10002,
+            //    FechaHora = new DateTime(2026, 5, 3, 13, 45, 0),
+            //    Estado = "En distribución",
+            //    Ubicacion = "En camino a Agencia Villa Carlos Paz"
+            //}
         };
 
-    
+            // Filtrar movimientos por número de guía y ordenar por fecha
+            List<MovimientoEstado> historial = new List<MovimientoEstado>();
 
-        public Encomienda BuscarEncomienda(string numeroGuia)
-        {
-            // Recorrer lista de encomiendas
-            foreach (Encomienda encomienda in encomiendas)
+            foreach (MovimientoEstado movimiento in movimientos)
             {
-                // Si coincide número de guía
-                if (encomienda.NumeroGuia == numeroGuia)
+                if (movimiento.NumeroGuia == numeroGuia)
                 {
-                    return encomienda;
+                    historial.Add(movimiento);
                 }
             }
 
-            // Si no se encontró coincidencia
+            // Ordenar por fecha (más antiguo a más reciente)
+            historial.Sort((m1, m2) => m1.FechaHora.CompareTo(m2.FechaHora));
+
+            return historial;
+        }
+
+        public MovimientoEstado ObtenerUltimoMovimiento(int numeroGuia)
+        {
+            // Obtener todos los movimientos de la guía
+            List<MovimientoEstado> historial = BuscarMovimientosPorGuia(numeroGuia);
+
+            // Si hay movimientos, retornar el último
+            if (historial.Count > 0)
+            {
+                return historial[historial.Count - 1];
+            }
+
+            // Si no hay movimientos
             return null;
         }
     }
