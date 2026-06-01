@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            BtnConfirmar = new Button();
-            LabelCD = new Label();
+            btn_confirmar = new Button();
+            label_cd = new Label();
             LabelCDOrigen = new Label();
             LabelRendicionHDRT = new Label();
-            BtnCancelar = new Button();
+            btn_cancelar = new Button();
             GrupoBusqueda = new GroupBox();
-            ComboServicio = new ComboBox();
+            btn_limpiar_campos = new Button();
+            cbox_servicio = new ComboBox();
             LabelServicio = new Label();
-            BtnBuscar = new Button();
-            ComboEmpresa = new ComboBox();
+            btn_buscar = new Button();
+            cbox_empresa = new ComboBox();
             LabelEmpresa = new Label();
-            ListViewHDRAsignadas = new ListView();
+            listview_hdr_asignadas = new ListView();
             ColumnaNHDRAsignadas = new ColumnHeader();
             ColumnaEmpresaAsignadas = new ColumnHeader();
             ColumnaEstadoAsignadas = new ColumnHeader();
             ColumnaServicioAsignadas = new ColumnHeader();
-            BtnAgregarSeleccion = new Button();
-            BtnAgregarTodos = new Button();
+            btn_agregar_seleccion = new Button();
+            btn_agregar_todo = new Button();
             GrupoHDRAsignadas = new GroupBox();
             GrupoHDRRendidas = new GroupBox();
-            BtnQuitarTodo = new Button();
-            BtnQuitar = new Button();
-            ListViewHDRRendidas = new ListView();
+            btn_quitar_todo = new Button();
+            btn_quitar_seleccion = new Button();
+            listview_hdr_rendidas = new ListView();
             ColumnaNHDRRendidas = new ColumnHeader();
             ColumnaEmpresaRendidas = new ColumnHeader();
             ColumnaEstadoRendidas = new ColumnHeader();
@@ -60,24 +61,24 @@
             GrupoHDRRendidas.SuspendLayout();
             SuspendLayout();
             // 
-            // BtnConfirmar
+            // btn_confirmar
             // 
-            BtnConfirmar.Location = new Point(527, 703);
-            BtnConfirmar.Name = "BtnConfirmar";
-            BtnConfirmar.Size = new Size(130, 25);
-            BtnConfirmar.TabIndex = 20;
-            BtnConfirmar.Text = "Confirmar Rendición";
-            BtnConfirmar.UseVisualStyleBackColor = true;
-            BtnConfirmar.Click += BtnConfirmar_Click;
+            btn_confirmar.Location = new Point(586, 705);
+            btn_confirmar.Name = "btn_confirmar";
+            btn_confirmar.Size = new Size(130, 25);
+            btn_confirmar.TabIndex = 20;
+            btn_confirmar.Text = "Confirmar Rendición";
+            btn_confirmar.UseVisualStyleBackColor = true;
+            btn_confirmar.Click += btn_confirmar_Click;
             // 
-            // LabelCD
+            // label_cd
             // 
-            LabelCD.AutoSize = true;
-            LabelCD.Location = new Point(150, 40);
-            LabelCD.Name = "LabelCD";
-            LabelCD.Size = new Size(94, 15);
-            LabelCD.TabIndex = 16;
-            LabelCD.Text = "CD Buenos Aires";
+            label_cd.AutoSize = true;
+            label_cd.Location = new Point(150, 40);
+            label_cd.Name = "label_cd";
+            label_cd.Size = new Size(94, 15);
+            label_cd.TabIndex = 16;
+            label_cd.Text = "CD Buenos Aires";
             // 
             // LabelCDOrigen
             // 
@@ -99,67 +100,77 @@
             LabelRendicionHDRT.TabIndex = 18;
             LabelRendicionHDRT.Text = "Rendición HDR Transporte";
             // 
-            // BtnCancelar
+            // btn_cancelar
             // 
-            BtnCancelar.Location = new Point(446, 703);
-            BtnCancelar.Name = "BtnCancelar";
-            BtnCancelar.RightToLeft = RightToLeft.No;
-            BtnCancelar.Size = new Size(75, 25);
-            BtnCancelar.TabIndex = 21;
-            BtnCancelar.Text = "Cancelar";
-            BtnCancelar.UseVisualStyleBackColor = true;
-            BtnCancelar.Click += BtnCancelar_Click;
+            btn_cancelar.Location = new Point(505, 705);
+            btn_cancelar.Name = "btn_cancelar";
+            btn_cancelar.RightToLeft = RightToLeft.No;
+            btn_cancelar.Size = new Size(75, 25);
+            btn_cancelar.TabIndex = 21;
+            btn_cancelar.Text = "Cancelar";
+            btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.Click += btn_cancelar_Click;
             // 
             // GrupoBusqueda
             // 
-            GrupoBusqueda.Controls.Add(ComboServicio);
+            GrupoBusqueda.Controls.Add(btn_limpiar_campos);
+            GrupoBusqueda.Controls.Add(cbox_servicio);
             GrupoBusqueda.Controls.Add(LabelServicio);
-            GrupoBusqueda.Controls.Add(BtnBuscar);
-            GrupoBusqueda.Controls.Add(ComboEmpresa);
+            GrupoBusqueda.Controls.Add(btn_buscar);
+            GrupoBusqueda.Controls.Add(cbox_empresa);
             GrupoBusqueda.Controls.Add(LabelEmpresa);
             GrupoBusqueda.Location = new Point(12, 70);
             GrupoBusqueda.Name = "GrupoBusqueda";
-            GrupoBusqueda.Size = new Size(645, 65);
+            GrupoBusqueda.Size = new Size(710, 65);
             GrupoBusqueda.TabIndex = 22;
             GrupoBusqueda.TabStop = false;
             GrupoBusqueda.Text = "Criterios de Búsqueda";
             // 
-            // ComboServicio
+            // btn_limpiar_campos
             // 
-            ComboServicio.FormattingEnabled = true;
-            ComboServicio.Location = new Point(339, 30);
-            ComboServicio.Name = "ComboServicio";
-            ComboServicio.Size = new Size(210, 23);
-            ComboServicio.TabIndex = 9;
-            ComboServicio.SelectedIndexChanged += ComboServicio_SelectedIndexChanged;
+            btn_limpiar_campos.Location = new Point(586, 28);
+            btn_limpiar_campos.Name = "btn_limpiar_campos";
+            btn_limpiar_campos.Size = new Size(118, 25);
+            btn_limpiar_campos.TabIndex = 10;
+            btn_limpiar_campos.Text = "Limpiar Campos";
+            btn_limpiar_campos.UseVisualStyleBackColor = true;
+            btn_limpiar_campos.Click += btn_limpiar_campos_Click;
+            // 
+            // cbox_servicio
+            // 
+            cbox_servicio.FormattingEnabled = true;
+            cbox_servicio.Location = new Point(276, 30);
+            cbox_servicio.Name = "cbox_servicio";
+            cbox_servicio.Size = new Size(200, 23);
+            cbox_servicio.TabIndex = 9;
             // 
             // LabelServicio
             // 
             LabelServicio.AutoSize = true;
-            LabelServicio.Location = new Point(285, 33);
+            LabelServicio.Location = new Point(222, 33);
             LabelServicio.Name = "LabelServicio";
             LabelServicio.Size = new Size(48, 15);
             LabelServicio.TabIndex = 8;
             LabelServicio.Text = "Servicio";
             // 
-            // BtnBuscar
+            // btn_buscar
             // 
-            BtnBuscar.Location = new Point(555, 30);
-            BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(75, 25);
-            BtnBuscar.TabIndex = 7;
-            BtnBuscar.Text = "Buscar";
-            BtnBuscar.UseVisualStyleBackColor = true;
-            BtnBuscar.Click += BtnBuscar_Click;
+            btn_buscar.Location = new Point(505, 28);
+            btn_buscar.Name = "btn_buscar";
+            btn_buscar.Size = new Size(75, 25);
+            btn_buscar.TabIndex = 7;
+            btn_buscar.Text = "Buscar";
+            btn_buscar.UseVisualStyleBackColor = true;
+            btn_buscar.Click += btn_buscar_Click;
             // 
-            // ComboEmpresa
+            // cbox_empresa
             // 
-            ComboEmpresa.FormattingEnabled = true;
-            ComboEmpresa.Location = new Point(66, 30);
-            ComboEmpresa.Name = "ComboEmpresa";
-            ComboEmpresa.Size = new Size(210, 23);
-            ComboEmpresa.TabIndex = 6;
-            ComboEmpresa.SelectedIndexChanged += ComboEmpresa_SelectedIndexChanged;
+            cbox_empresa.FormattingEnabled = true;
+            cbox_empresa.Location = new Point(66, 30);
+            cbox_empresa.Name = "cbox_empresa";
+            cbox_empresa.Size = new Size(150, 23);
+            cbox_empresa.TabIndex = 6;
+            cbox_empresa.SelectedIndexChanged += cbox_empresa_SelectedIndexChanged;
             // 
             // LabelEmpresa
             // 
@@ -171,16 +182,15 @@
             LabelEmpresa.Text = "Empesa";
             LabelEmpresa.Click += LabelEmpresa_Click;
             // 
-            // ListViewHDRAsignadas
+            // listview_hdr_asignadas
             // 
-            ListViewHDRAsignadas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRAsignadas, ColumnaEmpresaAsignadas, ColumnaEstadoAsignadas, ColumnaServicioAsignadas });
-            ListViewHDRAsignadas.Location = new Point(9, 30);
-            ListViewHDRAsignadas.Name = "ListViewHDRAsignadas";
-            ListViewHDRAsignadas.Size = new Size(620, 200);
-            ListViewHDRAsignadas.TabIndex = 4;
-            ListViewHDRAsignadas.UseCompatibleStateImageBehavior = false;
-            ListViewHDRAsignadas.View = View.Details;
-            ListViewHDRAsignadas.SelectedIndexChanged += LvGuiasDisponibles_SelectedIndexChanged;
+            listview_hdr_asignadas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRAsignadas, ColumnaEmpresaAsignadas, ColumnaEstadoAsignadas, ColumnaServicioAsignadas });
+            listview_hdr_asignadas.Location = new Point(9, 30);
+            listview_hdr_asignadas.Name = "listview_hdr_asignadas";
+            listview_hdr_asignadas.Size = new Size(695, 200);
+            listview_hdr_asignadas.TabIndex = 4;
+            listview_hdr_asignadas.UseCompatibleStateImageBehavior = false;
+            listview_hdr_asignadas.View = View.Details;
             // 
             // ColumnaNHDRAsignadas
             // 
@@ -202,80 +212,79 @@
             ColumnaServicioAsignadas.Text = "Servicio";
             ColumnaServicioAsignadas.Width = 150;
             // 
-            // BtnAgregarSeleccion
+            // btn_agregar_seleccion
             // 
-            BtnAgregarSeleccion.Location = new Point(9, 236);
-            BtnAgregarSeleccion.Name = "BtnAgregarSeleccion";
-            BtnAgregarSeleccion.Size = new Size(280, 25);
-            BtnAgregarSeleccion.TabIndex = 6;
-            BtnAgregarSeleccion.Text = "Agregar selección";
-            BtnAgregarSeleccion.UseVisualStyleBackColor = true;
-            BtnAgregarSeleccion.Click += BtnAgregarSeleccion_Click;
+            btn_agregar_seleccion.Location = new Point(9, 236);
+            btn_agregar_seleccion.Name = "btn_agregar_seleccion";
+            btn_agregar_seleccion.Size = new Size(280, 25);
+            btn_agregar_seleccion.TabIndex = 6;
+            btn_agregar_seleccion.Text = "Agregar Selección";
+            btn_agregar_seleccion.UseVisualStyleBackColor = true;
+            btn_agregar_seleccion.Click += btn_agregar_seleccion_Click;
             // 
-            // BtnAgregarTodos
+            // btn_agregar_todo
             // 
-            BtnAgregarTodos.Location = new Point(349, 236);
-            BtnAgregarTodos.Name = "BtnAgregarTodos";
-            BtnAgregarTodos.Size = new Size(280, 25);
-            BtnAgregarTodos.TabIndex = 9;
-            BtnAgregarTodos.Text = "Agregar Todo";
-            BtnAgregarTodos.UseVisualStyleBackColor = true;
-            BtnAgregarTodos.Click += BtnAgregarTodos_Click;
+            btn_agregar_todo.Location = new Point(424, 236);
+            btn_agregar_todo.Name = "btn_agregar_todo";
+            btn_agregar_todo.Size = new Size(280, 25);
+            btn_agregar_todo.TabIndex = 9;
+            btn_agregar_todo.Text = "Agregar Todo";
+            btn_agregar_todo.UseVisualStyleBackColor = true;
+            btn_agregar_todo.Click += btn_agregar_todo_Click;
             // 
             // GrupoHDRAsignadas
             // 
-            GrupoHDRAsignadas.Controls.Add(BtnAgregarTodos);
-            GrupoHDRAsignadas.Controls.Add(BtnAgregarSeleccion);
-            GrupoHDRAsignadas.Controls.Add(ListViewHDRAsignadas);
+            GrupoHDRAsignadas.Controls.Add(btn_agregar_todo);
+            GrupoHDRAsignadas.Controls.Add(btn_agregar_seleccion);
+            GrupoHDRAsignadas.Controls.Add(listview_hdr_asignadas);
             GrupoHDRAsignadas.Location = new Point(12, 141);
             GrupoHDRAsignadas.Name = "GrupoHDRAsignadas";
-            GrupoHDRAsignadas.Size = new Size(645, 275);
+            GrupoHDRAsignadas.Size = new Size(710, 275);
             GrupoHDRAsignadas.TabIndex = 17;
             GrupoHDRAsignadas.TabStop = false;
             GrupoHDRAsignadas.Text = "HDR Asignadas";
             // 
             // GrupoHDRRendidas
             // 
-            GrupoHDRRendidas.Controls.Add(BtnQuitarTodo);
-            GrupoHDRRendidas.Controls.Add(BtnQuitar);
-            GrupoHDRRendidas.Controls.Add(ListViewHDRRendidas);
+            GrupoHDRRendidas.Controls.Add(btn_quitar_todo);
+            GrupoHDRRendidas.Controls.Add(btn_quitar_seleccion);
+            GrupoHDRRendidas.Controls.Add(listview_hdr_rendidas);
             GrupoHDRRendidas.Location = new Point(12, 422);
             GrupoHDRRendidas.Name = "GrupoHDRRendidas";
-            GrupoHDRRendidas.Size = new Size(645, 275);
+            GrupoHDRRendidas.Size = new Size(710, 275);
             GrupoHDRRendidas.TabIndex = 25;
             GrupoHDRRendidas.TabStop = false;
             GrupoHDRRendidas.Text = "HDR Rendidas";
             // 
-            // BtnQuitarTodo
+            // btn_quitar_todo
             // 
-            BtnQuitarTodo.Location = new Point(349, 236);
-            BtnQuitarTodo.Name = "BtnQuitarTodo";
-            BtnQuitarTodo.Size = new Size(280, 25);
-            BtnQuitarTodo.TabIndex = 13;
-            BtnQuitarTodo.Text = "Quitar Todo";
-            BtnQuitarTodo.UseVisualStyleBackColor = true;
-            BtnQuitarTodo.Click += BtnQuitarTodo_Click;
+            btn_quitar_todo.Location = new Point(424, 236);
+            btn_quitar_todo.Name = "btn_quitar_todo";
+            btn_quitar_todo.Size = new Size(280, 25);
+            btn_quitar_todo.TabIndex = 13;
+            btn_quitar_todo.Text = "Quitar Todo";
+            btn_quitar_todo.UseVisualStyleBackColor = true;
+            btn_quitar_todo.Click += btn_quitar_todo_Click;
             // 
-            // BtnQuitar
+            // btn_quitar_seleccion
             // 
-            BtnQuitar.Location = new Point(9, 236);
-            BtnQuitar.Name = "BtnQuitar";
-            BtnQuitar.Size = new Size(280, 25);
-            BtnQuitar.TabIndex = 12;
-            BtnQuitar.Text = "Quitar selección";
-            BtnQuitar.UseVisualStyleBackColor = true;
-            BtnQuitar.Click += BtnQuitar_Click;
+            btn_quitar_seleccion.Location = new Point(9, 236);
+            btn_quitar_seleccion.Name = "btn_quitar_seleccion";
+            btn_quitar_seleccion.Size = new Size(280, 25);
+            btn_quitar_seleccion.TabIndex = 12;
+            btn_quitar_seleccion.Text = "Quitar Selección";
+            btn_quitar_seleccion.UseVisualStyleBackColor = true;
+            btn_quitar_seleccion.Click += btn_quitar_seleccion_Click;
             // 
-            // ListViewHDRRendidas
+            // listview_hdr_rendidas
             // 
-            ListViewHDRRendidas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRRendidas, ColumnaEmpresaRendidas, ColumnaEstadoRendidas, ColumnaServicioRendidas });
-            ListViewHDRRendidas.Location = new Point(9, 30);
-            ListViewHDRRendidas.Name = "ListViewHDRRendidas";
-            ListViewHDRRendidas.Size = new Size(620, 200);
-            ListViewHDRRendidas.TabIndex = 8;
-            ListViewHDRRendidas.UseCompatibleStateImageBehavior = false;
-            ListViewHDRRendidas.View = View.Details;
-            ListViewHDRRendidas.SelectedIndexChanged += ListViewHDRRendidas_SelectedIndexChanged;
+            listview_hdr_rendidas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRRendidas, ColumnaEmpresaRendidas, ColumnaEstadoRendidas, ColumnaServicioRendidas });
+            listview_hdr_rendidas.Location = new Point(9, 30);
+            listview_hdr_rendidas.Name = "listview_hdr_rendidas";
+            listview_hdr_rendidas.Size = new Size(695, 200);
+            listview_hdr_rendidas.TabIndex = 8;
+            listview_hdr_rendidas.UseCompatibleStateImageBehavior = false;
+            listview_hdr_rendidas.View = View.Details;
             // 
             // ColumnaNHDRRendidas
             // 
@@ -301,17 +310,18 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(674, 742);
+            ClientSize = new Size(734, 742);
             Controls.Add(GrupoHDRRendidas);
             Controls.Add(GrupoBusqueda);
-            Controls.Add(BtnCancelar);
-            Controls.Add(BtnConfirmar);
-            Controls.Add(LabelCD);
+            Controls.Add(btn_cancelar);
+            Controls.Add(btn_confirmar);
+            Controls.Add(label_cd);
             Controls.Add(LabelCDOrigen);
             Controls.Add(LabelRendicionHDRT);
             Controls.Add(GrupoHDRAsignadas);
             Name = "RendicionHDRtransporte";
             Text = "RendicionHDRtransporte";
+            Load += RendicionHDRtransporte_Load;
             GrupoBusqueda.ResumeLayout(false);
             GrupoBusqueda.PerformLayout();
             GrupoHDRAsignadas.ResumeLayout(false);
@@ -322,32 +332,33 @@
 
         #endregion
 
-        private Button BtnConfirmar;
-        private Label LabelCD;
+        private Button btn_confirmar;
+        private Label label_cd;
         private Label LabelCDOrigen;
         private Label LabelRendicionHDRT;
-        private Button BtnCancelar;
+        private Button btn_cancelar;
         private GroupBox GrupoBusqueda;
-        private ComboBox ComboServicio;
+        private ComboBox cbox_servicio;
         private Label LabelServicio;
-        private Button BtnBuscar;
-        private ComboBox ComboEmpresa;
+        private Button btn_buscar;
+        private ComboBox cbox_empresa;
         private Label LabelEmpresa;
-        private ListView ListViewHDRAsignadas;
+        private ListView listview_hdr_asignadas;
         private ColumnHeader ColumnaNHDRAsignadas;
         private ColumnHeader ColumnaEmpresaAsignadas;
         private ColumnHeader ColumnaEstadoAsignadas;
         private ColumnHeader ColumnaServicioAsignadas;
-        private Button BtnAgregarSeleccion;
-        private Button BtnAgregarTodos;
+        private Button btn_agregar_seleccion;
+        private Button btn_agregar_todo;
         private GroupBox GrupoHDRAsignadas;
         private GroupBox GrupoHDRRendidas;
-        private Button BtnQuitarTodo;
-        private Button BtnQuitar;
-        private ListView ListViewHDRRendidas;
+        private Button btn_quitar_todo;
+        private Button btn_quitar_seleccion;
+        private ListView listview_hdr_rendidas;
         private ColumnHeader ColumnaNHDRRendidas;
         private ColumnHeader ColumnaEmpresaRendidas;
         private ColumnHeader ColumnaEstadoRendidas;
         private ColumnHeader ColumnaServicioRendidas;
+        private Button btn_limpiar_campos;
     }
 }

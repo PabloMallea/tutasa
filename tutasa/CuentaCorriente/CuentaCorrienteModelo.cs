@@ -48,7 +48,7 @@ namespace tutasa.CuentaCorriente
 
         // Simulación de movimientos de cuenta corriente.
         // Hay facturas pagas, parcialmente pagas e impagas.
-
+        // prueba
         private List<MovimientoCuentaCorriente> movimientos = new List<MovimientoCuentaCorriente>
         {
             new MovimientoCuentaCorriente
