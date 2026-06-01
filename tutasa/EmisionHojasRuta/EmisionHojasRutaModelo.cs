@@ -4,66 +4,10 @@ using System.Linq;
 
 namespace tutasa.EmisionHojasRuta
 {
-    internal class EmisionHojasRutaModelo
+    internal partial class EmisionHojasRutaModelo
     {
-        // =====================================
-        // FLETERO
-        // =====================================
-
-        public class Fletero
-        {
-            public string Nombre { get; set; }
-        }
-
-        // =====================================
-        // GUIA
-        // =====================================
-
-        public class Guia
-        {
-            public string Numero { get; set; }
-
-            public string Cliente { get; set; }
-
-            public string Direccion { get; set; }
 
 
-            public string Dimension { get; set; }
-
-            public string Estado { get; set; }
-        }
-
-        // =====================================
-        // HDR
-        // =====================================
-
-        public class HojaRuta
-        {
-            public string Numero { get; set; }
-
-            public string Tipo { get; set; }
-
-            public string Fletero { get; set; }
-
-            public string Direccion { get; set; }
-
-            public string Estado { get; set; }
-        }
-
-        // =====================================
-        // RELACION HDR - GUIA
-        // =====================================
-
-        public class GuiaHDR
-        {
-            public string NumeroHDR { get; set; }
-
-            public string NumeroGuia { get; set; }
-        }
-
-        // =====================================
-        // FLETEROS
-        // =====================================
 
         private List<Fletero> fleteros =
             new List<Fletero>
@@ -75,18 +19,16 @@ namespace tutasa.EmisionHojasRuta
 
             new Fletero
             {
-                Nombre = "Logistica Sur"
+                Nombre = "Nicolas Martinez"
             },
 
             new Fletero
             {
-                Nombre = "Distribuciones Norte"
+                Nombre = "Jesica Lopez"
             }
         };
 
-        // =====================================
-        // GUIAS
-        // =====================================
+
 
         private List<Guia> guias =
             new List<Guia>
@@ -97,16 +39,16 @@ namespace tutasa.EmisionHojasRuta
                 Cliente = "ACME",
                 Direccion = "Av Siempre Viva 123",
                 Dimension = "S",
-                Estado = "Pendiente de impresión"
+                Estado = ""
             },
 
             new Guia
             {
                 Numero = "0002",
                 Cliente = "Tech SA",
-                Direccion = "San Martin 456",
+                Direccion = "Av Siempre Viva 123",
                 Dimension = "M",
-                Estado = "Pendiente de impresión"
+                Estado = ""
             },
 
             new Guia
@@ -115,16 +57,16 @@ namespace tutasa.EmisionHojasRuta
                 Cliente = "Mercurio",
                 Direccion = "Belgrano 789",
                 Dimension = "L",
-                Estado = "Pendiente de impresión"
+                Estado = ""
             },
 
             new Guia
             {
                 Numero = "0004",
                 Cliente = "Farmacia Central",
-                Direccion = "Mitre 1200",
+                Direccion = "Belgrano 789",
                 Dimension = "S",
-                Estado = "Pendiente de impresión"
+                Estado = ""
             },
 
             new Guia
@@ -142,7 +84,7 @@ namespace tutasa.EmisionHojasRuta
                 Cliente = "Supermercado Norte",
                 Direccion = "Sarmiento 150",
                 Dimension = "M",
-                Estado = "Pendiente de impresión"
+                Estado = ""
             },
 
             new Guia
@@ -151,13 +93,11 @@ namespace tutasa.EmisionHojasRuta
                 Cliente = "Distribuidora Sur",
                 Direccion = "Colon 350",
                 Dimension = "L",
-                Estado = "Pendiente de impresión"
+                Estado = ""
             }
         };
 
-        // =====================================
-        // HDR
-        // =====================================
+
 
         private List<HojaRuta> hdrs =
             new List<HojaRuta>
@@ -167,7 +107,7 @@ namespace tutasa.EmisionHojasRuta
                 Numero = "HDR0001",
                 Tipo = "Distribución",
                 Fletero = "Juan Perez",
-                Direccion = "Zona Centro",
+                Direccion = "Av Siempre Viva 123",
                 Estado = "Pendiente de Emisión"
             },
 
@@ -176,7 +116,7 @@ namespace tutasa.EmisionHojasRuta
                 Numero = "HDR0002",
                 Tipo = "Distribución",
                 Fletero = "Juan Perez",
-                Direccion = "Zona Norte",
+                Direccion = "Belgrano 789",
                 Estado = "Pendiente de Emisión"
             },
 
@@ -199,9 +139,7 @@ namespace tutasa.EmisionHojasRuta
             }
         };
 
-        // =====================================
-        // RELACIONES
-        // =====================================
+
 
         private List<GuiaHDR> guiasHDR =
             new List<GuiaHDR>
@@ -249,9 +187,7 @@ namespace tutasa.EmisionHojasRuta
             }
         };
 
-        // =====================================
-        // METODOS
-        // =====================================
+
 
         public List<string> ObtenerFleteros()
         {
@@ -260,45 +196,30 @@ namespace tutasa.EmisionHojasRuta
 
             foreach (Fletero fletero in fleteros)
             {
-                resultado.Add(
-                    fletero.Nombre);
+                resultado.Add(fletero.Nombre);
             }
 
             return resultado;
         }
 
-        public List<HojaRuta> BuscarHDRPendientes(
-            string fletero,
-            string tipo)
+        public List<HojaRuta> BuscarHDRPendientes(string fletero,string tipo)
         {
-            return hdrs.Where(
-                h => h.Fletero == fletero
-                && h.Tipo == tipo
-                && h.Estado == "Pendiente de Emisión")
-                .ToList();
+            return hdrs.Where(h => h.Fletero == fletero && h.Tipo == tipo && h.Estado == "Pendiente de Emisión").ToList();
         }
 
-        public List<Guia> ObtenerGuiasHDR(
-            string numeroHDR)
+        public List<Guia> ObtenerGuiasHDR(string numeroHDR)
         {
-            List<Guia> resultado =
-                new List<Guia>();
+            List<Guia> resultado = new List<Guia>();
 
-            foreach (GuiaHDR relacion
-                in guiasHDR)
+            foreach (GuiaHDR relacion in guiasHDR)
             {
-                if (relacion.NumeroHDR
-                    == numeroHDR)
+                if (relacion.NumeroHDR == numeroHDR)
                 {
-                    Guia guia =
-                        guias.FirstOrDefault(
-                            g => g.Numero ==
-                            relacion.NumeroGuia);
+                    Guia guia =guias.FirstOrDefault(g => g.Numero == relacion.NumeroGuia);
 
                     if (guia != null)
                     {
-                        resultado.Add(
-                            guia);
+                        resultado.Add(guia);
                     }
                 }
             }
@@ -306,34 +227,23 @@ namespace tutasa.EmisionHojasRuta
             return resultado;
         }
 
-        public void EmitirHDR(
-            string numeroHDR)
+        public void EmitirHDR(string numeroHDR)
         {
-            HojaRuta hdr =
-                hdrs.FirstOrDefault(
-                    h => h.Numero ==
-                    numeroHDR);
+            HojaRuta hdr = hdrs.FirstOrDefault(h => h.Numero == numeroHDR);
 
             if (hdr != null)
             {
-                hdr.Estado =
-                    "Emitida";
+                hdr.Estado ="Emitida";
             }
         }
 
-        public void ActualizarEstadoGuias(
-            string numeroHDR)
+        public void ActualizarEstadoGuias(string numeroHDR)
         {
-            foreach (GuiaHDR relacion
-                in guiasHDR)
+            foreach (GuiaHDR relacion in guiasHDR)
             {
-                if (relacion.NumeroHDR
-                    == numeroHDR)
+                if (relacion.NumeroHDR == numeroHDR)
                 {
-                    Guia guia =
-                        guias.FirstOrDefault(
-                            g => g.Numero ==
-                            relacion.NumeroGuia);
+                    Guia guia = guias.FirstOrDefault( g => g.Numero == relacion.NumeroGuia);
 
                     if (guia != null)
                     {

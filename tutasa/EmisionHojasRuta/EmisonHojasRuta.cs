@@ -207,7 +207,7 @@ namespace tutasa.EmisionHojasRuta
 
                     mensaje += "Cliente: " + guia.Cliente + "\n";
 
-                    mensaje += "Dirección: " + guia.Direccion + "\n";
+                    mensaje += "Dirección: " + guia.Direccion + "\n\n";
 
                 }
             }
@@ -252,7 +252,9 @@ namespace tutasa.EmisionHojasRuta
 
                 mensaje +="Fletero: " + hdr.Fletero + "\n";
 
-                mensaje +="Cantidad de Guías: " + guias.Count + "\n\n";
+                mensaje +="Cantidad de Guías: " + guias.Count + "\n";
+
+                mensaje += "Dirección: " + hdr.Direccion + "\n\n";
             }
 
             MessageBox.Show(
