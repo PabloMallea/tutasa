@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace tutasa.Admision
 {
     internal class AdmisionModelo
@@ -36,9 +34,9 @@ namespace tutasa.Admision
             return null;
         }
 
-        // Método que busca una guía en el almacén por su número
+        // Método que busca una guía en el almacén por su identificador 
         // TODO: Implementar lógica real de búsqueda en almacén
-        public Guia BuscarGuiaPorNumero(int numeroGuia)
+        public Guia BuscarGuiaPorIdentificador(int numeroGuia)
         {
             // Aquí se buscaría en el almacén real (GuiaAlmacen)
             // Por ahora retorna datos mock para pruebas

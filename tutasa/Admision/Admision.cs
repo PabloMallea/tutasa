@@ -28,12 +28,8 @@ namespace tutasa.Admision
                 return;
             }
 
-            //// Validar que sea un número válido
-            //if (!int.TryParse(intNroGuia.Text, out string numeroGuia))
-            //{
-            //    MessageBox.Show("Por favor, ingrese un número de guía válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+            //TODO:Validar formato de guia
+           
 
             // Validar que sea un número válido
             if (!int.TryParse(intNroGuia.Text, out int numeroGuia))
@@ -43,7 +39,7 @@ namespace tutasa.Admision
             }
 
             // Buscar la guía usando el modelo (datos mock por ahora)
-            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(numeroGuia);
+            Guia guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
 
             // Verificar si se encontró la guía
             if (guiaEncontrada == null)
@@ -80,7 +76,7 @@ namespace tutasa.Admision
             // Habilitar el botón Confirmar
             btnConfirmar.Enabled = true;
 
-            MessageBox.Show("Guía encontrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Guía encontrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarFormulario()
@@ -134,7 +130,7 @@ namespace tutasa.Admision
             }
 
             // Buscar la guía nuevamente para confirmar
-            Guia guiaEncontrada = modelo.BuscarGuiaPorNumero(numeroGuia);
+            Guia guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
 
             if (guiaEncontrada == null)
             {
