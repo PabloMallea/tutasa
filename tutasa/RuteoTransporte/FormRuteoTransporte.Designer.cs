@@ -78,18 +78,20 @@
             // LabelCDDestino
             // 
             LabelCDDestino.AutoSize = true;
-            LabelCDDestino.Location = new Point(9, 30);
+            LabelCDDestino.Location = new Point(10, 40);
             LabelCDDestino.Name = "LabelCDDestino";
-            LabelCDDestino.Size = new Size(183, 15);
+            LabelCDDestino.Size = new Size(230, 20);
             LabelCDDestino.TabIndex = 2;
             LabelCDDestino.Text = "Centro de distribución de destino";
             // 
             // ComboEmpresa
             // 
+            ComboEmpresa.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboEmpresa.FormattingEnabled = true;
-            ComboEmpresa.Location = new Point(9, 100);
+            ComboEmpresa.Location = new Point(10, 133);
+            ComboEmpresa.Margin = new Padding(3, 4, 3, 4);
             ComboEmpresa.Name = "ComboEmpresa";
-            ComboEmpresa.Size = new Size(778, 23);
+            ComboEmpresa.Size = new Size(889, 28);
             ComboEmpresa.TabIndex = 3;
             ComboEmpresa.SelectedIndexChanged += ComboEmpresa_SelectedIndexChanged;
             // 
@@ -97,9 +99,10 @@
             // 
             LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuiaA, ColumnaLocalidadA, ColumnaDireccionA, ColumnaDimensionA, ColumnaPesoA, ColumnaClienteA, ColumnaCDDestinoA });
             LvGuiasDisponibles.FullRowSelect = true;
-            LvGuiasDisponibles.Location = new Point(9, 22);
+            LvGuiasDisponibles.Location = new Point(10, 29);
+            LvGuiasDisponibles.Margin = new Padding(3, 4, 3, 4);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
-            LvGuiasDisponibles.Size = new Size(778, 150);
+            LvGuiasDisponibles.Size = new Size(889, 199);
             LvGuiasDisponibles.TabIndex = 4;
             LvGuiasDisponibles.UseCompatibleStateImageBehavior = false;
             LvGuiasDisponibles.View = View.Details;
@@ -147,9 +150,11 @@
             GrupoGuias.Controls.Add(BtnQuitar);
             GrupoGuias.Controls.Add(BtnAgregarSeleccion);
             GrupoGuias.Controls.Add(LvGuiasDisponibles);
-            GrupoGuias.Location = new Point(12, 146);
+            GrupoGuias.Location = new Point(14, 195);
+            GrupoGuias.Margin = new Padding(3, 4, 3, 4);
             GrupoGuias.Name = "GrupoGuias";
-            GrupoGuias.Size = new Size(796, 412);
+            GrupoGuias.Padding = new Padding(3, 4, 3, 4);
+            GrupoGuias.Size = new Size(910, 549);
             GrupoGuias.TabIndex = 7;
             GrupoGuias.TabStop = false;
             GrupoGuias.Text = "Guías";
@@ -158,9 +163,10 @@
             // 
             LvSeleccion.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
             LvSeleccion.FullRowSelect = true;
-            LvSeleccion.Location = new Point(9, 223);
+            LvSeleccion.Location = new Point(10, 297);
+            LvSeleccion.Margin = new Padding(3, 4, 3, 4);
             LvSeleccion.Name = "LvSeleccion";
-            LvSeleccion.Size = new Size(778, 150);
+            LvSeleccion.Size = new Size(889, 199);
             LvSeleccion.TabIndex = 10;
             LvSeleccion.UseCompatibleStateImageBehavior = false;
             LvSeleccion.View = View.Details;
@@ -202,9 +208,10 @@
             // 
             // BtnAgregarTodos
             // 
-            BtnAgregarTodos.Location = new Point(507, 178);
+            BtnAgregarTodos.Location = new Point(579, 237);
+            BtnAgregarTodos.Margin = new Padding(3, 4, 3, 4);
             BtnAgregarTodos.Name = "BtnAgregarTodos";
-            BtnAgregarTodos.Size = new Size(280, 25);
+            BtnAgregarTodos.Size = new Size(320, 33);
             BtnAgregarTodos.TabIndex = 9;
             BtnAgregarTodos.Text = "Agregar todos";
             BtnAgregarTodos.UseVisualStyleBackColor = true;
@@ -212,9 +219,10 @@
             // 
             // BtnQuitar
             // 
-            BtnQuitar.Location = new Point(9, 379);
+            BtnQuitar.Location = new Point(10, 505);
+            BtnQuitar.Margin = new Padding(3, 4, 3, 4);
             BtnQuitar.Name = "BtnQuitar";
-            BtnQuitar.Size = new Size(778, 23);
+            BtnQuitar.Size = new Size(889, 31);
             BtnQuitar.TabIndex = 8;
             BtnQuitar.Text = "Quitar";
             BtnQuitar.UseVisualStyleBackColor = true;
@@ -222,9 +230,10 @@
             // 
             // BtnAgregarSeleccion
             // 
-            BtnAgregarSeleccion.Location = new Point(9, 178);
+            BtnAgregarSeleccion.Location = new Point(10, 237);
+            BtnAgregarSeleccion.Margin = new Padding(3, 4, 3, 4);
             BtnAgregarSeleccion.Name = "BtnAgregarSeleccion";
-            BtnAgregarSeleccion.Size = new Size(280, 25);
+            BtnAgregarSeleccion.Size = new Size(320, 33);
             BtnAgregarSeleccion.TabIndex = 6;
             BtnAgregarSeleccion.Text = "Agregar selección";
             BtnAgregarSeleccion.UseVisualStyleBackColor = true;
@@ -238,61 +247,69 @@
             GrupoConfigTransporte.Controls.Add(ComboCDDestino);
             GrupoConfigTransporte.Controls.Add(ComboEmpresa);
             GrupoConfigTransporte.Controls.Add(LabelEmpresa);
-            GrupoConfigTransporte.Location = new Point(12, 564);
+            GrupoConfigTransporte.Location = new Point(14, 752);
+            GrupoConfigTransporte.Margin = new Padding(3, 4, 3, 4);
             GrupoConfigTransporte.Name = "GrupoConfigTransporte";
-            GrupoConfigTransporte.Size = new Size(796, 188);
+            GrupoConfigTransporte.Padding = new Padding(3, 4, 3, 4);
+            GrupoConfigTransporte.Size = new Size(910, 251);
             GrupoConfigTransporte.TabIndex = 8;
             GrupoConfigTransporte.TabStop = false;
             GrupoConfigTransporte.Text = "Configuración del Transporte";
             // 
             // ComboServicio
             // 
+            ComboServicio.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboServicio.FormattingEnabled = true;
-            ComboServicio.Location = new Point(9, 150);
+            ComboServicio.Location = new Point(10, 200);
+            ComboServicio.Margin = new Padding(3, 4, 3, 4);
             ComboServicio.Name = "ComboServicio";
-            ComboServicio.Size = new Size(778, 23);
+            ComboServicio.Size = new Size(889, 28);
             ComboServicio.TabIndex = 5;
             // 
             // LabelServicio
             // 
             LabelServicio.AutoSize = true;
-            LabelServicio.Location = new Point(9, 130);
+            LabelServicio.Location = new Point(10, 173);
             LabelServicio.Name = "LabelServicio";
-            LabelServicio.Size = new Size(48, 15);
+            LabelServicio.Size = new Size(61, 20);
             LabelServicio.TabIndex = 4;
             LabelServicio.Text = "Servicio";
             // 
             // ComboCDDestino
             // 
+            ComboCDDestino.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboCDDestino.FormattingEnabled = true;
-            ComboCDDestino.Location = new Point(9, 50);
+            ComboCDDestino.Location = new Point(10, 67);
+            ComboCDDestino.Margin = new Padding(3, 4, 3, 4);
             ComboCDDestino.Name = "ComboCDDestino";
-            ComboCDDestino.Size = new Size(778, 23);
+            ComboCDDestino.Size = new Size(889, 28);
             ComboCDDestino.TabIndex = 1;
             // 
             // LabelEmpresa
             // 
             LabelEmpresa.AutoSize = true;
-            LabelEmpresa.Location = new Point(9, 80);
+            LabelEmpresa.Location = new Point(10, 107);
             LabelEmpresa.Name = "LabelEmpresa";
-            LabelEmpresa.Size = new Size(52, 15);
+            LabelEmpresa.Size = new Size(66, 20);
             LabelEmpresa.TabIndex = 0;
             LabelEmpresa.Text = "Empresa";
             // 
             // BtnCancelar
             // 
-            BtnCancelar.Location = new Point(652, 758);
+            BtnCancelar.Location = new Point(745, 1011);
+            BtnCancelar.Margin = new Padding(3, 4, 3, 4);
             BtnCancelar.Name = "BtnCancelar";
-            BtnCancelar.Size = new Size(75, 25);
+            BtnCancelar.Size = new Size(86, 33);
             BtnCancelar.TabIndex = 9;
             BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = true;
             // 
             // BtnConfirmar
             // 
-            BtnConfirmar.Location = new Point(733, 758);
+            BtnConfirmar.Location = new Point(838, 1011);
+            BtnConfirmar.Margin = new Padding(3, 4, 3, 4);
             BtnConfirmar.Name = "BtnConfirmar";
-            BtnConfirmar.Size = new Size(75, 25);
+            BtnConfirmar.Size = new Size(86, 33);
             BtnConfirmar.TabIndex = 10;
             BtnConfirmar.Text = "Confirmar";
             BtnConfirmar.UseVisualStyleBackColor = true;
@@ -309,9 +326,11 @@
             groupBox4.Controls.Add(label5);
             groupBox4.Controls.Add(label4);
             groupBox4.Controls.Add(ComboCDDestinoBusqueda);
-            groupBox4.Location = new Point(12, 70);
+            groupBox4.Location = new Point(14, 93);
+            groupBox4.Margin = new Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(796, 70);
+            groupBox4.Padding = new Padding(3, 4, 3, 4);
+            groupBox4.Size = new Size(910, 93);
             groupBox4.TabIndex = 11;
             groupBox4.TabStop = false;
             groupBox4.Text = "Criterios de búsqueda";
@@ -319,25 +338,28 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(344, 30);
+            label3.Location = new Point(393, 40);
             label3.Name = "label3";
-            label3.Size = new Size(58, 15);
+            label3.Size = new Size(74, 20);
             label3.TabIndex = 8;
             label3.Text = "Localidad";
             // 
             // ComboLocalidad
             // 
+            ComboLocalidad.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboLocalidad.FormattingEnabled = true;
-            ComboLocalidad.Location = new Point(408, 27);
+            ComboLocalidad.Location = new Point(466, 36);
+            ComboLocalidad.Margin = new Padding(3, 4, 3, 4);
             ComboLocalidad.Name = "ComboLocalidad";
-            ComboLocalidad.Size = new Size(105, 23);
+            ComboLocalidad.Size = new Size(119, 28);
             ComboLocalidad.TabIndex = 7;
             // 
             // BtnBuscar
             // 
-            BtnBuscar.Location = new Point(703, 25);
+            BtnBuscar.Location = new Point(803, 33);
+            BtnBuscar.Margin = new Padding(3, 4, 3, 4);
             BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(75, 25);
+            BtnBuscar.Size = new Size(86, 33);
             BtnBuscar.TabIndex = 6;
             BtnBuscar.Text = "Buscar";
             BtnBuscar.UseVisualStyleBackColor = true;
@@ -346,87 +368,92 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(519, 30);
+            label6.Location = new Point(593, 40);
             label6.Name = "label6";
-            label6.Size = new Size(64, 15);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 5;
             label6.Text = "Dimensión";
             // 
             // ComboDimension
             // 
+            ComboDimension.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboDimension.FormattingEnabled = true;
-            ComboDimension.Location = new Point(590, 27);
+            ComboDimension.Location = new Point(674, 36);
+            ComboDimension.Margin = new Padding(3, 4, 3, 4);
             ComboDimension.Name = "ComboDimension";
-            ComboDimension.Size = new Size(105, 23);
+            ComboDimension.Size = new Size(119, 28);
             ComboDimension.TabIndex = 4;
             // 
             // TxtCuit
             // 
-            TxtCuit.Location = new Point(233, 27);
+            TxtCuit.Location = new Point(266, 36);
+            TxtCuit.Margin = new Padding(3, 4, 3, 4);
             TxtCuit.Name = "TxtCuit";
-            TxtCuit.Size = new Size(105, 23);
+            TxtCuit.Size = new Size(119, 27);
             TxtCuit.TabIndex = 3;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(195, 30);
+            label5.Location = new Point(223, 40);
             label5.Name = "label5";
-            label5.Size = new Size(32, 15);
+            label5.Size = new Size(40, 20);
             label5.TabIndex = 2;
             label5.Text = "CUIT";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(9, 30);
+            label4.Location = new Point(10, 40);
             label4.Name = "label4";
-            label4.Size = new Size(66, 15);
+            label4.Size = new Size(84, 20);
             label4.TabIndex = 1;
             label4.Text = "CD Destino";
             // 
             // ComboCDDestinoBusqueda
             // 
+            ComboCDDestinoBusqueda.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboCDDestinoBusqueda.FormattingEnabled = true;
-            ComboCDDestinoBusqueda.Location = new Point(84, 27);
+            ComboCDDestinoBusqueda.Location = new Point(96, 36);
+            ComboCDDestinoBusqueda.Margin = new Padding(3, 4, 3, 4);
             ComboCDDestinoBusqueda.Name = "ComboCDDestinoBusqueda";
-            ComboCDDestinoBusqueda.Size = new Size(105, 23);
+            ComboCDDestinoBusqueda.Size = new Size(119, 28);
             ComboCDDestinoBusqueda.TabIndex = 0;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(15, 10);
+            label7.Location = new Point(17, 13);
             label7.Name = "label7";
             label7.RightToLeft = RightToLeft.No;
-            label7.Size = new Size(163, 21);
+            label7.Size = new Size(205, 28);
             label7.TabIndex = 13;
             label7.Text = "Ruteo de Transporte";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(15, 40);
+            label9.Location = new Point(17, 53);
             label9.Name = "label9";
-            label9.Size = new Size(128, 15);
+            label9.Size = new Size(159, 20);
             label9.TabIndex = 14;
             label9.Text = "Centro de distribución:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(150, 40);
+            label8.Location = new Point(171, 53);
             label8.Name = "label8";
-            label8.Size = new Size(94, 15);
+            label8.Size = new Size(118, 20);
             label8.TabIndex = 15;
             label8.Text = "CD Buenos Aires";
             // 
             // FormRuteoTransporte
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(821, 797);
+            ClientSize = new Size(938, 1055);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label9);
@@ -435,6 +462,7 @@
             Controls.Add(BtnCancelar);
             Controls.Add(GrupoConfigTransporte);
             Controls.Add(GrupoGuias);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormRuteoTransporte";
             Text = "Ruteo de transporte";
             Load += FormRuteoTransporte_Load;
