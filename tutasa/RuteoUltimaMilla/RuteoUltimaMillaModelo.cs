@@ -27,9 +27,9 @@ namespace tutasa.RuteoUltimaMilla
             };
         }
 
-        // Renombrado de Guia a Encomienda
+        // Renombrado de Guia a Guia
 
-        public class Encomienda
+        public class Guia
         {
             public string Numero { get; set; }
 
@@ -54,12 +54,12 @@ namespace tutasa.RuteoUltimaMilla
 
             public string TipoRuteo { get; set; }
 
-            public List<Encomienda> Encomiendas { get; set; }
+            public List<Guia> Guias { get; set; }
         }
 
-        private List<Encomienda> encomiendas = new List<Encomienda>
+        private List<Guia> Guias = new List<Guia>
         {
-            new Encomienda
+            new Guia
             {
                 Numero = "0001",
                 Cliente = "ACME",
@@ -69,7 +69,7 @@ namespace tutasa.RuteoUltimaMilla
                 Dimension = "S"
             },
 
-            new Encomienda
+            new Guia
             {
                 Numero = "0002",
                 Cliente = "Tech SA",
@@ -79,7 +79,7 @@ namespace tutasa.RuteoUltimaMilla
                 Dimension = "M"
             },
 
-            new Encomienda
+            new Guia
             {
                 Numero = "0003",
                 Cliente = "ACME",
@@ -95,19 +95,19 @@ namespace tutasa.RuteoUltimaMilla
         private List<HojaRuta> hojasRuta =
             new List<HojaRuta>();
 
-        public List<Encomienda> BuscarEncomiendas(
+        public List<Guia> BuscarGuias(
             string localidad,
             string cuit)
         {
-            // Comenzamos tomando todas las encomiendas disponibles y creamos una variable para ir filtrando
-            List<Encomienda> encomiendasFiltradas =
-                encomiendas;
+            // Comenzamos tomando todas las Guias disponibles y creamos una variable para ir filtrando
+            List<Guia> GuiasFiltradas =
+                Guias;
 
             // Filtrar por localidad si el usuario seleccionó una. El ToList convierte el resultado de la consulta en una nueva lista.
             if (!string.IsNullOrEmpty(localidad))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                GuiasFiltradas =
+                    GuiasFiltradas
                     .Where(e => e.Localidad == localidad)
                     .ToList();
             }
@@ -115,14 +115,14 @@ namespace tutasa.RuteoUltimaMilla
             // Filtrar por CUIT si el usuario ingresó uno
             if (!string.IsNullOrEmpty(cuit))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                GuiasFiltradas =
+                    GuiasFiltradas
                     .Where(e => e.Cuit == cuit)
                     .ToList();
             }
 
             // Retornar coincidencias encontradas
-            return encomiendasFiltradas;
+            return GuiasFiltradas;
         }
 
         // Método para guardar hoja de ruta generada

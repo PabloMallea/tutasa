@@ -83,7 +83,7 @@ namespace tutasa.RuteoTransporte
             return new List<string>();
         }
 
-        public class Encomienda
+        public class Guia
         {
             public string Numero { get; set; }
 
@@ -99,7 +99,6 @@ namespace tutasa.RuteoTransporte
 
             public string Cuit { get; set; }
 
-            public string CDDestino { get; set; }
         }
 
         // Salida final del proceso
@@ -114,13 +113,13 @@ namespace tutasa.RuteoTransporte
 
             public string CDDestino { get; set; }
 
-            public List<Encomienda> Encomiendas { get; set; }
+            public List<Guia> Guias { get; set; }
         }
 
-        private List<Encomienda> encomiendas =
-            new List<Encomienda>
+        private List<Guia> Guias =
+            new List<Guia>
         {
-            new Encomienda
+            new Guia
             {
                 Numero = "0001",
                 Localidad = "Córdoba",
@@ -129,10 +128,9 @@ namespace tutasa.RuteoTransporte
                 Peso = "2",
                 Cliente = "ACME",
                 Cuit = "20333444556",
-                CDDestino = "CD Córdoba"
             },
 
-            new Encomienda
+            new Guia
             {
                 Numero = "0002",
                 Localidad = "Rosario",
@@ -141,10 +139,10 @@ namespace tutasa.RuteoTransporte
                 Peso = "18",
                 Cliente = "Tech SA",
                 Cuit = "30777888999",
-                CDDestino = "CD Rosario"
+
             },
 
-            new Encomienda
+            new Guia
             {
                 Numero = "0003",
                 Localidad = "Buenos Aires",
@@ -153,7 +151,7 @@ namespace tutasa.RuteoTransporte
                 Peso = "6",
                 Cliente = "ACME",
                 Cuit = "20333444556",
-                CDDestino = "CD Buenos Aires"
+
             }
         };
 
@@ -162,52 +160,45 @@ namespace tutasa.RuteoTransporte
         private List<HojaRutaTransporte> hojasRuta =
             new List<HojaRutaTransporte>();
 
-        public List<Encomienda> BuscarEncomiendas(
-            string cdDestino,
+        public List<Guia> BuscarGuias(
             string cuit,
             string localidad,
             string dimension)
         {
-            // Tomamos todas las encomiendas inicialmente
+            // Tomamos todas las guías inicialmente
 
-            List<Encomienda> encomiendasFiltradas =
-                encomiendas;
+            List<Guia> guiasFiltradas =
+                Guias;
 
             // Todos los filtros son opcionales
 
-            if (!string.IsNullOrEmpty(cdDestino))
-            {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
-                    .Where(e => e.CDDestino == cdDestino)
-                    .ToList();
-            }
+
 
             if (!string.IsNullOrEmpty(cuit))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                guiasFiltradas =
+                    guiasFiltradas
                     .Where(e => e.Cuit == cuit)
                     .ToList();
             }
 
             if (!string.IsNullOrEmpty(localidad))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                guiasFiltradas =
+                    guiasFiltradas
                     .Where(e => e.Localidad == localidad)
                     .ToList();
             }
 
             if (!string.IsNullOrEmpty(dimension))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                guiasFiltradas =
+                    guiasFiltradas
                     .Where(e => e.Dimension == dimension)
                     .ToList();
             }
 
-            return encomiendasFiltradas;
+            return guiasFiltradas;
         }
 
         // Guardar hoja de ruta generada

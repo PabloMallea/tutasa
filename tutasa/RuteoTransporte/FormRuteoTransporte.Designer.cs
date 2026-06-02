@@ -37,7 +37,6 @@
             ColumnaDimensionA = new ColumnHeader();
             ColumnaPesoA = new ColumnHeader();
             ColumnaClienteA = new ColumnHeader();
-            ColumnaCDDestinoA = new ColumnHeader();
             GrupoGuias = new GroupBox();
             LvSeleccion = new ListView();
             columnHeader1 = new ColumnHeader();
@@ -65,8 +64,6 @@
             ComboDimension = new ComboBox();
             TxtCuit = new TextBox();
             label5 = new Label();
-            label4 = new Label();
-            ComboCDDestinoBusqueda = new ComboBox();
             label7 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -95,7 +92,7 @@
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuiaA, ColumnaLocalidadA, ColumnaDireccionA, ColumnaDimensionA, ColumnaPesoA, ColumnaClienteA, ColumnaCDDestinoA });
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuiaA, ColumnaLocalidadA, ColumnaDireccionA, ColumnaDimensionA, ColumnaPesoA, ColumnaClienteA });
             LvGuiasDisponibles.FullRowSelect = true;
             LvGuiasDisponibles.Location = new Point(9, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
@@ -134,11 +131,6 @@
             // 
             ColumnaClienteA.Text = "Cliente";
             ColumnaClienteA.Width = 110;
-            // 
-            // ColumnaCDDestinoA
-            // 
-            ColumnaCDDestinoA.Text = "CD Destino";
-            ColumnaCDDestinoA.Width = 110;
             // 
             // GrupoGuias
             // 
@@ -307,8 +299,6 @@
             groupBox4.Controls.Add(ComboDimension);
             groupBox4.Controls.Add(TxtCuit);
             groupBox4.Controls.Add(label5);
-            groupBox4.Controls.Add(label4);
-            groupBox4.Controls.Add(ComboCDDestinoBusqueda);
             groupBox4.Location = new Point(12, 70);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(796, 70);
@@ -319,7 +309,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(344, 30);
+            label3.Location = new Point(225, 30);
             label3.Name = "label3";
             label3.Size = new Size(58, 15);
             label3.TabIndex = 8;
@@ -328,9 +318,9 @@
             // ComboLocalidad
             // 
             ComboLocalidad.FormattingEnabled = true;
-            ComboLocalidad.Location = new Point(408, 27);
+            ComboLocalidad.Location = new Point(289, 27);
             ComboLocalidad.Name = "ComboLocalidad";
-            ComboLocalidad.Size = new Size(105, 23);
+            ComboLocalidad.Size = new Size(162, 23);
             ComboLocalidad.TabIndex = 7;
             // 
             // BtnBuscar
@@ -346,7 +336,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(519, 30);
+            label6.Location = new Point(467, 30);
             label6.Name = "label6";
             label6.Size = new Size(64, 15);
             label6.TabIndex = 5;
@@ -355,43 +345,26 @@
             // ComboDimension
             // 
             ComboDimension.FormattingEnabled = true;
-            ComboDimension.Location = new Point(590, 27);
+            ComboDimension.Location = new Point(537, 25);
             ComboDimension.Name = "ComboDimension";
-            ComboDimension.Size = new Size(105, 23);
+            ComboDimension.Size = new Size(162, 23);
             ComboDimension.TabIndex = 4;
             // 
             // TxtCuit
             // 
-            TxtCuit.Location = new Point(233, 27);
+            TxtCuit.Location = new Point(47, 27);
             TxtCuit.Name = "TxtCuit";
-            TxtCuit.Size = new Size(105, 23);
+            TxtCuit.Size = new Size(162, 23);
             TxtCuit.TabIndex = 3;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(195, 30);
+            label5.Location = new Point(9, 30);
             label5.Name = "label5";
             label5.Size = new Size(32, 15);
             label5.TabIndex = 2;
             label5.Text = "CUIT";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(9, 30);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 15);
-            label4.TabIndex = 1;
-            label4.Text = "CD Destino";
-            // 
-            // ComboCDDestinoBusqueda
-            // 
-            ComboCDDestinoBusqueda.FormattingEnabled = true;
-            ComboCDDestinoBusqueda.Location = new Point(84, 27);
-            ComboCDDestinoBusqueda.Name = "ComboCDDestinoBusqueda";
-            ComboCDDestinoBusqueda.Size = new Size(105, 23);
-            ComboCDDestinoBusqueda.TabIndex = 0;
             // 
             // label7
             // 
@@ -472,10 +445,7 @@
         private ComboBox ComboDimension;
         private TextBox TxtCuit;
         private Label label5;
-        private Label label4;
-        private ComboBox ComboCDDestinoBusqueda;
         private ColumnHeader ColumnaClienteA;
-        private ColumnHeader ColumnaCDDestinoA;
         private ColumnHeader ColumnaLocalidadA;
         private Label label3;
         private ComboBox ComboLocalidad;
