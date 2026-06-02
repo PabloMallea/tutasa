@@ -270,7 +270,7 @@ namespace tutasa.RendicionHDRtransporte
         {
             limpiarCampos();
         }
-        
+
         private void limpiarCampos()
         {
             cbox_empresa.Enabled = true;
@@ -281,7 +281,6 @@ namespace tutasa.RendicionHDRtransporte
             listview_hdr_rendidas.Items.Clear();
         }
 
-        
+
     }
 }
-    

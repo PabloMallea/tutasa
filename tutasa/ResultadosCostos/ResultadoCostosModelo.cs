@@ -94,9 +94,9 @@ namespace tutasa.ResultadosCostos
             return nombresEmpresas.ToList();
         }
 
-       
+
         // BUSCAR GUIAS
-        
+
 
         public List<Guia> ObtenerGuias(
             string empresa,
@@ -118,14 +118,15 @@ namespace tutasa.ResultadosCostos
 
 
         public decimal ObtenerCostoMensual(string empresa)
-         {
-             var empresaTransporte = empresasTransporte.FirstOrDefault(e => e.Nombre == empresa);
-             if (empresaTransporte != null)
-             {
-                 return empresaTransporte.CostoMensual;
-             }
-             return 0;
-         }
+        {
+            var empresaTransporte = empresasTransporte.FirstOrDefault(e => e.Nombre == empresa);
+            if (empresaTransporte != null)
+            {
+                return empresaTransporte.CostoMensual;
+            }
+            return 0;
+        }
 
     }
 }
+

@@ -91,8 +91,9 @@
             BtnCerrar.Name = "BtnCerrar";
             BtnCerrar.Size = new Size(75, 25);
             BtnCerrar.TabIndex = 12;
-            BtnCerrar.Text = "Cerrar";
+            BtnCerrar.Text = "Cancelar";
             BtnCerrar.UseVisualStyleBackColor = true;
+            BtnCerrar.Click += BtnCancelar_Click;
             // 
             // GrupoDatosEncomienda
             // 

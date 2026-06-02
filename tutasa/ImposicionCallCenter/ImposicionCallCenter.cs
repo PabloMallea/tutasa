@@ -1,12 +1,13 @@
-﻿namespace tutasa.ImposicionCallCenter
+﻿using static tutasa.ImposicionCallCenter.ImposicionCallCenterModelo;
+
+namespace tutasa.ImposicionCallCenter
 {
     public partial class ImposicionCallCenter : Form
     {
         // Instancia del modelo de imposición
-        private ImposicionCallCenterModelo modelo =
-            new ImposicionCallCenterModelo();
+        private ImposicionCallCenterModelo modelo = new ImposicionCallCenterModelo();
 
-        // NO se toca!!
+        // NO se toca!!!!!
         public ImposicionCallCenter()
         {
             InitializeComponent();
@@ -15,8 +16,7 @@
         private void Imposicion_Load(object sender, EventArgs e)
         {
             // Obtener dimensiones desde el modelo
-            List<string> dimensiones =
-                modelo.ObtenerDimensiones();
+            List<string> dimensiones = modelo.ObtenerDimensiones();
 
             // Limpiar combo antes de cargar
             ComboDimension.Items.Clear();
@@ -37,51 +37,60 @@
         {
 
         }
-
         private void ComboDestino_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Validar selección
             if (ComboDestino.SelectedItem == null)
             {
                 return;
             }
 
-            // Obtener localidad
-            ImposicionCallCenterModelo.Localidad localidad =
-                modelo.BuscarLocalidad(TextLocalidad.Text.Trim());
+            string destino = ComboDestino.SelectedItem.ToString();
 
-            // Buscar destino seleccionado
-            foreach (ImposicionCallCenterModelo.Destino destino
-                in localidad.Destinos)
+            // Opción manual
+            if (destino == "Domicilio Destinatario")
             {
-                // Si coincide nombre
-                if (destino.Nombre ==
-                    ComboDestino.SelectedItem.ToString())
+                TextCalle.Enabled = true;
+                TextAltura.Enabled = true;
+
+                TextCalle.Clear();
+                TextAltura.Clear();
+                return;
+            }
+
+            string localidad = TextLocalidad.Text.Trim();
+
+            List<ImposicionCallCenterModelo.Agencia> agencias = modelo.ObtenerAgencias(localidad);
+
+            List<ImposicionCallCenterModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidad);
+
+            // Buscar agencia
+            foreach (ImposicionCallCenterModelo.Agencia agencia in agencias)
+            {
+                if (agencia.Nombre == destino)
                 {
-                    // Si es domicilio destinatario
-                    if (destino.Nombre ==
-                        "Domicilio Destinatario")
-                    {
-                        // Habilitar edición manual
-                        TextCalle.Enabled = true;
-                        TextAltura.Enabled = true;
+                    TextCalle.Text = agencia.Calle;
 
-                        // Limpiar datos
-                        TextCalle.Clear();
-                        TextAltura.Clear();
-                    }
-                    else
-                    {
-                        // Completar automáticamente
-                        TextCalle.Text = destino.Calle;
-                        TextAltura.Text = destino.Altura;
+                    TextAltura.Text = agencia.Altura.ToString();
 
-                        // Bloquear edición
-                        TextCalle.Enabled = false;
-                        TextAltura.Enabled = false;
-                    }
+                    TextCalle.Enabled = false;
+                    TextAltura.Enabled = false;
+                    return;
+                }
+            }
 
-                    break;
+            // Buscar CD
+            foreach (
+                ImposicionCallCenterModelo.CentroDistribucion cd in cds)
+            {
+                if (cd.Nombre == destino)
+                {
+                    TextCalle.Text = cd.Calle;
+
+                    TextAltura.Text = cd.Altura.ToString();
+
+                    TextCalle.Enabled = false;
+                    TextAltura.Enabled = false;
+                    return;
                 }
             }
         }
@@ -91,8 +100,8 @@
             // Obtener CUIT ingresado
             string cuit = TxtCuit.Text.Trim();
 
-            // Validar que se haya ingresado CUIT
-            if (string.IsNullOrEmpty(cuit))
+            // 1. Validar que se haya ingresado CUIT (Excepciones 2.1 y 2.2)
+            if (string.IsNullOrWhiteSpace(cuit))
             {
                 MessageBox.Show(
                     "Debe ingresar un CUIT.",
@@ -100,40 +109,45 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar que el CUIT sea numérico
-            long numero;
-
-            if (!long.TryParse(cuit, out numero))
+            // 2. Validar que sea numérico y tenga 11 dígitos (Excepción 3.1)
+            if (cuit.Length != 11 || !cuit.All(char.IsDigit)) //Si es distinto de 11 elemtos y alguno no es número pincha
             {
                 MessageBox.Show(
-                    "El CUIT debe contener únicamente números.",
+                    "El campo CUIT debe contener únicamente 11 valores numéricos",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
             // Buscar cliente en el modelo
-            ImposicionCallCenterModelo.Cliente cliente =
-                modelo.BuscarCliente(cuit);
+            ImposicionCallCenterModelo.Cliente cliente = modelo.BuscarCliente(cuit);
 
             // Validar existencia de cliente
-            if (cliente == null)
+            if (cliente == null) //Si no existe...
             {
                 MessageBox.Show(
-                    "No se encontró un cliente con el CUIT ingresado.",
+                    "El CUIT ingresado no corresponde a un cliente registrado.",
                     "Búsqueda",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
 
-                return;
+                // El CU dice en el paso 4.3 que se debe limpiar el valor del CUIT
+                TxtCuit.Clear();
+
+                // PARCHE: Limpiar los datos del cliente anterior si la búsqueda falla
+                LabelNombre.Text = "";
+                LabelApellido.Text = "";
+                LabelTelefono.Text = "";
+                LabelCalle.Text = "";
+                LabelAltura.Text = "";
+                LabelLocalidad.Text = "";
+                return; //Si no existe corta la ejecución
             }
 
             // Completar datos del cliente
@@ -147,48 +161,65 @@
 
         private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
         {
-            // Obtener localidad ingresada
-            string localidadIngresada =
-                TextLocalidad.Text.Trim();
+            // PARCHE VISUAL: Reiniciar siempre la dirección cuando se hace una nueva búsqueda
+            TextCalle.Clear();
+            TextAltura.Clear();
+            TextCalle.Enabled = true;
+            TextAltura.Enabled = true;
 
-            // Validar ingreso
-            if (string.IsNullOrEmpty(localidadIngresada))
+            // Obtener localidad ingresada
+            string localidadIngresada = TextLocalidad.Text.Trim();
+
+            // 1. Validar que no esté vacío (Excepciones 5.1 y 5.2)
+            if (string.IsNullOrWhiteSpace(localidadIngresada))
             {
                 MessageBox.Show(
-                    "Debe ingresar una localidad.",
+                    "El campo Localidad debe ser completado.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Buscar localidad
-            ImposicionCallCenterModelo.Localidad localidad =
-                modelo.BuscarLocalidad(localidadIngresada);
+            // 2. Buscar localidad en el modelo (Excepción 6.1) -> Solo la encuentra si coincide exactamente
+            ImposicionCallCenterModelo.Localidad localidad = modelo.BuscarLocalidad(localidadIngresada);
 
             // Validar existencia
             if (localidad == null)
             {
                 MessageBox.Show(
-                    "No se encontró la localidad ingresada.",
+                    "Localidad inexistente.",
                     "Búsqueda",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
 
+                TextLocalidad.Clear();
+                ComboDestino.Items.Clear();
                 return;
             }
 
-            // Limpiar destinos actuales
+            // Limpiar destinos actuales -> Buena practica
             ComboDestino.Items.Clear();
 
             // Cargar destinos disponibles para la localidad
-            foreach (ImposicionCallCenterModelo.Destino destino
-                in localidad.Destinos)
+            ComboDestino.Items.Add("Domicilio Destinatario");
+
+            List<ImposicionCallCenterModelo.Agencia> agencias = modelo.ObtenerAgencias(localidadIngresada);
+
+            List<ImposicionCallCenterModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidadIngresada);
+
+            // Agregar agencias
+            foreach (ImposicionCallCenterModelo.Agencia agencia in agencias)
             {
-                ComboDestino.Items.Add(destino.Nombre);
+                ComboDestino.Items.Add(agencia.Nombre);
+            }
+
+            // Agregar CDs
+            foreach (ImposicionCallCenterModelo.CentroDistribucion cd in cds)
+            {
+                ComboDestino.Items.Add(cd.Nombre);
             }
 
             MessageBox.Show(
@@ -201,8 +232,8 @@
 
         private void ButtonConfirmar_Click(object sender, EventArgs e)
         {
-            // Validar cliente seleccionado
-            if (string.IsNullOrEmpty(LabelNombre.Text))
+            // Validar cliente seleccionado (No vacío)
+            if (string.IsNullOrWhiteSpace(LabelNombre.Text))
             {
                 MessageBox.Show(
                     "Debe buscar y seleccionar un cliente.",
@@ -210,12 +241,11 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar localidad destino
-            if (string.IsNullOrEmpty(TextLocalidad.Text))
+            // Validar localidad destino (No vacío)
+            if (string.IsNullOrWhiteSpace(TextLocalidad.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una localidad destino.",
@@ -223,11 +253,10 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar destino seleccionado
+            // Validar destino seleccionado (No vacío)
             if (ComboDestino.SelectedIndex == -1)
             {
                 MessageBox.Show(
@@ -236,44 +265,11 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Acá podríamos usar esta validación de "Solo validar calle y altura si es domicilio" pero
-            // para simplificar validamos calle y altura siempre ya que en agencias y cd se completa automáticamente y no se puede editar,
-            //Cualquier cosa me avisas y lo ajusto para que solo valide calle y altura si es domicilio
-            /*  if (ComboDestino.SelectedItem.ToString() == "Domicilio Destinatario")
-              {
-                  // Validar calle destino
-                  if (string.IsNullOrEmpty(TextCalle.Text))
-                  {
-                      MessageBox.Show(
-                          "Debe ingresar una calle destino.",
-                          "Validación",
-                          MessageBoxButtons.OK,
-                          MessageBoxIcon.Warning
-                      );
-
-                      return;
-                  }
-
-                  // Validar altura numérica
-                  long altura;
-
-                  if (!long.TryParse(TextAltura.Text, out altura))
-                  {
-                      MessageBox.Show(
-                          "Debe ingresar una altura numérica.",
-                          "Validación",
-                          MessageBoxButtons.OK,
-                          MessageBoxIcon.Warning
-                      );
-
-                      return;
-                  }
-              }*/
-            if (string.IsNullOrEmpty(TextCalle.Text))
+            // Validar calle seleccionada (No vacío)
+            if (string.IsNullOrWhiteSpace(TextCalle.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una calle destino.",
@@ -281,27 +277,23 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar altura numérica
-            long altura;
-
-            if (!long.TryParse(TextAltura.Text, out altura))
+            //Validar Altura (No vacío)
+            if (string.IsNullOrWhiteSpace(TextAltura.Text))
             {
                 MessageBox.Show(
-                    "Debe ingresar una altura numérica.",
+                    "Debe ingresar una altura destino.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
-                );
-
+                 );
                 return;
             }
 
-            // Validar nombre destinatario
-            if (string.IsNullOrEmpty(TextNombre.Text))
+            // Validar nombre destinatario (No vacío)
+            if (string.IsNullOrWhiteSpace(TextNombre.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar un nombre.",
@@ -309,12 +301,24 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar apellido destinatario
-            if (string.IsNullOrEmpty(TextApellido.Text))
+            // Validar nombre destinatario (Que sea texto)
+            if (TextNombre.Text.Any(char.IsDigit))
+            {
+                MessageBox.Show(
+                    "El campo Nombre no puede contener caracteres numéricos.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+
+            // Validar apellido destinatario (No vacío)
+            if (string.IsNullOrWhiteSpace(TextApellido.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar un apellido.",
@@ -322,40 +326,72 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar DNI numérico
-            long dni;
-
-            if (!long.TryParse(TextDni.Text, out dni))
+            // Validar apellido destinatario (Que sea texto)
+            if (TextApellido.Text.Any(char.IsDigit))
             {
                 MessageBox.Show(
-                    "Debe ingresar un DNI numérico.",
+                    "El campo Apellido no puede contener caracteres numéricos.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            long telefono;
-
-            if (!long.TryParse(TextTEL.Text, out telefono))
+            //Validar DNI (No vacío)
+            string dniTexto = TextDni.Text.Trim();
+            if (string.IsNullOrWhiteSpace(dniTexto))
             {
                 MessageBox.Show(
-                    "Debe ingresar un teléfono numérico.",
+                    "Debe ingresar un DNI.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
-            // Validar dimensión seleccionada
+            //Validar DNI (Que sean 8 numeros)
+            if (dniTexto.Length != 8 || !dniTexto.All(char.IsDigit))
+            {
+                MessageBox.Show(
+                    "El campo DNI no puede contener caracteres alfabéticos o especiales y debe contener 8 dígitos.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            //Validar Teléfono (No vacío)
+            string telefonoTexto = TextTEL.Text.Trim();
+            if (string.IsNullOrWhiteSpace(telefonoTexto))
+            {
+                MessageBox.Show(
+                   "Debe ingresar un Telefono.",
+                   "Validación",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            // Validar telefono (Numérico y que sean 10 digitos)
+            if (telefonoTexto.Length != 10 || !telefonoTexto.All(char.IsDigit))
+            {
+                MessageBox.Show(
+                   "El campo Teléfono no puede contener caracteres alfabéticos o especiales y debe contener 10 dígitos.",
+                   "Validación",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            // Validar dimensión seleccionada (No vacío)
             if (ComboDimension.SelectedIndex == -1)
             {
                 MessageBox.Show(
@@ -364,55 +400,64 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
                 return;
             }
 
             // Buscar cliente seleccionado
-            ImposicionCallCenterModelo.Cliente cliente =
-                modelo.BuscarCliente(
-                    TxtCuit.Text.Trim()
-                );
+            ImposicionCallCenterModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
-            // Crear encomienda
-            ImposicionCallCenterModelo.Encomienda encomienda =
-                new ImposicionCallCenterModelo.Encomienda
+            // --- PARCHE DE SEGURIDAD 1: Verifica que el CUIT no haya sido alterado ---
+            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            {
+                MessageBox.Show("El CUIT fue alterado después de la búsqueda. Por favor, vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // --- PARCHE DE SEGURIDAD 2: Verifica que la Localidad y Destino coincidan ---
+            string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
+            bool destinoValido = false;
+
+            if (destinoSeleccionado == "Domicilio Destinatario")
+            {
+                destinoValido = true;
+            }
+            else
+            {
+                // Revisa si el destino seleccionado está en la lista de la localidad actual
+                if (modelo.ObtenerAgencias(TextLocalidad.Text.Trim()).Any(a => a.Nombre == destinoSeleccionado) ||
+                    modelo.ObtenerCD(TextLocalidad.Text.Trim()).Any(c => c.Nombre == destinoSeleccionado))
                 {
-                    Cliente = cliente,
+                    destinoValido = true;
+                }
+            }
 
-                    LocalidadDestino =
-                        TextLocalidad.Text,
+            if (modelo.BuscarLocalidad(TextLocalidad.Text.Trim()) == null || !destinoValido)
+            {
+                MessageBox.Show("La localidad fue alterada después de la búsqueda o el destino no corresponde. Vuelva a buscar la localidad.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                    Destino =
-                        ComboDestino.SelectedItem.ToString(),
+            // Crear Guia
+            ImposicionCallCenterModelo.Guia Guia = new ImposicionCallCenterModelo.Guia
+            {
+                Cliente = cliente,
+                LocalidadDestino = TextLocalidad.Text.Trim(),
+                Destino = ComboDestino.SelectedItem.ToString(),
+                CalleDestino = TextCalle.Text.Trim(),
+                AlturaDestino = TextAltura.Text.Trim(),
+                NombreDestinatario = TextNombre.Text.Trim(),
+                ApellidoDestinatario = TextApellido.Text.Trim(),
+                DniDestinatario = dniTexto, // Este ya tiene el Trim() arriba, así que está bien
+                TelefonoDestinatario = telefonoTexto, // Este también ya tiene el Trim() arriba
+                Dimension = ComboDimension.SelectedItem.ToString()
+            };
 
-                    CalleDestino =
-                        TextCalle.Text,
+            // Guardar Guia en el modelo (se le asigna Tracking y Estado automáticamente)
+            modelo.GuardarGuia(Guia);
 
-                    AlturaDestino =
-                        TextAltura.Text,
-
-                    NombreDestinatario =
-                        TextNombre.Text,
-
-                    ApellidoDestinatario =
-                        TextApellido.Text,
-
-                    DniDestinatario =
-                        TextDni.Text,
-
-                    TelefonoDestinatario =
-                        TextTEL.Text,
-
-                    Dimension =
-                        ComboDimension.SelectedItem.ToString()
-                };
-
-            // Guardar encomienda en el modelo
-            modelo.GuardarEncomienda(encomienda);
-
+            // Mostrar mensaje de confirmación con el número de Tracking (Cumpliendo el Paso 12)
             MessageBox.Show(
-                "Imposición confirmada.",
+                "Operación exitosa",
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
@@ -420,7 +465,6 @@
 
             // Limpiar formulario
             TxtCuit.Clear();
-
             TextLocalidad.Clear();
             TextCalle.Clear();
             TextAltura.Clear();
@@ -442,6 +486,37 @@
             // Rehabilitar edición
             TextCalle.Enabled = true;
             TextAltura.Enabled = true;
+        }
+
+        private void ButtonCancelar_Click(object sender, EventArgs e)
+        {
+            // Limpiar formulario
+            TxtCuit.Clear();
+            TextLocalidad.Clear();
+            TextCalle.Clear();
+            TextAltura.Clear();
+            TextNombre.Clear();
+            TextApellido.Clear();
+            TextDni.Clear();
+            TextTEL.Clear();
+
+            ComboDestino.SelectedIndex = -1;
+            ComboDimension.SelectedIndex = -1;
+
+            LabelNombre.Text = "";
+            LabelApellido.Text = "";
+            LabelTelefono.Text = "";
+            LabelCalle.Text = "";
+            LabelAltura.Text = "";
+            LabelLocalidad.Text = "";
+
+            // Rehabilitar edición
+            TextCalle.Enabled = true;
+            TextAltura.Enabled = true;
+
+            // 2. Cerrar el formulario para volver al menú principal 
+            // (Asumiendo que esta pantalla se abrió desde un menú principal)
+            // ACA FALTA LA LINEA PARA CERRAR, PERO AUN NO HAY MENU -> this.Close();
         }
     }
 }

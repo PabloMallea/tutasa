@@ -244,6 +244,7 @@
             // 
             // ComboAsignarFletero
             // 
+            ComboAsignarFletero.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboAsignarFletero.FormattingEnabled = true;
             ComboAsignarFletero.Location = new Point(73, 30);
             ComboAsignarFletero.Name = "ComboAsignarFletero";
@@ -313,6 +314,8 @@
             // 
             // CmbLocalidad
             // 
+            CmbLocalidad.BackColor = SystemColors.Window;
+            CmbLocalidad.DropDownStyle = ComboBoxStyle.DropDownList;
             CmbLocalidad.FormattingEnabled = true;
             CmbLocalidad.Location = new Point(73, 27);
             CmbLocalidad.Name = "CmbLocalidad";

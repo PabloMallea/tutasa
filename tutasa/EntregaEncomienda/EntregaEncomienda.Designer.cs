@@ -70,7 +70,7 @@
             // 
             // btnConfirmarEntrega
             // 
-            btnConfirmarEntrega.Location = new Point(429, 371);
+            btnConfirmarEntrega.Location = new Point(338, 371);
             btnConfirmarEntrega.Name = "btnConfirmarEntrega";
             btnConfirmarEntrega.Size = new Size(142, 33);
             btnConfirmarEntrega.TabIndex = 5;
@@ -80,7 +80,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(336, 371);
+            btnCancelar.Location = new Point(246, 371);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(86, 33);
             btnCancelar.TabIndex = 6;
@@ -105,7 +105,7 @@
             GrupoDetalleGuia.Margin = new Padding(3, 4, 3, 4);
             GrupoDetalleGuia.Name = "GrupoDetalleGuia";
             GrupoDetalleGuia.Padding = new Padding(3, 4, 3, 4);
-            GrupoDetalleGuia.Size = new Size(553, 277);
+            GrupoDetalleGuia.Size = new Size(471, 277);
             GrupoDetalleGuia.TabIndex = 38;
             GrupoDetalleGuia.TabStop = false;
             GrupoDetalleGuia.Text = "Detalle de Guía";
@@ -113,13 +113,13 @@
             // lvDetalle
             // 
             lvDetalle.Columns.AddRange(new ColumnHeader[] { ColumnaCliente, ColumnaDestinatario, ColumnaDNIDestinatario });
-            lvDetalle.Location = new Point(7, 28);
+            lvDetalle.Location = new Point(6, 27);
             lvDetalle.Name = "lvDetalle";
-            lvDetalle.Size = new Size(531, 227);
+            lvDetalle.Size = new Size(457, 228);
             lvDetalle.TabIndex = 4;
             lvDetalle.UseCompatibleStateImageBehavior = false;
             lvDetalle.View = View.Details;
-            lvDetalle.Click += EntregaEncomienda_Load;
+            lvDetalle.SelectedIndexChanged += lvDetalle_SelectedIndexChanged;
             // 
             // ColumnaCliente
             // 
@@ -140,7 +140,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(583, 416);
+            ClientSize = new Size(502, 416);
             Controls.Add(GrupoDetalleGuia);
             Controls.Add(label7);
             Controls.Add(btnCancelar);

@@ -156,12 +156,13 @@
             // 
             // ComboDestino
             // 
+            ComboDestino.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboDestino.FormattingEnabled = true;
             ComboDestino.Location = new Point(76, 60);
             ComboDestino.Name = "ComboDestino";
             ComboDestino.Size = new Size(297, 25);
             ComboDestino.TabIndex = 40;
-            ComboDestino.SelectedIndexChanged += ComboDestino_SelectedIndexChanged1;
+            ComboDestino.SelectedIndexChanged += ComboDestino_SelectedIndexChanged;
             // 
             // TextTEL
             // 
@@ -384,6 +385,7 @@
             LabelDimension.Size = new Size(64, 15);
             LabelDimension.TabIndex = 17;
             LabelDimension.Text = "Dimensión";
+            LabelDimension.Click += LabelDimension_Click;
             // 
             // label6
             // 
@@ -403,6 +405,7 @@
             TextPeso.Name = "TextPeso";
             TextPeso.Size = new Size(308, 25);
             TextPeso.TabIndex = 37;
+            TextPeso.TextChanged += TextPeso_TextChanged;
             // 
             // LabelTamaño
             // 
@@ -413,6 +416,7 @@
             LabelTamaño.Size = new Size(73, 15);
             LabelTamaño.TabIndex = 45;
             LabelTamaño.Text = "S | M | L | XL ";
+            LabelTamaño.Click += LabelTamaño_Click;
             // 
             // GrupoEncomienda
             // 

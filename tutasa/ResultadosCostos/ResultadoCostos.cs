@@ -37,7 +37,7 @@ namespace tutasa.ResultadosCostos
 
         }
 
-       
+
 
         private void CargarMeses()
         {
@@ -70,7 +70,7 @@ namespace tutasa.ResultadosCostos
                 };
         }
 
-    
+
         // BOTON BUSCAR
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -87,7 +87,16 @@ namespace tutasa.ResultadosCostos
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
-                LimpiarFormulario();
+                cmbEmpresa.SelectedIndex = -1;
+                cmbMes.SelectedIndex = -1;
+                cmbAnio.SelectedIndex = -1;
+
+                dgvGuias.Items.Clear();
+
+                txtVentasMes.Text = "";
+                txtCostoMensual.Text = "";
+                txtMargen.Text = "";
+                txtResultado.Text = "";
 
                 return;
             }
@@ -107,7 +116,7 @@ namespace tutasa.ResultadosCostos
 
             // BUSCAR GUIAS
 
-            List<ResultadoCostosModelo.Guia> guias = modelo.ObtenerGuias(empresa, mes,anio);
+            List<ResultadoCostosModelo.Guia> guias = modelo.ObtenerGuias(empresa, mes, anio);
 
 
             // LIMPIAR LISTVIEW
@@ -154,9 +163,9 @@ namespace tutasa.ResultadosCostos
                     / ventasMes) * 100;
             }
 
-            
+
             // MOSTRAR RESULTADOS
-            
+
 
             txtVentasMes.Text =
                 ventasMes.ToString("C");
@@ -184,23 +193,6 @@ namespace tutasa.ResultadosCostos
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
-            LimpiarFormulario();
-        }
-
-        // =========================
-        // BOTON CANCELAR
-        // =========================
-
-        private void btnCancelar_Click(
-            object sender,
-            EventArgs e)
-        {
-            LimpiarFormulario();
-
-            this.Close();
-        }
-        private void LimpiarFormulario()
-        {
             cmbEmpresa.SelectedIndex = -1;
             cmbMes.SelectedIndex = -1;
             cmbAnio.SelectedIndex = -1;
@@ -213,5 +205,33 @@ namespace tutasa.ResultadosCostos
             txtResultado.Text = "";
         }
 
+        // =========================
+        // BOTON CANCELAR
+        // =========================
+
+        private void btnCancelar_Click(
+            object sender,
+            EventArgs e)
+        {
+            cmbEmpresa.SelectedIndex = -1;
+            cmbMes.SelectedIndex = -1;
+            cmbAnio.SelectedIndex = -1;
+
+            dgvGuias.Items.Clear();
+
+            txtVentasMes.Text = "";
+            txtCostoMensual.Text = "";
+            txtMargen.Text = "";
+            txtResultado.Text = "";
+
+            this.Close();
+        }
+
+        private void txtVentasMes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
+

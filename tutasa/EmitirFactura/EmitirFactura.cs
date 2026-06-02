@@ -140,15 +140,20 @@ namespace tutasa.EmitirFactura
             EmitirFacturaModelo.Factura factura =
                 new EmitirFacturaModelo.Factura
                 {
+                    NumeroFactura = modelo.GenerarNumeroFactura(),
+                    FechaEmision = DateTime.Now,
                     Cliente = cliente,
                     Encomiendas = encomiendas,
                     Total = total
                 };
 
+            string detalleFactura = modelo.ObtenerDetalleFactura(factura);
+
+            MessageBox.Show(detalleFactura, "EMISIÓN DE FACTURA", MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
+
             MessageBox.Show(
-                "Factura emitida correctamente.\n" +
-                "Total facturado: " +
-                factura.Total.ToString("C"),
+                "Factura emitida correctamente.",
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information

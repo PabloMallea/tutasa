@@ -26,7 +26,6 @@ namespace tutasa.RuteoTransporte
 
             foreach (string cd in modelo.ObtenerCDs())
             {
-                ComboCDDestinoBusqueda.Items.Add(cd);
 
                 ComboCDDestino.Items.Add(cd);
             }
@@ -61,9 +60,9 @@ namespace tutasa.RuteoTransporte
             {
                 // Recuperar encomienda desde el Tag
 
-                FormRuteoTransporteModelo.Encomienda
-                    encomienda =
-                    (FormRuteoTransporteModelo.Encomienda)
+                FormRuteoTransporteModelo.Guia
+                    guia =
+                    (FormRuteoTransporteModelo.Guia)
                     itemDisponible.Tag;
 
                 // Validar duplicados
@@ -73,13 +72,13 @@ namespace tutasa.RuteoTransporte
                 foreach (ListViewItem itemExistente
                     in LvSeleccion.Items)
                 {
-                    FormRuteoTransporteModelo.Encomienda
-                        encomiendaExistente =
-                        (FormRuteoTransporteModelo.Encomienda)
+                    FormRuteoTransporteModelo.Guia
+                        guiaExistente =
+                        (FormRuteoTransporteModelo.Guia)
                         itemExistente.Tag;
 
-                    if (encomiendaExistente.Numero
-                        == encomienda.Numero)
+                    if (guiaExistente.Numero
+                        == guia.Numero)
                     {
                         existe = true;
                         break;
@@ -91,27 +90,25 @@ namespace tutasa.RuteoTransporte
                 if (!existe)
                 {
                     ListViewItem nuevoItem =
-                        new ListViewItem(encomienda.Numero);
+                        new ListViewItem(guia.Numero);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Localidad);
+                        guia.Localidad);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Direccion);
+                        guia.Direccion);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Dimension);
+                        guia.Dimension);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Peso);
+                        guia.Peso);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Cliente);
+                        guia.Cliente);
 
-                    nuevoItem.SubItems.Add(
-                        encomienda.CDDestino);
 
-                    nuevoItem.Tag = encomienda;
+                    nuevoItem.Tag = guia;
 
                     LvSeleccion.Items.Add(nuevoItem);
                 }
@@ -168,13 +165,6 @@ namespace tutasa.RuteoTransporte
 
             string dimension = "";
 
-            if (ComboCDDestinoBusqueda.SelectedItem != null)
-            {
-                cdDestino =
-                    ComboCDDestinoBusqueda
-                    .SelectedItem
-                    .ToString();
-            }
 
             if (ComboLocalidad.SelectedItem != null)
             {
@@ -207,10 +197,9 @@ namespace tutasa.RuteoTransporte
                 return;
             }
 
-            List<FormRuteoTransporteModelo.Encomienda>
-                encomiendasEncontradas =
-                    modelo.BuscarEncomiendas(
-                        cdDestino,
+            List<FormRuteoTransporteModelo.Guia>
+                guiasEncontradas =
+                    modelo.BuscarGuias(
                         cuit,
                         localidad,
                         dimension
@@ -223,37 +212,36 @@ namespace tutasa.RuteoTransporte
             // Mostrar resultados
 
             foreach (
-                FormRuteoTransporteModelo.Encomienda
-                encomienda
-                in encomiendasEncontradas)
+                FormRuteoTransporteModelo.Guia
+                guia
+                in guiasEncontradas)
             {
                 ListViewItem item =
-                    new ListViewItem(encomienda.Numero);
+                    new ListViewItem(guia.Numero);
 
                 item.SubItems.Add(
-                    encomienda.Localidad);
+                    guia.Localidad);
 
                 item.SubItems.Add(
-                    encomienda.Direccion);
+                    guia.Direccion);
 
                 item.SubItems.Add(
-                    encomienda.Dimension);
+                    guia.Dimension);
 
                 item.SubItems.Add(
-                    encomienda.Peso);
+                    guia.Peso);
 
                 item.SubItems.Add(
-                    encomienda.Cliente);
+                    guia.Cliente);
 
-                item.SubItems.Add(
-                    encomienda.CDDestino);
 
-                item.Tag = encomienda;
+
+                item.Tag = guia;
 
                 LvGuiasDisponibles.Items.Add(item);
             }
 
-            if (encomiendasEncontradas.Count == 0)
+            if (guiasEncontradas.Count == 0)
             {
                 MessageBox.Show(
                     "No se encontraron encomiendas.",
@@ -292,9 +280,9 @@ namespace tutasa.RuteoTransporte
             foreach (ListViewItem itemSeleccionado
                 in LvGuiasDisponibles.SelectedItems)
             {
-                FormRuteoTransporteModelo.Encomienda
-                    encomienda =
-                    (FormRuteoTransporteModelo.Encomienda)
+                FormRuteoTransporteModelo.Guia
+                    guia =
+                    (FormRuteoTransporteModelo.Guia)
                     itemSeleccionado.Tag;
 
                 // Validar duplicados
@@ -304,13 +292,13 @@ namespace tutasa.RuteoTransporte
                 foreach (ListViewItem itemExistente
                     in LvSeleccion.Items)
                 {
-                    FormRuteoTransporteModelo.Encomienda
-                        encomiendaExistente =
-                        (FormRuteoTransporteModelo.Encomienda)
+                    FormRuteoTransporteModelo.Guia
+                        guiaExistente =
+                        (FormRuteoTransporteModelo.Guia)
                         itemExistente.Tag;
 
-                    if (encomiendaExistente.Numero
-                        == encomienda.Numero)
+                    if (guiaExistente.Numero
+                        == guia.Numero)
                     {
                         existe = true;
                         break;
@@ -322,27 +310,26 @@ namespace tutasa.RuteoTransporte
                 if (!existe)
                 {
                     ListViewItem nuevoItem =
-                        new ListViewItem(encomienda.Numero);
+                        new ListViewItem(guia.Numero);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Localidad);
+                        guia.Localidad);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Direccion);
+                        guia.Direccion);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Dimension);
+                        guia.Dimension);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Peso);
+                        guia.Peso);
 
                     nuevoItem.SubItems.Add(
-                        encomienda.Cliente);
+                        guia.Cliente);
 
-                    nuevoItem.SubItems.Add(
-                        encomienda.CDDestino);
 
-                    nuevoItem.Tag = encomienda;
+
+                    nuevoItem.Tag = guia;
 
                     LvSeleccion.Items.Add(nuevoItem);
                 }
@@ -498,21 +485,21 @@ namespace tutasa.RuteoTransporte
 
             // Lista de encomiendas de la hoja de ruta
 
-            List<FormRuteoTransporteModelo.Encomienda>
-                encomiendasHojaRuta =
-                    new List<FormRuteoTransporteModelo.Encomienda>();
+            List<FormRuteoTransporteModelo.Guia>
+                guiasHojaRuta =
+                    new List<FormRuteoTransporteModelo.Guia>();
 
             // Recuperar encomiendas desde el ListView
 
             foreach (ListViewItem item
                 in LvSeleccion.Items)
             {
-                FormRuteoTransporteModelo.Encomienda
-                    encomienda =
-                    (FormRuteoTransporteModelo.Encomienda)
+                FormRuteoTransporteModelo.Guia
+                    guia =
+                    (FormRuteoTransporteModelo.Guia)
                     item.Tag;
 
-                encomiendasHojaRuta.Add(encomienda);
+                guiasHojaRuta.Add(guia);
             }
 
             // Crear hoja de ruta final
@@ -530,8 +517,8 @@ namespace tutasa.RuteoTransporte
 
                     CDDestino = cdDestino,
 
-                    Encomiendas =
-                        encomiendasHojaRuta
+                    Guias =
+                        guiasHojaRuta
                 };
 
             // Guardar hoja de ruta
@@ -554,7 +541,7 @@ namespace tutasa.RuteoTransporte
 
             TxtCuit.Clear();
 
-            ComboCDDestinoBusqueda.SelectedIndex = -1;
+
 
             ComboLocalidad.SelectedIndex = -1;
 

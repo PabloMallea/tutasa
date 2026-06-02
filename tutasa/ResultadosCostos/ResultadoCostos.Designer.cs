@@ -209,8 +209,10 @@ namespace tutasa.ResultadosCostos
             txtVentasMes.Font = new Font("Segoe UI", 9F);
             txtVentasMes.Location = new Point(110, 30);
             txtVentasMes.Name = "txtVentasMes";
-            txtVentasMes.Size = new Size(0, 15);
+            txtVentasMes.Size = new Size(25, 20);
             txtVentasMes.TabIndex = 20;
+            txtVentasMes.Text = "$0";
+            txtVentasMes.Click += txtVentasMes_Click;
             // 
             // label13
             // 
@@ -228,8 +230,9 @@ namespace tutasa.ResultadosCostos
             txtResultado.Font = new Font("Segoe UI", 9F);
             txtResultado.Location = new Point(110, 120);
             txtResultado.Name = "txtResultado";
-            txtResultado.Size = new Size(0, 15);
+            txtResultado.Size = new Size(25, 20);
             txtResultado.TabIndex = 18;
+            txtResultado.Text = "$0";
             // 
             // label10
             // 
@@ -249,6 +252,7 @@ namespace tutasa.ResultadosCostos
             txtMargen.Name = "txtMargen";
             txtMargen.Size = new Size(0, 15);
             txtMargen.TabIndex = 16;
+            txtMargen.Text = "%00,00";
             // 
             // label6
             // 
@@ -275,8 +279,9 @@ namespace tutasa.ResultadosCostos
             txtCostoMensual.Font = new Font("Segoe UI", 9F);
             txtCostoMensual.Location = new Point(110, 60);
             txtCostoMensual.Name = "txtCostoMensual";
-            txtCostoMensual.Size = new Size(0, 15);
+            txtCostoMensual.Size = new Size(25, 20);
             txtCostoMensual.TabIndex = 13;
+            txtCostoMensual.Text = "$0";
             // 
             // label4
             // 
