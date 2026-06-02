@@ -84,7 +84,7 @@ namespace tutasa.EntregaEncomienda
             // Recuperar la guía desde el Tag del item
             Guia guia = (Guia)lvDetalle.Items[0].Tag;
 
-            // Actualizar estado de la guía a "Entregada en agencia"
+            // Actualizar estado de la guía a "Entregada"
             modelo.ActualizarEstado(guia.NroGuia);
 
             MessageBox.Show(
