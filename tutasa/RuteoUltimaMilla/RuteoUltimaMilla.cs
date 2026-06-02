@@ -363,8 +363,8 @@ namespace tutasa.RuteoUltimaMilla
         }
 
         private void BtnConfirmar_Click(
-            object sender,
-            EventArgs e)
+    object sender,
+    EventArgs e)
         {
             // Validar fletero seleccionado
             if (ComboAsignarFletero.SelectedIndex == -1)
@@ -392,7 +392,7 @@ namespace tutasa.RuteoUltimaMilla
                 return;
             }
 
-            // Determinar tipo de ruteo según radio button
+            // Determinar tipo de ruteo
             string tipoRuteo = "";
 
             if (RBEntrega.Checked)
@@ -404,57 +404,120 @@ namespace tutasa.RuteoUltimaMilla
                 tipoRuteo = "Retiro";
             }
 
-            // Obtener fletero seleccionado
-            string fletero = ComboAsignarFletero.SelectedItem.ToString();
+            // Obtener fletero
+            string fletero =
+                ComboAsignarFletero
+                .SelectedItem
+                .ToString();
 
-            // Lista donde se guardarán las Guias de la hoja de ruta
+            // Recuperar todas las guías seleccionadas
+
             List<RuteoUltimaMillaModelo.Guia>
-                GuiasHojaRuta =
+                guiasSeleccionadas =
                     new List<RuteoUltimaMillaModelo.Guia>();
 
-            // Recorrer Guias seleccionadas
-            foreach (ListViewItem item in LvSeleccion.Items)
+            foreach (ListViewItem item
+                in LvSeleccion.Items)
             {
-                // Recuperar Guia desde el Tag
-                RuteoUltimaMillaModelo.Guia Guia = (RuteoUltimaMillaModelo.Guia)item.Tag;
+                RuteoUltimaMillaModelo.Guia guia =
+                    (RuteoUltimaMillaModelo.Guia)
+                    item.Tag;
 
-                // Agregar Guia a la hoja de ruta
-                GuiasHojaRuta.Add(Guia);
+                guiasSeleccionadas.Add(guia);
             }
 
-            // Crear hoja de ruta final
-            RuteoUltimaMillaModelo.HojaRuta hojaRuta =
-                new RuteoUltimaMillaModelo.HojaRuta
-                {
-                    // Generación simple de número de hoja de ruta
-                    Numero =
-                        DateTime.Now
-                        .ToString("yyyyMMddHHmmss"),
+            // Agrupar según tipo de ruteo
 
-                    Fletero = fletero,
+            IEnumerable<
+                IGrouping<
+                    string,
+                    RuteoUltimaMillaModelo.Guia>>
+                grupos;
 
-                    TipoRuteo = tipoRuteo,
+            if (tipoRuteo == "Entrega")
+            {
+                grupos =
+                    guiasSeleccionadas
+                    .GroupBy(
+                        g => g.Direccion);
+            }
+            else
+            {
+                grupos =
+                    guiasSeleccionadas
+                    .GroupBy(
+                        g => g.DireccionOrigen);
+            }
 
-                    Guias =
-                        GuiasHojaRuta
-                };
+            string mensaje = "";
 
-            // Guardar hoja de ruta generada
-            modelo.GuardarHojaRuta(hojaRuta);
+            int proximoNumero =
+                modelo.ObtenerProximoNumeroHojaRuta();
+
+            foreach (var grupo in grupos)
+            {
+                string direccion =
+                    grupo.Key;
+
+                RuteoUltimaMillaModelo.HojaRuta
+                    hojaRuta =
+                    new RuteoUltimaMillaModelo.HojaRuta
+                    {
+                        Numero =
+                            proximoNumero.ToString(),
+
+                        Fletero = fletero,
+
+                        TipoRuteo = tipoRuteo,
+
+                        Direccion = direccion,
+
+                        Guias =
+                            grupo.ToList()
+                    };
+
+                modelo.GuardarHojaRuta(
+                    hojaRuta);
+
+                mensaje +=
+                    "Hoja Ruta "
+                    + hojaRuta.Numero
+                    + "\n";
+
+                mensaje +=
+                    "Dirección: "
+                    + hojaRuta.Direccion
+                    + "\n";
+
+                mensaje +=
+                    "Guías: "
+                    + string.Join(
+                        ", ",
+                        hojaRuta.Guias
+                            .Select(
+                                g => g.Numero))
+                    + "\n\n";
+
+                proximoNumero++;
+            }
 
             MessageBox.Show(
-                "Hoja de ruta generada correctamente.\n" +
-                "Número: " + hojaRuta.Numero,
-                "Confirmación",
+                mensaje,
+                "Hojas de ruta generadas",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );
 
             // Limpiar formulario
+
             LvSeleccion.Items.Clear();
+
             txtBoxCuit.Clear();
+
             CmbLocalidad.SelectedIndex = -1;
+
             LvGuiasDisponibles.Items.Clear();
+
             ComboAsignarFletero.SelectedIndex = -1;
         }
     }

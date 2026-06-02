@@ -38,7 +38,7 @@ namespace tutasa.RuteoUltimaMilla
             public string Cuit { get; set; }
 
             public string Localidad { get; set; }
-
+            public string DireccionOrigen { get; set; }
             public string Direccion { get; set; }
 
             public string Dimension { get; set; }
@@ -54,6 +54,8 @@ namespace tutasa.RuteoUltimaMilla
 
             public string TipoRuteo { get; set; }
 
+            public string Direccion { get; set; }
+
             public List<Guia> Guias { get; set; }
         }
 
@@ -65,6 +67,7 @@ namespace tutasa.RuteoUltimaMilla
                 Cliente = "ACME",
                 Cuit = "20333444556",
                 Localidad = "Córdoba",
+                DireccionOrigen = "Av Rivadavia 1500",
                 Direccion = "Av. Siempre Viva 123",
                 Dimension = "S"
             },
@@ -75,6 +78,7 @@ namespace tutasa.RuteoUltimaMilla
                 Cliente = "Tech SA",
                 Cuit = "30777888999",
                 Localidad = "Rosario",
+                DireccionOrigen = "Av Rivadavia 1500",
                 Direccion = "San Martín 456",
                 Dimension = "M"
             },
@@ -85,6 +89,17 @@ namespace tutasa.RuteoUltimaMilla
                 Cliente = "ACME",
                 Cuit = "20333444556",
                 Localidad = "Córdoba",
+                DireccionOrigen = "Av Rivadavia 182",
+                Direccion = "Belgrano 789",
+                Dimension = "XL"
+            },
+            new Guia
+            {
+                Numero = "0004",
+                Cliente = "ACME",
+                Cuit = "20333444556",
+                Localidad = "Córdoba",
+                DireccionOrigen = "Av Juan b Justo 1000",
                 Direccion = "Belgrano 789",
                 Dimension = "XL"
             }
@@ -130,6 +145,10 @@ namespace tutasa.RuteoUltimaMilla
         public void GuardarHojaRuta(HojaRuta hojaRuta)
         {
             hojasRuta.Add(hojaRuta);
+        }
+        public int ObtenerProximoNumeroHojaRuta()
+        {
+            return hojasRuta.Count + 1;
         }
     }
 }
