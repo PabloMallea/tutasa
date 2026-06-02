@@ -7,15 +7,49 @@ namespace tutasa.RuteoUltimaMilla
 {
     internal class RuteoUltimaMillaModelo
     {
-        public List<string> ObtenerFleteros()
+        public class Fletero
         {
-            return new List<string>
-            {
-                "Juan Pérez",
-                "Carlos Gómez",
-                "María López"
-            };
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
         }
+
+        private List<Fletero> fleteros = new List<Fletero>
+{
+    new Fletero
+    {
+        Id = 1,
+        Nombre = "Juan Pérez"
+    },
+
+    new Fletero
+    {
+        Id = 2,
+        Nombre = "Carlos Gómez"
+    },
+
+    new Fletero
+    {
+        Id = 3,
+        Nombre = "María López"
+    }
+};
+
+
+        public List<Fletero> ObtenerFleteros()
+        {
+            return fleteros;
+        }
+
+
+
+        public class CentroDistribucion
+        {
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
+        }
+
 
         public List<string> ObtenerLocalidades()
         {
@@ -27,9 +61,9 @@ namespace tutasa.RuteoUltimaMilla
             };
         }
 
-        // Renombrado de Guia a Encomienda
+        // Renombrado de Guia a Guia
 
-        public class Encomienda
+        public class Guia
         {
             public string Numero { get; set; }
 
@@ -38,7 +72,7 @@ namespace tutasa.RuteoUltimaMilla
             public string Cuit { get; set; }
 
             public string Localidad { get; set; }
-
+            public string DireccionOrigen { get; set; }
             public string Direccion { get; set; }
 
             public string Dimension { get; set; }
@@ -54,37 +88,52 @@ namespace tutasa.RuteoUltimaMilla
 
             public string TipoRuteo { get; set; }
 
-            public List<Encomienda> Encomiendas { get; set; }
+            public string Direccion { get; set; }
+
+            public List<Guia> Guias { get; set; }
         }
 
-        private List<Encomienda> encomiendas = new List<Encomienda>
+        private List<Guia> Guias = new List<Guia>
         {
-            new Encomienda
+            new Guia
             {
                 Numero = "0001",
                 Cliente = "ACME",
                 Cuit = "20333444556",
                 Localidad = "Córdoba",
+                DireccionOrigen = "Av Rivadavia 1500",
                 Direccion = "Av. Siempre Viva 123",
                 Dimension = "S"
             },
 
-            new Encomienda
+            new Guia
             {
                 Numero = "0002",
                 Cliente = "Tech SA",
                 Cuit = "30777888999",
                 Localidad = "Rosario",
+                DireccionOrigen = "Av Rivadavia 1500",
                 Direccion = "San Martín 456",
                 Dimension = "M"
             },
 
-            new Encomienda
+            new Guia
             {
                 Numero = "0003",
                 Cliente = "ACME",
                 Cuit = "20333444556",
                 Localidad = "Córdoba",
+                DireccionOrigen = "Av Rivadavia 182",
+                Direccion = "Belgrano 789",
+                Dimension = "XL"
+            },
+            new Guia
+            {
+                Numero = "0004",
+                Cliente = "ACME",
+                Cuit = "20333444556",
+                Localidad = "Córdoba",
+                DireccionOrigen = "Av Juan b Justo 1000",
                 Direccion = "Belgrano 789",
                 Dimension = "XL"
             }
@@ -95,19 +144,19 @@ namespace tutasa.RuteoUltimaMilla
         private List<HojaRuta> hojasRuta =
             new List<HojaRuta>();
 
-        public List<Encomienda> BuscarEncomiendas(
+        public List<Guia> BuscarGuias(
             string localidad,
             string cuit)
         {
-            // Comenzamos tomando todas las encomiendas disponibles y creamos una variable para ir filtrando
-            List<Encomienda> encomiendasFiltradas =
-                encomiendas;
+            // Comenzamos tomando todas las Guias disponibles y creamos una variable para ir filtrando
+            List<Guia> GuiasFiltradas =
+                Guias;
 
             // Filtrar por localidad si el usuario seleccionó una. El ToList convierte el resultado de la consulta en una nueva lista.
             if (!string.IsNullOrEmpty(localidad))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                GuiasFiltradas =
+                    GuiasFiltradas
                     .Where(e => e.Localidad == localidad)
                     .ToList();
             }
@@ -115,14 +164,14 @@ namespace tutasa.RuteoUltimaMilla
             // Filtrar por CUIT si el usuario ingresó uno
             if (!string.IsNullOrEmpty(cuit))
             {
-                encomiendasFiltradas =
-                    encomiendasFiltradas
+                GuiasFiltradas =
+                    GuiasFiltradas
                     .Where(e => e.Cuit == cuit)
                     .ToList();
             }
 
             // Retornar coincidencias encontradas
-            return encomiendasFiltradas;
+            return GuiasFiltradas;
         }
 
         // Método para guardar hoja de ruta generada
@@ -130,6 +179,10 @@ namespace tutasa.RuteoUltimaMilla
         public void GuardarHojaRuta(HojaRuta hojaRuta)
         {
             hojasRuta.Add(hojaRuta);
+        }
+        public int ObtenerProximoNumeroHojaRuta()
+        {
+            return hojasRuta.Count + 1;
         }
     }
 }
