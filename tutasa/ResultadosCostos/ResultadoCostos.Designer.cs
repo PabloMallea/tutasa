@@ -70,11 +70,9 @@ namespace tutasa.ResultadosCostos
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label1);
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(17, 53);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Location = new Point(15, 40);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(496, 208);
+            groupBox1.Size = new Size(434, 156);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Criterios de Búsqueda";
@@ -82,10 +80,9 @@ namespace tutasa.ResultadosCostos
             // btnBuscar
             // 
             btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnBuscar.Location = new Point(397, 159);
-            btnBuscar.Margin = new Padding(3, 4, 3, 4);
+            btnBuscar.Location = new Point(347, 119);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(86, 33);
+            btnBuscar.Size = new Size(75, 25);
             btnBuscar.TabIndex = 29;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -95,39 +92,36 @@ namespace tutasa.ResultadosCostos
             // 
             cmbAnio.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAnio.FormattingEnabled = true;
-            cmbAnio.Location = new Point(161, 116);
-            cmbAnio.Margin = new Padding(3, 4, 3, 4);
+            cmbAnio.Location = new Point(141, 87);
             cmbAnio.Name = "cmbAnio";
-            cmbAnio.Size = new Size(319, 28);
+            cmbAnio.Size = new Size(280, 23);
             cmbAnio.TabIndex = 14;
             // 
             // cmbMes
             // 
             cmbMes.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbMes.FormattingEnabled = true;
-            cmbMes.Location = new Point(161, 76);
-            cmbMes.Margin = new Padding(3, 4, 3, 4);
+            cmbMes.Location = new Point(141, 57);
             cmbMes.Name = "cmbMes";
-            cmbMes.Size = new Size(319, 28);
+            cmbMes.Size = new Size(280, 23);
             cmbMes.TabIndex = 14;
             // 
             // cmbEmpresa
             // 
             cmbEmpresa.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEmpresa.FormattingEnabled = true;
-            cmbEmpresa.Location = new Point(161, 36);
-            cmbEmpresa.Margin = new Padding(3, 4, 3, 4);
+            cmbEmpresa.Location = new Point(141, 27);
             cmbEmpresa.Name = "cmbEmpresa";
-            cmbEmpresa.Size = new Size(319, 28);
+            cmbEmpresa.Size = new Size(280, 23);
             cmbEmpresa.TabIndex = 14;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F);
-            label11.Location = new Point(10, 120);
+            label11.Location = new Point(9, 90);
             label11.Name = "label11";
-            label11.Size = new Size(116, 20);
+            label11.Size = new Size(92, 15);
             label11.TabIndex = 12;
             label11.Text = "Seleccionar Año";
             // 
@@ -135,9 +129,9 @@ namespace tutasa.ResultadosCostos
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F);
-            label7.Location = new Point(10, 80);
+            label7.Location = new Point(9, 60);
             label7.Name = "label7";
-            label7.Size = new Size(120, 20);
+            label7.Size = new Size(95, 15);
             label7.TabIndex = 6;
             label7.Text = "Seleccionar Mes ";
             // 
@@ -145,9 +139,9 @@ namespace tutasa.ResultadosCostos
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F);
-            label1.Location = new Point(10, 40);
+            label1.Location = new Point(9, 30);
             label1.Name = "label1";
-            label1.Size = new Size(161, 20);
+            label1.Size = new Size(126, 15);
             label1.TabIndex = 0;
             label1.Text = "Empresa de Transporte";
             // 
@@ -155,11 +149,9 @@ namespace tutasa.ResultadosCostos
             // 
             groupBox2.Controls.Add(dgvGuias);
             groupBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(17, 269);
-            groupBox2.Margin = new Padding(3, 4, 3, 4);
+            groupBox2.Location = new Point(15, 202);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(495, 225);
+            groupBox2.Size = new Size(433, 169);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Detalle de Envíos y Guías";
@@ -168,9 +160,10 @@ namespace tutasa.ResultadosCostos
             // 
             dgvGuias.Columns.AddRange(new ColumnHeader[] { ColumnaNGuia, ColumnaTamaño, ColumnaImporte });
             dgvGuias.Font = new Font("Segoe UI", 9F);
-            dgvGuias.Location = new Point(10, 28);
+            dgvGuias.Location = new Point(9, 21);
+            dgvGuias.Margin = new Padding(3, 2, 3, 2);
             dgvGuias.Name = "dgvGuias";
-            dgvGuias.Size = new Size(471, 177);
+            dgvGuias.Size = new Size(413, 134);
             dgvGuias.TabIndex = 0;
             dgvGuias.UseCompatibleStateImageBehavior = false;
             dgvGuias.View = View.Details;
@@ -203,11 +196,9 @@ namespace tutasa.ResultadosCostos
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(label3);
             groupBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox3.Location = new Point(17, 503);
-            groupBox3.Margin = new Padding(3, 4, 3, 4);
+            groupBox3.Location = new Point(15, 377);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(3, 4, 3, 4);
-            groupBox3.Size = new Size(496, 195);
+            groupBox3.Size = new Size(434, 146);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "Resumen de Resultados Mensuales";
@@ -216,7 +207,7 @@ namespace tutasa.ResultadosCostos
             // 
             txtVentasMes.AutoSize = true;
             txtVentasMes.Font = new Font("Segoe UI", 9F);
-            txtVentasMes.Location = new Point(126, 40);
+            txtVentasMes.Location = new Point(110, 30);
             txtVentasMes.Name = "txtVentasMes";
             txtVentasMes.Size = new Size(25, 20);
             txtVentasMes.TabIndex = 20;
@@ -227,9 +218,9 @@ namespace tutasa.ResultadosCostos
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9F);
-            label13.Location = new Point(10, 40);
+            label13.Location = new Point(9, 30);
             label13.Name = "label13";
-            label13.Size = new Size(108, 20);
+            label13.Size = new Size(85, 15);
             label13.TabIndex = 19;
             label13.Text = "Ventas del Mes";
             // 
@@ -237,7 +228,7 @@ namespace tutasa.ResultadosCostos
             // 
             txtResultado.AutoSize = true;
             txtResultado.Font = new Font("Segoe UI", 9F);
-            txtResultado.Location = new Point(126, 160);
+            txtResultado.Location = new Point(110, 120);
             txtResultado.Name = "txtResultado";
             txtResultado.Size = new Size(25, 20);
             txtResultado.TabIndex = 18;
@@ -247,9 +238,9 @@ namespace tutasa.ResultadosCostos
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F);
-            label10.Location = new Point(10, 160);
+            label10.Location = new Point(9, 120);
             label10.Name = "label10";
-            label10.Size = new Size(75, 20);
+            label10.Size = new Size(59, 15);
             label10.TabIndex = 17;
             label10.Text = "Resultado";
             // 
@@ -257,9 +248,9 @@ namespace tutasa.ResultadosCostos
             // 
             txtMargen.AutoSize = true;
             txtMargen.Font = new Font("Segoe UI", 9F);
-            txtMargen.Location = new Point(126, 120);
+            txtMargen.Location = new Point(110, 90);
             txtMargen.Name = "txtMargen";
-            txtMargen.Size = new Size(56, 20);
+            txtMargen.Size = new Size(0, 15);
             txtMargen.TabIndex = 16;
             txtMargen.Text = "%00,00";
             // 
@@ -267,9 +258,9 @@ namespace tutasa.ResultadosCostos
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F);
-            label6.Location = new Point(10, 120);
+            label6.Location = new Point(9, 90);
             label6.Name = "label6";
-            label6.Size = new Size(76, 20);
+            label6.Size = new Size(61, 15);
             label6.TabIndex = 15;
             label6.Text = "Margen %";
             // 
@@ -277,16 +268,16 @@ namespace tutasa.ResultadosCostos
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(18, 109);
+            label8.Location = new Point(16, 82);
             label8.Name = "label8";
-            label8.Size = new Size(0, 18);
+            label8.Size = new Size(0, 15);
             label8.TabIndex = 14;
             // 
             // txtCostoMensual
             // 
             txtCostoMensual.AutoSize = true;
             txtCostoMensual.Font = new Font("Segoe UI", 9F);
-            txtCostoMensual.Location = new Point(126, 80);
+            txtCostoMensual.Location = new Point(110, 60);
             txtCostoMensual.Name = "txtCostoMensual";
             txtCostoMensual.Size = new Size(25, 20);
             txtCostoMensual.TabIndex = 13;
@@ -296,9 +287,9 @@ namespace tutasa.ResultadosCostos
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F);
-            label4.Location = new Point(10, 80);
+            label4.Location = new Point(9, 60);
             label4.Name = "label4";
-            label4.Size = new Size(106, 20);
+            label4.Size = new Size(86, 15);
             label4.TabIndex = 12;
             label4.Text = "Costo Mensual";
             // 
@@ -306,18 +297,17 @@ namespace tutasa.ResultadosCostos
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(18, 59);
+            label3.Location = new Point(16, 44);
             label3.Name = "label3";
-            label3.Size = new Size(0, 18);
+            label3.Size = new Size(0, 15);
             label3.TabIndex = 0;
             // 
             // btnConfirmar
             // 
             btnConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnConfirmar.Location = new Point(426, 705);
-            btnConfirmar.Margin = new Padding(3, 4, 3, 4);
+            btnConfirmar.Location = new Point(373, 529);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(86, 33);
+            btnConfirmar.Size = new Size(75, 25);
             btnConfirmar.TabIndex = 31;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = true;
@@ -327,20 +317,19 @@ namespace tutasa.ResultadosCostos
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(17, 13);
+            label14.Location = new Point(15, 10);
             label14.Name = "label14";
             label14.RightToLeft = RightToLeft.No;
-            label14.Size = new Size(274, 28);
+            label14.Size = new Size(219, 21);
             label14.TabIndex = 32;
             label14.Text = "Resultado Costos vs. Ventas";
             // 
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelar.Location = new Point(334, 705);
-            btnCancelar.Margin = new Padding(3, 4, 3, 4);
+            btnCancelar.Location = new Point(292, 529);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(86, 33);
+            btnCancelar.Size = new Size(75, 25);
             btnCancelar.TabIndex = 33;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -348,15 +337,16 @@ namespace tutasa.ResultadosCostos
             // 
             // ResultadoCostos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(527, 755);
+            ClientSize = new Size(461, 566);
             Controls.Add(btnCancelar);
             Controls.Add(label14);
             Controls.Add(btnConfirmar);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ResultadoCostos";
             Text = "Resultado Costos vs Ventas";
             groupBox1.ResumeLayout(false);

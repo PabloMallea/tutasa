@@ -12,7 +12,7 @@ namespace tutasa.RendicionHDRultimaMilla
 
         public List<string> fleteros = new List<string> { "Fletero A", "Fletero B", "Fletero C" };
 
-        public List<HDRultimaMilla> HDRultimaMillaList { get; private set; }
+        public List<HDRultimaMilla>? HDRultimaMillaList { get; private set; }
 
         public static RendicionHDRultimaMillaModelo ObtenerMockHDRAsignadas()
         {
