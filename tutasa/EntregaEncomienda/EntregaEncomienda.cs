@@ -9,7 +9,7 @@ namespace tutasa.EntregaEncomienda
         private EntregaEncomiendaModelo modelo =
             new EntregaEncomiendaModelo();
 
-        // NO se toca!!
+        // NO se toca!! Clara 
         public EntregaEncomienda()
         {
             InitializeComponent();
