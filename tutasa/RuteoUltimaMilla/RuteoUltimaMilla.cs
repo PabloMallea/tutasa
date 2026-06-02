@@ -10,8 +10,7 @@ namespace tutasa.RuteoUltimaMilla
 {
     public partial class RuteoUltimaMilla : Form
     {
-        private RuteoUltimaMillaModelo modelo =
-            new RuteoUltimaMillaModelo();
+        private RuteoUltimaMillaModelo modelo = new RuteoUltimaMillaModelo();
 
         public RuteoUltimaMilla()
         {
