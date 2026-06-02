@@ -16,7 +16,7 @@ namespace tutasa.RendicionHDRtransporte
             new Servicio { empresa = "Via Bariloche", cd_destino = "Buenos Aires", horario_llegada = "18:45" },
             new Servicio { empresa = "Condor Estrella", cd_destino = "Buenos Aires", horario_llegada = "22:30" }
         };
-        public List<HDRtransporte> HDRtransporteList { get; private set; }
+        public List<HDRtransporte>? HDRtransporteList { get; private set; }
 
         public static RendicionHDRtransporteModelo ObtenerMockHDRAsignadas()
         {
