@@ -83,9 +83,9 @@ namespace tutasa.ImposicionCallCenter
             };
         }
 
-        // Lista donde se almacenan las encomiendas generadas
+        // Lista donde se almacenan las Guias generadas
 
-        private List<Encomienda> encomiendas = new List<Encomienda>();
+        private List<Guia> Guias = new List<Guia>();
 
         public Cliente BuscarCliente(string cuit)
         {
@@ -147,20 +147,20 @@ namespace tutasa.ImposicionCallCenter
             return resultado;
         }
 
-        // Guardar encomienda generada
-        public void GuardarEncomienda(Encomienda encomienda)
+        // Guardar Guia generada
+        public void GuardarGuia(Guia Guia)
         {
             //Por el momento no me preocupo de esto
 
             // 1. Asignamos el estado inicial que pide el caso de uso
-            // encomienda.Estado = "Impuesta";
+            // Guia.Estado = "Impuesta";
             // 2. Generamos el tracking correlativo. Contamos cuántas hay en la lista y le sumamos 1.
-            // int numeroCorrelativo = encomiendas.Count + 1;
+            // int numeroCorrelativo = Guias.Count + 1;
             // Decimos que va a ser impuesta en CD porque el fletero lo lleva a alguno -> ¿¿¿¿¿¿¿¿¿¿¿No va así!!!!!!¿?
-            // encomienda.Tracking = "CD - " + numeroCorrelativo.ToString();
+            // Guia.Tracking = "CD - " + numeroCorrelativo.ToString();
             
             // 3. Finalmente, la guardamos en la lista
-            encomiendas.Add(encomienda);
+            Guias.Add(Guia);
         }
     }
 }

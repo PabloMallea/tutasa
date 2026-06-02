@@ -2,7 +2,7 @@
 {
     internal partial class ImposicionCallCenterModelo
     {
-        public class Encomienda
+        public class Guia
         {
             public Cliente Cliente { get; set; }
 

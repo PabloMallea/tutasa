@@ -97,7 +97,7 @@ namespace tutasa.Imposicion_Agencia
             string cuit = TxtCuit.Text.Trim();
 
             // 1. Validar que se haya ingresado CUIT
-            if (string.IsNullOrEmpty(cuit))
+            if (string.IsNullOrWhiteSpace(cuit))
             {
                 MessageBox.Show(
                     "Debe ingresar un CUIT.",
@@ -126,14 +126,13 @@ namespace tutasa.Imposicion_Agencia
             // Validar existencia de cliente
             if (cliente == null)
             {
-                MessageBox.Show(
-                    "El CUIT ingresado no corresponde a un cliente registrado.",
-                    "Búsqueda",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
+                MessageBox.Show("El CUIT ingresado no corresponde a un cliente registrado.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TxtCuit.Clear();
+
+                // SOLUCIÓN: Limpiar los datos del cliente anterior si la búsqueda falla
+                LabelNombre.Text = "";
+                LabelApellido.Text = "";
+                LabelTEL.Text = "";
                 return;
             }
 
@@ -149,10 +148,16 @@ namespace tutasa.Imposicion_Agencia
         // Este es el botón "Buscar Localidad" mapeado al nombre de tu formulario de Agencia
         private void BotonBuscarD_Click(object sender, EventArgs e)
         {
+            // PARCHE VISUAL: Reiniciar siempre la dirección cuando se hace una nueva búsqueda
+            TextCalle.Clear();
+            TextAltura.Clear();
+            TextCalle.Enabled = true;
+            TextAltura.Enabled = true;
+
             string localidadIngresada = TextLocalidad.Text.Trim();
 
             // 1. Validar que no esté vacío
-            if (string.IsNullOrEmpty(localidadIngresada))
+            if (string.IsNullOrWhiteSpace(localidadIngresada))
             {
                 MessageBox.Show(
                     "El campo Localidad debe ser completado.",
@@ -177,6 +182,8 @@ namespace tutasa.Imposicion_Agencia
                 );
 
                 TextLocalidad.Clear();
+                //Limpiar el combo para que no queden sucursales viejas
+                ComboDestino.Items.Clear();
                 return;
             }
 
@@ -212,7 +219,7 @@ namespace tutasa.Imposicion_Agencia
         private void ButtonConfirmar_Click(object sender, EventArgs e)
         {
             // Validar cliente seleccionado
-            if (string.IsNullOrEmpty(LabelNombre.Text))
+            if (string.IsNullOrWhiteSpace(LabelNombre.Text))
             {
                 MessageBox.Show(
                     "Debe buscar y seleccionar un cliente.",
@@ -224,7 +231,7 @@ namespace tutasa.Imposicion_Agencia
             }
 
             // Validar localidad destino
-            if (string.IsNullOrEmpty(TextLocalidad.Text))
+            if (string.IsNullOrWhiteSpace(TextLocalidad.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una localidad destino.",
@@ -248,7 +255,7 @@ namespace tutasa.Imposicion_Agencia
             }
 
             // Validar calle seleccionada
-            if (string.IsNullOrEmpty(TextCalle.Text))
+            if (string.IsNullOrWhiteSpace(TextCalle.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una calle destino.",
@@ -260,7 +267,7 @@ namespace tutasa.Imposicion_Agencia
             }
 
             // Validar Altura vacía
-            if (string.IsNullOrEmpty(TextAltura.Text))
+            if (string.IsNullOrWhiteSpace(TextAltura.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una altura destino.",
@@ -272,7 +279,7 @@ namespace tutasa.Imposicion_Agencia
             }
 
             // Validar nombre destinatario
-            if (string.IsNullOrEmpty(TextNombre.Text))
+            if (string.IsNullOrWhiteSpace(TextNombre.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar un nombre.",
@@ -296,7 +303,7 @@ namespace tutasa.Imposicion_Agencia
             }
 
             // Validar apellido destinatario
-            if (string.IsNullOrEmpty(TextApellido.Text))
+            if (string.IsNullOrWhiteSpace(TextApellido.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar un apellido.",
@@ -321,7 +328,7 @@ namespace tutasa.Imposicion_Agencia
 
             // Validar DNI vacío
             string dniTexto = TextDNI.Text.Trim(); // Cambiado a TextDNI por tu UI
-            if (string.IsNullOrEmpty(dniTexto))
+            if (string.IsNullOrWhiteSpace(dniTexto))
             {
                 MessageBox.Show(
                     "Debe ingresar un DNI.",
@@ -346,7 +353,7 @@ namespace tutasa.Imposicion_Agencia
 
             // Validar Teléfono vacío
             string telefonoTexto = TextTEL.Text.Trim();
-            if (string.IsNullOrEmpty(telefonoTexto))
+            if (string.IsNullOrWhiteSpace(telefonoTexto))
             {
                 MessageBox.Show(
                    "Debe ingresar un Telefono.",
@@ -381,33 +388,58 @@ namespace tutasa.Imposicion_Agencia
                 return;
             }
 
-            // Buscar cliente seleccionado
+            // --- PARCHE DE SEGURIDAD 1: Verifica que el CUIT no haya sido alterado ---
             ImposicionAgenciaModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
-            // Crear encomienda con los datos de tu UI
-            ImposicionAgenciaModelo.Encomienda encomienda = new ImposicionAgenciaModelo.Encomienda
+            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            {
+                MessageBox.Show("El CUIT fue alterado después de la búsqueda. Por favor, vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // --- PARCHE DE SEGURIDAD 2: Verifica que la Localidad y Destino coincidan ---
+            string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
+            bool destinoValido = false;
+
+            if (destinoSeleccionado == "Domicilio Destinatario")
+            {
+                destinoValido = true;
+            }
+            else
+            {
+                // Revisa si el destino seleccionado está en la lista de la localidad actual
+                if (modelo.ObtenerAgencias(TextLocalidad.Text.Trim()).Any(a => a.Nombre == destinoSeleccionado) ||
+                    modelo.ObtenerCD(TextLocalidad.Text.Trim()).Any(c => c.Nombre == destinoSeleccionado))
+                {
+                    destinoValido = true;
+                }
+            }
+
+            if (modelo.BuscarLocalidad(TextLocalidad.Text.Trim()) == null || !destinoValido)
+            {
+                MessageBox.Show("La localidad fue alterada después de la búsqueda o el destino no corresponde. Vuelva a buscar la localidad.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // --- CREACIÓN LIMPIA: Aplicando .Trim() a todo ---
+            ImposicionAgenciaModelo.Guia Guia = new ImposicionAgenciaModelo.Guia
             {
                 Cliente = cliente,
-                LocalidadDestino = TextLocalidad.Text,
+                LocalidadDestino = TextLocalidad.Text.Trim(),
                 Destino = ComboDestino.SelectedItem.ToString(),
-                CalleDestino = TextCalle.Text,
-                AlturaDestino = TextAltura.Text,
-                NombreDestinatario = TextNombre.Text,
-                ApellidoDestinatario = TextApellido.Text,
-                DniDestinatario = TextDNI.Text, // Adecuado a tu UI
-                TelefonoDestinatario = TextTEL.Text,
+                CalleDestino = TextCalle.Text.Trim(),
+                AlturaDestino = TextAltura.Text.Trim(),
+                NombreDestinatario = TextNombre.Text.Trim(),
+                ApellidoDestinatario = TextApellido.Text.Trim(),
+                DniDestinatario = TextDNI.Text.Trim(),
+                TelefonoDestinatario = TextTEL.Text.Trim(),
                 Dimension = ComboDimension.SelectedItem.ToString()
             };
 
-            // Guardar encomienda en el modelo
-            modelo.GuardarEncomienda(encomienda);
+            // Guardar Guia en el modelo
+            modelo.GuardarGuia(Guia);
 
-            MessageBox.Show(
-                "Operación exitosa",
-                "Confirmación",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+            MessageBox.Show("Operación exitosa", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Limpiar formulario completo
             TxtCuit.Clear();
