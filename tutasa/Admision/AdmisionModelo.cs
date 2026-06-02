@@ -10,21 +10,21 @@ namespace tutasa.Admision
             // Aquí se buscaría en el almacén real (ClienteAlmacen)
             // Por ahora retorna datos mock para pruebas
 
-            if (cuit == "30-12345678-9")
+            if (cuit == "30123456789")
             {
                 return new Cliente
                 {
-                    CUIT = "30-12345678-9",
+                    CUIT = "30123456789",
                     Nombre = "Pepe",
                     Apellido = "Sanchez",
                     Direccion = "Av. Libertador 1500"
                 };
             }
-            else if (cuit == "27-98765432-1")
+            else if (cuit == "27987654321")
             {
                 return new Cliente
                 {
-                    CUIT = "27-98765432-1",
+                    CUIT = "27987654321",
                     Nombre = "Maria",
                     Apellido = "Lopez",
                     Direccion = "Calle 9 de Julio 450"
@@ -46,12 +46,12 @@ namespace tutasa.Admision
                 return new Guia
                 {
                     NumeroGuia = 10001,
-                    CuitCliente = "30-12345678-9",
+                    CuitCliente = "30123456789",
                     DireccionDestino = "Av. Siempre Viva 742",
                     NombreDestinatario = "Juan",
                     ApellidoDestinatario = "Perez",
                     DniDestinatario = "12345678",
-                    Dimension = "M",
+                    Dimension = "L",
                     Peso = 8.5m
                 };
             }
@@ -60,12 +60,12 @@ namespace tutasa.Admision
                 return new Guia
                 {
                     NumeroGuia = 10002,
-                    CuitCliente = "27-98765432-1",
+                    CuitCliente = "27987654321",
                     DireccionDestino = "Av Colon 951",
                     NombreDestinatario = "Carlos",
                     ApellidoDestinatario = "Gomez",
                     DniDestinatario = "87654321",
-                    Dimension = "L",
+                    Dimension = "XL",
                     Peso = 18.2m
                 };
             }
@@ -82,10 +82,10 @@ namespace tutasa.Admision
 
             return new List<Dimension>
             {
-                new Dimension { Tipo = "S", PesoDesde = 0, PesoHasta = 5 },
-                new Dimension { Tipo = "M", PesoDesde = 5.01m, PesoHasta = 15 },
-                new Dimension { Tipo = "L", PesoDesde = 15.01m, PesoHasta = 30 },
-                new Dimension { Tipo = "XL", PesoDesde = 30.01m, PesoHasta = 100 }
+                new Dimension { Tipo = "S", PesoDesde = 0, PesoHasta = 2.5m },
+                new Dimension { Tipo = "M", PesoDesde = 2.51m, PesoHasta = 5 },
+                new Dimension { Tipo = "L", PesoDesde = 5.01m, PesoHasta = 10 },
+                new Dimension { Tipo = "XL", PesoDesde = 10.01m, PesoHasta = 20 }
             };
         }
 

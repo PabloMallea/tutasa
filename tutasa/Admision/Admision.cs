@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace tutasa.Admision
@@ -100,16 +101,47 @@ namespace tutasa.Admision
 
         private void ActualizarDimension()
         {
-            // Solo actualizar si el peso es válido
-            if (decimal.TryParse(intPeso.Text, out decimal peso) && peso > 0)
+            // Si el campo está vacío, limpiar la dimensión
+            if (string.IsNullOrWhiteSpace(intPeso.Text))
             {
-                string dimensionCalculada = modelo.CalcularDimension(peso);
-                txtDimension.Text = dimensionCalculada;
-            }
-            else if (string.IsNullOrWhiteSpace(intPeso.Text))
-            {
-                // Si el campo está vacío, limpiar la dimensión
                 txtDimension.Text = "";
+                return;
+            }
+
+            // Normalizar el texto: reemplazar punto por coma para que funcione con la cultura argentina
+            string pesoTexto = intPeso.Text.Replace('.', ',');
+
+            // Usar la cultura actual del sistema (en Argentina usa coma como separador decimal)
+            if (decimal.TryParse(pesoTexto, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal peso))
+            {
+                // Validar que el peso sea positivo
+                if (peso > 0)
+                {
+                    string dimensionCalculada = modelo.CalcularDimension(peso);
+                    txtDimension.Text = dimensionCalculada;
+                }
+                else
+                {
+                    // Peso cero o negativo
+                    txtDimension.Text = "";
+                    MessageBox.Show(
+                        "El peso debe ser mayor a cero.",
+                        "Atención",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+            }
+            else
+            {
+                // Dato no numérico o caracteres no válidos
+                txtDimension.Text = "";
+                MessageBox.Show(
+                    "Por favor, ingrese un peso válido.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
@@ -147,9 +179,11 @@ namespace tutasa.Admision
             }
 
             // Validar que el peso sea un número válido
-            if (!decimal.TryParse(intPeso.Text, out decimal peso))
+            // Normalizar: reemplazar punto por coma para consistencia con cultura argentina
+            string pesoTexto = intPeso.Text.Replace('.', ',');
+            if (!decimal.TryParse(pesoTexto, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal peso))
             {
-                MessageBox.Show("Por favor, ingrese un peso válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese un peso válido (puede usar punto o coma para decimales, ej: 5.5 o 5,5).", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 intPeso.Focus();
                 return;
             }
