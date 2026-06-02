@@ -101,7 +101,7 @@ namespace tutasa.ImposicionCallCenter
             string cuit = TxtCuit.Text.Trim();
 
             // 1. Validar que se haya ingresado CUIT (Excepciones 2.1 y 2.2)
-            if (string.IsNullOrEmpty(cuit))
+            if (string.IsNullOrWhiteSpace(cuit))
             {
                 MessageBox.Show(
                     "Debe ingresar un CUIT.",
@@ -139,7 +139,15 @@ namespace tutasa.ImposicionCallCenter
 
                 // El CU dice en el paso 4.3 que se debe limpiar el valor del CUIT
                 TxtCuit.Clear();
-                return; //Si existe lo devuelve
+
+                // PARCHE: Limpiar los datos del cliente anterior si la búsqueda falla
+                LabelNombre.Text = "";
+                LabelApellido.Text = "";
+                LabelTelefono.Text = "";
+                LabelCalle.Text = "";
+                LabelAltura.Text = "";
+                LabelLocalidad.Text = "";
+                return; //Si no existe corta la ejecución
             }
 
             // Completar datos del cliente
@@ -153,11 +161,17 @@ namespace tutasa.ImposicionCallCenter
 
         private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
         {
+            // PARCHE VISUAL: Reiniciar siempre la dirección cuando se hace una nueva búsqueda
+            TextCalle.Clear();
+            TextAltura.Clear();
+            TextCalle.Enabled = true;
+            TextAltura.Enabled = true;
+
             // Obtener localidad ingresada
             string localidadIngresada = TextLocalidad.Text.Trim();
 
             // 1. Validar que no esté vacío (Excepciones 5.1 y 5.2)
-            if (string.IsNullOrEmpty(localidadIngresada))
+            if (string.IsNullOrWhiteSpace(localidadIngresada))
             {
                 MessageBox.Show(
                     "El campo Localidad debe ser completado.",
@@ -182,6 +196,7 @@ namespace tutasa.ImposicionCallCenter
                 );
 
                 TextLocalidad.Clear();
+                ComboDestino.Items.Clear();
                 return;
             }
 
@@ -218,7 +233,7 @@ namespace tutasa.ImposicionCallCenter
         private void ButtonConfirmar_Click(object sender, EventArgs e)
         {
             // Validar cliente seleccionado (No vacío)
-            if (string.IsNullOrEmpty(LabelNombre.Text))
+            if (string.IsNullOrWhiteSpace(LabelNombre.Text))
             {
                 MessageBox.Show(
                     "Debe buscar y seleccionar un cliente.",
@@ -230,7 +245,7 @@ namespace tutasa.ImposicionCallCenter
             }
 
             // Validar localidad destino (No vacío)
-            if (string.IsNullOrEmpty(TextLocalidad.Text))
+            if (string.IsNullOrWhiteSpace(TextLocalidad.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una localidad destino.",
@@ -254,7 +269,7 @@ namespace tutasa.ImposicionCallCenter
             }
 
             // Validar calle seleccionada (No vacío)
-            if (string.IsNullOrEmpty(TextCalle.Text))
+            if (string.IsNullOrWhiteSpace(TextCalle.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una calle destino.",
@@ -266,7 +281,7 @@ namespace tutasa.ImposicionCallCenter
             }
 
             //Validar Altura (No vacío)
-            if (string.IsNullOrEmpty(TextAltura.Text))
+            if (string.IsNullOrWhiteSpace(TextAltura.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una altura destino.",
@@ -278,7 +293,7 @@ namespace tutasa.ImposicionCallCenter
             }
 
             // Validar nombre destinatario (No vacío)
-            if (string.IsNullOrEmpty(TextNombre.Text))
+            if (string.IsNullOrWhiteSpace(TextNombre.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar un nombre.",
@@ -303,7 +318,7 @@ namespace tutasa.ImposicionCallCenter
 
 
             // Validar apellido destinatario (No vacío)
-            if (string.IsNullOrEmpty(TextApellido.Text))
+            if (string.IsNullOrWhiteSpace(TextApellido.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar un apellido.",
@@ -328,7 +343,7 @@ namespace tutasa.ImposicionCallCenter
 
             //Validar DNI (No vacío)
             string dniTexto = TextDni.Text.Trim();
-            if (string.IsNullOrEmpty(dniTexto))
+            if (string.IsNullOrWhiteSpace(dniTexto))
             {
                 MessageBox.Show(
                     "Debe ingresar un DNI.",
@@ -353,7 +368,7 @@ namespace tutasa.ImposicionCallCenter
 
             //Validar Teléfono (No vacío)
             string telefonoTexto = TextTEL.Text.Trim();
-            if (string.IsNullOrEmpty(telefonoTexto))
+            if (string.IsNullOrWhiteSpace(telefonoTexto))
             {
                 MessageBox.Show(
                    "Debe ingresar un Telefono.",
@@ -391,32 +406,54 @@ namespace tutasa.ImposicionCallCenter
             // Buscar cliente seleccionado
             ImposicionCallCenterModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
-            // Crear encomienda
-            ImposicionCallCenterModelo.Encomienda encomienda = new ImposicionCallCenterModelo.Encomienda
+            // --- PARCHE DE SEGURIDAD 1: Verifica que el CUIT no haya sido alterado ---
+            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            {
+                MessageBox.Show("El CUIT fue alterado después de la búsqueda. Por favor, vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // --- PARCHE DE SEGURIDAD 2: Verifica que la Localidad y Destino coincidan ---
+            string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
+            bool destinoValido = false;
+
+            if (destinoSeleccionado == "Domicilio Destinatario")
+            {
+                destinoValido = true;
+            }
+            else
+            {
+                // Revisa si el destino seleccionado está en la lista de la localidad actual
+                if (modelo.ObtenerAgencias(TextLocalidad.Text.Trim()).Any(a => a.Nombre == destinoSeleccionado) ||
+                    modelo.ObtenerCD(TextLocalidad.Text.Trim()).Any(c => c.Nombre == destinoSeleccionado))
+                {
+                    destinoValido = true;
+                }
+            }
+
+            if (modelo.BuscarLocalidad(TextLocalidad.Text.Trim()) == null || !destinoValido)
+            {
+                MessageBox.Show("La localidad fue alterada después de la búsqueda o el destino no corresponde. Vuelva a buscar la localidad.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Crear Guia
+            ImposicionCallCenterModelo.Guia Guia = new ImposicionCallCenterModelo.Guia
             {
                 Cliente = cliente,
-
-                LocalidadDestino = TextLocalidad.Text,
-
+                LocalidadDestino = TextLocalidad.Text.Trim(),
                 Destino = ComboDestino.SelectedItem.ToString(),
-
-                CalleDestino = TextCalle.Text,
-
-                AlturaDestino = TextAltura.Text,
-
-                NombreDestinatario = TextNombre.Text,
-
-                ApellidoDestinatario = TextApellido.Text,
-
-                DniDestinatario = TextDni.Text,
-
-                TelefonoDestinatario = TextTEL.Text,
-
+                CalleDestino = TextCalle.Text.Trim(),
+                AlturaDestino = TextAltura.Text.Trim(),
+                NombreDestinatario = TextNombre.Text.Trim(),
+                ApellidoDestinatario = TextApellido.Text.Trim(),
+                DniDestinatario = dniTexto, // Este ya tiene el Trim() arriba, así que está bien
+                TelefonoDestinatario = telefonoTexto, // Este también ya tiene el Trim() arriba
                 Dimension = ComboDimension.SelectedItem.ToString()
             };
 
-            // Guardar encomienda en el modelo (se le asigna Tracking y Estado automáticamente)
-            modelo.GuardarEncomienda(encomienda);
+            // Guardar Guia en el modelo (se le asigna Tracking y Estado automáticamente)
+            modelo.GuardarGuia(Guia);
 
             // Mostrar mensaje de confirmación con el número de Tracking (Cumpliendo el Paso 12)
             MessageBox.Show(

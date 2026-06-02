@@ -63,9 +63,10 @@
             // 
             // btn_confirmar
             // 
-            btn_confirmar.Location = new Point(586, 705);
+            btn_confirmar.Location = new Point(670, 940);
+            btn_confirmar.Margin = new Padding(3, 4, 3, 4);
             btn_confirmar.Name = "btn_confirmar";
-            btn_confirmar.Size = new Size(130, 25);
+            btn_confirmar.Size = new Size(149, 33);
             btn_confirmar.TabIndex = 20;
             btn_confirmar.Text = "Confirmar Rendición";
             btn_confirmar.UseVisualStyleBackColor = true;
@@ -74,18 +75,18 @@
             // label_cd
             // 
             label_cd.AutoSize = true;
-            label_cd.Location = new Point(150, 40);
+            label_cd.Location = new Point(171, 53);
             label_cd.Name = "label_cd";
-            label_cd.Size = new Size(94, 15);
+            label_cd.Size = new Size(118, 20);
             label_cd.TabIndex = 16;
             label_cd.Text = "CD Buenos Aires";
             // 
             // LabelCDOrigen
             // 
             LabelCDOrigen.AutoSize = true;
-            LabelCDOrigen.Location = new Point(15, 40);
+            LabelCDOrigen.Location = new Point(17, 53);
             LabelCDOrigen.Name = "LabelCDOrigen";
-            LabelCDOrigen.Size = new Size(128, 15);
+            LabelCDOrigen.Size = new Size(159, 20);
             LabelCDOrigen.TabIndex = 15;
             LabelCDOrigen.Text = "Centro de distribución:";
             // 
@@ -93,19 +94,20 @@
             // 
             LabelRendicionHDRT.AutoSize = true;
             LabelRendicionHDRT.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelRendicionHDRT.Location = new Point(15, 10);
+            LabelRendicionHDRT.Location = new Point(17, 13);
             LabelRendicionHDRT.Name = "LabelRendicionHDRT";
             LabelRendicionHDRT.RightToLeft = RightToLeft.No;
-            LabelRendicionHDRT.Size = new Size(210, 21);
+            LabelRendicionHDRT.Size = new Size(263, 28);
             LabelRendicionHDRT.TabIndex = 18;
             LabelRendicionHDRT.Text = "Rendición HDR Transporte";
             // 
             // btn_cancelar
             // 
-            btn_cancelar.Location = new Point(505, 705);
+            btn_cancelar.Location = new Point(577, 940);
+            btn_cancelar.Margin = new Padding(3, 4, 3, 4);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.RightToLeft = RightToLeft.No;
-            btn_cancelar.Size = new Size(75, 25);
+            btn_cancelar.Size = new Size(86, 33);
             btn_cancelar.TabIndex = 21;
             btn_cancelar.Text = "Cancelar";
             btn_cancelar.UseVisualStyleBackColor = true;
@@ -119,18 +121,21 @@
             GrupoBusqueda.Controls.Add(btn_buscar);
             GrupoBusqueda.Controls.Add(cbox_empresa);
             GrupoBusqueda.Controls.Add(LabelEmpresa);
-            GrupoBusqueda.Location = new Point(12, 70);
+            GrupoBusqueda.Location = new Point(14, 93);
+            GrupoBusqueda.Margin = new Padding(3, 4, 3, 4);
             GrupoBusqueda.Name = "GrupoBusqueda";
-            GrupoBusqueda.Size = new Size(710, 65);
+            GrupoBusqueda.Padding = new Padding(3, 4, 3, 4);
+            GrupoBusqueda.Size = new Size(811, 87);
             GrupoBusqueda.TabIndex = 22;
             GrupoBusqueda.TabStop = false;
             GrupoBusqueda.Text = "Criterios de Búsqueda";
             // 
             // btn_limpiar_campos
             // 
-            btn_limpiar_campos.Location = new Point(586, 28);
+            btn_limpiar_campos.Location = new Point(670, 37);
+            btn_limpiar_campos.Margin = new Padding(3, 4, 3, 4);
             btn_limpiar_campos.Name = "btn_limpiar_campos";
-            btn_limpiar_campos.Size = new Size(118, 25);
+            btn_limpiar_campos.Size = new Size(135, 33);
             btn_limpiar_campos.TabIndex = 10;
             btn_limpiar_campos.Text = "Limpiar Campos";
             btn_limpiar_campos.UseVisualStyleBackColor = true;
@@ -138,26 +143,29 @@
             // 
             // cbox_servicio
             // 
+            cbox_servicio.DropDownStyle = ComboBoxStyle.DropDownList;
             cbox_servicio.FormattingEnabled = true;
-            cbox_servicio.Location = new Point(276, 30);
+            cbox_servicio.Location = new Point(315, 40);
+            cbox_servicio.Margin = new Padding(3, 4, 3, 4);
             cbox_servicio.Name = "cbox_servicio";
-            cbox_servicio.Size = new Size(200, 23);
+            cbox_servicio.Size = new Size(228, 28);
             cbox_servicio.TabIndex = 9;
             // 
             // LabelServicio
             // 
             LabelServicio.AutoSize = true;
-            LabelServicio.Location = new Point(222, 33);
+            LabelServicio.Location = new Point(254, 44);
             LabelServicio.Name = "LabelServicio";
-            LabelServicio.Size = new Size(48, 15);
+            LabelServicio.Size = new Size(61, 20);
             LabelServicio.TabIndex = 8;
             LabelServicio.Text = "Servicio";
             // 
             // btn_buscar
             // 
-            btn_buscar.Location = new Point(505, 28);
+            btn_buscar.Location = new Point(577, 37);
+            btn_buscar.Margin = new Padding(3, 4, 3, 4);
             btn_buscar.Name = "btn_buscar";
-            btn_buscar.Size = new Size(75, 25);
+            btn_buscar.Size = new Size(86, 33);
             btn_buscar.TabIndex = 7;
             btn_buscar.Text = "Buscar";
             btn_buscar.UseVisualStyleBackColor = true;
@@ -165,28 +173,31 @@
             // 
             // cbox_empresa
             // 
+            cbox_empresa.DropDownStyle = ComboBoxStyle.DropDownList;
             cbox_empresa.FormattingEnabled = true;
-            cbox_empresa.Location = new Point(66, 30);
+            cbox_empresa.Location = new Point(75, 40);
+            cbox_empresa.Margin = new Padding(3, 4, 3, 4);
             cbox_empresa.Name = "cbox_empresa";
-            cbox_empresa.Size = new Size(150, 23);
+            cbox_empresa.Size = new Size(171, 28);
             cbox_empresa.TabIndex = 6;
             cbox_empresa.SelectedIndexChanged += cbox_empresa_SelectedIndexChanged;
             // 
             // LabelEmpresa
             // 
             LabelEmpresa.AutoSize = true;
-            LabelEmpresa.Location = new Point(9, 30);
+            LabelEmpresa.Location = new Point(10, 40);
             LabelEmpresa.Name = "LabelEmpresa";
-            LabelEmpresa.Size = new Size(48, 15);
+            LabelEmpresa.Size = new Size(61, 20);
             LabelEmpresa.TabIndex = 5;
             LabelEmpresa.Text = "Empesa";
             // 
             // listview_hdr_asignadas
             // 
             listview_hdr_asignadas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRAsignadas, ColumnaEmpresaAsignadas, ColumnaEstadoAsignadas, ColumnaServicioAsignadas });
-            listview_hdr_asignadas.Location = new Point(9, 30);
+            listview_hdr_asignadas.Location = new Point(10, 40);
+            listview_hdr_asignadas.Margin = new Padding(3, 4, 3, 4);
             listview_hdr_asignadas.Name = "listview_hdr_asignadas";
-            listview_hdr_asignadas.Size = new Size(695, 200);
+            listview_hdr_asignadas.Size = new Size(794, 265);
             listview_hdr_asignadas.TabIndex = 4;
             listview_hdr_asignadas.UseCompatibleStateImageBehavior = false;
             listview_hdr_asignadas.View = View.Details;
@@ -213,9 +224,10 @@
             // 
             // btn_agregar_seleccion
             // 
-            btn_agregar_seleccion.Location = new Point(9, 236);
+            btn_agregar_seleccion.Location = new Point(10, 315);
+            btn_agregar_seleccion.Margin = new Padding(3, 4, 3, 4);
             btn_agregar_seleccion.Name = "btn_agregar_seleccion";
-            btn_agregar_seleccion.Size = new Size(280, 25);
+            btn_agregar_seleccion.Size = new Size(320, 33);
             btn_agregar_seleccion.TabIndex = 6;
             btn_agregar_seleccion.Text = "Agregar Selección";
             btn_agregar_seleccion.UseVisualStyleBackColor = true;
@@ -223,9 +235,10 @@
             // 
             // btn_agregar_todo
             // 
-            btn_agregar_todo.Location = new Point(424, 236);
+            btn_agregar_todo.Location = new Point(485, 315);
+            btn_agregar_todo.Margin = new Padding(3, 4, 3, 4);
             btn_agregar_todo.Name = "btn_agregar_todo";
-            btn_agregar_todo.Size = new Size(280, 25);
+            btn_agregar_todo.Size = new Size(320, 33);
             btn_agregar_todo.TabIndex = 9;
             btn_agregar_todo.Text = "Agregar Todo";
             btn_agregar_todo.UseVisualStyleBackColor = true;
@@ -236,9 +249,11 @@
             GrupoHDRAsignadas.Controls.Add(btn_agregar_todo);
             GrupoHDRAsignadas.Controls.Add(btn_agregar_seleccion);
             GrupoHDRAsignadas.Controls.Add(listview_hdr_asignadas);
-            GrupoHDRAsignadas.Location = new Point(12, 141);
+            GrupoHDRAsignadas.Location = new Point(14, 188);
+            GrupoHDRAsignadas.Margin = new Padding(3, 4, 3, 4);
             GrupoHDRAsignadas.Name = "GrupoHDRAsignadas";
-            GrupoHDRAsignadas.Size = new Size(710, 275);
+            GrupoHDRAsignadas.Padding = new Padding(3, 4, 3, 4);
+            GrupoHDRAsignadas.Size = new Size(811, 367);
             GrupoHDRAsignadas.TabIndex = 17;
             GrupoHDRAsignadas.TabStop = false;
             GrupoHDRAsignadas.Text = "HDR Asignadas";
@@ -248,18 +263,21 @@
             GrupoHDRRendidas.Controls.Add(btn_quitar_todo);
             GrupoHDRRendidas.Controls.Add(btn_quitar_seleccion);
             GrupoHDRRendidas.Controls.Add(listview_hdr_rendidas);
-            GrupoHDRRendidas.Location = new Point(12, 422);
+            GrupoHDRRendidas.Location = new Point(14, 563);
+            GrupoHDRRendidas.Margin = new Padding(3, 4, 3, 4);
             GrupoHDRRendidas.Name = "GrupoHDRRendidas";
-            GrupoHDRRendidas.Size = new Size(710, 275);
+            GrupoHDRRendidas.Padding = new Padding(3, 4, 3, 4);
+            GrupoHDRRendidas.Size = new Size(811, 367);
             GrupoHDRRendidas.TabIndex = 25;
             GrupoHDRRendidas.TabStop = false;
             GrupoHDRRendidas.Text = "HDR Rendidas";
             // 
             // btn_quitar_todo
             // 
-            btn_quitar_todo.Location = new Point(424, 236);
+            btn_quitar_todo.Location = new Point(485, 315);
+            btn_quitar_todo.Margin = new Padding(3, 4, 3, 4);
             btn_quitar_todo.Name = "btn_quitar_todo";
-            btn_quitar_todo.Size = new Size(280, 25);
+            btn_quitar_todo.Size = new Size(320, 33);
             btn_quitar_todo.TabIndex = 13;
             btn_quitar_todo.Text = "Quitar Todo";
             btn_quitar_todo.UseVisualStyleBackColor = true;
@@ -267,9 +285,10 @@
             // 
             // btn_quitar_seleccion
             // 
-            btn_quitar_seleccion.Location = new Point(9, 236);
+            btn_quitar_seleccion.Location = new Point(10, 315);
+            btn_quitar_seleccion.Margin = new Padding(3, 4, 3, 4);
             btn_quitar_seleccion.Name = "btn_quitar_seleccion";
-            btn_quitar_seleccion.Size = new Size(280, 25);
+            btn_quitar_seleccion.Size = new Size(320, 33);
             btn_quitar_seleccion.TabIndex = 12;
             btn_quitar_seleccion.Text = "Quitar Selección";
             btn_quitar_seleccion.UseVisualStyleBackColor = true;
@@ -278,9 +297,10 @@
             // listview_hdr_rendidas
             // 
             listview_hdr_rendidas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRRendidas, ColumnaEmpresaRendidas, ColumnaEstadoRendidas, ColumnaServicioRendidas });
-            listview_hdr_rendidas.Location = new Point(9, 30);
+            listview_hdr_rendidas.Location = new Point(10, 40);
+            listview_hdr_rendidas.Margin = new Padding(3, 4, 3, 4);
             listview_hdr_rendidas.Name = "listview_hdr_rendidas";
-            listview_hdr_rendidas.Size = new Size(695, 200);
+            listview_hdr_rendidas.Size = new Size(794, 265);
             listview_hdr_rendidas.TabIndex = 8;
             listview_hdr_rendidas.UseCompatibleStateImageBehavior = false;
             listview_hdr_rendidas.View = View.Details;
@@ -307,9 +327,9 @@
             // 
             // RendicionHDRtransporte
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(734, 742);
+            ClientSize = new Size(839, 989);
             Controls.Add(GrupoHDRRendidas);
             Controls.Add(GrupoBusqueda);
             Controls.Add(btn_cancelar);
@@ -318,6 +338,7 @@
             Controls.Add(LabelCDOrigen);
             Controls.Add(LabelRendicionHDRT);
             Controls.Add(GrupoHDRAsignadas);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "RendicionHDRtransporte";
             Text = "RendicionHDRtransporte";
             Load += RendicionHDRtransporte_Load;

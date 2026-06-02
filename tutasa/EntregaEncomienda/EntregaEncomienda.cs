@@ -9,7 +9,7 @@ namespace tutasa.EntregaEncomienda
         private EntregaEncomiendaModelo modelo =
             new EntregaEncomiendaModelo();
 
-        // NO se toca!!
+        // NO se toca!! Clara 
         public EntregaEncomienda()
         {
             InitializeComponent();
@@ -33,14 +33,14 @@ namespace tutasa.EntregaEncomienda
                 return;
             }
 
-            // Buscar guía en el modelo (solo devuelve si está en estado "Pendiente de retiro")
+            // Buscar guía en el modelo (solo devuelve si está en estado "Admitida")
             Guia guia = modelo.BuscarGuia(nroGuia);
 
             // Validar existencia y estado de la guía
             if (guia == null)
             {
                 MessageBox.Show(
-                    "El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado pendiente de retiro.",
+                    "El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado Admitida.",
                     "Búsqueda",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
@@ -84,7 +84,7 @@ namespace tutasa.EntregaEncomienda
             // Recuperar la guía desde el Tag del item
             Guia guia = (Guia)lvDetalle.Items[0].Tag;
 
-            // Actualizar estado de la guía a "Entregada en agencia"
+            // Actualizar estado de la guía a "Entregada"
             modelo.ActualizarEstado(guia.NroGuia);
 
             MessageBox.Show(
