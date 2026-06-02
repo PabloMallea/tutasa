@@ -61,7 +61,6 @@ namespace tutasa.EntregaEncomienda
 
             item.SubItems.Add(guia.Destinatario);
             item.SubItems.Add(guia.DniDestinatario);
-            item.SubItems.Add(guia.EstadoActual);
 
             lvDetalle.Items.Add(item);
         }
@@ -72,7 +71,7 @@ namespace tutasa.EntregaEncomienda
             if (lvDetalle.Items.Count == 0)
             {
                 MessageBox.Show(
-                    "Todos los campos y desplegables obligatorios deben ser completados.",
+                    "Todos los campos obligatorios deben ser completados.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -88,7 +87,7 @@ namespace tutasa.EntregaEncomienda
             modelo.ActualizarEstado(guia.NroGuia);
 
             MessageBox.Show(
-                "Entrega registrada correctamente.",
+                "Entrega registrada correctamente  y se actualizo el estado a Entregada.",
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
