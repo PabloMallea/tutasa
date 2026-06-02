@@ -7,15 +7,49 @@ namespace tutasa.RuteoUltimaMilla
 {
     internal class RuteoUltimaMillaModelo
     {
-        public List<string> ObtenerFleteros()
+        public class Fletero
         {
-            return new List<string>
-            {
-                "Juan Pérez",
-                "Carlos Gómez",
-                "María López"
-            };
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
         }
+
+        private List<Fletero> fleteros = new List<Fletero>
+{
+    new Fletero
+    {
+        Id = 1,
+        Nombre = "Juan Pérez"
+    },
+
+    new Fletero
+    {
+        Id = 2,
+        Nombre = "Carlos Gómez"
+    },
+
+    new Fletero
+    {
+        Id = 3,
+        Nombre = "María López"
+    }
+};
+
+
+        public List<Fletero> ObtenerFleteros()
+        {
+            return fleteros;
+        }
+
+
+
+        public class CentroDistribucion
+        {
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
+        }
+ 
 
         public List<string> ObtenerLocalidades()
         {

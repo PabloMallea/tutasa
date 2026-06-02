@@ -23,8 +23,9 @@ namespace tutasa.RuteoUltimaMilla
             EventArgs e)
         {
             // Obtener fleteros desde el modelo
-            List<string> fleteros =
-                modelo.ObtenerFleteros();
+            List<RuteoUltimaMillaModelo.Fletero>
+                fleteros =
+                    modelo.ObtenerFleteros();
 
             List<string> localidades =
                 modelo.ObtenerLocalidades();
@@ -37,9 +38,12 @@ namespace tutasa.RuteoUltimaMilla
             }
 
             // Se lo asignamos al Combobox de asignación de fletero
-            foreach (string fletero in fleteros)
+            foreach (RuteoUltimaMillaModelo.Fletero
+    fletero
+    in fleteros)
             {
-                ComboAsignarFletero.Items.Add(fletero);
+                ComboAsignarFletero.Items.Add(
+                    fletero.Nombre);
             }
         }
 
