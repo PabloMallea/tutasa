@@ -1,0 +1,33 @@
+[
+  {
+    "IdServicio": 1,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - Rosario Noche",
+    "EstadoServicio": "EnRecorrido",
+    "FechaSalida": "2026-06-02T21:30:00",
+    "FechaLlegada": "2026-06-03T07:30:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 2
+  },
+  {
+    "IdServicio": 2,
+    "IdEmpresa": 11,
+    "NombreServicio": "Buenos Aires - Cordoba Express",
+    "EstadoServicio": "Finalizado",
+    "FechaSalida": "2026-06-02T22:00:00",
+    "FechaLlegada": "2026-06-03T08:15:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 3
+  },
+  {
+    "IdServicio": 3,
+    "IdEmpresa": 10,
+    "NombreServicio": "Cordoba - Buenos Aires Dia",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-06-07T06:00:00",
+    "FechaLlegada": "2026-06-07T16:30:00",
+    "IdCDOrigen": 3,
+    "IdCDDestino": 1
+  }
+]
+

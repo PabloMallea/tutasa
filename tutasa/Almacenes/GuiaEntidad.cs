@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace tutasa.Almacenes
 {
-    public class EntidadGuia
+    public class GuiaEntidad
     {
         public int NumeroGuia { get; set; }
 
@@ -53,7 +53,7 @@ namespace tutasa.Almacenes
 
         public decimal ComisionesFleteroDestino { get; set; }
 
-        public EntidadGuia()
+        public GuiaEntidad()
         {
             Historial = new List<MovimientoEstado>();
         }

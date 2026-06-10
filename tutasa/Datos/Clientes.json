@@ -1,26 +1,76 @@
 ﻿[
   {
-    "CuitCliente": 20333444556,
+    "CuitCliente": 30712345678,
     "Nombre": "Juan",
     "Apellido": "Perez",
     "Telefono": "1155554444",
-    "IdLocalidad": 1,
-    "Calle": "Av. Corrientes",
-    "Altura": "1234",
+    "IdLocalidad": 100,
+    "Calle": "Av. Cabildo",
+    "Altura": "2450",
     "Movimientos": [
       {
         "NumeroFactura": 1001,
         "Fecha": "2026-06-01T10:00:00",
-        "MontoPago": 1500.00,
-        "Saldo": 8500.00
+        "MontoPago": 18500.50,
+        "Saldo": 120000.00
       },
       {
+        "NumeroFactura": 1005,
+        "Fecha": "2026-06-08T14:30:00",
+        "MontoPago": 9500.00,
+        "Saldo": 110500.00
+      }
+    ]
+  },
+  {
+    "CuitCliente": 30555111222,
+    "Nombre": "Maria",
+    "Apellido": "Gomez",
+    "Telefono": "1166677788",
+    "IdLocalidad": 300,
+    "Calle": "Av. Colon",
+    "Altura": "450",
+    "Movimientos": [
+      {
         "NumeroFactura": 1002,
-        "Fecha": "2026-06-05T15:30:00",
-        "MontoPago": 2500.00,
-        "Saldo": 6000.00
+        "Fecha": "2026-06-03T13:50:00",
+        "MontoPago": 9200.00,
+        "Saldo": 45200.00
+      }
+    ]
+  },
+  {
+    "CuitCliente": 30777888999,
+    "Nombre": "Carlos",
+    "Apellido": "Lopez",
+    "Telefono": "1133344455",
+    "IdLocalidad": 200,
+    "Calle": "Bv. Oroño",
+    "Altura": "980",
+    "Movimientos": [
+      {
+        "NumeroFactura": 1003,
+        "Fecha": "2026-06-05T09:20:00",
+        "MontoPago": 45200.75,
+        "Saldo": 98000.00
+      }
+    ]
+  },
+  {
+    "CuitCliente": 30444555666,
+    "Nombre": "Lucia",
+    "Apellido": "Fernandez",
+    "Telefono": "1199988877",
+    "IdLocalidad": 100,
+    "Calle": "San Martin",
+    "Altura": "742",
+    "Movimientos": [
+      {
+        "NumeroFactura": 1004,
+        "Fecha": "2026-06-07T11:10:00",
+        "MontoPago": 27890.00,
+        "Saldo": 73000.00
       }
     ]
   }
-
 ]

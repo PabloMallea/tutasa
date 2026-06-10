@@ -4,7 +4,7 @@ using System.Text;
 
 namespace tutasa.Almacenes
 {
-    public class HojaRutaTransporte
+    public class HojaRutaDeTransporteEntidad
     {
         public int NumeroHDRTransporte { get; set; }
 
@@ -14,7 +14,7 @@ namespace tutasa.Almacenes
 
         public List<int> Guias { get; set; } // = new List<int>();
 
-        public HojaRutaTransporte()
+        public HojaRutaDeTransporteEntidad()
         {
             Guias = new List<int>();
         }

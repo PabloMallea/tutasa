@@ -1,0 +1,31 @@
+[
+  {
+    "IdAgencia": 105,
+    "IdCD": 3,
+    "NombreAgencia": "Agencia Cordoba Centro",
+    "Calle": "Av. Colon",
+    "Altura": "450"
+  },
+  {
+    "IdAgencia": 201,
+    "IdCD": 2,
+    "NombreAgencia": "Agencia Rosario Norte",
+    "Calle": "Bv. Oroño",
+    "Altura": "980"
+  },
+  {
+    "IdAgencia": 202,
+    "IdCD": 1,
+    "NombreAgencia": "Agencia Buenos Aires Microcentro",
+    "Calle": "Florida",
+    "Altura": "120"
+  },
+  {
+    "IdAgencia": 203,
+    "IdCD": 4,
+    "NombreAgencia": "Agencia Mendoza Terminal",
+    "Calle": "Acceso Sur",
+    "Altura": "2100"
+  }
+]
+

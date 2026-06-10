@@ -1,0 +1,27 @@
+[
+  {
+    "NumeroFactura": 1001,
+    "FechaEmision": "2026-06-03T10:00:00",
+    "Total": 27700.50,
+    "Guias": [
+      100001,
+      100002
+    ]
+  },
+  {
+    "NumeroFactura": 1002,
+    "FechaEmision": "2026-06-05T09:20:00",
+    "Total": 45200.75,
+    "Guias": [
+      100003
+    ]
+  },
+  {
+    "NumeroFactura": 1003,
+    "FechaEmision": "2026-06-07T11:10:00",
+    "Total": 27890.00,
+    "Guias": [
+      100004
+    ]
+  }
+]

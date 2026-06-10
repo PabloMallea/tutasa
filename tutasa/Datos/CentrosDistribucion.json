@@ -1,0 +1,31 @@
+[
+  {
+    "IdCD": 1,
+    "IdLocalidad": 100,
+    "NombreCD": "CD Buenos Aires",
+    "Calle": "Av. General Paz",
+    "Altura": "14500"
+  },
+  {
+    "IdCD": 2,
+    "IdLocalidad": 200,
+    "NombreCD": "CD Rosario",
+    "Calle": "Av. Circunvalacion",
+    "Altura": "3200"
+  },
+  {
+    "IdCD": 3,
+    "IdLocalidad": 300,
+    "NombreCD": "CD Cordoba",
+    "Calle": "Ruta 9 Sur",
+    "Altura": "7800"
+  },
+  {
+    "IdCD": 4,
+    "IdLocalidad": 400,
+    "NombreCD": "CD Mendoza",
+    "Calle": "Acceso Este",
+    "Altura": "1120"
+  }
+]
+
