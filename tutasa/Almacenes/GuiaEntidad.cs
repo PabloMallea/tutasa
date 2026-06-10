@@ -53,7 +53,7 @@ namespace tutasa.Almacenes
 
         public decimal ComisionesFleteroDestino { get; set; }
 
-        public EntidadGuia()
+        public GuiaEntidad()
         {
             Historial = new List<MovimientoEstado>();
         }
