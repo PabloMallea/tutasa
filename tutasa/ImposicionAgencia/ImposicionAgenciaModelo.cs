@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Text.Json;
+using tutasa.Almacenes;
+
 
 namespace tutasa.Imposicion_Agencia
 {
     internal partial class ImposicionAgenciaModelo
     {
+        //Acá validar si hay que poner la siguiente expresión
+
+
 
         private List<Agencia> agencias = new List<Agencia>
         {
@@ -80,22 +87,48 @@ namespace tutasa.Imposicion_Agencia
         // Lista donde se almacenan las Guias generadas
 
         private List<Guia> Guias = new List<Guia>();
-
-        public Cliente BuscarCliente(string cuit)
-        {
-            // Recorrer lista de clientes
-            foreach (Cliente cliente in clientes)
-            {
-                // Si el CUIT coincide, retornar cliente encontrado
-                if (cliente.Cuit == cuit)
+        /*
+                public Cliente BuscarCliente(string cuit)
                 {
+                    foreach (Cliente cliente in clientes)
+                    {
+                        // Si el CUIT coincide, retornar cliente encontrado
+                        if (cliente.Cuit == cuit)
+                        {
+                            return cliente;
+                        }
+                    }
+
+                    // Si no se encontró coincidencia, retornar null
+                    return null;
+
+                }*/
+
+        public Cliente BuscarCliente(
+          string cuit)
+        {
+            foreach (ClienteEntidad entidad in ClientesAlmacen.clientes)
+            {
+                if (entidad.CuitCliente.ToString() == cuit)
+                {
+                    Cliente cliente = new Cliente();
+
+                    cliente.Cuit = entidad.CuitCliente.ToString();
+
+                    cliente.Nombre = entidad.Nombre;
+
+                    cliente.Apellido = entidad.Apellido;
+
+                    cliente.Telefono = entidad.Telefono;
+
                     return cliente;
                 }
             }
 
-            // Si no se encontró coincidencia, retornar null
             return null;
         }
+
+
 
         public Localidad BuscarLocalidad(string nombre)
         {

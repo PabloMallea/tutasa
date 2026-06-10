@@ -10,7 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Almacenes\" />
+    <None Remove="Datos\Clientes.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Datos\Clientes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Datos\Localidades.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

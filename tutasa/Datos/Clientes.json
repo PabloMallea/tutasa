@@ -1,0 +1,26 @@
+﻿[
+  {
+    "CuitCliente": 20333444556,
+    "Nombre": "Juan",
+    "Apellido": "Perez",
+    "Telefono": "1155554444",
+    "IdLocalidad": 1,
+    "Calle": "Av. Corrientes",
+    "Altura": "1234",
+    "Movimientos": [
+      {
+        "NumeroFactura": 1001,
+        "Fecha": "2026-06-01T10:00:00",
+        "MontoPago": 1500.00,
+        "Saldo": 8500.00
+      },
+      {
+        "NumeroFactura": 1002,
+        "Fecha": "2026-06-05T15:30:00",
+        "MontoPago": 2500.00,
+        "Saldo": 6000.00
+      }
+    ]
+  }
+
+]
