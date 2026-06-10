@@ -21,7 +21,7 @@ namespace tutasa.Almacenes
 
         public string Altura { get; set; }
 
-        public List<MovimientoCuentaCorrienteEntidad> Movimientos { get; set; } = new List<MovimientoCuentaCorrienteEntidad>();
+        public List<MovimientoCuentaCorrienteDto> Movimientos { get; set; } = new List<MovimientoCuentaCorrienteDto>();
 
 
     }

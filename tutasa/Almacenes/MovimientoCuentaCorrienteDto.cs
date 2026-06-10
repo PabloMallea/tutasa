@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tutasa.Almacenes
+﻿namespace tutasa.Almacenes
 {
-    public class MovimientoCuentaCorrienteEntidad
+    public class MovimientoCuentaCorrienteDto
     {
         public int IdFactura { get; set; }
 

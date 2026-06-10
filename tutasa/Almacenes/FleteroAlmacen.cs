@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace tutasa.Almacenes
 {
@@ -10,17 +7,21 @@ namespace tutasa.Almacenes
         public static List<Fletero> fleteros = new();
         static FleteroAlmacen()
         {
-            
-            if (File.Exists(@"..\..\..\Datos\Fletero.json"))
+
+            if (File.Exists(@"Datos\Fletero.json"))
             {
-                string json = File.ReadAllText(@"..\..\..\Datos\Fletero.json");
+                string json = File.ReadAllText(@"Datos\Fletero.json");
                 fleteros = JsonSerializer.Deserialize<List<Fletero>>(json);
+            }
+            else
+            {
+                throw new ApplicationException($"No se encontro el almacen {nameof(FleteroAlmacen)}");
             }
         }
         public static void Guardar()
         {
             string json = JsonSerializer.Serialize(fleteros);
-            File.WriteAllText(@"..\..\..\Datos\Fletero.json", json);
+            File.WriteAllText(@"Datos\Fletero.json", json);
         }
     }
 }

@@ -1,30 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace tutasa.Almacenes
 {
-    internal class HojaDeRutaUltimaMillaAlmacen
-    {
-        internal static class HojasDeRutaTransporteAlmacen
-        {
 
-            public static List<HojaDeRutaUltimaMilla> HojaDeRutaUltimaMilla = new();
-            static HojasDeRutaTransporteAlmacen()
+    internal static class HojaDeRutaUltimaMillaAlmacen
+    {
+        public static List<HojaDeRutaUltimaMilla> HojaDeRutaUltimaMilla = new();
+
+        static HojaDeRutaUltimaMillaAlmacen()
+        {
+            if (File.Exists(@"Datos\HojaDeRutaUltimaMilla.json"))
             {
-                
-                if (File.Exists(@"..\..\..\Datos\HojaDeRutaUltimaMilla.json"))
-                {
-                    string json = File.ReadAllText(@"..\..\..\Datos\HojaDeRutaUltimaMilla.json");
-                    HojaDeRutaUltimaMilla = JsonSerializer.Deserialize<List<HojaDeRutaUltimaMilla>>(json);
-                }
+                string json = File.ReadAllText(@"Datos\HojaDeRutaUltimaMilla.json");
+                HojaDeRutaUltimaMilla = JsonSerializer.Deserialize<List<HojaDeRutaUltimaMilla>>(json, Program.jsonOptions);
             }
-            public static void Guardar()
+            else
             {
-                string json = JsonSerializer.Serialize(HojaDeRutaUltimaMilla);
-                File.WriteAllText(@"..\..\..\Datos\HojaDeRutaUltimaMilla.json", json);
+                throw new ApplicationException($"No se encontro el almacen {nameof(HojaDeRutaUltimaMillaAlmacen)}");
             }
         }
+        public static void Guardar()
+        {
+            string json = JsonSerializer.Serialize(HojaDeRutaUltimaMilla, Program.jsonOptions);
+            File.WriteAllText(@"Datos\HojaDeRutaUltimaMilla.json", json);
+        }
     }
+
 }

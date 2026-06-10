@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace tutasa.Almacenes
 {
@@ -11,16 +8,20 @@ namespace tutasa.Almacenes
         static AgenciasAlmacen()
         {
 
-            if (File.Exists(@"..\..\..\Datos\Agencias.json"))
+            if (File.Exists(@"Datos\Agencias.json"))
             {
-                string json = File.ReadAllText(@"..\..\..\Datos\Agencias.json");
+                string json = File.ReadAllText(@"Datos\Agencias.json");
                 agencias = JsonSerializer.Deserialize<List<Agencia>>(json);
+            }
+            else
+            {
+                throw new ApplicationException($"No se encontro el almacen {nameof(AgenciasAlmacen)}");
             }
         }
         public static void Guardar()
         {
             string json = JsonSerializer.Serialize(agencias);
-            File.WriteAllText(@"..\..\..\Datos\Agencias.json", json);
+            File.WriteAllText(@"Datos\Agencias.json", json);
         }
     }
 }

@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace tutasa.Almacenes
 {
     internal class ServiciosAlmacen
     {
-        public static List<Servicio> servicio = new();
+        public static List<ServicioEntidad> servicio = new();
         static ServiciosAlmacen()
         {
-            
-            if (File.Exists(@"..\..\..\Datos\Servicios.json"))
+
+            if (File.Exists(@"Datos\Servicios.json"))
             {
-                string json = File.ReadAllText(@"..\..\..\Datos\Servicios.json");
-                servicio = JsonSerializer.Deserialize<List<Servicio>>(json);
+                string json = File.ReadAllText(@"Datos\Servicios.json");
+                servicio = JsonSerializer.Deserialize<List<ServicioEntidad>>(json, Program.jsonOptions);
+            }
+            else
+            {
+                throw new ApplicationException($"No se encontro el almacen {nameof(ServiciosAlmacen)}");
             }
         }
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(servicio);
-            File.WriteAllText(@"..\..\..\Datos\Servicios.json", json);
+            string json = JsonSerializer.Serialize(servicio, Program.jsonOptions);
+            File.WriteAllText(@"Datos\Servicios.json", json);
         }
     }
 }

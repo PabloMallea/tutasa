@@ -41,7 +41,7 @@ namespace tutasa.Almacenes
 
         public EstadoGuiaEnum EstadoActual { get; set; }
 
-        public List<MovimientoEstado> Historial { get; set; }
+        public List<MovimientoEstadoDto> Historial { get; set; }
 
         public decimal MontoFacturar { get; set; }
 
@@ -55,7 +55,7 @@ namespace tutasa.Almacenes
 
         public GuiaEntidad()
         {
-            Historial = new List<MovimientoEstado>();
+            Historial = new List<MovimientoEstadoDto>();
         }
     }
 }

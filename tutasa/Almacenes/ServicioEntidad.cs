@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tutasa.Almacenes
+﻿namespace tutasa.Almacenes
 {
-    public class Servicio
+    public class ServicioEntidad
     {
         public int IdServicio { get; set; }
 

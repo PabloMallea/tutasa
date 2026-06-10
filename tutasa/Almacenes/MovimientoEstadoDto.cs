@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tutasa.Almacenes
+﻿namespace tutasa.Almacenes
 {
-    public class MovimientoEstado
+    public class MovimientoEstadoDto
     {
         public DateTime FechaHora { get; set; }
 

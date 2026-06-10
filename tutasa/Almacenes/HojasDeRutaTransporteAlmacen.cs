@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace tutasa.Almacenes
 {
     internal static class HojasDeRutaTransporteAlmacen
     {
 
-        public static List<HojaRutaDeTransporteEntidad> HojaDeRutaTransporte = new();
+        public static List<HojaRutaDeTransporteEntidad> HojasDeRutaTransporte = new();
         static HojasDeRutaTransporteAlmacen()
         {
-            
-            if (File.Exists(@"..\..\..\Datos\HojasDeRutaTransporte.json"))
+            if (File.Exists(@"Datos\HojasDeRutaTransporte.json"))
             {
-                string json = File.ReadAllText(@"..\..\..\Datos\HojasDeRutaTransporte.json");
-                HojaDeRutaTransporte = JsonSerializer.Deserialize<List<HojaRutaDeTransporteEntidad>>(json);
+                string json = File.ReadAllText(@"Datos\HojasDeRutaTransporte.json");
+                HojasDeRutaTransporte = JsonSerializer.Deserialize<List<HojaRutaDeTransporteEntidad>>(json, Program.jsonOptions);
+            }
+            else
+            {
+                throw new ApplicationException($"No se encontro el almacen {nameof(HojasDeRutaTransporteAlmacen)}");
             }
         }
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(HojaDeRutaTransporte);
-            File.WriteAllText(@"..\..\..\Datos\HojasDeRutaTransporte.json", json);
+            string json = JsonSerializer.Serialize(HojasDeRutaTransporte, Program.jsonOptions);
+            File.WriteAllText(@"Datos\HojasDeRutaTransporte.json", json);
         }
     }
 }
