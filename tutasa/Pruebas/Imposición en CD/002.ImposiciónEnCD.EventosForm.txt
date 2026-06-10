@@ -1,0 +1,41 @@
+﻿Plan de Prueba: 002.ImposiciónEnCD.EventosForm.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT                    "20333444556"
+
+2- Botón                         "Buscar"
+
+3- Verificación                  "Se autocompletan Nombre, Apellido y Teléfono"
+
+4- Campo Localidad               "San Rafael"
+
+5- Botón                         "Buscar"
+
+6- Verificación                  "Se cargan destinos disponibles"
+
+7- Desplegable Destino           "Domicilio del Destinatario"
+
+8- Verificación                  "Se habilitan Calle y Altura"
+
+9- Desplegable Destino           "CD San Rafael - Centro"
+
+10- Verificación                 "Se deshabilitan Calle y Altura"
+
+11- Campo Peso (Kg)             "2"
+
+12- Verificación                "Dimensión = S"
+
+13- Campo Peso (Kg)             "5"
+
+14- Verificación                "Dimensión = M"
+
+15- Campo Peso (Kg)             "10"
+
+16- Verificación                "Dimensión = L"
+
+17- Campo Peso (Kg)             "15"
+
+18- Verificación                "Dimensión = XL"
+
+19- Botón                       "Cancelar"

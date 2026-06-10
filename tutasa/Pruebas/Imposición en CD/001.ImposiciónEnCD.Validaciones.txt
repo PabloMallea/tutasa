@@ -1,0 +1,52 @@
+﻿Plan de Prueba: 001.ImposicionEnCD.Validaciones.txt
+
+(Empieza con el menú principal)
+
+1- Botón                         "Buscar"
+
+2- Mensaje                       "El campo CUIT debe ser completado"
+
+3- Botón                         "Aceptar"
+
+4- Campo CUIT                    "ABC123"
+
+5- Botón                         "Buscar"
+
+6- Mensaje                       "El campo CUIT debe contener únicamente 11 valores numéricos"
+
+7- Botón                         "Aceptar"
+
+8- Campo CUIT                    "11111111111"
+
+9- Botón                         "Buscar"
+
+10- Mensaje                      "El CUIT ingresado no corresponde a un cliente registrado"
+
+11- Botón                        "Aceptar"
+
+12- Botón                        "Buscar Localidad"
+
+13- Mensaje                      "El campo Localidad debe ser completado"
+
+14- Botón                        "Aceptar"
+
+15- Campo Localidad              "San@Rafael"
+
+16- Botón                        "Buscar"
+
+17- Mensaje                      "Localidad inexistente"
+
+18- Botón                        "Aceptar"
+
+19- Campo Peso (Kg)              "-5"
+
+20- Botón                        "Confirmar"
+
+21- Mensaje                      "El campo Peso (Kg) debe ser completado con valores numéricos mayores a 0"
+
+22- Botón                        "Aceptar"
+
+
+Verificaciones
+
+23- No debe generarse ninguna nueva guía en: Guias.json
