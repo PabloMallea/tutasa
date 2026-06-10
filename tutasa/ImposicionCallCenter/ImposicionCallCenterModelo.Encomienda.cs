@@ -23,6 +23,8 @@
             public string TelefonoDestinatario { get; set; }
 
             public string Dimension { get; set; }
+
+            DateTime fechaAlta { get; set; }
         }
     }
 }
