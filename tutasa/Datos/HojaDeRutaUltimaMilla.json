@@ -1,0 +1,35 @@
+[
+  {
+    "NumeroHDR": 7001,
+    "Tipo": "Entrega",
+    "DireccionDestino": "Av. Cabildo 2450",
+    "Guias": [
+      100001
+    ],
+    "Cumplida": false,
+    "IdFletero": 302,
+    "Estado": "Emitida"
+  },
+  {
+    "NumeroHDR": 7002,
+    "Tipo": "Entrega",
+    "DireccionDestino": "San Martin 742",
+    "Guias": [
+      100004
+    ],
+    "Cumplida": false,
+    "IdFletero": 301,
+    "Estado": "Asignada"
+  },
+  {
+    "NumeroHDR": 7003,
+    "Tipo": "Entrega",
+    "DireccionDestino": "Agencia Cordoba Centro",
+    "Guias": [
+      100002
+    ],
+    "Cumplida": true,
+    "IdFletero": 303,
+    "Estado": "Rendida"
+  }
+]

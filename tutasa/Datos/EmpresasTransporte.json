@@ -1,0 +1,17 @@
+[
+  {
+    "IdEmpresa": 10,
+    "NombreEmpresa": "Transporte Ruta Sur",
+    "TarifaMensual": 1250000.50
+  },
+  {
+    "IdEmpresa": 11,
+    "NombreEmpresa": "Logistica Express Nacional",
+    "TarifaMensual": 1875000.75
+  },
+  {
+    "IdEmpresa": 12,
+    "NombreEmpresa": "Carga Federal Argentina",
+    "TarifaMensual": 980000.00
+  }
+]

@@ -1,3 +1,5 @@
+using tutasa.Almacenes;
+
 namespace tutasa
 {
     internal static class Program
@@ -11,6 +13,8 @@ namespace tutasa
             ApplicationConfiguration.Initialize();
             //Ac� se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
             Application.Run(new tutasa.RendicionHDRtransporte.RendicionHDRtransporte());
+
+            //ClientesAlmacen.Guardar();
 
         }
     }

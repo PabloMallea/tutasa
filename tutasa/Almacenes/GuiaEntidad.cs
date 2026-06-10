@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace tutasa.Almacenes
 {
-    public class EntidadGuia
+    public class GuiaEntidad
     {
         public int NumeroGuia { get; set; }
 

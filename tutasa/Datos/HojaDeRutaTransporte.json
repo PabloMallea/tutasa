@@ -1,0 +1,29 @@
+
+[
+  {
+    "NumeroHDRTransporte": 5001,
+    "IdServicio": 1,
+    "EstadoHDR": "Emitida",
+    "Guias": [
+      100001,
+      100003
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 5002,
+    "IdServicio": 2,
+    "EstadoHDR": "Rendida",
+    "Guias": [
+      100002
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 5003,
+    "IdServicio": 3,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100004
+    ]
+  }
+]
+

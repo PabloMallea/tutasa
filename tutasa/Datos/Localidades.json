@@ -1,6 +1,23 @@
 ﻿[
   {
-    "IdLocalidad": 1,
-    "NombreLocalidad": "Córdoba"
+    "IdLocalidad": 100,
+    "NombreLocalidad": "Buenos Aires"
+  },
+  {
+    "IdLocalidad": 200,
+    "NombreLocalidad": "Rosario"
+  },
+  {
+    "IdLocalidad": 300,
+    "NombreLocalidad": "Cordoba"
+  },
+  {
+    "IdLocalidad": 400,
+    "NombreLocalidad": "Mendoza"
+  },
+  {
+    "IdLocalidad": 500,
+    "NombreLocalidad": "La Plata"
   }
 ]
+

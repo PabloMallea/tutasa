@@ -4,7 +4,7 @@ using System.Text;
 
 namespace tutasa.Almacenes
 {
-    public class HojaRutaUltimaMilla
+    public class HojaDeRutaUltimaMilla
     {
         public int NumeroHDR { get; set; }
 

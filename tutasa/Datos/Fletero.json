@@ -1,0 +1,23 @@
+[
+  {
+    "IdFletero": 301,
+    "IdCD": 1,
+    "Nombre": "Carlos Mendoza"
+  },
+  {
+    "IdFletero": 302,
+    "IdCD": 2,
+    "Nombre": "Martin Gonzalez"
+  },
+  {
+    "IdFletero": 303,
+    "IdCD": 3,
+    "Nombre": "Luciano Fernandez"
+  },
+  {
+    "IdFletero": 304,
+    "IdCD": 4,
+    "Nombre": "Diego Ramirez"
+  }
+]
+
