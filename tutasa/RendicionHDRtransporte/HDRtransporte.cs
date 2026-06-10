@@ -4,14 +4,21 @@ using System.Text;
 
 namespace tutasa.RendicionHDRtransporte
 {
+    public enum EstadoHdrTransporte
+    {
+        Asignada,
+        Emitida,
+        Rendida
+    }
     internal partial class RendicionHDRtransporteModelo
     {
         public class HDRtransporte
         {
-            public int n_hdr { get; set; }
-            public string estado { get; set; }
-            public Servicio servicio { get; set; } = new Servicio();
-            public DateTime fecha { get; set; }
+            public int NumeroHdrTransporte { get; set; }
+            public EstadoHdrTransporte EstadoHdr { get; set; }
+            public Servicio Servicio { get; set; } = new Servicio();
+
+            public List<Guia> Guia { get; set; } = new List<Guia>();
         }
     }
 }

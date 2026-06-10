@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Almacenes\" />
+    <Compile Remove="Almacenes\**" />
+    <EmbeddedResource Remove="Almacenes\**" />
+    <None Remove="Almacenes\**" />
   </ItemGroup>
 
 </Project>
