@@ -33,7 +33,7 @@ namespace tutasa.RendicionHDRtransporte
 
             foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
             {
-                if (servicio.IdEmpresa == idEmpresa)
+                if (servicio.IdEmpresa == idEmpresa && servicio.EstadoServicio == EstadoServicioEnum.EnRecorrido)
                 {
                     servicios.Add(MapearServicio(servicio));
                 }
@@ -86,25 +86,61 @@ namespace tutasa.RendicionHDRtransporte
             };
         }
 
-        //Modelo tiene que retornar numeros de guia actualizados con exito y ui arma mensaje para mostrar en pantalla, no se encarga de mostrarlo
-        public List<string> ActualizarEstadoGuias(HDRtransporte hdr)
+        public (bool, List<int>) ActualizarEstadoHDR(List<HDRtransporte> hdrRendidas)
         {
-            List<string> resultado = new List<string>();
+            bool exito = false;
+
+            List<int> guiasActualizadas = new List<int>();
+
+            foreach (HDRtransporte hdr in hdrRendidas)
+            {
+                HojaRutaDeTransporteEntidad hdrEntidad = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Find(h => h.NumeroHDRTransporte == hdr.NumeroHdrTransporte);
+
+                if (hdrEntidad != null)
+                {
+                    hdrEntidad.EstadoHDR = (EstadoHDRTransporteEnum)hdr.EstadoHdr;
+
+                    guiasActualizadas.AddRange(ActualizarEstadoGuias(hdr));
+
+                    exito = true;
+                }
+            }
+
+            return (exito, guiasActualizadas);
+        }
+
+        public List<int> ActualizarEstadoGuias(HDRtransporte hdr)
+        {
+            List<int> resultado = new List<int>();
+
             foreach (int numeroGuia in hdr.Guia)
             {
                 GuiaEntidad guiaEntidad = GuiaAlmacen.guias.Find(g => g.NumeroGuia == numeroGuia);
                 if (guiaEntidad != null)
                 {
+                    EstadoGuiaEnum nuevoEstado;
+
                     if (guiaEntidad.IdCDDestino == IdCdUsuario)
                     {
-                        guiaEntidad.EstadoActual = EstadoGuiaEnum.EnDestino;
+                        nuevoEstado = EstadoGuiaEnum.EnDestino;
                     }
                     else
                     {
-                        guiaEntidad.EstadoActual = EstadoGuiaEnum.Admitida;
+                        nuevoEstado = EstadoGuiaEnum.Admitida;
+
                     }
-                    string mensaje = $"Guía {guiaEntidad.NumeroGuia} actualizada a estado '{guiaEntidad.EstadoActual}'";
-                    resultado.Add(mensaje);
+
+                    guiaEntidad.EstadoActual = nuevoEstado;
+
+                    guiaEntidad.Historial.Add(
+                        new MovimientoEstadoDto()
+                        {
+                            FechaHora = DateTime.Now,
+                            Estado = nuevoEstado,
+                            Ubicacion = NombreCdUsuario
+                        });
+
+                    resultado.Add(guiaEntidad.NumeroGuia);
                 }
             }
             return resultado;

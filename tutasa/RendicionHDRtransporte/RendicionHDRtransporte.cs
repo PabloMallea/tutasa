@@ -266,28 +266,20 @@ namespace tutasa.RendicionHDRtransporte
                 return;
             }
 
-            List<int> hdr_rendidas = new();
-
-            List<string> resultadoActualizacion = new();
+            List<HDRtransporte> hdrRendidas = new();
 
             foreach (ListViewItem item in listview_hdr_rendidas.Items)
             {
                 HDRtransporte hdr = (HDRtransporte)item.Tag;
 
-                hdr_rendidas.Add(hdr.NumeroHdrTransporte);
-
-                List<string> resultadoHdr = modelo.ActualizarEstadoGuias(hdr);
-
-                resultadoActualizacion.AddRange(resultadoHdr);
-
-                //Console.WriteLine($"HDR {hdr.NumeroHdrTransporte} confirmada.");
+                hdrRendidas.Add(hdr);
             }
 
-            string mensajeFinal =
-                $"Se han confirmado {hdr_rendidas.Count} HDR rendidas."
-                + Environment.NewLine
-                + Environment.NewLine
-                + string.Join(Environment.NewLine, resultadoActualizacion);
+            (bool hdrActualizadas, List<int> guiasActualizadas) = modelo.ActualizarEstadoHDR(hdrRendidas);
+
+            string guiasActualizadasTexto = guiasActualizadas.Count > 0 ? string.Join(", ", guiasActualizadas) : "0";  
+
+            string mensajeFinal = $"Se han confirmado {hdrRendidas.Count} HDR rendidas. Y se han actualizado {guiasActualizadasTexto} guías.";
 
             MessageBox.Show(
                 mensajeFinal,
