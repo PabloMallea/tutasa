@@ -14,10 +14,13 @@ namespace tutasa.RendicionHDRtransporte
             return EmpresaTransporteAlmacen.empresas;
         }
 
+        public List<string> empresas => EmpresaTransporteAlmacen.empresas.Select(e => e.NombreEmpresa).ToList();
+
         public List<ServicioEntidad> ObtenerServiciosPorEmpresa(int idEmpresa)
         {
             return ServiciosAlmacen.servicio.Where(s => s.IdEmpresa == idEmpresa).ToList();
         }
+
 
         public List<HojaRutaDeTransporteEntidad>
             ObtenerHDRAsignadas(int idServicio)
