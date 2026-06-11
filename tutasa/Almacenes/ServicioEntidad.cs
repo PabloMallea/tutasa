@@ -6,7 +6,7 @@
 
         public int IdEmpresa { get; set; }
 
-        public string NombreServicio { get; set; }
+        public string? NombreServicio { get; set; }
 
         public EstadoServicioEnum EstadoServicio { get; set; }
 

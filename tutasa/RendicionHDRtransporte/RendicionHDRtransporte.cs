@@ -15,6 +15,7 @@ namespace tutasa.RendicionHDRtransporte
 
         
         private RendicionHDRtransporteModelo modelo = new RendicionHDRtransporteModelo();
+        
 
         private void RendicionHDRtransporte_Load(object sender, EventArgs e)
         {
@@ -22,12 +23,16 @@ namespace tutasa.RendicionHDRtransporte
             
             label_cd.Text = modelo.NombreCdUsuario;
 
-            List<string> empresas = modelo.empresas;
 
-            foreach (string empresa in empresas)
+            List<EmpresaTransporte> empresas = modelo.ObtenerEmpresas();
+
+            cbox_empresa.DisplayMember = "Nombre";
+
+            foreach (EmpresaTransporte empresa in empresas)
             {
                 cbox_empresa.Items.Add(empresa);
             }
+
 
             listview_hdr_asignadas.MultiSelect = true;
             listview_hdr_rendidas.MultiSelect = true;
@@ -43,17 +48,17 @@ namespace tutasa.RendicionHDRtransporte
 
             if (cbox_empresa.SelectedIndex != -1)
             {
-                string empresaSeleccionada = cbox_empresa.SelectedItem.ToString();
+                EmpresaTransporte empresaSeleccionada = (EmpresaTransporte)cbox_empresa.SelectedItem;
 
-                int idEmpresa = modelo.empresas
-                    .First(e => e.NombreEmpresa == empresaSeleccionada)
-                    .IdEmpresa;
+                int idEmpresa = empresaSeleccionada.IdEmpresa;
 
                 List<Servicio> serviciosFiltrados = modelo.ObtenerServiciosPorEmpresa(idEmpresa);
 
+                cbox_servicio.DisplayMember = "NombreServicio";
+
                 foreach (Servicio servicio in serviciosFiltrados)
                 {
-                    cbox_servicio.Items.Add(servicio.NombreServicio);
+                    cbox_servicio.Items.Add(servicio);
                 }
             }
         }
@@ -82,14 +87,11 @@ namespace tutasa.RendicionHDRtransporte
                 return;
             }
 
-            RendicionHDRtransporteModelo resultado = RendicionHDRtransporteModelo.ObtenerMockHDRAsignadas();
+            Servicio servicioSeleccionado = (Servicio)cbox_servicio.SelectedItem;
 
-            List<HDRtransporte> resultadosFiltrados = resultado.HDRtransporteList
-                .Where(hdr =>
-                    hdr.Servicio.NombreServicio == cbox_servicio.SelectedItem.ToString()
-                    &&
-                    hdr.EstadoHdr == EstadoHdrTransporte.Asignada)
-                .ToList();
+            int idServicio = servicioSeleccionado.IdServicio;
+
+            List<HDRtransporte> resultadosFiltrados = modelo.ObtenerHdrTransporteAsignadas(idServicio);
 
             if (resultadosFiltrados.Count == 0)
             {
@@ -141,17 +143,15 @@ namespace tutasa.RendicionHDRtransporte
 
         private ListViewItem CrearItemHDR(HDRtransporte hdr)
         {
-            ListViewItem item =
-                new ListViewItem(hdr.NumeroHdrTransporte.ToString());
+            ListViewItem item = new ListViewItem(hdr.NumeroHdrTransporte.ToString());
 
-            item.SubItems.Add(
-                modelo.empresas[hdr.Servicio.IdEmpresa - 1]);
+            EmpresaTransporte empresa = modelo.ObtenerEmpresas().FirstOrDefault(x => x.IdEmpresa == hdr.Servicio.IdEmpresa);
+            
+            item.SubItems.Add(empresa?.Nombre ?? "");
 
-            item.SubItems.Add(
-                hdr.EstadoHdr.ToString());
+            item.SubItems.Add(hdr.EstadoHdr.ToString());
 
-            item.SubItems.Add(
-                hdr.Servicio.NombreServicio);
+            item.SubItems.Add(hdr.Servicio.NombreServicio);
 
             item.Tag = hdr;
 

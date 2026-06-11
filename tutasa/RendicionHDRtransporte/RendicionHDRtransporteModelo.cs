@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using tutasa.Almacenes;
 
 namespace tutasa.RendicionHDRtransporte
@@ -7,31 +8,107 @@ namespace tutasa.RendicionHDRtransporte
     internal partial class RendicionHDRtransporteModelo
     {
         public int IdCdUsuario { get; set; } = 1;
+
         public string? NombreCdUsuario { get; set; } = "Buenos Aires";
 
-        public List<EmpresaTransporteEntidad> ObtenerEmpresas()
+        public List<EmpresaTransporte> ObtenerEmpresas()
         {
-            return EmpresaTransporteAlmacen.empresas;
+            List<EmpresaTransporte> empresas = new List<EmpresaTransporte>();
+
+            foreach (EmpresaTransporteEntidad empresa in EmpresaTransporteAlmacen.empresas)
+            {
+                empresas.Add(new EmpresaTransporte()
+                {
+                    IdEmpresa = empresa.IdEmpresa,
+                    Nombre = empresa.NombreEmpresa
+                });
+            }
+
+            return empresas;
         }
 
-        public List<string> empresas => EmpresaTransporteAlmacen.empresas.Select(e => e.NombreEmpresa).ToList();
-
-        public List<ServicioEntidad> ObtenerServiciosPorEmpresa(int idEmpresa)
+        public List<Servicio> ObtenerServiciosPorEmpresa(int idEmpresa)
         {
-            return ServiciosAlmacen.servicio.Where(s => s.IdEmpresa == idEmpresa).ToList();
+            List<Servicio> servicios = new List<Servicio>();
+
+            foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
+            {
+                if (servicio.IdEmpresa == idEmpresa)
+                {
+                    servicios.Add(MapearServicio(servicio));
+                }
+            }
+
+            return servicios;
         }
 
-
-        public List<HojaRutaDeTransporteEntidad>
-            ObtenerHDRAsignadas(int idServicio)
+        public List<HDRtransporte> ObtenerHdrTransporteAsignadas(int idServicio)
         {
-            return HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte
-                .Where(h =>
-                    h.IdServicio == idServicio
-                    &&
-                    h.EstadoHDR ==
-                        EstadoHDRTransporteEnum.Asignada)
-                .ToList();
+            List<HDRtransporte> hdrTransporteList = new List<HDRtransporte>();
+
+            ServicioEntidad servicioEntidad = ServiciosAlmacen.servicio.Find(s => s.IdServicio == idServicio);
+
+            if (servicioEntidad == null)
+            {
+                return new List<HDRtransporte>();
+            }
+
+            foreach (HojaRutaDeTransporteEntidad hdr in HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte)
+            {
+                if (hdr.IdServicio == idServicio && hdr.EstadoHDR == EstadoHDRTransporteEnum.Asignada)
+                {
+
+                    hdrTransporteList.Add(new HDRtransporte()
+                    {
+                        NumeroHdrTransporte = hdr.NumeroHDRTransporte,
+                        EstadoHdr = (EstadoHdrTransporte)hdr.EstadoHDR,
+                        Servicio = MapearServicio(servicioEntidad),
+                        Guia = new List<int>(hdr.Guias)
+
+                    });
+                }
+            }
+            return hdrTransporteList;
+        }
+
+        private Servicio MapearServicio(ServicioEntidad servicioEntidad)
+        {
+            return new Servicio()
+            {
+                IdServicio = servicioEntidad.IdServicio,
+                IdEmpresa = servicioEntidad.IdEmpresa,
+                NombreServicio = servicioEntidad.NombreServicio,
+                FechaSalida = servicioEntidad.FechaSalida,
+                FechaLlegada = servicioEntidad.FechaLlegada,
+                IdCdOrigen = servicioEntidad.IdCDOrigen,
+                IdCdDestino = servicioEntidad.IdCDDestino,
+                EstadoServicio = (EstadoServicio)servicioEntidad.EstadoServicio
+            };
+        }
+
+        //Modelo tiene que retornar numeros de guia actualizados con exito y ui arma mensaje para mostrar en pantalla, no se encarga de mostrarlo
+        public List<string> ActualizarEstadoGuias(HDRtransporte hdr)
+        {
+            List<string> resultado = new List<string>();
+            foreach (int numeroGuia in hdr.Guia)
+            {
+                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.Find(g => g.NumeroGuia == numeroGuia);
+                if (guiaEntidad != null)
+                {
+                    if (guiaEntidad.IdCDDestino == IdCdUsuario)
+                    {
+                        guiaEntidad.EstadoActual = EstadoGuiaEnum.EnDestino;
+                    }
+                    else
+                    {
+                        guiaEntidad.EstadoActual = EstadoGuiaEnum.Admitida;
+                    }
+                    string mensaje = $"Guía {guiaEntidad.NumeroGuia} actualizada a estado '{guiaEntidad.EstadoActual}'";
+                    resultado.Add(mensaje);
+                }
+            }
+            return resultado;
+
         }
     }
 }
