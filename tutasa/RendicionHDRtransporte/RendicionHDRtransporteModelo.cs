@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using tutasa.Almacenes;
 
 namespace tutasa.RendicionHDRtransporte
 {
@@ -7,7 +8,33 @@ namespace tutasa.RendicionHDRtransporte
     {
         public int IdCdUsuario { get; set; } = 1;
         public string? NombreCdUsuario { get; set; } = "Buenos Aires";
-        public List<string> empresas { get; set; } = new List<string>
+
+        public List<EmpresaTransporteEntidad> ObtenerEmpresas()
+        {
+            return EmpresaTransporteAlmacen.empresas;
+        }
+
+        public List<ServicioEntidad> ObtenerServiciosPorEmpresa(int idEmpresa)
+        {
+            return ServiciosAlmacen.servicio.Where(s => s.IdEmpresa == idEmpresa).ToList();
+        }
+
+        public List<HojaRutaDeTransporteEntidad>
+            ObtenerHDRAsignadas(int idServicio)
+        {
+            return HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte
+                .Where(h =>
+                    h.IdServicio == idServicio
+                    &&
+                    h.EstadoHDR ==
+                        EstadoHDRTransporteEnum.Asignada)
+                .ToList();
+        }
+    }
+}
+
+/*
+public List<string> empresas { get; set; } = new List<string>
         {
             "Plusmar",
             "Flecha Bus",
@@ -131,6 +158,4 @@ namespace tutasa.RendicionHDRtransporte
                 resultado.Add(mensaje); 
             }
             return resultado; 
-        }
-    }
-}
+        }*/

@@ -11,7 +11,7 @@ namespace tutasa.Almacenes
             if (File.Exists(@"Datos\Fletero.json"))
             {
                 string json = File.ReadAllText(@"Datos\Fletero.json");
-                fleteros = JsonSerializer.Deserialize<List<Fletero>>(json);
+                fleteros = JsonSerializer.Deserialize<List<Fletero>>(json, Program.jsonOptions);
             }
             else
             {
@@ -20,7 +20,7 @@ namespace tutasa.Almacenes
         }
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(fleteros);
+            string json = JsonSerializer.Serialize(fleteros, Program.jsonOptions);
             File.WriteAllText(@"Datos\Fletero.json", json);
         }
     }

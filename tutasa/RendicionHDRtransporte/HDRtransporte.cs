@@ -18,7 +18,7 @@ namespace tutasa.RendicionHDRtransporte
             public EstadoHdrTransporte EstadoHdr { get; set; }
             public Servicio Servicio { get; set; } = new Servicio();
 
-            public List<Guia> Guia { get; set; } = new List<Guia>();
+            public List<int> Guia { get; set; } = new List<int>();
         }
     }
 }
