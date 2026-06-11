@@ -1,0 +1,21 @@
+﻿Plan de prueba: 001.RuteoUltimaMilla.RuteoExitoso.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT Cliente            "ABCDEFG"
+2- Botón                         "Buscar"
+3- Mensaje                       "El campo CUIT Cliente debe contener únicamente 11 valores numéricos"
+4- Botón                         "Aceptar"
+
+5- Campo CUIT Cliente            "99999999999"
+6- Botón                         "Buscar
+7- Mensaje                       "No se encuentra el CUIT ingresado"
+8- Botón                         "Aceptar"
+
+9- Botón                          "Buscar"
+10- Tabla superior de Guías       Nro Guía 100002 de la tabla superior
+11- Botón                         "Agregar selección"
+12- Botón                         "Confirmar"
+13- Mensaje						  "Debe seleccionar una fletero del desplegable "Asignación de Fletero""
+14- Botón                         "Aceptar"
+ 
