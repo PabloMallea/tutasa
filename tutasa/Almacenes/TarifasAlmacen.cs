@@ -4,13 +4,13 @@ namespace tutasa.Almacenes
 {
     public class TarifasAlmacen
     {
-        public static List<FacturaEntidad> Tarifas = new();
+        public static List<TarifasEntidad> Tarifas = new();
         static TarifasAlmacen()
         {
             if (File.Exists(@"Datos\Tarifas.json"))
             {
                 string json = File.ReadAllText(@"Datos\Tarifas.json");
-                Tarifas = JsonSerializer.Deserialize<List<FacturaEntidad>>(json);
+                Tarifas = JsonSerializer.Deserialize<List<TarifasEntidad>>(json, Program.jsonOptions);
             }
             else
             {
@@ -20,7 +20,7 @@ namespace tutasa.Almacenes
 
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(Tarifas);
+            string json = JsonSerializer.Serialize(Tarifas, Program.jsonOptions);
             File.WriteAllText(@"Datos\Tarifas.json", json);
         }
     }

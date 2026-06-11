@@ -11,7 +11,7 @@ namespace tutasa.Almacenes
             if (File.Exists(@"Datos\Agencias.json"))
             {
                 string json = File.ReadAllText(@"Datos\Agencias.json");
-                agencias = JsonSerializer.Deserialize<List<Agencia>>(json);
+                agencias = JsonSerializer.Deserialize<List<Agencia>>(json, Program.jsonOptions);
             }
             else
             {
@@ -20,7 +20,7 @@ namespace tutasa.Almacenes
         }
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(agencias);
+            string json = JsonSerializer.Serialize(agencias, Program.jsonOptions);
             File.WriteAllText(@"Datos\Agencias.json", json);
         }
     }

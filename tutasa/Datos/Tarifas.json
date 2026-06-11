@@ -1,0 +1,98 @@
+[
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 200,
+    "Dimension": "S",
+    "Precio": 9200.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 200,
+    "Dimension": "M",
+    "Precio": 18500.50
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 200,
+    "Dimension": "L",
+    "Precio": 27890.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 200,
+    "Dimension": "XL",
+    "Precio": 45200.75
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 300,
+    "Dimension": "S",
+    "Precio": 9500.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 300,
+    "Dimension": "M",
+    "Precio": 19200.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 300,
+    "Dimension": "L",
+    "Precio": 28900.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 300,
+    "Dimension": "XL",
+    "Precio": 47000.00
+  },
+  {
+    "IdLocalidadOrigen": 200,
+    "IdLocalidadDestino": 400,
+    "Dimension": "S",
+    "Precio": 11800.00
+  },
+  {
+    "IdLocalidadOrigen": 200,
+    "IdLocalidadDestino": 400,
+    "Dimension": "M",
+    "Precio": 22400.00
+  },
+  {
+    "IdLocalidadOrigen": 200,
+    "IdLocalidadDestino": 400,
+    "Dimension": "L",
+    "Precio": 33800.00
+  },
+  {
+    "IdLocalidadOrigen": 200,
+    "IdLocalidadDestino": 400,
+    "Dimension": "XL",
+    "Precio": 45200.75
+  },
+  {
+    "IdLocalidadOrigen": 300,
+    "IdLocalidadDestino": 100,
+    "Dimension": "S",
+    "Precio": 9700.00
+  },
+  {
+    "IdLocalidadOrigen": 300,
+    "IdLocalidadDestino": 100,
+    "Dimension": "M",
+    "Precio": 19400.00
+  },
+  {
+    "IdLocalidadOrigen": 300,
+    "IdLocalidadDestino": 100,
+    "Dimension": "L",
+    "Precio": 27890.00
+  },
+  {
+    "IdLocalidadOrigen": 300,
+    "IdLocalidadDestino": 100,
+    "Dimension": "XL",
+    "Precio": 46500.00
+  }
+]

@@ -12,7 +12,7 @@ namespace tutasa.Almacenes
             if (File.Exists(@"Datos\Extras.json"))
             {
                 string json = File.ReadAllText(@"Datos\Extras.json");
-                Extras = JsonSerializer.Deserialize<List<ExtrasEntidad>>(json);
+                Extras = JsonSerializer.Deserialize<List<ExtrasEntidad>>(json, Program.jsonOptions);
             }
             else
             {
@@ -22,7 +22,7 @@ namespace tutasa.Almacenes
 
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(Extras);
+            string json = JsonSerializer.Serialize(Extras, Program.jsonOptions);
             File.WriteAllText(@"Datos\Extras.json", json);
         }
     }

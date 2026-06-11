@@ -45,9 +45,11 @@ namespace tutasa.RendicionHDRtransporte
             {
                 string empresaSeleccionada = cbox_empresa.SelectedItem.ToString();
 
-                List<Servicio> serviciosFiltrados = modelo.servicios
-                    .Where(s => modelo.empresas[s.IdEmpresa - 1] == empresaSeleccionada)
-                    .ToList();
+                int idEmpresa = modelo.empresas
+                    .First(e => e.NombreEmpresa == empresaSeleccionada)
+                    .IdEmpresa;
+
+                List<Servicio> serviciosFiltrados = modelo.ObtenerServiciosPorEmpresa(idEmpresa);
 
                 foreach (Servicio servicio in serviciosFiltrados)
                 {

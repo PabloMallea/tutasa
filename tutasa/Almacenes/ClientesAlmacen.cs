@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+﻿ using System.Text.Json;
 
 namespace tutasa.Almacenes
 {
@@ -12,7 +12,7 @@ namespace tutasa.Almacenes
             if (File.Exists(@"Datos\Clientes.json"))
             {
                 string json = File.ReadAllText(@"Datos\Clientes.json");
-                clientes = JsonSerializer.Deserialize<List<ClienteEntidad>>(json);
+                clientes = JsonSerializer.Deserialize<List<ClienteEntidad>>(json, Program.jsonOptions);
             }
             else
             {
@@ -22,7 +22,7 @@ namespace tutasa.Almacenes
 
         public static void Guardar()
         {
-            string json = JsonSerializer.Serialize(clientes);
+            string json = JsonSerializer.Serialize(clientes, Program.jsonOptions);
             File.WriteAllText(@"Datos\Clientes.json", json);
         }
     }

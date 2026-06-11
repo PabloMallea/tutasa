@@ -1,0 +1,14 @@
+[
+  {
+    "Tipo": "Entrega",
+    "Precio": 3500.00
+  },
+  {
+    "Tipo": "Retiro",
+    "Precio": 2500.00
+  },
+  {
+    "Tipo": "EntregaEnAgencia",
+    "Precio": 1200.00
+  }
+]

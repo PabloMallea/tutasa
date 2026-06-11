@@ -8,6 +8,6 @@ namespace tutasa.Almacenes
     {
         Entrega,
         Retiro,
-        Editorial
+        EntregaEnAgencia
     }
 }
