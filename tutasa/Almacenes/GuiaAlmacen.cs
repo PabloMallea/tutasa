@@ -18,6 +18,7 @@ namespace tutasa.Almacenes
                 throw new ApplicationException($"No se encontro el almacen {nameof(GuiaAlmacen)}");
             }
         }
+
         public static void Guardar()
         {
             string json = JsonSerializer.Serialize(guias, Program.jsonOptions);

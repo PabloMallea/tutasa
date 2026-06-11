@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Text.Json;
-using tutasa.Almacenes;
+﻿using tutasa.Almacenes;
 
 
 namespace tutasa.Imposicion_Agencia
@@ -127,7 +122,6 @@ namespace tutasa.Imposicion_Agencia
 
             return null;
         }
-
 
 
         public Localidad BuscarLocalidad(string nombre)

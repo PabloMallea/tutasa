@@ -36,8 +36,17 @@ namespace tutasa
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
             Application.Run(new tutasa.Imposicion_Agencia.Imposicion_Agencia());
 
-            //ClientesAlmacen.Guardar();
-
+            AgenciasAlmacen.Guardar();
+            CentroDistribucionAlmacen.Guardar();
+            ClientesAlmacen.Guardar();
+            ComisionesAlmacen.Guardar();
+            EmpresaTransporteAlmacen.Guardar();
+            FacturaAlmacen.Guardar();
+            GuiaAlmacen.Guardar();
+            HojaDeRutaUltimaMillaAlmacen.Guardar();
+            HojasDeRutaTransporteAlmacen.Guardar();
+            LocalidadAlmacen.Guardar();
+            ServiciosAlmacen.Guardar();
         }
     }
 }
