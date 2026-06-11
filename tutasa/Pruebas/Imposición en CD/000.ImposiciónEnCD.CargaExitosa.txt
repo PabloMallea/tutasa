@@ -2,20 +2,20 @@
 
 (Empieza con el menú principal)
 
-1- Campo CUIT                     "20333444556"
+1- Campo CUIT                     "30712345678"
 2- Botón                          "Buscar"
 
 3- Nombre Cliente                 "Juan"
 4- Apellido Cliente               "Perez"
-5- Teléfono Cliente               "1122334455"
+5- Teléfono Cliente               "1155554444"
 
-6- Campo Localidad                "San Rafael"
+6- Campo Localidad                "Rosario"
 7- Botón                          "Buscar"
 
-8- Desplegable Destino            "CD San Rafael - Centro"
+8- Desplegable Destino            "CD Rosario"
 
-9- Calle Destino                  "Av Pergollini"
-10- Altura Destino                "5122"
+9- Calle Destino                  "Av. Circunvalacion"
+10- Altura Destino                "3200"
 
 11- Campo Nombre                  "Ana"
 12- Campo Apellido                "Garcia"
@@ -28,40 +28,32 @@
 
 17- Botón                         "Confirmar"
 
-18- Mensaje
-    "La imposición fue registrada correctamente"
+18- Mensaje                       "La imposición fue registrada correctamente"
 
 19- Botón                         "Aceptar"
 
 Verificaciones:
-20- Archivo Clientes.json - Los datos recuperados deben corresponder al cliente:
-{
-   "Cuit":"20333444556",
-   "Nombre":"Juan",
-   "Apellido":"Perez",
-   "Telefono":"1122334455"
-}
 
-21- Archivo Guias.json - Debería haber en el almacén de guías una nueva guía creada con la siguiente información:
+20- Archivo Guias.json - Verificar:
 
 {
-   "numeroGuia": <nuevo>,
+   "numeroGuia": 100005,
    "fechaAlta": "fecha actual",
 
-   "cuitCliente": 20333444556,
+   "cuitCliente": 30712345678,
 
    "idCdOrigen": 1,
 
    "TipoRetiro": "RecibidoEnCD",
-   "idAgenciaRetiro": null,
+   "idAgenciaRetiro": 0,
 
    "idCDDestino": 2,
-   "idAgenciaDestino": null,
+   "idAgenciaDestino": 0,
 
    "destino": "CD",
 
-   "calleDestino": "Av Pergollini",
-   "alturaDestino": "5122",
+   "calleDestino": "Av. Circunvalacion",
+   "alturaDestino": "3200",
 
    "dniDestinatario": "30123456",
    "telefonoDestinatario": "1177788899",
@@ -78,7 +70,7 @@ Verificaciones:
       {
          "fechaHora": "10-06-2026 10:30:00",
          "estado": "Admitida",
-         "ubicacion": "CD San Rafael - Centro"
+         "ubicacion": "CD Buenos Aires"
       }
    ],
 
@@ -97,5 +89,5 @@ Verificación adicional
 El desplegable Destino debe contener:
 
 - Domicilio del Destinatario
-- Agencia San Rafael - Centro
-- CD San Rafael - Centro
+- CD Rosario
+- Agencia Rosario Norte
