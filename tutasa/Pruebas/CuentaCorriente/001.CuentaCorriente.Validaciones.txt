@@ -1,0 +1,147 @@
+Plan de Prueba: 001.CuentaCorriente.Validaciones.txt
+
+(Empieza con el menu principal - se accede al formulario Estado de Cuenta Corriente)
+
+--- VALIDACION 1: CUIT/CUIL vacio ---
+
+1- Boton                          "Buscar"   (CUIT en blanco)
+
+2- Mensaje                        "Debe ingresar un CUIT/CUIL."
+
+3- Boton                          "Aceptar"
+
+4- Verificacion                   "Campo Cliente permanece vacio"
+5- Verificacion                   "Tabla Estado Cuenta permanece vacia"
+
+--- VALIDACION 2: CUIT/CUIL con solo espacios ---
+
+6- Campo CUIT/CUIL                "   "
+
+7- Boton                          "Buscar"
+
+8- Mensaje                        "Debe ingresar un CUIT/CUIL."
+
+9- Boton                          "Aceptar"
+
+--- VALIDACION 3: CUIT/CUIL con letras ---
+
+10- Campo CUIT/CUIL               "ABC12345678"
+
+11- Boton                         "Buscar"
+
+12- Mensaje                       "El CUIT/CUIL debe contener únicamente números."
+
+13- Boton                         "Aceptar"
+
+--- VALIDACION 4: CUIT/CUIL con caracteres especiales ---
+
+14- Campo CUIT/CUIL               "30@712345678"
+
+15- Boton                         "Buscar"
+
+16- Mensaje                       "El CUIT/CUIL debe contener únicamente números."
+
+17- Boton                         "Aceptar"
+
+--- VALIDACION 5: CUIT numerico inexistente en Clientes.json ---
+
+18- Campo CUIT/CUIL               "11111111111"
+    (numerico valido, no existe en Clientes.json)
+
+19- Boton                         "Buscar"
+
+20- Mensaje                       "No se encontró el cliente."
+
+21- Boton                         "Aceptar"
+
+22- Verificacion                  "Campo Cliente permanece vacio"
+
+--- VALIDACION 6: Buscar movimientos sin haber buscado cliente ---
+
+23- (Campo Cliente vacio)
+
+24- Boton                         "Buscar"   (seccion fechas)
+
+25- Mensaje                       "Debe buscar un cliente primero."
+
+26- Boton                         "Aceptar"
+
+--- VALIDACION 7: Fecha Desde posterior a Fecha Hasta ---
+
+27- Campo CUIT/CUIL               "30712345678"
+
+28- Boton                         "Buscar"
+
+29- Verificacion                  "Campo Cliente: 'Juan Perez'"
+
+30- Fecha Desde                   "10/06/2026"
+
+31- Fecha Hasta                   "01/06/2026"
+
+32- Boton                         "Buscar"
+
+33- Mensaje                       "La fecha desde no puede ser mayor a la fecha hasta."
+
+34- Boton                         "Aceptar"
+
+35- Verificacion                  "Tabla Estado Cuenta queda vacia"
+
+--- VALIDACION 8: Rango valido sin movimientos para el cliente ---
+
+DATOS DE PRE-TEST
+Razon: ningún cliente tiene movimientos anteriores a junio 2026 en Clientes.json.
+Se usa un rango de fechas pasado donde no existe ningun movimiento.
+
+36- Fecha Desde                   "01/01/2025"
+
+37- Fecha Hasta                   "31/01/2025"
+
+38- Boton                         "Buscar"
+
+39- Verificacion                  "Tabla Estado Cuenta queda vacia"
+
+40- Mensaje                       "No se encontraron movimientos para el rango de fechas seleccionado."
+
+41- Boton                         "Aceptar"
+
+--- VALIDACION 9: Cliente con movimientos pero todos fuera del rango ---
+
+42- Campo CUIT/CUIL               "30555111222"
+    (Maria Gomez, movimiento real del 03/06/2026 Factura 1002)
+
+43- Boton                         "Buscar"
+
+44- Verificacion                  "Campo Cliente: 'Maria Gomez'"
+
+45- Fecha Desde                   "01/07/2026"
+
+46- Fecha Hasta                   "31/07/2026"
+
+47- Boton                         "Buscar"
+
+48- Mensaje                       "No se encontraron movimientos para el rango de fechas seleccionado."
+
+49- Boton                         "Aceptar"
+
+--- VALIDACION 10: Fecha Desde igual a Fecha Hasta con movimiento en esa fecha ---
+
+50- Campo CUIT/CUIL               "30777888999"
+    (Carlos Lopez, movimiento real del 05/06/2026 Factura 1002)
+
+51- Boton                         "Buscar"
+
+52- Fecha Desde                   "05/06/2026"
+
+53- Fecha Hasta                   "05/06/2026"
+
+54- Boton                         "Buscar"
+
+55- Verificacion                  "Tabla muestra 1 fila: Factura 1002 del 05/06/2026"
+                                  "(filtro inclusivo en ambos extremos)"
+
+Verificaciones:
+
+56- En todos los casos de validacion fallida no se modifica ningun almacen.
+57- Clientes.json: sin modificaciones.
+58- Facturas.json: sin modificaciones.
+59- Tabla Estado Cuenta permanece vacia o sin cambios segun el caso.

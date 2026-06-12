@@ -1,0 +1,113 @@
+Plan de Prueba: 000.AdmisionEncomiendas.CargaExitosa.txt
+
+(Empieza con el menu principal)
+
+1- Menu principal                 Seleccionar opcion "Admision"
+
+2- Verificacion                   "Formulario Admision abierto:"
+                                  "- N° Guia: vacio y habilitado"
+                                  "- Boton Buscar: habilitado"
+                                  "- Seccion Datos de Guia: campos vacios"
+                                  "- Peso (Kg): vacio"
+                                  "- Dimension: S | M | L | XL (sin valor resaltado)"
+                                  "- Boton Confirmar: deshabilitado"
+                                  "- Boton Cancelar: habilitado"
+
+3- Campo N° Guia                  "100005"
+
+4- Boton                          "Buscar"
+
+5- Verificacion autocompletado:
+   Remitente                      "Lucia Fernandez"
+   Direccion Origen               "Ruta 9 Sur 7800"
+   CUIT                           "30444555666"
+   Destinatario                   "Lucia Fernandez"
+   Direccion Destino              "San Martin 742"
+   DNI                            "27777888"
+   Peso (Kg)                      "0,00"
+   Dimension                      "L"
+
+6- Verificacion                   "Boton Confirmar: habilitado"
+
+7- Campo Peso (Kg)                "8"
+
+8- Verificacion                   "Dimension = L"
+                                  "(5,01 <= 8 <= 10,00)"
+
+9- Boton                          "Confirmar"
+
+10- Mensaje                       "¿Confirma la admisión de la guía N° 100005?"
+                                  "Peso: 8,00 Kg"
+                                  "Dimensión: L"
+                                  (Botones: Si / No)
+
+11- Boton                         "Si"
+
+12- Mensaje                       "La guía N° 100005 ha sido admitida correctamente."
+                                  "Estado: Admitida"
+                                  "Peso: 8,00 Kg"
+                                  "Dimensión: L"
+
+13- Boton                         "Aceptar"
+
+14- Verificacion                  "Formulario limpio:"
+                                  "- N° Guia: vacio"
+                                  "- Seccion Datos de Guia: campos vacios"
+                                  "- Peso (Kg): vacio"
+                                  "- Dimension: sin valor"
+                                  "- Boton Confirmar: deshabilitado"
+                                  "- Foco en N° Guia"
+
+Verificaciones:
+
+15- Archivo Guias.json - Verificar guia 100005:
+
+Estado ANTERIOR:
+{
+  "NumeroGuia": 100005,
+  "EstadoActual": "PendienteAdmision",
+  "Dimension": "L",
+  "MontoFacturar": 0,
+  "ComisionesAgenciaOrigen": 0,
+  "ComisionesAgenciaDestino": 0,
+  "ComisionesFleteroOrigen": 0,
+  "ComisionesFleteroDestino": 0,
+  "Historial": [
+    { "FechaHora": "2026-06-10T08:00:00", "Estado": "Impuesta",          "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "2026-06-10T10:00:00", "Estado": "PlanificadaRetiro", "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "2026-06-10T12:00:00", "Estado": "EnProcesoRetiro",   "Ubicacion": "Cordoba"    },
+    { "FechaHora": "2026-06-10T15:00:00", "Estado": "PendienteAdmision", "Ubicacion": "CD Cordoba" }
+  ]
+}
+
+Estado NUEVO:
+{
+  "NumeroGuia": 100005,
+  "EstadoActual": "Admitida",
+  "Dimension": "L",
+  "MontoFacturar": 27890.00,
+  "ComisionesAgenciaOrigen": 0,
+  "ComisionesAgenciaDestino": 0,
+  "ComisionesFleteroOrigen": 2500.00,
+  "ComisionesFleteroDestino": 3500.00,
+  "Historial": [
+    { "FechaHora": "2026-06-10T08:00:00", "Estado": "Impuesta",          "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "2026-06-10T10:00:00", "Estado": "PlanificadaRetiro", "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "2026-06-10T12:00:00", "Estado": "EnProcesoRetiro",   "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "2026-06-10T15:00:00", "Estado": "PendienteAdmision", "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "fecha actual",         "Estado": "Admitida",          "Ubicacion": "CD Cordoba" }
+  ]
+}
+
+Campos modificados:
+- EstadoActual:          "PendienteAdmision" -> "Admitida"
+- Dimension:             "L" confirmada (8 kg corresponde a L)
+- Historial:             nueva entrada Estado="Admitida", Ubicacion="CD Cordoba"
+- MontoFacturar:         0 -> 27890.00
+                         (Tarifas.json: Origen=300, Destino=100, Dim=L)
+- ComisionesFleteroOrigen: 0 -> 2500.00
+                         (Extras.json: Tipo="Retiro", TipoRetiro="EnDomicilio")
+- ComisionesFleteroDestino: 0 -> 3500.00
+                         (Extras.json: Tipo="Entrega", Destino="Domicilio")
+- ComisionesAgenciaOrigen:  0 (Comisiones.json vacio)
+- ComisionesAgenciaDestino: 0 (Comisiones.json vacio)

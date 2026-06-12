@@ -1,0 +1,246 @@
+Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
+
+(Empieza con el menu principal - se accede al formulario Admision)
+
+--- VALIDACION 1: Campo N° Guia vacio ---
+
+1- Boton                          "Buscar"
+
+2- Mensaje                        "Por favor, ingrese un número de guía."
+
+3- Boton                          "Aceptar"
+
+--- VALIDACION 2: N° Guia con texto no numerico ---
+
+4- Campo N° Guia                  "ABCDE"
+
+5- Boton                          "Buscar"
+
+6- Mensaje                        "Por favor, ingrese un número de guía válido."
+
+7- Boton                          "Aceptar"
+
+--- VALIDACION 3: N° Guia con caracteres especiales ---
+
+8- Campo N° Guia                  "100@001"
+
+9- Boton                          "Buscar"
+
+10- Mensaje                       "Por favor, ingrese un número de guía válido."
+
+11- Boton                         "Aceptar"
+
+--- VALIDACION 4: N° Guia numerico inexistente en Guias.json ---
+
+12- Campo N° Guia                 "999999"
+
+13- Boton                         "Buscar"
+
+14- Mensaje                       "No se encontró ninguna guía con ese número."
+
+15- Boton                         "Aceptar"
+
+16- Verificacion                  "Seccion Datos de Guia: campos vacios"
+17- Verificacion                  "Boton Confirmar: deshabilitado"
+
+--- VALIDACION 5: Guia real en estado EnProcesoDistribucion (100001 de Guias.json) ---
+
+18- Campo N° Guia                 "100001"
+    (Guias.json: EstadoActual="EnProcesoDistribucion")
+
+19- Boton                         "Buscar"
+
+20- Mensaje                       "No se encontró ninguna guía con ese número."
+    (El sistema rechaza la guia porque no esta en estado admisible)
+
+21- Boton                         "Aceptar"
+
+22- Verificacion                  "Guias.json: guia 100001 permanece EstadoActual=EnProcesoDistribucion"
+
+--- VALIDACION 6: Guia real en estado Entregada (100002 de Guias.json) ---
+
+23- Campo N° Guia                 "100002"
+    (Guias.json: EstadoActual="Entregada")
+
+24- Boton                         "Buscar"
+
+25- Mensaje                       "No se encontró ninguna guía con ese número."
+
+26- Boton                         "Aceptar"
+
+--- VALIDACION 7: Guia real en estado EnTransporte (100003 de Guias.json) ---
+
+27- Campo N° Guia                 "100003"
+
+28- Boton                         "Buscar"
+
+29- Mensaje                       "No se encontró ninguna guía con ese número."
+
+30- Boton                         "Aceptar"
+
+--- VALIDACION 8: Guia real en estado PendienteDeEntrega (100004 de Guias.json) ---
+
+31- Campo N° Guia                 "100004"
+
+32- Boton                         "Buscar"
+
+33- Mensaje                       "No se encontró ninguna guía con ese número."
+
+34- Boton                         "Aceptar"
+
+--- VALIDACION 9: Peso (Kg) vacio al presionar Confirmar ---
+
+35- Campo N° Guia                 "100005"
+
+36- Boton                         "Buscar"
+
+37- Verificacion                  "Datos de guia autocompletos. Boton Confirmar habilitado."
+
+38- Campo Peso (Kg)               (borrar el valor precargado)
+
+39- Boton                         "Confirmar"
+
+40- Mensaje                       "Por favor, ingrese el peso del paquete."
+
+41- Boton                         "Aceptar"
+
+--- VALIDACION 10: Peso (Kg) con texto - detectado al escribir ---
+
+42- Campo Peso (Kg)               "abc"
+
+43- Mensaje                       "Por favor, ingrese un peso válido."
+
+44- Boton                         "Aceptar"
+
+45- Verificacion                  "Dimension queda sin valor"
+
+--- VALIDACION 11: Peso (Kg) negativo - detectado al escribir ---
+
+46- Campo Peso (Kg)               "-3"
+
+47- Mensaje                       "El peso debe ser mayor a cero."
+
+48- Boton                         "Aceptar"
+
+49- Verificacion                  "Dimension queda sin valor"
+
+--- VALIDACION 12: Peso (Kg) cero - detectado al escribir ---
+
+50- Campo Peso (Kg)               "0"
+
+51- Mensaje                       "El peso debe ser mayor a cero."
+
+52- Boton                         "Aceptar"
+
+53- Verificacion                  "Dimension queda sin valor"
+
+--- VALIDACION 13: Peso (Kg) con caracteres especiales ---
+
+54- Campo Peso (Kg)               "5@#"
+
+55- Mensaje                       "Por favor, ingrese un peso válido."
+
+56- Boton                         "Aceptar"
+
+57- Verificacion                  "Dimension queda sin valor"
+
+--- VALIDACION 14: Peso (Kg) invalido al presionar Confirmar ---
+
+58- Campo Peso (Kg)               "abc"
+
+59- Boton                         "Confirmar"
+
+60- Mensaje                       "Por favor, ingrese un peso válido (puede usar punto o coma para decimales, ej: 5.5 o 5,5)."
+
+61- Boton                         "Aceptar"
+
+--- VALIDACION 15: Peso (Kg) negativo al presionar Confirmar ---
+
+62- Campo Peso (Kg)               "-5"
+
+63- Boton                         "Confirmar"
+
+64- Mensaje                       "El peso debe ser mayor a cero."
+
+65- Boton                         "Aceptar"
+
+--- VALIDACION 16: Confirmar sin haber buscado guia ---
+
+66- (Formulario limpio)
+
+67- Verificacion                  "Boton Confirmar esta deshabilitado"
+                                  "No se produce ningun mensaje"
+
+--- VALIDACION 17: Cancelar en el popup de admision - elige No ---
+
+68- Campo N° Guia                 "100005"
+
+69- Boton                         "Buscar"
+
+70- Campo Peso (Kg)               "8"
+
+71- Boton                         "Confirmar"
+
+72- Mensaje                       "¿Confirma la admisión de la guía N° 100005?"
+
+73- Boton                         "No"
+
+74- Verificacion                  "La admision no se registra"
+75- Verificacion                  "Formulario permanece con los datos cargados"
+
+--- VALIDACION 18: Cancelar el formulario - elige No ---
+
+76- Boton                         "Cancelar"
+
+77- Mensaje                       "¿Está seguro que desea cancelar la operación?"
+
+78- Boton                         "No"
+
+79- Verificacion                  "Formulario permanece con los datos cargados"
+
+--- VALIDACION 19: Cancelar el formulario - elige Si ---
+
+80- Boton                         "Cancelar"
+
+81- Mensaje                       "¿Está seguro que desea cancelar la operación?"
+
+82- Boton                         "Si"
+
+83- Verificacion                  "N° Guia: vacio"
+84- Verificacion                  "Seccion Datos de Guia: campos vacios"
+85- Verificacion                  "Boton Confirmar: deshabilitado"
+86- Verificacion                  "Foco en N° Guia - Formulario permanece abierto"
+
+--- VALIDACION 20: Valores exactos en los limites de cada Dimension ---
+
+87- Campo N° Guia                 "100005"
+
+88- Boton                         "Buscar"
+
+89- Campo Peso (Kg)               "2,50"
+90- Verificacion                  "Dimension = S   (limite superior S)"
+
+91- Campo Peso (Kg)               "2,51"
+92- Verificacion                  "Dimension = M   (limite inferior M)"
+
+93- Campo Peso (Kg)               "5,00"
+94- Verificacion                  "Dimension = M   (limite superior M)"
+
+95- Campo Peso (Kg)               "5,01"
+96- Verificacion                  "Dimension = L   (limite inferior L)"
+
+97- Campo Peso (Kg)               "10,00"
+98- Verificacion                  "Dimension = L   (limite superior L)"
+
+99- Campo Peso (Kg)               "10,01"
+100- Verificacion                 "Dimension = XL  (limite inferior XL)"
+
+101- Campo Peso (Kg)              "25"
+102- Verificacion                 "Dimension = XL  (superior a 20 kg)"
+
+Verificaciones:
+
+103- No debe modificarse ningun registro en Guias.json en ninguno de los casos anteriores.
+104- El EstadoActual de cualquier guia debe permanecer sin cambios.
+105- No se deben agregar entradas al Historial de ninguna guia.
+106- MontoFacturar y Comisiones deben permanecer en sus valores originales.

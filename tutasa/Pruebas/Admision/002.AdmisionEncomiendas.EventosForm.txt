@@ -1,0 +1,142 @@
+Plan de Prueba: 002.AdmisionEncomiendas.EventosForm.txt
+
+(Empieza con el menu principal - se accede al formulario Admision)
+
+--- EVENTO 1: Estado inicial del formulario ---
+
+1- Verificacion                   "Al abrir el formulario Admision:"
+                                  "- N° Guia: vacio y habilitado"
+                                  "- Boton Buscar: habilitado"
+                                  "- Seccion Datos de Guia: campos vacios"
+                                  "    Remitente | Direccion Origen | CUIT"
+                                  "    Destinatario | Direccion Destino | DNI"
+                                  "- Texto: 'Modifique el peso en caso de ser necesario'"
+                                  "- Peso (Kg): vacio"
+                                  "- Dimension: S | M | L | XL (sin valor)"
+                                  "- Boton Confirmar: DESHABILITADO"
+                                  "- Boton Cancelar: habilitado"
+
+--- EVENTO 2: Autocompletado tras busqueda exitosa ---
+
+2- Campo N° Guia                  "100005"
+
+3- Boton                          "Buscar"
+
+4- Verificacion                   "Se autocompletan con datos reales:"
+   Remitente                      "Lucia Fernandez"
+                                  "(Clientes.json CUIT 30444555666)"
+   Direccion Origen               "Ruta 9 Sur 7800"
+                                  "(CD.json IdCD=3, CD Cordoba)"
+   CUIT                           "30444555666"
+   Destinatario                   "Lucia Fernandez"
+                                  "(Guias.json NombreDestinatario + ApellidoDestinatario)"
+   Direccion Destino              "San Martin 742"
+                                  "(Guias.json CalleDestino + AlturaDestino)"
+   DNI                            "27777888"
+                                  "(Guias.json DniDestinatario)"
+   Dimension                      "L"
+                                  "(Guias.json Dimension declarada)"
+
+5- Verificacion                   "Boton Confirmar: HABILITADO"
+
+6- Verificacion                   "Campos de Datos de Guia son de solo lectura"
+
+--- EVENTO 3: Recalculo automatico de Dimension al cambiar Peso (Kg) ---
+
+7- Campo Peso (Kg)                "1"
+8- Verificacion                   "Dimension = S"
+
+9- Campo Peso (Kg)                "2,50"
+10- Verificacion                  "Dimension = S   (limite superior)"
+
+11- Campo Peso (Kg)               "2,51"
+12- Verificacion                  "Dimension = M   (limite inferior)"
+
+13- Campo Peso (Kg)               "5,00"
+14- Verificacion                  "Dimension = M   (limite superior)"
+
+15- Campo Peso (Kg)               "5,01"
+16- Verificacion                  "Dimension = L   (limite inferior)"
+
+17- Campo Peso (Kg)               "8"
+18- Verificacion                  "Dimension = L"
+
+19- Campo Peso (Kg)               "10,01"
+20- Verificacion                  "Dimension = XL  (limite inferior)"
+
+21- Campo Peso (Kg)               "25"
+22- Verificacion                  "Dimension = XL  (superior a 20 kg)"
+
+--- EVENTO 4: Peso vacio limpia Dimension ---
+
+23- Campo Peso (Kg)               (borrar todo el contenido)
+
+24- Verificacion                  "Dimension queda sin valor"
+
+--- EVENTO 5: Dimension cambia cuando el peso real difiere del declarado ---
+
+25- Verificacion                  "Guia 100005 tiene Dimension declarada: L"
+
+26- Campo Peso (Kg)               "3"
+    (3 kg -> Dimension M, distinta a la declarada L)
+
+27- Verificacion                  "Dimension recalcula a: M"
+                                  "(el sistema usa el peso real, no el declarado en la imposicion)"
+
+28- Campo Peso (Kg)               "8"
+
+29- Verificacion                  "Dimension = L   (coincide nuevamente con la declarada)"
+
+--- EVENTO 6: Cancelar antes de confirmar - elige No ---
+
+30- Campo N° Guia                 "100005"
+31- Boton                         "Buscar"
+32- Campo Peso (Kg)               "8"
+33- Boton                         "Cancelar"
+34- Mensaje                       "¿Está seguro que desea cancelar la operación?"
+35- Boton                         "No"
+36- Verificacion                  "Formulario permanece con todos los datos cargados"
+
+--- EVENTO 7: Cancelar antes de confirmar - elige Si ---
+
+37- Boton                         "Cancelar"
+38- Mensaje                       "¿Está seguro que desea cancelar la operación?"
+39- Boton                         "Si"
+40- Verificacion                  "N° Guia: vacio"
+41- Verificacion                  "Seccion Datos de Guia: campos vacios"
+42- Verificacion                  "Peso (Kg): vacio - Dimension: sin valor"
+43- Verificacion                  "Boton Confirmar: deshabilitado"
+44- Verificacion                  "Foco en N° Guia - Formulario permanece abierto"
+
+--- EVENTO 8: Flujo completo exitoso - limpieza posterior ---
+
+45- Campo N° Guia                 "100005"
+46- Boton                         "Buscar"
+47- Campo Peso (Kg)               "8"
+48- Verificacion                  "Dimension = L"
+49- Boton                         "Confirmar"
+50- Mensaje                       "¿Confirma la admisión de la guía N° 100005?"
+                                  "Peso: 8,00 Kg - Dimensión: L"
+51- Boton                         "Si"
+52- Mensaje                       "La guía N° 100005 ha sido admitida correctamente."
+                                  "Estado: Admitida - Peso: 8,00 Kg - Dimensión: L"
+53- Boton                         "Aceptar"
+54- Verificacion                  "N° Guia: vacio"
+55- Verificacion                  "Seccion Datos de Guia: campos vacios"
+56- Verificacion                  "Boton Confirmar: deshabilitado - Foco en N° Guia"
+57- Verificacion                  "Guias.json guia 100005: EstadoActual = Admitida"
+58- Verificacion                  "Guias.json guia 100005: Historial pasa de 4 a 5 entradas"
+
+--- EVENTO 9: Guia en estado invalido no habilita Confirmar ---
+
+59- Campo N° Guia                 "100001"
+    (Guias.json: EstadoActual=EnProcesoDistribucion)
+
+60- Boton                         "Buscar"
+
+61- Mensaje                       "No se encontró ninguna guía con ese número."
+
+62- Boton                         "Aceptar"
+
+63- Verificacion                  "Seccion Datos de Guia: campos vacios"
+64- Verificacion                  "Boton Confirmar permanece deshabilitado"

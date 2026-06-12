@@ -1,0 +1,100 @@
+Plan de Prueba: 000.CuentaCorriente.CargaExitosa.txt
+
+(Empieza con el menu principal)
+
+CASO A: Juan Perez (CUIT 30712345678) - rango que cubre Facturas 1001 y 1003
+
+
+1- Menu principal                 Seleccionar opcion "Estado Cuenta Corriente"
+
+2- Verificacion                   "Formulario Estado de Cuenta Corriente abierto:"
+                                  "- CUIT/CUIL: vacio y habilitado"
+                                  "- Boton Buscar (Busqueda): habilitado"
+                                  "- Campo Cliente: vacio"
+                                  "- Fecha Desde: DateTimePicker con fecha actual"
+                                  "- Fecha Hasta: DateTimePicker con fecha actual"
+                                  "- Boton Buscar (fechas): habilitado"
+                                  "- Seccion Estado Cuenta: tabla vacia"
+                                  "    Columnas: Fecha | N° Comproba... | Concepto | Monto | Pago | Saldo"
+                                  "- Boton Aceptar: habilitado"
+
+3- Campo CUIT/CUIL                "30712345678"
+
+4- Boton                          "Buscar"   (seccion Busqueda)
+
+5- Verificacion                   "Campo Cliente muestra: 'Juan Perez'"
+                                  "(Clientes.json: Nombre=Juan, Apellido=Perez)"
+
+6- Fecha Desde                    "01/06/2026"
+
+7- Fecha Hasta                    "10/06/2026"
+
+8- Boton                          "Buscar"   (seccion fechas)
+
+9- Verificacion                   "Tabla Estado Cuenta se carga con 2 filas"
+
+10- Verificacion tabla fila 1:
+    Fecha                         "03/06/2026"
+                                  "(Facturas.json FechaEmision Factura 1001)"
+    N° Comprobante                "1001"
+    Concepto                      "Guias 100001 y 100002"
+                                  "(Facturas.json Guias de Factura 1001)"
+    Monto                         "$27.700,50"
+                                  "(Facturas.json Total Factura 1001)"
+    Pago                          "$18.500,50"
+                                  "(Clientes.json MontoPago IdFactura=1001)"
+    Saldo                         "$9.200,00"
+                                  "(27700,50 - 18500,50)"
+    Estado                        "Parcial   (0 < Pago < Monto)"
+
+11- Verificacion tabla fila 2:
+    Fecha                         "07/06/2026"
+                                  "(Facturas.json FechaEmision Factura 1003)"
+    N° Comprobante                "1003"
+    Concepto                      "Guia 100004"
+    Monto                         "$27.890,00"
+    Pago                          "$0,00"
+                                  "(PRE-TEST: MontoPago=0)"
+    Saldo                         "$27.890,00"
+    Estado                        "Pendiente  (Pago == 0)"
+
+12- Boton                         "Aceptar"
+
+13- Verificacion                  "El formulario retorna al menu principal"
+
+---
+
+CASO B: Carlos Lopez (CUIT 30777888999) - estado Pagada
+
+14- Campo CUIT/CUIL               "30777888999"
+
+15- Boton                         "Buscar"
+
+16- Verificacion                  "Campo Cliente muestra: 'Carlos Lopez'"
+
+17- Fecha Desde                   "01/06/2026"
+
+18- Fecha Hasta                   "10/06/2026"
+
+19- Boton                         "Buscar"
+
+20- Verificacion tabla fila 1:
+    Fecha                         "05/06/2026"
+    N° Comprobante                "1002"
+    Concepto                      "Guia 100003"
+    Monto                         "$45.200,75"
+    Pago                          "$45.200,75"
+                                  "(Clientes.json MontoPago IdFactura=1002)"
+    Saldo                         "$0,00"
+    Estado                        "Pagada  (Pago == Monto)"
+
+21- Boton                         "Aceptar"
+
+Verificaciones:
+
+22- Los datos mostrados en la tabla coinciden exactamente con:
+    - Facturas.json: NumeroFactura, FechaEmision, Total, Guias
+    - Clientes.json: MontoPago del movimiento correspondiente
+    - Saldo calculado: Total - MontoPago
+
+23- El almacen NO es modificado en ningun campo. Operacion de solo lectura.
