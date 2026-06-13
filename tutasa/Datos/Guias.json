@@ -17,7 +17,7 @@
     "ApellidoDestinatario": "Gomez",
     "Dimension": "M",
     "IntentosEntrega": 1,
-    "EstadoActual": "EnProcesoDistribucion",
+    "EstadoActual": "Admitida",
     "Historial": [
       {
         "FechaHora": "2026-06-01T09:15:00",

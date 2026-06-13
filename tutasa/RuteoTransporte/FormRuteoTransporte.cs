@@ -101,8 +101,7 @@ namespace tutasa.RuteoTransporte
                     nuevoItem.SubItems.Add(
                         guia.Dimension);
 
-                    nuevoItem.SubItems.Add(
-                        guia.Peso);
+
 
                     nuevoItem.SubItems.Add(
                         guia.Cliente);
@@ -228,8 +227,7 @@ namespace tutasa.RuteoTransporte
                 item.SubItems.Add(
                     guia.Dimension);
 
-                item.SubItems.Add(
-                    guia.Peso);
+
 
                 item.SubItems.Add(
                     guia.Cliente);
@@ -321,8 +319,7 @@ namespace tutasa.RuteoTransporte
                     nuevoItem.SubItems.Add(
                         guia.Dimension);
 
-                    nuevoItem.SubItems.Add(
-                        guia.Peso);
+
 
                     nuevoItem.SubItems.Add(
                         guia.Cliente);
@@ -398,11 +395,13 @@ namespace tutasa.RuteoTransporte
 
             string empresa =
                 ComboEmpresa.SelectedItem.ToString();
+            string nombreCDDestino =
+                ComboCDDestino.SelectedItem.ToString();
 
             // Obtener servicios correspondientes
 
             List<string> servicios =
-                modelo.ObtenerServicios(empresa);
+                modelo.ObtenerServicios(empresa, nombreCDDestino);
 
             // Cargar combo de servicios
 

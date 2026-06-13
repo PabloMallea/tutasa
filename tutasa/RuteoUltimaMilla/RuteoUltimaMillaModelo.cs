@@ -287,24 +287,16 @@ namespace tutasa.RuteoUltimaMilla
             List<Guia> resultado =
                 new List<Guia>();
 
-            foreach (
-                GuiaEntidad guiaEntidad
-                in GuiaAlmacen.guias)
+            foreach (GuiaEntidad guiaEntidad in GuiaAlmacen.guias)
             {
                 ClienteEntidad cliente =
                     null;
 
-                foreach (
-                    ClienteEntidad clienteEntidad
-                    in ClientesAlmacen.clientes)
+                foreach (ClienteEntidad clienteEntidad in ClientesAlmacen.clientes)
                 {
-                    if (
-                        clienteEntidad.CuitCliente
-                        ==
-                        guiaEntidad.CuitCliente)
+                    if (clienteEntidad.CuitCliente ==guiaEntidad.CuitCliente)
                     {
-                        cliente =
-                            clienteEntidad;
+                        cliente = clienteEntidad;
 
                         break;
                     }
@@ -315,39 +307,28 @@ namespace tutasa.RuteoUltimaMilla
                     continue;
                 }
 
-                Localidad localidadCliente =
-                    null;
+                Localidad localidadCliente = null;
 
-                foreach (
-                    Localidad localidadEntidad
-                    in LocalidadAlmacen.localidades)
+                foreach (Localidad localidadEntidad in LocalidadAlmacen.localidades)
                 {
-                    if (
-                        localidadEntidad.IdLocalidad
-                        ==
-                        cliente.IdLocalidad)
+                    if (localidadEntidad.IdLocalidad == cliente.IdLocalidad)
                     {
-                        localidadCliente =
-                            localidadEntidad;
+                        localidadCliente = localidadEntidad;
 
                         break;
                     }
                 }
 
-                string nombreLocalidad =
-                    "";
+                string nombreLocalidad = "";
 
                 if (localidadCliente != null)
                 {
-                    nombreLocalidad =
-                        localidadCliente
-                        .NombreLocalidad;
+                    nombreLocalidad =localidadCliente.NombreLocalidad;
                 }
 
                 if (!string.IsNullOrEmpty(localidad))
                 {
-                    if (nombreLocalidad
-                        != localidad)
+                    if (nombreLocalidad!= localidad)
                     {
                         continue;
                     }
@@ -356,56 +337,35 @@ namespace tutasa.RuteoUltimaMilla
                 if (!string.IsNullOrEmpty(cuit))
                 {
                     if (
-                        guiaEntidad.CuitCliente
-                        .ToString()
-                        != cuit)
+                        guiaEntidad.CuitCliente.ToString()!= cuit)
                     {
                         continue;
                     }
                 }
 
-                Guia guia =
-                    new Guia();
+                Guia guia =new Guia();
 
-                guia.Numero =
-                    guiaEntidad.NumeroGuia
-                    .ToString();
+                guia.Numero =guiaEntidad.NumeroGuia.ToString();
 
-                guia.Cliente =
-                    cliente.Nombre
-                    + " "
-                    + cliente.Apellido;
+                guia.Cliente =cliente.Nombre+ " "+ cliente.Apellido;
 
-                guia.Cuit =
-                    cliente.CuitCliente
-                    .ToString();
+                guia.Cuit =cliente.CuitCliente.ToString();
 
-                guia.Localidad =
-                    nombreLocalidad;
+                guia.Localidad =nombreLocalidad;
 
-                guia.DireccionOrigen =
-                    cliente.Calle
-                    + " "
-                    + cliente.Altura;
+                guia.DireccionOrigen =cliente.Calle + " "+ cliente.Altura;
 
-                guia.Direccion =
-                    guiaEntidad.CalleDestino
-                    + " "
-                    + guiaEntidad.AlturaDestino;
+                guia.Direccion =guiaEntidad.CalleDestino + " "+ guiaEntidad.AlturaDestino;
 
-                guia.Dimension =
-                    guiaEntidad.Dimension
-                    .ToString();
+                guia.Dimension =guiaEntidad.Dimension.ToString();
 
-                resultado.Add(
-                    guia);
+                resultado.Add(guia);
             }
 
             return resultado;
         }
 
-        public void GuardarHojaRuta(
-            HojaRuta hojaRuta)
+        public void GuardarHojaRuta(HojaRuta hojaRuta)
         {
             // TODO:
             // Crear HojaRutaEntidad
@@ -415,41 +375,22 @@ namespace tutasa.RuteoUltimaMilla
 
         public int ObtenerProximoNumeroHojaRuta()
         {
-            return
-                HojaDeRutaUltimaMillaAlmacen
-                .HojaDeRutaUltimaMilla
-                .Count
-                + 1;
+            return HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.Count + 1;
         }
 
-        public void ActualizarEstadoGuia(
-            string numeroGuia,
-            string tipoRuteo)
+        public void ActualizarEstadoGuia(string numeroGuia,string tipoRuteo)
         {
-            foreach (
-                GuiaEntidad guia
-                in GuiaAlmacen.guias)
+            foreach (GuiaEntidad guia in GuiaAlmacen.guias)
             {
-                if (
-                    guia.NumeroGuia
-                    .ToString()
-                    ==
-                    numeroGuia)
+                if (guia.NumeroGuia.ToString() == numeroGuia)
                 {
-                    if (
-                        tipoRuteo
-                        ==
-                        "Retiro")
+                    if (tipoRuteo == "Retiro")
                     {
-                        guia.EstadoActual =
-                            EstadoGuiaEnum
-                            .PlanificadaRetiro;
+                        guia.EstadoActual =EstadoGuiaEnum.PlanificadaRetiro;
                     }
                     else
                     {
-                        guia.EstadoActual =
-                            EstadoGuiaEnum
-                            .PlanificadaDistribucion;
+                        guia.EstadoActual =EstadoGuiaEnum.PlanificadaDistribucion;
                     }
 
                     break;

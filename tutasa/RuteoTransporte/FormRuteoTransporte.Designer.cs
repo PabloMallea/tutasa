@@ -35,7 +35,6 @@
             ColumnaLocalidadA = new ColumnHeader();
             ColumnaDireccionA = new ColumnHeader();
             ColumnaDimensionA = new ColumnHeader();
-            ColumnaPesoA = new ColumnHeader();
             ColumnaClienteA = new ColumnHeader();
             ColumnaCDDestinoA = new ColumnHeader();
             GrupoGuias = new GroupBox();
@@ -44,7 +43,6 @@
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
             BtnAgregarTodos = new Button();
@@ -94,7 +92,7 @@
             // 
             // LvGuiasDisponibles
             // 
-            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuiaA, ColumnaLocalidadA, ColumnaDireccionA, ColumnaDimensionA, ColumnaPesoA, ColumnaClienteA, ColumnaCDDestinoA });
+            LvGuiasDisponibles.Columns.AddRange(new ColumnHeader[] { ColumnaNGuiaA, ColumnaLocalidadA, ColumnaDireccionA, ColumnaDimensionA, ColumnaClienteA, ColumnaCDDestinoA });
             LvGuiasDisponibles.FullRowSelect = true;
             LvGuiasDisponibles.Location = new Point(9, 22);
             LvGuiasDisponibles.Name = "LvGuiasDisponibles";
@@ -124,11 +122,6 @@
             ColumnaDimensionA.Text = "Dimensión";
             ColumnaDimensionA.Width = 110;
             // 
-            // ColumnaPesoA
-            // 
-            ColumnaPesoA.Text = "Peso";
-            ColumnaPesoA.Width = 110;
-            // 
             // ColumnaClienteA
             // 
             ColumnaClienteA.Text = "Cliente";
@@ -155,7 +148,7 @@
             // 
             // LvSeleccion
             // 
-            LvSeleccion.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
+            LvSeleccion.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader6, columnHeader7 });
             LvSeleccion.FullRowSelect = true;
             LvSeleccion.Location = new Point(9, 223);
             LvSeleccion.Name = "LvSeleccion";
@@ -183,11 +176,6 @@
             // 
             columnHeader4.Text = "Dimensión";
             columnHeader4.Width = 110;
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "Peso";
-            columnHeader5.Width = 110;
             // 
             // columnHeader6
             // 
@@ -442,7 +430,6 @@
         private ColumnHeader ColumnaNGuiaA;
         private ColumnHeader ColumnaDireccionA;
         private ColumnHeader ColumnaDimensionA;
-        private ColumnHeader ColumnaPesoA;
         private Button BtnAgregarSeleccion;
         private Button BtnQuitar;
         private Button BtnCancelar;
@@ -469,7 +456,6 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
         private ColumnHeader columnHeader7;
     }
