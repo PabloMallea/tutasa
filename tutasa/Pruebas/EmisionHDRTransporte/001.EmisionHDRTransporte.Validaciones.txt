@@ -1,0 +1,19 @@
+﻿001.EmisionHDRTransporte.Validaciones.txt
+
+(Empieza con el menú principal)
+
+1- Botón                          "Buscar"
+2- Mensaje                        "Debe seleccionar empresa y servicio."
+3- Botón                          "Aceptar"
+
+4- Desplegable Empresa            "Transporte Rápido S.A."
+5- Botón                          "Buscar"
+6- Mensaje                        "Debe seleccionar empresa y servicio."
+7- Botón                          "Aceptar"
+
+
+8- Desplegable Empresa           "Transporte Rápido S.A."
+9- Desplegable Servicio          "Express"
+10- Botón                        "Buscar"
+11- Mensaje                      "No se encontraron HDR Pendientes para los criterios de búsqueda seleccionados"
+12- Botón                        "Aceptar"

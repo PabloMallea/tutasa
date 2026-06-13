@@ -1,0 +1,38 @@
+﻿Plan de prueba: 000.EmisionHDRTransporte.EmisionExitosa.txt
+
+(Empieza con el menú principal)
+
+1- Desplegable Empresa            "Transporte Ruta Sur"
+2- Desplegable Servicio           "Buenos Aires - Rosario Noche"
+3- Botón                          "Buscar"
+
+4- Tabla HDR Pendientes           Se verificó que se listaron HDR con datos:
+                                     N° HDR: 5001
+                                     Empresa: "Transporte Ruta Sur"
+                                     Servicio: "Buenos Aires - Rosario Noche
+                                     Cant. Guías: 2
+
+5- Botón                          "Seleccionar todas"
+
+6- Tabla Detalle de Guías         Se verificó que se listaron las guías asociadas a la HDR 500001:
+                                     N° Guía: 100020
+                                     Cliente: "López, Martín"
+                                     Dirección: "Corrientes 1200"
+                                     Tipo: "Entrega"
+                                     Dimensión: "M"
+
+7- Botón                          "Emitir hojas de ruta"
+
+8- Impresión                     Se verificó que se imprimieron las hojas de ruta de la HDR 500001
+
+9- Botón                         "Imprimir resumen"
+
+10- Impresión                     Se verificó que se imprimió el resumen de guías asociadas a la HDR 500001
+
+Verificaciones:
+
+11- Almacén HDR de Transporte - Verificar que la HDR 500001 cambió su estado a:
+   "estado": "Emitida"
+
+12- Almacén Guías - Verificar que la guía 100020 cambió su estado a:
+   "estadoActual": "Pendiente de transporte a CD"
