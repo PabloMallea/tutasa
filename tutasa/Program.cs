@@ -6,6 +6,9 @@ namespace tutasa
 {
     internal static class Program
     {
+        //Datos de "Entorno"
+        public static int CdActual = 1;
+
         public static JsonSerializerOptions jsonOptions = new JsonSerializerOptions
         {
             Converters =

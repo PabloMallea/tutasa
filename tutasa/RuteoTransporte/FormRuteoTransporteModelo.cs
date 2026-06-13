@@ -1,4 +1,344 @@
-﻿/*using System;
+﻿using tutasa.Almacenes;
+
+namespace tutasa.RuteoTransporte
+{
+    internal class FormRuteoTransporteModelo
+    {
+        private int idCDActual = Program.CdActual;
+
+        // CLASES DE PANTALLA
+
+        public class Guia
+        {
+            public int Numero { get; set; }
+
+            public string Localidad { get; set; }
+
+            public string Direccion { get; set; }
+
+            public string Dimension { get; set; }
+
+            public string Cliente { get; set; }
+
+            public string Cuit { get; set; }
+
+        }
+
+        public class CD
+        {
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
+
+        }
+
+        public class EmpresaTransporte
+        {
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
+
+        }
+
+        public class Servicio
+        {
+            public int Id { get; set; }
+
+            public string Descripcion { get; set; }
+
+        }
+
+        public class HojaRutaTransporte
+        {
+            public string Numero { get; set; }
+
+            public string Empresa { get; set; }
+
+            public string Servicio { get; set; }
+
+            public string CDDestino { get; set; }
+
+            public List<Guia> Guias { get; set; }
+
+        }
+        public class Localidad
+        {
+            public int Id { get; set; }
+
+            public string Nombre { get; set; }
+        }
+        public class Dimension
+        {
+            public string Nombre { get; set; }
+        }
+        // COMBOS
+
+        public List<CD> ObtenerCDs()
+        {
+            List<CD> resultado = new List<CD>();
+
+            foreach (tutasa.Almacenes.CentroDistribucion entidad in CentroDistribucionAlmacen.CentrosDistribucion)
+            {
+                CD cd = new CD();
+
+                cd.Id = entidad.IdCD;
+                cd.Nombre = entidad.NombreCD;
+
+                resultado.Add(cd);
+            }
+
+            return resultado;
+        }
+
+        public List<Localidad> ObtenerLocalidades()
+        {
+            List<Localidad> resultado = new List<Localidad>();
+
+            foreach (tutasa.Almacenes.Localidad entidad
+                in LocalidadAlmacen.localidades)
+            {
+                Localidad localidad = new Localidad();
+
+                localidad.Id = entidad.IdLocalidad;
+                localidad.Nombre = entidad.NombreLocalidad;
+
+                resultado.Add(localidad);
+            }
+
+            return resultado;
+        }
+
+        public List<Dimension> ObtenerDimensiones()
+        {
+            List<Dimension> resultado = new List<Dimension>();
+
+            foreach (DimensionEnum dimension
+                in Enum.GetValues(typeof(DimensionEnum)))
+            {
+                Dimension item = new Dimension();
+
+                item.Nombre = dimension.ToString();
+
+                resultado.Add(item);
+            }
+
+            return resultado;
+        }
+
+        public List<EmpresaTransporte> ObtenerEmpresas()
+        {
+            List<EmpresaTransporte> resultado = new List<EmpresaTransporte>();
+
+            foreach (EmpresaTransporteEntidad entidad in EmpresaTransporteAlmacen.empresas)
+            {
+                EmpresaTransporte empresa = new EmpresaTransporte();
+
+                empresa.Id = entidad.IdEmpresa;
+
+                empresa.Nombre = entidad.NombreEmpresa;
+
+                resultado.Add(empresa);
+            }
+
+            return resultado;
+
+        }
+
+        public List<Servicio> ObtenerServicios(int idEmpresa, int idCDDestino)
+        {
+            List<Servicio> resultado =
+            new List<Servicio>();
+
+            foreach (ServicioEntidad entidad in ServiciosAlmacen.servicio)
+            {
+                if (entidad.IdEmpresa != idEmpresa)
+                {
+                    continue;
+                }
+
+                if (entidad.IdCDOrigen != idCDActual)
+                {
+                    continue;
+                }
+
+                if (entidad.IdCDDestino != idCDDestino)
+                {
+                    continue;
+                }
+
+                if (entidad.EstadoServicio != EstadoServicioEnum.Pendiente)
+                {
+                    continue;
+                }
+
+                if (entidad.FechaSalida.Date < DateTime.Today)
+                {
+                    continue;
+                }
+
+                Servicio servicio = new Servicio();
+
+                servicio.Id = entidad.IdServicio;
+
+                servicio.Descripcion = entidad.NombreServicio + " - " + entidad.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + entidad.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
+
+                resultado.Add(servicio);
+            }
+
+            return resultado;
+
+        }
+
+        // BUSQUEDA
+
+        public List<Guia> BuscarGuias(string cuit, string localidad, string dimension)
+        {
+            List<Guia> resultado = new List<Guia>();
+
+            foreach (GuiaEntidad guiaEntidad in GuiaAlmacen.guias)
+            {
+                if (guiaEntidad.EstadoActual != EstadoGuiaEnum.Admitida)
+                {
+                    continue;
+                }
+
+                ClienteEntidad cliente = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente == guiaEntidad.CuitCliente);
+
+                if (cliente == null)
+                {
+                    continue;
+                }
+
+                CentroDistribucion cdDestino = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD == guiaEntidad.IdCDDestino);
+
+                if (cdDestino == null)
+                {
+                    continue;
+                }
+
+                Almacenes.Localidad localidadDestino = LocalidadAlmacen.localidades.FirstOrDefault(l => l.IdLocalidad == cdDestino.IdLocalidad);
+
+                string nombreLocalidad = "";
+
+                if (localidadDestino != null)
+                {
+                    nombreLocalidad = localidadDestino.NombreLocalidad;
+                }
+
+                if (!string.IsNullOrEmpty(cuit))
+                {
+                    if (cliente.CuitCliente.ToString() != cuit)
+                    {
+                        continue;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(localidad))
+                {
+                    if (nombreLocalidad != localidad)
+                    {
+                        continue;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(dimension))
+                {
+                    if (guiaEntidad.Dimension.ToString() != dimension)
+                    {
+                        continue;
+                    }
+                }
+
+                Guia guia = new Guia();
+
+                guia.Numero = guiaEntidad.NumeroGuia;
+
+                guia.Localidad = nombreLocalidad;
+
+                guia.Direccion = guiaEntidad.CalleDestino + " " + guiaEntidad.AlturaDestino;
+
+                guia.Dimension = guiaEntidad.Dimension.ToString();
+
+                guia.Cliente = cliente.Nombre + " " + cliente.Apellido;
+
+                guia.Cuit = cliente.CuitCliente.ToString();
+
+                resultado.Add(guia);
+            }
+
+            return resultado;
+
+        }
+
+        // CONFIRMACION
+
+        public int GuardarHojaRuta(HojaRutaTransporte hojaRuta)
+        {
+            ServicioEntidad servicioSeleccionado = null;
+
+            foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
+            {
+                string descripcion = servicio.NombreServicio + " - " + servicio.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + servicio.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
+
+                if (descripcion == hojaRuta.Servicio)
+                {
+                    servicioSeleccionado = servicio;
+
+                    break;
+                }
+            }
+
+            if (servicioSeleccionado == null)
+            {
+                return 0;
+            }
+
+            HojaRutaDeTransporteEntidad hdr = new HojaRutaDeTransporteEntidad();
+
+            hdr.NumeroHDRTransporte = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Count + 1;
+
+            hdr.IdServicio = servicioSeleccionado.IdServicio;
+
+            hdr.EstadoHDR = EstadoHDRTransporteEnum.Asignada;
+
+            foreach (Guia guiaPantalla in hojaRuta.Guias)
+            {
+                int numeroGuia = guiaPantalla.Numero;
+
+                hdr.Guias.Add(numeroGuia);
+
+                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
+
+                if (guiaEntidad != null)
+                {
+                    guiaEntidad.EstadoActual = EstadoGuiaEnum.PlanificadaTransporte;
+
+                    guiaEntidad.Historial.Add(
+                        new MovimientoEstadoDto
+                        {
+                            FechaHora = DateTime.Now,
+
+                            Estado = EstadoGuiaEnum.PlanificadaTransporte,
+
+                            Ubicacion = "CD Buenos Aires"
+                        });
+                }
+            }
+
+            servicioSeleccionado.EstadoServicio = EstadoServicioEnum.ConAsignacion;
+
+            HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Add(hdr);
+
+            GuiaAlmacen.Guardar();
+            ServiciosAlmacen.Guardar();
+            HojasDeRutaTransporteAlmacen.Guardar();
+
+            return hdr.NumeroHDRTransporte;
+        }
+    }
+}
+
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -210,348 +550,3 @@ namespace tutasa.RuteoTransporte
         }
     }
 }*/
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using tutasa.Admision;
-using tutasa.Almacenes;
-
-namespace tutasa.RuteoTransporte
-{
-    internal class FormRuteoTransporteModelo
-    {
-        private int idCDActual = 1;
-
-        // CLASES DE PANTALLA
-
-        public class Guia
-        {
-            public int Numero { get; set; }
-
-            public string Localidad { get; set; }
-
-            public string Direccion { get; set; }
-
-            public string Dimension { get; set; }
-
-            public string Cliente { get; set; }
-
-            public string Cuit { get; set; }
-
-        }
-
-        public class CD
-        {
-            public int Id { get; set; }
-
-            public string Nombre { get; set; }
-
-        }
-
-        public class EmpresaTransporte
-        {
-            public int Id { get; set; }
-
-            public string Nombre { get; set; }
-
-        }
-
-        public class Servicio
-        {
-            public int Id { get; set; }
-
-            public string Descripcion { get; set; }
-
-        }
-
-        public class HojaRutaTransporte
-        {
-            public string Numero { get; set; }
-
-            public string Empresa { get; set; }
-
-            public string Servicio { get; set; }
-
-            public string CDDestino { get; set; }
-
-            public List<Guia> Guias { get; set; }
-
-        }
-        public class Localidad
-        {
-            public int Id { get; set; }
-
-            public string Nombre { get; set; }
-        }
-        public class Dimension
-        {
-            public string Nombre { get; set; }
-        }
-        // COMBOS
-
-        public List<CD> ObtenerCDs()
-        {
-            List<CD> resultado = new List<CD>();
-
-            foreach (tutasa.Almacenes.CentroDistribucion entidad in CentroDistribucionAlmacen.CentrosDistribucion)
-            {
-                CD cd = new CD();
-
-                cd.Id = entidad.IdCD;
-                cd.Nombre = entidad.NombreCD;
-
-                resultado.Add(cd);
-            }
-
-            return resultado;
-        }
-
-        public List<Localidad> ObtenerLocalidades()
-        {
-            List<Localidad> resultado = new List<Localidad>();
-
-            foreach (tutasa.Almacenes.Localidad entidad
-                in LocalidadAlmacen.localidades)
-            {
-                Localidad localidad = new Localidad();
-
-                localidad.Id = entidad.IdLocalidad;
-                localidad.Nombre = entidad.NombreLocalidad;
-
-                resultado.Add(localidad);
-            }
-
-            return resultado;
-        }
-
-        public List<Dimension> ObtenerDimensiones()
-        {
-            List<Dimension> resultado = new List<Dimension>();
-
-            foreach (DimensionEnum dimension
-                in Enum.GetValues(typeof(DimensionEnum)))
-            {
-                Dimension item = new Dimension();
-
-                item.Nombre = dimension.ToString();
-
-                resultado.Add(item);
-            }
-
-            return resultado;
-        }
-
-        public List<EmpresaTransporte> ObtenerEmpresas()
-        {
-            List<EmpresaTransporte> resultado = new List<EmpresaTransporte>();
-
-            foreach (EmpresaTransporteEntidad entidad in EmpresaTransporteAlmacen.empresas)
-            {
-                EmpresaTransporte empresa =new EmpresaTransporte();
-
-                empresa.Id =entidad.IdEmpresa;
-
-                empresa.Nombre =entidad.NombreEmpresa;
-
-                resultado.Add(empresa);
-            }
-
-            return resultado;
-
-        }
-
-        public List<Servicio> ObtenerServicios(int idEmpresa,int idCDDestino)
-        {
-            List<Servicio> resultado =
-            new List<Servicio>();
-
-            foreach (ServicioEntidad entidad in ServiciosAlmacen.servicio)
-            {
-                if (entidad.IdEmpresa != idEmpresa)
-                {
-                    continue;
-                }
-
-                if (entidad.IdCDOrigen != idCDActual)
-                {
-                    continue;
-                }
-
-                if (entidad.IdCDDestino != idCDDestino)
-                {
-                    continue;
-                }
-
-                if (entidad.EstadoServicio!= EstadoServicioEnum.Pendiente)
-                {
-                    continue;
-                }
-
-                if (entidad.FechaSalida.Date < DateTime.Today)
-                {
-                    continue;
-                }
-
-                Servicio servicio =new Servicio();
-
-                servicio.Id =entidad.IdServicio;
-
-                servicio.Descripcion =entidad.NombreServicio + " - " + entidad.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + entidad.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
-
-                resultado.Add(servicio);
-            }
-
-            return resultado;
-
-        }
-
-        // BUSQUEDA
-
-        public List<Guia> BuscarGuias(string cuit,string localidad,string dimension)
-        {
-            List<Guia> resultado = new List<Guia>();
-
-            foreach (GuiaEntidad guiaEntidad in GuiaAlmacen.guias)
-            {
-                if (guiaEntidad.EstadoActual != EstadoGuiaEnum.Admitida)
-                {
-                    continue;
-                }
-
-                ClienteEntidad cliente = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente ==guiaEntidad.CuitCliente);
-
-                if (cliente == null)
-                {
-                    continue;
-                }
-
-                CentroDistribucion cdDestino = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd =>cd.IdCD == guiaEntidad.IdCDDestino);
-
-                if (cdDestino == null)
-                {
-                    continue;
-                }
-
-                Almacenes.Localidad localidadDestino =LocalidadAlmacen.localidades.FirstOrDefault(l =>l.IdLocalidad ==cdDestino.IdLocalidad);
-
-                string nombreLocalidad = "";
-
-                if (localidadDestino != null)
-                {
-                    nombreLocalidad = localidadDestino.NombreLocalidad;
-                }
-
-                if (!string.IsNullOrEmpty(cuit))
-                {
-                    if (cliente.CuitCliente.ToString()!= cuit)
-                    {
-                        continue;
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(localidad))
-                {
-                    if (nombreLocalidad!= localidad)
-                    {
-                        continue;
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(dimension))
-                {
-                    if (guiaEntidad.Dimension.ToString()!= dimension)
-                    {
-                        continue;
-                    }
-                }
-
-                Guia guia =new Guia();
-
-                guia.Numero = guiaEntidad.NumeroGuia;
-
-                guia.Localidad =nombreLocalidad;
-
-                guia.Direccion =guiaEntidad.CalleDestino + " "+ guiaEntidad.AlturaDestino;
-
-                guia.Dimension = guiaEntidad.Dimension.ToString();
-
-                guia.Cliente =cliente.Nombre+ " " + cliente.Apellido;
-
-                guia.Cuit = cliente.CuitCliente.ToString();
-
-                resultado.Add(guia);
-            }
-
-            return resultado;
-
-        }
-
-        // CONFIRMACION
-
-        public int GuardarHojaRuta(HojaRutaTransporte hojaRuta)
-        {
-            ServicioEntidad servicioSeleccionado =null;
-
-            foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
-            {
-                string descripcion =servicio.NombreServicio + " - " + servicio.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + servicio.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
-
-                if (descripcion == hojaRuta.Servicio)
-                {
-                    servicioSeleccionado = servicio;
-
-                    break;
-                }
-            }
-
-            if (servicioSeleccionado == null)
-            {
-                return 0;
-            }
-
-            HojaRutaDeTransporteEntidad hdr = new HojaRutaDeTransporteEntidad();
-
-            hdr.NumeroHDRTransporte =HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Count + 1;
-
-            hdr.IdServicio =servicioSeleccionado.IdServicio;
-
-            hdr.EstadoHDR = EstadoHDRTransporteEnum.Asignada;
-
-            foreach (Guia guiaPantalla in hojaRuta.Guias)
-            {
-                int numeroGuia = guiaPantalla.Numero;
-
-                hdr.Guias.Add(numeroGuia);
-
-                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g =>g.NumeroGuia ==numeroGuia);
-
-                if (guiaEntidad != null)
-                {
-                    guiaEntidad.EstadoActual =EstadoGuiaEnum.PlanificadaTransporte;
-
-                    guiaEntidad.Historial.Add(
-                        new MovimientoEstadoDto
-                        {
-                            FechaHora = DateTime.Now,
-
-                            Estado = EstadoGuiaEnum.PlanificadaTransporte,
-
-                            Ubicacion = "CD Buenos Aires"
-                        });
-                }
-            }
-
-            servicioSeleccionado.EstadoServicio = EstadoServicioEnum.ConAsignacion;
-
-            HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Add(hdr);
-
-            GuiaAlmacen.Guardar();
-            ServiciosAlmacen.Guardar();
-            HojasDeRutaTransporteAlmacen.Guardar();
-
-            return hdr.NumeroHDRTransporte;
-        }
-    }
-}
