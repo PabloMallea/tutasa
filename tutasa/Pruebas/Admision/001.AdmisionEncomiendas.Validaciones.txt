@@ -43,10 +43,9 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 16- Verificacion                  "Seccion Datos de Guia: campos vacios"
 17- Verificacion                  "Boton Confirmar: deshabilitado"
 
---- VALIDACION 5: Guia real en estado EnProcesoDistribucion (100001 de Guias.json) ---
+--- VALIDACION 5: Guia real en estado Admitida (100001 de Guias.json) ---
 
 18- Campo N° Guia                 "100001"
-    (Guias.json: EstadoActual="EnProcesoDistribucion")
 
 19- Boton                         "Buscar"
 
@@ -55,12 +54,11 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 
 21- Boton                         "Aceptar"
 
-22- Verificacion                  "Guias.json: guia 100001 permanece EstadoActual=EnProcesoDistribucion"
+22- Verificacion                  "Guias.json: guia 100001 permanece EstadoActual=Admitida"
 
 --- VALIDACION 6: Guia real en estado Entregada (100002 de Guias.json) ---
 
 23- Campo N° Guia                 "100002"
-    (Guias.json: EstadoActual="Entregada")
 
 24- Boton                         "Buscar"
 
@@ -90,7 +88,7 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 
 --- VALIDACION 9: Peso (Kg) vacio al presionar Confirmar ---
 
-35- Campo N° Guia                 "100005"
+35- Campo N° Guia                 "100006"
 
 36- Boton                         "Buscar"
 
@@ -173,7 +171,7 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 
 --- VALIDACION 17: Cancelar en el popup de admision - elige No ---
 
-68- Campo N° Guia                 "100005"
+68- Campo N° Guia                 "100006"
 
 69- Boton                         "Buscar"
 
@@ -213,7 +211,7 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 
 --- VALIDACION 20: Valores exactos en los limites de cada Dimension ---
 
-87- Campo N° Guia                 "100005"
+87- Campo N° Guia                 "100006"
 
 88- Boton                         "Buscar"
 

@@ -9,7 +9,7 @@ namespace tutasa.RuteoTransporte
 {
     internal class FormRuteoTransporteModelo
     {
-        private int idCDActual = 1;
+        private int idCDActual = Program.CdActual;
 
         // CLASES DE PANTALLA
 
@@ -138,11 +138,11 @@ namespace tutasa.RuteoTransporte
 
             foreach (EmpresaTransporteEntidad entidad in EmpresaTransporteAlmacen.empresas)
             {
-                EmpresaTransporte empresa =new EmpresaTransporte();
+                EmpresaTransporte empresa = new EmpresaTransporte();
 
-                empresa.Id =entidad.IdEmpresa;
+                empresa.Id = entidad.IdEmpresa;
 
-                empresa.Nombre =entidad.NombreEmpresa;
+                empresa.Nombre = entidad.NombreEmpresa;
 
                 resultado.Add(empresa);
             }
@@ -151,7 +151,7 @@ namespace tutasa.RuteoTransporte
 
         }
 
-        public List<Servicio> ObtenerServicios(int idEmpresa,int idCDDestino)
+        public List<Servicio> ObtenerServicios(int idEmpresa, int idCDDestino)
         {
             List<Servicio> resultado =
             new List<Servicio>();
@@ -173,7 +173,7 @@ namespace tutasa.RuteoTransporte
                     continue;
                 }
 
-                if (entidad.EstadoServicio!= EstadoServicioEnum.Pendiente)
+                if (entidad.EstadoServicio != EstadoServicioEnum.Pendiente)
                 {
                     continue;
                 }
@@ -183,11 +183,11 @@ namespace tutasa.RuteoTransporte
                     continue;
                 }
 
-                Servicio servicio =new Servicio();
+                Servicio servicio = new Servicio();
 
-                servicio.Id =entidad.IdServicio;
+                servicio.Id = entidad.IdServicio;
 
-                servicio.Descripcion =entidad.NombreServicio + " - " + entidad.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + entidad.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
+                servicio.Descripcion = entidad.NombreServicio + " - " + entidad.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + entidad.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
 
                 resultado.Add(servicio);
             }
@@ -198,7 +198,7 @@ namespace tutasa.RuteoTransporte
 
         // BUSQUEDA
 
-        public List<Guia> BuscarGuias(string cuit,string localidad,string dimension)
+        public List<Guia> BuscarGuias(string cuit, string localidad, string dimension)
         {
             List<Guia> resultado = new List<Guia>();
 
@@ -209,21 +209,21 @@ namespace tutasa.RuteoTransporte
                     continue;
                 }
 
-                ClienteEntidad cliente = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente ==guiaEntidad.CuitCliente);
+                ClienteEntidad cliente = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente == guiaEntidad.CuitCliente);
 
                 if (cliente == null)
                 {
                     continue;
                 }
 
-                CentroDistribucion cdDestino = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd =>cd.IdCD == guiaEntidad.IdCDDestino);
+                CentroDistribucion cdDestino = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD == guiaEntidad.IdCDDestino);
 
                 if (cdDestino == null)
                 {
                     continue;
                 }
 
-                Almacenes.Localidad localidadDestino =LocalidadAlmacen.localidades.FirstOrDefault(l =>l.IdLocalidad ==cdDestino.IdLocalidad);
+                Almacenes.Localidad localidadDestino = LocalidadAlmacen.localidades.FirstOrDefault(l => l.IdLocalidad == cdDestino.IdLocalidad);
 
                 string nombreLocalidad = "";
 
@@ -234,7 +234,7 @@ namespace tutasa.RuteoTransporte
 
                 if (!string.IsNullOrEmpty(cuit))
                 {
-                    if (cliente.CuitCliente.ToString()!= cuit)
+                    if (cliente.CuitCliente.ToString() != cuit)
                     {
                         continue;
                     }
@@ -242,7 +242,7 @@ namespace tutasa.RuteoTransporte
 
                 if (!string.IsNullOrEmpty(localidad))
                 {
-                    if (nombreLocalidad!= localidad)
+                    if (nombreLocalidad != localidad)
                     {
                         continue;
                     }
@@ -250,23 +250,23 @@ namespace tutasa.RuteoTransporte
 
                 if (!string.IsNullOrEmpty(dimension))
                 {
-                    if (guiaEntidad.Dimension.ToString()!= dimension)
+                    if (guiaEntidad.Dimension.ToString() != dimension)
                     {
                         continue;
                     }
                 }
 
-                Guia guia =new Guia();
+                Guia guia = new Guia();
 
                 guia.Numero = guiaEntidad.NumeroGuia;
 
-                guia.Localidad =nombreLocalidad;
+                guia.Localidad = nombreLocalidad;
 
-                guia.Direccion =guiaEntidad.CalleDestino + " "+ guiaEntidad.AlturaDestino;
+                guia.Direccion = guiaEntidad.CalleDestino + " " + guiaEntidad.AlturaDestino;
 
                 guia.Dimension = guiaEntidad.Dimension.ToString();
 
-                guia.Cliente =cliente.Nombre+ " " + cliente.Apellido;
+                guia.Cliente = cliente.Nombre + " " + cliente.Apellido;
 
                 guia.Cuit = cliente.CuitCliente.ToString();
 
@@ -283,11 +283,11 @@ namespace tutasa.RuteoTransporte
 
         public int GuardarHojaRuta(HojaRutaTransporte hojaRuta)
         {
-            ServicioEntidad servicioSeleccionado =null;
+            ServicioEntidad servicioSeleccionado = null;
 
             foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
             {
-                string descripcion =servicio.NombreServicio + " - " + servicio.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + servicio.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
+                string descripcion = servicio.NombreServicio + " - " + servicio.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + servicio.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
 
                 if (descripcion == hojaRuta.Servicio)
                 {
@@ -304,9 +304,9 @@ namespace tutasa.RuteoTransporte
 
             HojaRutaDeTransporteEntidad hdr = new HojaRutaDeTransporteEntidad();
 
-            hdr.NumeroHDRTransporte =HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Count + 1;
+            hdr.NumeroHDRTransporte = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Count + 1;
 
-            hdr.IdServicio =servicioSeleccionado.IdServicio;
+            hdr.IdServicio = servicioSeleccionado.IdServicio;
 
             hdr.EstadoHDR = EstadoHDRTransporteEnum.Asignada;
 
@@ -316,11 +316,11 @@ namespace tutasa.RuteoTransporte
 
                 hdr.Guias.Add(numeroGuia);
 
-                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g =>g.NumeroGuia ==numeroGuia);
+                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
 
                 if (guiaEntidad != null)
                 {
-                    guiaEntidad.EstadoActual =EstadoGuiaEnum.PlanificadaTransporte;
+                    guiaEntidad.EstadoActual = EstadoGuiaEnum.PlanificadaTransporte;
 
                     guiaEntidad.Historial.Add(
                         new MovimientoEstadoDto

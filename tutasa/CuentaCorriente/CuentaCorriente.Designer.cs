@@ -68,7 +68,7 @@
             GrupoBusqueda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             GrupoBusqueda.Location = new Point(17, 53);
             GrupoBusqueda.Name = "GrupoBusqueda";
-            GrupoBusqueda.Size = new Size(851, 249);
+            GrupoBusqueda.Size = new Size(780, 249);
             GrupoBusqueda.TabIndex = 1;
             GrupoBusqueda.TabStop = false;
             GrupoBusqueda.Text = "Búsqueda";
@@ -76,7 +76,7 @@
             // BotonBuscarCuit
             // 
             BotonBuscarCuit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BotonBuscarCuit.Location = new Point(297, 23);
+            BotonBuscarCuit.Location = new Point(335, 35);
             BotonBuscarCuit.Margin = new Padding(3, 2, 3, 2);
             BotonBuscarCuit.Name = "BotonBuscarCuit";
             BotonBuscarCuit.Size = new Size(75, 25);
@@ -87,16 +87,16 @@
             // 
             // TextCuit
             // 
-            TextCuit.Location = new Point(80, 25);
+            TextCuit.Location = new Point(109, 33);
             TextCuit.Name = "TextCuit";
-            TextCuit.Size = new Size(211, 23);
+            TextCuit.Size = new Size(211, 27);
             TextCuit.TabIndex = 29;
             TextCuit.TextChanged += TextCuit_TextChanged;
             // 
             // BotonConfirmar
             // 
             BotonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BotonConfirmar.Location = new Point(672, 148);
+            BotonConfirmar.Location = new Point(697, 205);
             BotonConfirmar.Margin = new Padding(3, 2, 3, 2);
             BotonConfirmar.Name = "BotonConfirmar";
             BotonConfirmar.Size = new Size(66, 26);
@@ -109,10 +109,10 @@
             // 
             FechaHasta.CustomFormat = "";
             FechaHasta.Font = new Font("Segoe UI", 9F);
-            FechaHasta.Location = new Point(84, 119);
+            FechaHasta.Location = new Point(109, 155);
             FechaHasta.Margin = new Padding(3, 2, 3, 2);
             FechaHasta.Name = "FechaHasta";
-            FechaHasta.Size = new Size(654, 23);
+            FechaHasta.Size = new Size(654, 27);
             FechaHasta.TabIndex = 9;
             FechaHasta.Value = new DateTime(2026, 5, 17, 17, 19, 19, 0);
             FechaHasta.ValueChanged += FechaHasta_ValueChanged;
@@ -121,10 +121,10 @@
             // 
             FechaDesde.CustomFormat = "";
             FechaDesde.Font = new Font("Segoe UI", 9F);
-            FechaDesde.Location = new Point(84, 88);
+            FechaDesde.Location = new Point(109, 113);
             FechaDesde.Margin = new Padding(3, 2, 3, 2);
             FechaDesde.Name = "FechaDesde";
-            FechaDesde.Size = new Size(654, 23);
+            FechaDesde.Size = new Size(654, 27);
             FechaDesde.TabIndex = 8;
             FechaDesde.Value = new DateTime(2026, 5, 17, 17, 19, 28, 0);
             FechaDesde.ValueChanged += FechaDesde_ValueChanged;
@@ -155,7 +155,7 @@
             LabelNombreCliente.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LabelNombreCliente.Location = new Point(80, 60);
             LabelNombreCliente.Name = "LabelNombreCliente";
-            LabelNombreCliente.Size = new Size(0, 15);
+            LabelNombreCliente.Size = new Size(0, 20);
             LabelNombreCliente.TabIndex = 3;
             LabelNombreCliente.Click += LabelNombreCliente_Click;
             // 
@@ -185,7 +185,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(17, 308);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(851, 397);
+            groupBox2.Size = new Size(780, 397);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Estado Cuenta";
@@ -194,10 +194,10 @@
             // 
             LvEstadoCuenta.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNComprobante, ColumnaConcepto, ColumnaMonto, ColumnaPago, ColumnaSaldo });
             LvEstadoCuenta.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LvEstadoCuenta.Location = new Point(6, 20);
+            LvEstadoCuenta.Location = new Point(6, 25);
             LvEstadoCuenta.Margin = new Padding(3, 2, 3, 2);
             LvEstadoCuenta.Name = "LvEstadoCuenta";
-            LvEstadoCuenta.Size = new Size(728, 264);
+            LvEstadoCuenta.Size = new Size(757, 264);
             LvEstadoCuenta.TabIndex = 12;
             LvEstadoCuenta.UseCompatibleStateImageBehavior = false;
             LvEstadoCuenta.View = View.Details;
@@ -211,7 +211,7 @@
             // ColumnaNComprobante
             // 
             ColumnaNComprobante.Text = "N° Comprobante";
-            ColumnaNComprobante.Width = 120;
+            ColumnaNComprobante.Width = 150;
             // 
             // ColumnaConcepto
             // 
@@ -236,7 +236,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(783, 711);
+            button1.Location = new Point(711, 711);
             button1.Name = "button1";
             button1.Size = new Size(86, 33);
             button1.TabIndex = 30;
@@ -257,7 +257,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(879, 753);
+            ClientSize = new Size(806, 753);
             Controls.Add(label8);
             Controls.Add(button1);
             Controls.Add(groupBox2);
@@ -268,7 +268,6 @@
             GrupoBusqueda.ResumeLayout(false);
             GrupoBusqueda.PerformLayout();
             groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

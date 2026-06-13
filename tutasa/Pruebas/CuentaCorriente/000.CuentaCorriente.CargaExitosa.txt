@@ -9,92 +9,74 @@ CASO A: Juan Perez (CUIT 30712345678) - rango que cubre Facturas 1001 y 1003
 
 2- Verificacion                   "Formulario Estado de Cuenta Corriente abierto:"
                                   "- CUIT/CUIL: vacio y habilitado"
-                                  "- Boton Buscar (Busqueda): habilitado"
+                                  "- Boton Buscar: habilitado"
                                   "- Campo Cliente: vacio"
                                   "- Fecha Desde: DateTimePicker con fecha actual"
                                   "- Fecha Hasta: DateTimePicker con fecha actual"
-                                  "- Boton Buscar (fechas): habilitado"
+                                  "- Boton Buscar: habilitado"
                                   "- Seccion Estado Cuenta: tabla vacia"
-                                  "    Columnas: Fecha | N° Comproba... | Concepto | Monto | Pago | Saldo"
+                                  "    Columnas: Fecha | N° Comprobante | Concepto | Monto | Pago | Saldo"
                                   "- Boton Aceptar: habilitado"
 
 3- Campo CUIT/CUIL                "30712345678"
 
-4- Boton                          "Buscar"   (seccion Busqueda)
+4- Boton                          "Buscar"   
 
 5- Verificacion                   "Campo Cliente muestra: 'Juan Perez'"
-                                  "(Clientes.json: Nombre=Juan, Apellido=Perez)"
 
 6- Fecha Desde                    "01/06/2026"
 
 7- Fecha Hasta                    "10/06/2026"
 
-8- Boton                          "Buscar"   (seccion fechas)
+8- Boton                          "Buscar"   
 
-9- Verificacion                   "Tabla Estado Cuenta se carga con 2 filas"
+9- Verificacion                   "Tabla Estado Cuenta se carga con 1 filas"
 
 10- Verificacion tabla fila 1:
     Fecha                         "03/06/2026"
-                                  "(Facturas.json FechaEmision Factura 1001)"
     N° Comprobante                "1001"
     Concepto                      "Guias 100001 y 100002"
-                                  "(Facturas.json Guias de Factura 1001)"
     Monto                         "$27.700,50"
-                                  "(Facturas.json Total Factura 1001)"
     Pago                          "$18.500,50"
-                                  "(Clientes.json MontoPago IdFactura=1001)"
     Saldo                         "$9.200,00"
-                                  "(27700,50 - 18500,50)"
-    Estado                        "Parcial   (0 < Pago < Monto)"
+    Estado                        "Parcial"
 
-11- Verificacion tabla fila 2:
-    Fecha                         "07/06/2026"
-                                  "(Facturas.json FechaEmision Factura 1003)"
-    N° Comprobante                "1003"
-    Concepto                      "Guia 100004"
-    Monto                         "$27.890,00"
-    Pago                          "$0,00"
-                                  "(PRE-TEST: MontoPago=0)"
-    Saldo                         "$27.890,00"
-    Estado                        "Pendiente  (Pago == 0)"
+11- Boton                         "Aceptar"
 
-12- Boton                         "Aceptar"
-
-13- Verificacion                  "El formulario retorna al menu principal"
+12- Verificacion                  "El formulario retorna al menu principal"
 
 ---
 
 CASO B: Carlos Lopez (CUIT 30777888999) - estado Pagada
 
-14- Campo CUIT/CUIL               "30777888999"
+13- Campo CUIT/CUIL               "30777888999"
 
-15- Boton                         "Buscar"
+14- Boton                         "Buscar"
 
-16- Verificacion                  "Campo Cliente muestra: 'Carlos Lopez'"
+15- Verificacion                  "Campo Cliente muestra: 'Carlos Lopez'"
 
-17- Fecha Desde                   "01/06/2026"
+16- Fecha Desde                   "01/06/2026"
 
-18- Fecha Hasta                   "10/06/2026"
+17- Fecha Hasta                   "10/06/2026"
 
-19- Boton                         "Buscar"
+18- Boton                         "Buscar"
 
-20- Verificacion tabla fila 1:
+19- Verificacion tabla fila 1:
     Fecha                         "05/06/2026"
-    N° Comprobante                "1002"
-    Concepto                      "Guia 100003"
+    N° Comprobante                "1003"
+    Concepto                      "Guia 100004"
     Monto                         "$45.200,75"
     Pago                          "$45.200,75"
-                                  "(Clientes.json MontoPago IdFactura=1002)"
     Saldo                         "$0,00"
-    Estado                        "Pagada  (Pago == Monto)"
+    Estado                        "Pagada"
 
-21- Boton                         "Aceptar"
+20- Boton                         "Aceptar"
 
 Verificaciones:
 
-22- Los datos mostrados en la tabla coinciden exactamente con:
+21- Los datos mostrados en la tabla coinciden exactamente con:
     - Facturas.json: NumeroFactura, FechaEmision, Total, Guias
     - Clientes.json: MontoPago del movimiento correspondiente
     - Saldo calculado: Total - MontoPago
 
-23- El almacen NO es modificado en ningun campo. Operacion de solo lectura.
+22- El almacen NO es modificado en ningun campo. Operacion de solo lectura.

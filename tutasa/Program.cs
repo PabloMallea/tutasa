@@ -6,6 +6,9 @@ namespace tutasa
 {
     internal static class Program
     {
+        //Datos de "Entorno"
+        public static int CdActual = 1;
+
         public static JsonSerializerOptions jsonOptions = new JsonSerializerOptions
         {
             Converters =
@@ -32,10 +35,11 @@ namespace tutasa
             _ = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte;
             _ = LocalidadAlmacen.localidades;
             _ = ServiciosAlmacen.servicio;
+            _ = FleteroAlmacen.fleteros;
 
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
-            Application.Run(new tutasa.RuteoTransporte.FormRuteoTransporte());
+            Application.Run(new MenuPrincipal());
 
             AgenciasAlmacen.Guardar();
             CentroDistribucionAlmacen.Guardar();
@@ -48,6 +52,7 @@ namespace tutasa
             HojasDeRutaTransporteAlmacen.Guardar();
             LocalidadAlmacen.Guardar();
             ServiciosAlmacen.Guardar();
+            FleteroAlmacen.Guardar();
         }
     }
 }

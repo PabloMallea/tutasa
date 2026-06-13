@@ -43,7 +43,7 @@ Plan de Prueba: 001.ConsultarEstadoInterna.Validaciones.txt
 
 17- Boton                         "Aceptar"
 
---- VALIDACION 5: N°Guia numerico inexistente en Guias.json ---
+--- VALIDACION 5: N°Guia numerico inexistente ---
 
 18- Campo N°Guia                  "999999"
 
@@ -56,65 +56,50 @@ Plan de Prueba: 001.ConsultarEstadoInterna.Validaciones.txt
 22- Verificacion                  "Estado Actual, Ubicación Actual, Ultima fecha actualizada: vacios"
 23- Verificacion                  "Tabla Historial: sin filas"
 
---- VALIDACION 6: Guia con un solo movimiento en el historial (PRE-TEST 100006) ---
+--- VALIDACION 6: Cancelar - elige No ---
 
-24- Campo N°Guia                  "100006"
-    (PRE-TEST: guia en estado Impuesta con un unico movimiento en el historial)
+24- Campo N°Guia                  "100001"
 
 25- Boton                         "Buscar"
 
-26- Verificacion:
-    Estado Actual                 "Impuesta"
-    Ubicación Actual              "CD Buenos Aires"
-    Ultima fecha actualizada      "11/06/2026 09:00"
+26- Verificacion                  "Datos de guia 100001 cargados (7 filas en Historial)"
 
-27- Verificacion                  "Tabla Historial muestra 1 sola fila:"
-                                  "Fila 1: 11/06/2026 09:00 | Impuesta | CD Buenos Aires"
+27- Boton                         "Cancelar"
 
---- VALIDACION 7: Cancelar - elige No ---
+28- Mensaje                       "¿Está seguro que desea cancelar la operación?"
 
-28- Campo N°Guia                  "100001"
+29- Boton                         "No"
 
-29- Boton                         "Buscar"
+30- Verificacion                  "Formulario permanece con los datos de guia 100001"
 
-30- Verificacion                  "Datos de guia 100001 cargados (7 filas en Historial)"
+--- VALIDACION 7: Cancelar - elige Si ---
 
 31- Boton                         "Cancelar"
 
 32- Mensaje                       "¿Está seguro que desea cancelar la operación?"
 
-33- Boton                         "No"
+33- Boton                         "Si"
 
-34- Verificacion                  "Formulario permanece con los datos de guia 100001"
+34- Verificacion                  "N°Guia: vacio"
+35- Verificacion                  "Estado Actual, Ubicación Actual, Ultima fecha actualizada: vacios"
+36- Verificacion                  "Tabla Historial: sin filas"
+37- Verificacion                  "Foco en N°Guia - Formulario permanece abierto"
 
---- VALIDACION 8: Cancelar - elige Si ---
+--- VALIDACION 8: Cancelar sin haber realizado ninguna busqueda ---
 
-35- Boton                         "Cancelar"
+38- (Formulario recien abierto)
 
-36- Mensaje                       "¿Está seguro que desea cancelar la operación?"
+39- Boton                         "Cancelar"
 
-37- Boton                         "Si"
-
-38- Verificacion                  "N°Guia: vacio"
-39- Verificacion                  "Estado Actual, Ubicación Actual, Ultima fecha actualizada: vacios"
-40- Verificacion                  "Tabla Historial: sin filas"
-41- Verificacion                  "Foco en N°Guia - Formulario permanece abierto"
-
---- VALIDACION 9: Cancelar sin haber realizado ninguna busqueda ---
-
-42- (Formulario recien abierto)
-
-43- Boton                         "Cancelar"
-
-44- Mensaje                       "¿Está seguro que desea cancelar la operación?"
+40- Mensaje                       "¿Está seguro que desea cancelar la operación?"
 
 45- Boton                         "Si"
 
-46- Verificacion                  "Formulario queda limpio sin errores"
-47- Verificacion                  "Foco en N°Guia"
+41- Verificacion                  "Formulario queda limpio sin errores"
+42- Verificacion                  "Foco en N°Guia"
 
 Verificaciones:
 
-48- En todos los casos de validacion fallida no se modifica ningun registro en Guias.json.
-49- El Historial de ninguna guia es modificado.
-50- Estado Actual, Ubicación Actual y Ultima fecha actualizada permanecen vacios.
+43- En todos los casos de validacion fallida no se modifica ningun registro en Guias.json.
+44- El Historial de ninguna guia es modificado.
+45- Estado Actual, Ubicación Actual y Ultima fecha actualizada permanecen vacios.

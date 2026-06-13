@@ -1,0 +1,18 @@
+﻿Plan de prueba: 001.EmisionHojasRutas.Validaciones.txt
+
+(Empieza con el menú principal)
+
+1- Botón                          "Buscar"
+2- Mensaje                        "Debe seleccionar Fletero y Tipo."
+3- Botón                          "Aceptar"
+
+4- Desplegable Fletero            "Fletero García"
+5- Botón                          "Buscar"
+6- Mensaje                        "Debe seleccionar Fletero y Tipo."
+7- Botón                          "Aceptar"
+
+8- Desplegable Fletero            "Fletero García"
+9- Desplegable Tipo               "Distribución"
+10- Botón                         "Buscar"
+11- Mensaje                       "No se encontraron HDR Pendientes para los criterios de búsqueda seleccionados"
+12- Botón                         "Aceptar"
