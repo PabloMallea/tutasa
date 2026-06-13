@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using tutasa.Almacenes;
 
 namespace tutasa.ConsultaEstadoInterna
 {
@@ -46,7 +40,7 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Buscar la guía usando el modelo (desde el almacén)
-            GuiaEntidad guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
+            Guia guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
 
             // Validar existencia
             if (guiaEncontrada == null)
@@ -62,7 +56,7 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Buscar el historial de movimientos
-            List<MovimientoEstadoDto> historial = guiaEncontrada.Historial;
+            List<MovimientoEstado> historial = guiaEncontrada.Historial;
 
             // Validar que exista historial
             if (historial == null || historial.Count == 0)
@@ -78,7 +72,7 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Obtener el último movimiento registrado
-            MovimientoEstadoDto ultimoMovimiento = historial.OrderByDescending(m => m.FechaHora).FirstOrDefault();
+            MovimientoEstado ultimoMovimiento = historial.OrderByDescending(m => m.FechaHora).FirstOrDefault();
         
 
             // Completar labels con la información más reciente
@@ -90,7 +84,7 @@ namespace tutasa.ConsultaEstadoInterna
             ListViewHistorial.Items.Clear();
 
             // Recorrer todos los movimientos del historial
-            foreach (MovimientoEstadoDto movimiento in historial)
+            foreach (MovimientoEstado movimiento in historial)
             {
                 // Crear fila utilizando la fecha como primera columna
                 ListViewItem item = new ListViewItem(movimiento.FechaHora.ToString("dd/MM/yyyy HH:mm"));
@@ -103,12 +97,6 @@ namespace tutasa.ConsultaEstadoInterna
                 ListViewHistorial.Items.Add(item);
             }
 
-            //MessageBox.Show(
-            //    "Guía encontrada correctamente.",
-            //    "Éxito",
-            //    MessageBoxButtons.OK,
-            //    MessageBoxIcon.Information
-            //);
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
