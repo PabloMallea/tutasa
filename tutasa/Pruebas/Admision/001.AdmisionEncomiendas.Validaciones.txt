@@ -46,7 +46,6 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 --- VALIDACION 5: Guia real en estado EnProcesoDistribucion (100001 de Guias.json) ---
 
 18- Campo N° Guia                 "100001"
-    (Guias.json: EstadoActual="EnProcesoDistribucion")
 
 19- Boton                         "Buscar"
 
@@ -60,7 +59,6 @@ Plan de Prueba: 001.AdmisionEncomiendas.Validaciones.txt
 --- VALIDACION 6: Guia real en estado Entregada (100002 de Guias.json) ---
 
 23- Campo N° Guia                 "100002"
-    (Guias.json: EstadoActual="Entregada")
 
 24- Boton                         "Buscar"
 

@@ -93,7 +93,7 @@ Estado NUEVO:
   "Historial": [
     { "FechaHora": "2026-06-10T08:00:00", "Estado": "Impuesta",          "Ubicacion": "CD Cordoba" },
     { "FechaHora": "2026-06-10T10:00:00", "Estado": "PlanificadaRetiro", "Ubicacion": "CD Cordoba" },
-    { "FechaHora": "2026-06-10T12:00:00", "Estado": "EnProcesoRetiro",   "Ubicacion": "CD Cordoba" },
+    { "FechaHora": "2026-06-10T12:00:00", "Estado": "EnProcesoRetiro",   "Ubicacion": "Cordoba" },
     { "FechaHora": "2026-06-10T15:00:00", "Estado": "PendienteAdmision", "Ubicacion": "CD Cordoba" },
     { "FechaHora": "fecha actual",         "Estado": "Admitida",          "Ubicacion": "CD Cordoba" }
   ]

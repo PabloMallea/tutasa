@@ -15,7 +15,7 @@ CASO A: Juan Perez (CUIT 30712345678) - rango que cubre Facturas 1001 y 1003
                                   "- Fecha Hasta: DateTimePicker con fecha actual"
                                   "- Boton Buscar (fechas): habilitado"
                                   "- Seccion Estado Cuenta: tabla vacia"
-                                  "    Columnas: Fecha | N° Comproba... | Concepto | Monto | Pago | Saldo"
+                                  "    Columnas: Fecha | N° Comprobante | Concepto | Monto | Pago | Saldo"
                                   "- Boton Aceptar: habilitado"
 
 3- Campo CUIT/CUIL                "30712345678"
@@ -23,13 +23,12 @@ CASO A: Juan Perez (CUIT 30712345678) - rango que cubre Facturas 1001 y 1003
 4- Boton                          "Buscar"   (seccion Busqueda)
 
 5- Verificacion                   "Campo Cliente muestra: 'Juan Perez'"
-                                  "(Clientes.json: Nombre=Juan, Apellido=Perez)"
 
 6- Fecha Desde                    "01/06/2026"
 
 7- Fecha Hasta                    "10/06/2026"
 
-8- Boton                          "Buscar"   (seccion fechas)
+8- Boton                          "Buscar"   
 
 9- Verificacion                   "Tabla Estado Cuenta se carga con 2 filas"
 

@@ -12,7 +12,7 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
                                   "- Fecha Hasta: DateTimePicker con fecha actual"
                                   "- Boton Buscar (fechas): habilitado"
                                   "- Tabla Estado Cuenta: vacia"
-                                  "    Columnas: Fecha | N° Comproba... | Concepto | Monto | Pago | Saldo"
+                                  "    Columnas: Fecha | N° Comprobante | Concepto | Monto | Pago | Saldo"
                                   "- Boton Aceptar: habilitado"
 
 --- EVENTO 2: Buscar CUIT limpia datos anteriores y autocompleta Cliente ---

@@ -57,7 +57,6 @@ CASO B: Guia 100002 - 5 movimientos, estado Entregada, destino Agencia
 16- Verificacion:
     Estado Actual                 "Entregada"
     Ubicación Actual              "Agencia Cordoba Centro"
-                                  "(Agencias.json: IdAgencia=105, NombreAgencia='Agencia Cordoba Centro')"
     Ultima fecha actualizada      "03/06/2026 13:45"
 
 17- Verificacion tabla Historial  "5 filas:"
@@ -84,7 +83,6 @@ CASO C: Guia 100003 - 4 movimientos, estado EnTransporte, incluye PendienteAdmis
 21- Verificacion tabla Historial  "4 filas:"
 
     Fila 1: "04/06/2026 14:20" | "Impuesta"          | "Agencia Rosario Norte"
-            (Agencias.json: IdAgencia=201, NombreAgencia='Agencia Rosario Norte')
     Fila 2: "04/06/2026 16:00" | "PendienteAdmision" | "CD Rosario"
     Fila 3: "04/06/2026 18:45" | "Admitida"          | "CD Rosario"
     Fila 4: "05/06/2026 01:30" | "EnTransporte"      | "Ruta Nacional 7"
@@ -126,4 +124,4 @@ Verificaciones:
 28- Los estados cubiertos por los 4 casos son valores reales de EstadoGuiaEnum:
     EnProcesoDistribucion | Entregada | EnTransporte | PendienteDeEntrega
     El Historial incluye ademas: Impuesta | PlanificadaRetiro | EnProcesoRetiro
-    | Admitida | EnDestino | PendienteAdmision | PlanificadaDistribucion (inferido)
+    | Admitida | EnDestino | PendienteAdmision | PlanificadaDistribucion 
