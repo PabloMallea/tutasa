@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace tutasa.ConsultaEstadoInterna
 {
@@ -44,7 +39,7 @@ namespace tutasa.ConsultaEstadoInterna
                 return;
             }
 
-            // Buscar la guía usando el modelo
+            // Buscar la guía usando el modelo (desde el almacén)
             Guia guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
 
             // Validar existencia
@@ -61,7 +56,7 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Buscar el historial de movimientos
-            List<MovimientoEstado> historial = modelo.BuscarMovimientosPorGuia(numeroGuia);
+            List<MovimientoEstado> historial = guiaEncontrada.Historial;
 
             // Validar que exista historial
             if (historial == null || historial.Count == 0)
@@ -77,10 +72,11 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Obtener el último movimiento registrado
-            MovimientoEstado ultimoMovimiento = modelo.ObtenerUltimoMovimiento(numeroGuia);
+            MovimientoEstado ultimoMovimiento = historial.OrderByDescending(m => m.FechaHora).FirstOrDefault();
+        
 
             // Completar labels con la información más reciente
-            LabelEstadoActual.Text = ultimoMovimiento.Estado;
+            LabelEstadoActual.Text = ultimoMovimiento.Estado.ToString();
             LabelUbicacionActual.Text = ultimoMovimiento.Ubicacion;
             LabelFechaActualizacion.Text = ultimoMovimiento.FechaHora.ToString("dd/MM/yyyy HH:mm");
 
@@ -94,19 +90,13 @@ namespace tutasa.ConsultaEstadoInterna
                 ListViewItem item = new ListViewItem(movimiento.FechaHora.ToString("dd/MM/yyyy HH:mm"));
 
                 // Agregar columnas restantes
-                item.SubItems.Add(movimiento.Estado);
+                item.SubItems.Add(movimiento.Estado.ToString());
                 item.SubItems.Add(movimiento.Ubicacion);
 
                 // Agregar fila al ListView
                 ListViewHistorial.Items.Add(item);
             }
 
-            //MessageBox.Show(
-            //    "Guía encontrada correctamente.",
-            //    "Éxito",
-            //    MessageBoxButtons.OK,
-            //    MessageBoxIcon.Information
-            //);
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

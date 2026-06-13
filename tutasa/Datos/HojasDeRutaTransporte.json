@@ -24,6 +24,14 @@
     "Guias": [
       100004
     ]
+  },
+  {
+    "NumeroHDRTransporte": 5004,
+    "IdServicio": 3,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100005
+    ]
   }
 ]
 

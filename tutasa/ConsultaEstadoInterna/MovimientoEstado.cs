@@ -4,7 +4,6 @@ namespace tutasa.ConsultaEstadoInterna
 {
     internal class MovimientoEstado
     {
-        public int NumeroGuia { get; set; }
 
         public DateTime FechaHora { get; set; }
 
