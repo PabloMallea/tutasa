@@ -221,5 +221,47 @@
     "ComisionesAgenciaDestino": 0,
     "ComisionesFleteroOrigen": 4100,
     "ComisionesFleteroDestino": 3900
+  },
+  {
+    "NumeroGuia": 100005,
+    "FechaAlta": "2026-06-10T09:45:00",
+    "CuitCliente": 30555111222,
+    "IdCDOrigen": 1,
+    "TipoRetiro": "RecibidoEnCD",
+    "IdAgenciaRetiro": 0,
+    "IdCDDestino": 3,
+    "IdAgenciaDestino": 105,
+    "Destino": "Agencia",
+    "CalleDestino": "",
+    "AlturaDestino": "",
+    "DniDestinatario": "31222333",
+    "TelefonoDestinatario": "1177712345",
+    "NombreDestinatario": "Sofia",
+    "ApellidoDestinatario": "Martinez",
+    "Dimension": "M",
+    "IntentosEntrega": 0,
+    "EstadoActual": "Admitida",
+    "Historial": [
+      {
+        "FechaHora": "2026-06-10T09:45:00",
+        "Estado": "Impuesta",
+        "Ubicacion": "CD Cordoba"
+      },
+      {
+        "FechaHora": "2026-06-10T10:15:00",
+        "Estado": "PendienteAdmision",
+        "Ubicacion": "CD Cordoba"
+      },
+      {
+        "FechaHora": "2026-06-10T11:00:00",
+        "Estado": "Admitida",
+        "Ubicacion": "CD Cordoba"
+      }
+    ],
+    "MontoFacturar": 13450.00,
+    "ComisionesAgenciaOrigen": 0,
+    "ComisionesAgenciaDestino": 950,
+    "ComisionesFleteroOrigen": 0,
+    "ComisionesFleteroDestino": 0
   }
 ]

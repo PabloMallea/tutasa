@@ -1,0 +1,43 @@
+﻿Plan de prueba: 000.RuteoTransporte.RuteoExitoso.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT                     "30555111222"
+2- Desplegable Localidad          "Rosario"
+3- Desplegable Dimensión          "M"
+4- Botón                          "Buscar"
+
+5- Tabla superior de Guías        Se verificó que se listaron guías con datos:
+                                     N° Guía: 100005
+                                     Localidad: "Rosario"
+                                     Dirección: "Corrientes 1200"
+                                     Dimensión: "M"
+                                     Peso: "5"
+                                     Cliente: "Gomez, Maria"
+                                     CD Destino: "CD Buenos Aires"
+
+6- Selección                     N° Guía 100005 de la tabla superior
+7- Botón                         "Agregar selección"
+
+8- Tabla inferior de Guías       La guía 100005 se movió a la tabla inferior
+9- Tabla superior de Guías       la guía 100005 ya no aparece en la tabla superior
+
+10- Desplegable Centro de distribución de destino   "CD Buenos Aires"
+11- Desplegable Empresa                             "Logistica Express Nacional"
+12- Desplegable Servicio                            "Cordoba - Buenos Aires Dia"
+13- Botón                                           "Confirmar"
+
+Verificaciones:
+
+14- HojasDeRutaTransporte.json - Verificar que se registró una nueva HDR con:
+  {
+    "NumeroHDRTransporte": 5004,
+    "IdServicio": 3,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100005
+    ]
+  }
+
+15- Almacén Guías - Verificar que la guía 100005 cambió su estado a:
+   "estadoActual": "EnTransporte"

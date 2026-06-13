@@ -1,0 +1,22 @@
+﻿Plan de prueba: 001.RuteoTransporte.Validaciones.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT                     "ABC123"
+2- Botón                          "Buscar"
+3- Mensaje                        "El campo CUIT debe contener únicamente 11 valores numéricos"
+4- Botón                          "Aceptar"
+
+5- Campo CUIT                     "99999999999"
+6- Botón                          "Buscar"
+7- Pop-up                         "No se encuentra el CUIT ingresado"
+8- Botón                         "Aceptar"
+
+9- Desplegable CD Destino        "CD Rosario"
+10- Botón                         "Buscar"
+11- Se seleccionó la guía         N° Guía 100020 de la tabla superior
+12- Botón                         "Agregar selección"
+13- Desplegable Centro de distribución de destino   "CD Rosario"
+14- Botón                         "Confirmar"
+15- Pop-up                        "Deben completarse todos los campos del apartado Configuración de Transporte para continuar"
+16- Botón                         "Aceptar"

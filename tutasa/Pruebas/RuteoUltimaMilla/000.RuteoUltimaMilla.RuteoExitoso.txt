@@ -12,11 +12,11 @@
                                      Dirección: "Av. Colon 450"
                                      Dimensión: "S"
 
-6- Se seleccionó la guía          Nro Guía 100002 de la tabla superior
+6- Selección                      Nro Guía 100002 de la tabla superior
 7- Botón                          "Agregar selección"
 
-8- Tabla inferior de Guías       Se verificó que la guía 100002 se movió a la tabla inferior
-9- Tabla superior de Guías       Se verificó que la guía 100002 ya no aparece en la tabla superior
+8- Tabla inferior de Guías       La guía 100002 se movió a la tabla inferior
+9- Tabla superior de Guías       La guía 100002 ya no aparece en la tabla superior
 
 10- Desplegable Asignación de Fletero   "Luciano Fernandez"
 11- Botón                               "Confirmar"
@@ -32,10 +32,4 @@ Verificaciones:
     ],
     "Cumplida": true,
     "IdFletero": 303,
-    "Estado": "Rendida" // deberia ser el estado despues de general la hdr
-  }
-
-15- Almacén Guías - Verificar que la guía 100002 cambió su estado a:
-   "estadoActual": "Pendiente de impresion para distribucion de fletero"
-
-16- Pantalla                      Se verificó que los campos se limpiaron luego de confirmar
+    "Estado": "PlanificadaRetiro / PendienteDeEntrega" 

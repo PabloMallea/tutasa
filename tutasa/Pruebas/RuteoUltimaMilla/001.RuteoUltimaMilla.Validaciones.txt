@@ -18,4 +18,4 @@
 12- Botón                         "Confirmar"
 13- Mensaje						  "Debe seleccionar una fletero del desplegable "Asignación de Fletero""
 14- Botón                         "Aceptar"
- 
+  
