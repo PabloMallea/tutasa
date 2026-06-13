@@ -489,5 +489,10 @@ namespace tutasa.Imposicion_Agencia
             // (Asumiendo que esta pantalla se abrió desde un menú principal)
             // ACA FALTA LA LINEA PARA CERRAR, PERO AUN NO HAY MENU -> this.Close();
         }
+
+        private void GrupoCliente_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

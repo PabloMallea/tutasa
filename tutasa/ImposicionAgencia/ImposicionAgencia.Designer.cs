@@ -440,6 +440,7 @@
             GrupoCliente.TabIndex = 37;
             GrupoCliente.TabStop = false;
             GrupoCliente.Text = "Cliente";
+            GrupoCliente.Enter += GrupoCliente_Enter;
             // 
             // Imposicion_Agencia
             // 

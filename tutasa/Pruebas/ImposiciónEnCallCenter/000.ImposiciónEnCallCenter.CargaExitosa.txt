@@ -1,0 +1,94 @@
+﻿Plan de Prueba: 000.ImposicionEnCallCenter.CargaExitosa.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT "30777888999"
+
+2- Botón "Buscar"
+
+3- Nombre Cliente "Carlos"
+
+4- Apellido Cliente "Lopez"
+
+5- Teléfono Cliente "1133344455"
+
+6- Campo Localidad "Rosario"
+
+7- Botón "Buscar"
+
+8- Mensaje: "Localidad encontrada correctamente."
+
+9- Botón "Aceptar"
+
+10- Desplegable Destino "Agencia Rosario Norte"
+
+11- Verificación:
+Calle = "Bv. Oroño"
+Altura = "980"
+
+12- Campo Nombre "Ana"
+
+13- Campo Apellido "Garcia"
+
+14- Campo DNI "30123456"
+
+15- Campo Teléfono "1177788899"
+
+16- Desplegable Dimensión "M"
+
+17- Botón "Confirmar"
+
+18- Mensaje:
+"Operación exitosa"
+
+19- Botón "Aceptar"
+
+Verificaciones
+
+20- Archivo Guias.json - Verificar:
+
+{
+"NumeroGuia": 100006,
+"FechaAlta": "Fecha Actual",
+
+"CuitCliente": 30777888999,
+
+"IdCDOrigen": 2,
+
+"IdAgenciaOrigen": 201,
+
+"IdCDDestino": 2,
+"IdAgenciaDestino": 201,
+
+"Destino": "Agencia",
+
+"CalleDestino": "Bv. Oroño",
+"AlturaDestino": "980",
+
+"DniDestinatario": "30123456",
+"TelefonoDestinatario": "1177788899",
+"NombreDestinatario": "Ana",
+"ApellidoDestinatario": "Garcia",
+
+"Dimension": "M",
+
+"IntentosEntrega": 0,
+
+"EstadoActual": "Impuesta",
+
+"Historial": [
+{
+"FechaHora": "",
+"Estado": "Impuesta",
+"Ubicacion": "Agencia Rosario Norte"
+}
+],
+
+"MontoFacturar": 0,
+
+"ComisionesAgenciaOrigen": 0,
+"ComisionesAgenciaDestino": 0,
+
+"ComisionesFleteroOrigen": 0,
+"ComisionesFleteroDestino": 0
+}
