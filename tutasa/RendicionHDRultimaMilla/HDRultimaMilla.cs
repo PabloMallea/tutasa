@@ -2,15 +2,26 @@
 {
     internal partial class RendicionHDRultimaMillaModelo
     {
+        public enum EstadoHDRUltimaMilla
+        {
+            Asignada,
+            Emitida,
+            Rendida
+        }
+        public enum TipoHDR
+        {
+            Entrega,
+            Retiro
+        }
         public class HDRultimaMilla
         {
-            public int n_hdr {  get; set; }
-            public string fletero { get; set; }
-            public string estado { get; set; }
+            public int NumeroHDR { get; set; }
+            public int IdFletero { get; set; }
+            public EstadoHDRUltimaMilla Estado { get; set; }
+            public TipoHDR Tipo { get; set; }
+            public bool Cumplida { get; set; }
 
-            public string tipo { get; set; }
-            public DateTime fecha { get; set; }
-            public string cumplida { get; set; }
+            public List<int> Guias { get; set; } = new List<int>();
 
         }
     }

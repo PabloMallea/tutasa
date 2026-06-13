@@ -1,7 +1,7 @@
 
 [
   {
-    "NumeroHDRTransporte": 5001,
+    "NumeroHDRTransporte": 1,
     "IdServicio": 1,
     "EstadoHDR": "Emitida",
     "Guias": [
@@ -10,7 +10,7 @@
     ]
   },
   {
-    "NumeroHDRTransporte": 5002,
+    "NumeroHDRTransporte": 2,
     "IdServicio": 2,
     "EstadoHDR": "Rendida",
     "Guias": [
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "NumeroHDRTransporte": 5003,
+    "NumeroHDRTransporte": 3,
     "IdServicio": 1,
     "EstadoHDR": "Asignada",
     "Guias": [
@@ -26,7 +26,7 @@
     ]
   },
   {
-    "NumeroHDRTransporte": 5004,
+    "NumeroHDRTransporte": 4,
     "IdServicio": 3,
     "EstadoHDR": "Asignada",
     "Guias": [

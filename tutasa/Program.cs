@@ -31,10 +31,11 @@ namespace tutasa
             _ = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte;
             _ = LocalidadAlmacen.localidades;
             _ = ServiciosAlmacen.servicio;
+            _ = FleteroAlmacen.fleteros;
 
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
-            Application.Run(new tutasa.ImposicionCallCenter.ImposicionCallCenter());
+            Application.Run(new tutasa.RendicionHDRultimaMilla.RendicionHDRultimaMilla());
 
             AgenciasAlmacen.Guardar();
             CentroDistribucionAlmacen.Guardar();
@@ -47,6 +48,7 @@ namespace tutasa
             HojasDeRutaTransporteAlmacen.Guardar();
             LocalidadAlmacen.Guardar();
             ServiciosAlmacen.Guardar();
+            FleteroAlmacen.Guardar();
         }
     }
 }
