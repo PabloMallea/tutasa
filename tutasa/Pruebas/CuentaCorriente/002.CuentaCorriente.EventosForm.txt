@@ -6,11 +6,11 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 1- Verificacion                   "Al abrir el formulario Estado de Cuenta Corriente:"
                                   "- CUIT/CUIL: vacio y habilitado"
-                                  "- Boton Buscar (Busqueda): habilitado"
+                                  "- Boton Buscar: habilitado"
                                   "- Campo Cliente: vacio"
                                   "- Fecha Desde: DateTimePicker con fecha actual"
                                   "- Fecha Hasta: DateTimePicker con fecha actual"
-                                  "- Boton Buscar (fechas): habilitado"
+                                  "- Boton Buscar: habilitado"
                                   "- Tabla Estado Cuenta: vacia"
                                   "    Columnas: Fecha | N° Comprobante | Concepto | Monto | Pago | Saldo"
                                   "- Boton Aceptar: habilitado"
@@ -23,7 +23,6 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 4- Verificacion                   "Campo Cliente y Tabla se limpian al inicio del handler"
 5- Verificacion                   "Campo Cliente: 'Juan Perez'"
-                                  "(Clientes.json Nombre=Juan, Apellido=Perez)"
 
 --- EVENTO 3: Autocompletado con los cuatro clientes reales de Clientes.json ---
 
@@ -49,16 +48,16 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 18- Fecha Hasta                   "10/06/2026"
 
-19- Boton                         "Buscar"   (seccion fechas)
+19- Boton                         "Buscar" 
 
-20- Verificacion                  "Tabla se limpia (Items.Clear) y carga con filas"
+20- Verificacion                  "Tabla se limpia y carga con filas"
 
 21- Verificacion fila Factura 1001:
     Fecha                         "03/06/2026"
     N° Comprobante                "1001"
     Monto                         "$27.700,50"
     Pago                          "$18.500,50"
-    Saldo                         "$9.200,00"    (Parcial)
+    Saldo                         "$9.200,00"    
 
 --- EVENTO 5: Cambio de rango filtra correctamente ---
 
@@ -68,7 +67,7 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 24- Boton                         "Buscar"
 
-25- Verificacion                  "Tabla muestra solo Factura 1001 (unica en esa fecha)"
+25- Verificacion                  "Tabla muestra solo Factura 1001"
 
 26- Fecha Desde                   "01/06/2026"
 
@@ -84,7 +83,7 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 31- Boton                         "Buscar"
 
-32- Verificacion                  "Tabla Estado Cuenta se limpia (Items.Clear)"
+32- Verificacion                  "Tabla Estado Cuenta se limpia"
 33- Verificacion                  "Campo Cliente: 'Carlos Lopez'"
 34- Verificacion                  "No quedan datos de Juan Perez"
 
@@ -99,7 +98,7 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
     N° Comprobante                "1002"
     Monto                         "$45.200,75"
     Pago                          "$45.200,75"
-    Saldo                         "$0,00"         (Pagada)
+    Saldo                         "$0,00"        
 
 --- EVENTO 7: Boton Aceptar cierra el formulario ---
 
@@ -111,9 +110,9 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 41- Verificacion                  "Fecha = FechaEmision de Facturas.json"
 42- Verificacion                  "N° Comprobante = NumeroFactura de Facturas.json"
-43- Verificacion                  "Monto = Total de Facturas.json (formato moneda $)"
-44- Verificacion                  "Pago = MontoPago de Clientes.json (formato moneda $)"
-45- Verificacion                  "Saldo = Total - MontoPago (formato moneda $)"
+43- Verificacion                  "Monto = Total de Facturas.json"
+44- Verificacion                  "Pago = MontoPago de Clientes.json"
+45- Verificacion                  "Saldo = Total - MontoPago"
 46- Verificacion                  "Filas = cantidad de movimientos del cliente en el rango"
 
 --- EVENTO 9: Verificacion de los tres estados de factura ---

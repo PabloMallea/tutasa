@@ -4,7 +4,7 @@ Plan de Prueba: 001.CuentaCorriente.Validaciones.txt
 
 --- VALIDACION 1: CUIT/CUIL vacio ---
 
-1- Boton                          "Buscar"   (CUIT en blanco)
+1- Boton                          "Buscar"   
 
 2- Mensaje                        "Debe ingresar un CUIT/CUIL."
 
