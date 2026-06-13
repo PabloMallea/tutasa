@@ -28,6 +28,16 @@
     "FechaLlegada": "2026-06-07T16:30:00",
     "IdCDOrigen": 3,
     "IdCDDestino": 1
+  },
+  {
+    "IdServicio": 4,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - Rosario",
+    "EstadoServicio": "Pendiente",
+    "FechaSalida": "2026-07-29T06:00:00",
+    "FechaLlegada": "2026-07-30T16:30:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 2
   }
 ]
 

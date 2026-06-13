@@ -1,6 +1,6 @@
 [
   {
-    "NumeroHDR": 7001,
+    "NumeroHDR": 1,
     "Tipo": "Entrega",
     "DireccionDestino": "Av. Cabildo 2450",
     "Guias": [
@@ -11,7 +11,7 @@
     "Estado": "Emitida"
   },
   {
-    "NumeroHDR": 7002,
+    "NumeroHDR": 2,
     "Tipo": "Entrega",
     "DireccionDestino": "San Martin 742",
     "Guias": [
@@ -22,7 +22,7 @@
     "Estado": "Asignada"
   },
   {
-    "NumeroHDR": 7003,
+    "NumeroHDR": 3,
     "Tipo": "Entrega",
     "DireccionDestino": "Agencia Cordoba Centro",
     "Guias": [

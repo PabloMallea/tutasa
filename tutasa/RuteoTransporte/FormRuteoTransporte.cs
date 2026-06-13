@@ -18,40 +18,37 @@ namespace tutasa.RuteoTransporte
             InitializeComponent();
         }
 
-        private void FormRuteoTransporte_Load(
-            object sender,
-            EventArgs e)
+        private void FormRuteoTransporte_Load(object sender,EventArgs e)
         {
             // Cargar combos
 
-            foreach (string cd in modelo.ObtenerCDs())
-            {
+            ComboCDDestino.DataSource = modelo.ObtenerCDs();
 
-                ComboCDDestino.Items.Add(cd);
+            ComboCDDestino.DisplayMember = "Nombre";
+
+            ComboCDDestino.ValueMember = "Id";
+
+            foreach (FormRuteoTransporteModelo.Dimension dimension in modelo.ObtenerDimensiones())
+            {
+                ComboDimension.Items.Add(dimension.Nombre);
             }
 
-            foreach (string dimension
-                in modelo.ObtenerDimensiones())
-            {
-                ComboDimension.Items.Add(dimension);
-            }
+            ComboEmpresa.DataSource = modelo.ObtenerEmpresas();
 
-            foreach (string empresa
-                in modelo.ObtenerEmpresas())
-            {
-                ComboEmpresa.Items.Add(empresa);
-            }
+            ComboEmpresa.DisplayMember = "Nombre";
 
-            foreach (string localidad
-                 in modelo.ObtenerLocalidades())
+            ComboEmpresa.ValueMember = "Id";
+
+            foreach (FormRuteoTransporteModelo.Localidad localidad in modelo.ObtenerLocalidades())
             {
-                ComboLocalidad.Items.Add(localidad);
+                ComboLocalidad.Items.Add(localidad.Nombre);
             }
+            ComboCDDestino.SelectedIndex = -1;
+            ComboEmpresa.SelectedIndex = -1;
+            ComboServicio.SelectedIndex = -1;
         }
 
-        private void BtnAgregarTodos_Click(
-            object sender,
-            EventArgs e)
+        private void BtnAgregarTodos_Click(object sender,EventArgs e)
         {
             // Recorrer todas las encomiendas disponibles
 
@@ -61,24 +58,19 @@ namespace tutasa.RuteoTransporte
                 // Recuperar encomienda desde el Tag
 
                 FormRuteoTransporteModelo.Guia
-                    guia =
-                    (FormRuteoTransporteModelo.Guia)
-                    itemDisponible.Tag;
+                    guia =(FormRuteoTransporteModelo.Guia)itemDisponible.Tag;
 
                 // Validar duplicados
 
                 bool existe = false;
 
-                foreach (ListViewItem itemExistente
-                    in LvSeleccion.Items)
+                foreach (ListViewItem itemExistente in LvSeleccion.Items)
                 {
                     FormRuteoTransporteModelo.Guia
                         guiaExistente =
-                        (FormRuteoTransporteModelo.Guia)
-                        itemExistente.Tag;
+                        (FormRuteoTransporteModelo.Guia)itemExistente.Tag;
 
-                    if (guiaExistente.Numero
-                        == guia.Numero)
+                    if (guiaExistente.Numero == guia.Numero)
                     {
                         existe = true;
                         break;
@@ -89,23 +81,15 @@ namespace tutasa.RuteoTransporte
 
                 if (!existe)
                 {
-                    ListViewItem nuevoItem =
-                        new ListViewItem(guia.Numero);
+                    ListViewItem nuevoItem =new ListViewItem(guia.Numero.ToString());
 
-                    nuevoItem.SubItems.Add(
-                        guia.Localidad);
+                    nuevoItem.SubItems.Add(guia.Localidad);
 
-                    nuevoItem.SubItems.Add(
-                        guia.Direccion);
+                    nuevoItem.SubItems.Add(guia.Direccion);
 
-                    nuevoItem.SubItems.Add(
-                        guia.Dimension);
+                    nuevoItem.SubItems.Add(guia.Dimension);
 
-
-
-                    nuevoItem.SubItems.Add(
-                        guia.Cliente);
-
+                    nuevoItem.SubItems.Add(guia.Cliente);
 
                     nuevoItem.Tag = guia;
 
@@ -114,40 +98,7 @@ namespace tutasa.RuteoTransporte
             }
         }
 
-        private void groupBox3_Enter(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void comboBox5_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void comboBox4_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
+        
 
         private void BtnBuscar_Click(
             object sender,
@@ -167,24 +118,17 @@ namespace tutasa.RuteoTransporte
 
             if (ComboLocalidad.SelectedItem != null)
             {
-                localidad =
-                    ComboLocalidad
-                    .SelectedItem
-                    .ToString();
+                localidad = ComboLocalidad.SelectedItem.ToString();
             }
 
             if (ComboDimension.SelectedItem != null)
             {
-                dimension =
-                    ComboDimension
-                    .SelectedItem
-                    .ToString();
+                dimension = ComboDimension.SelectedItem.ToString();
             }
 
             // Validar CUIT numérico si se ingresó
 
-            if (!string.IsNullOrEmpty(cuit)
-                && !cuit.All(char.IsDigit))
+            if (!string.IsNullOrEmpty(cuit) && !cuit.All(char.IsDigit))
             {
                 MessageBox.Show(
                     "El CUIT debe contener únicamente números.",
@@ -196,13 +140,7 @@ namespace tutasa.RuteoTransporte
                 return;
             }
 
-            List<FormRuteoTransporteModelo.Guia>
-                guiasEncontradas =
-                    modelo.BuscarGuias(
-                        cuit,
-                        localidad,
-                        dimension
-                    );
+            List<FormRuteoTransporteModelo.Guia>guiasEncontradas =modelo.BuscarGuias(cuit,localidad,dimension);
 
             // Limpiar listado previo
 
@@ -210,29 +148,16 @@ namespace tutasa.RuteoTransporte
 
             // Mostrar resultados
 
-            foreach (
-                FormRuteoTransporteModelo.Guia
-                guia
-                in guiasEncontradas)
+            foreach (FormRuteoTransporteModelo.Guia guia in guiasEncontradas)
             {
-                ListViewItem item =
-                    new ListViewItem(guia.Numero);
+                ListViewItem item = new ListViewItem(guia.Numero.ToString());
+                item.SubItems.Add(guia.Localidad);
 
-                item.SubItems.Add(
-                    guia.Localidad);
+                item.SubItems.Add(guia.Direccion);
 
-                item.SubItems.Add(
-                    guia.Direccion);
+                item.SubItems.Add(guia.Dimension);
 
-                item.SubItems.Add(
-                    guia.Dimension);
-
-
-
-                item.SubItems.Add(
-                    guia.Cliente);
-
-
+                item.SubItems.Add(guia.Cliente);
 
                 item.Tag = guia;
 
@@ -250,16 +175,12 @@ namespace tutasa.RuteoTransporte
             }
         }
 
-        private void LvGuiasDisponibles_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void LvGuiasDisponibles_SelectedIndexChanged(object sender,EventArgs e)
         {
 
         }
 
-        private void BtnAgregarSeleccion_Click(
-            object sender,
-            EventArgs e)
+        private void BtnAgregarSeleccion_Click(object sender,EventArgs e)
         {
             // Validar selección
 
@@ -278,25 +199,17 @@ namespace tutasa.RuteoTransporte
             foreach (ListViewItem itemSeleccionado
                 in LvGuiasDisponibles.SelectedItems)
             {
-                FormRuteoTransporteModelo.Guia
-                    guia =
-                    (FormRuteoTransporteModelo.Guia)
-                    itemSeleccionado.Tag;
+                FormRuteoTransporteModelo.Guia guia = (FormRuteoTransporteModelo.Guia)itemSeleccionado.Tag;
 
                 // Validar duplicados
 
                 bool existe = false;
 
-                foreach (ListViewItem itemExistente
-                    in LvSeleccion.Items)
+                foreach (ListViewItem itemExistente in LvSeleccion.Items)
                 {
-                    FormRuteoTransporteModelo.Guia
-                        guiaExistente =
-                        (FormRuteoTransporteModelo.Guia)
-                        itemExistente.Tag;
+                    FormRuteoTransporteModelo.Guia guiaExistente = (FormRuteoTransporteModelo.Guia)itemExistente.Tag;
 
-                    if (guiaExistente.Numero
-                        == guia.Numero)
+                    if (guiaExistente.Numero == guia.Numero)
                     {
                         existe = true;
                         break;
@@ -307,24 +220,15 @@ namespace tutasa.RuteoTransporte
 
                 if (!existe)
                 {
-                    ListViewItem nuevoItem =
-                        new ListViewItem(guia.Numero);
+                    ListViewItem nuevoItem = new ListViewItem(guia.Numero.ToString());
 
-                    nuevoItem.SubItems.Add(
-                        guia.Localidad);
+                    nuevoItem.SubItems.Add(guia.Localidad);
 
-                    nuevoItem.SubItems.Add(
-                        guia.Direccion);
+                    nuevoItem.SubItems.Add(guia.Direccion);
 
-                    nuevoItem.SubItems.Add(
-                        guia.Dimension);
+                    nuevoItem.SubItems.Add(guia.Dimension);
 
-
-
-                    nuevoItem.SubItems.Add(
-                        guia.Cliente);
-
-
+                    nuevoItem.SubItems.Add(guia.Cliente);
 
                     nuevoItem.Tag = guia;
 
@@ -333,9 +237,7 @@ namespace tutasa.RuteoTransporte
             }
         }
 
-        private void listView1_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender,EventArgs e)
         {
 
         }
@@ -360,23 +262,18 @@ namespace tutasa.RuteoTransporte
 
             // Eliminar seleccionadas
 
-            foreach (ListViewItem item
-                in LvSeleccion.SelectedItems)
+            foreach (ListViewItem item in LvSeleccion.SelectedItems)
             {
                 LvSeleccion.Items.Remove(item);
             }
         }
 
-        private void ComboCDDestino_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void ComboCDDestino_SelectedIndexChanged(object sender,EventArgs e)
         {
 
         }
 
-        private void ComboEmpresa_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void ComboEmpresa_SelectedIndexChanged(object sender,EventArgs e)
         {
             // Limpiar servicios previos
 
@@ -393,27 +290,33 @@ namespace tutasa.RuteoTransporte
 
             // Obtener empresa seleccionada
 
-            string empresa =
-                ComboEmpresa.SelectedItem.ToString();
-            string nombreCDDestino =
-                ComboCDDestino.SelectedItem.ToString();
+            if (ComboCDDestino.SelectedValue == null)
+            {
+                return;
+            }
 
-            // Obtener servicios correspondientes
 
-            List<string> servicios =
-                modelo.ObtenerServicios(empresa, nombreCDDestino);
+            if (!(ComboEmpresa.SelectedValue is int idEmpresa))
+            {
+                return;
+            }
+
+            if (!(ComboCDDestino.SelectedValue is int idCDDestino))
+            {
+                return;
+            }
+
+            List<FormRuteoTransporteModelo.Servicio> servicios =modelo.ObtenerServicios(idEmpresa,idCDDestino);
 
             // Cargar combo de servicios
 
-            foreach (string servicio in servicios)
+            foreach (FormRuteoTransporteModelo.Servicio servicio in servicios)
             {
-                ComboServicio.Items.Add(servicio);
+                ComboServicio.Items.Add(servicio.Descripcion);
             }
         }
 
-        private void BtnConfirmar_Click(
-            object sender,
-            EventArgs e)
+        private void BtnConfirmar_Click(object sender,EventArgs e)
         {
             // Validar encomiendas seleccionadas
 
@@ -473,30 +376,21 @@ namespace tutasa.RuteoTransporte
 
             // Obtener datos seleccionados
 
-            string cdDestino =
-                ComboCDDestino.SelectedItem.ToString();
+            string cdDestino =ComboCDDestino.SelectedItem.ToString();
 
-            string empresa =
-                ComboEmpresa.SelectedItem.ToString();
+            string empresa = ComboEmpresa.SelectedItem.ToString();
 
-            string servicio =
-                ComboServicio.SelectedItem.ToString();
+            string servicio =ComboServicio.SelectedItem.ToString();
 
             // Lista de encomiendas de la hoja de ruta
 
-            List<FormRuteoTransporteModelo.Guia>
-                guiasHojaRuta =
-                    new List<FormRuteoTransporteModelo.Guia>();
+            List<FormRuteoTransporteModelo.Guia>guiasHojaRuta =new List<FormRuteoTransporteModelo.Guia>();
 
             // Recuperar encomiendas desde el ListView
 
-            foreach (ListViewItem item
-                in LvSeleccion.Items)
+            foreach (ListViewItem item in LvSeleccion.Items)
             {
-                FormRuteoTransporteModelo.Guia
-                    guia =
-                    (FormRuteoTransporteModelo.Guia)
-                    item.Tag;
+                FormRuteoTransporteModelo.Guia guia =(FormRuteoTransporteModelo.Guia)item.Tag;
 
                 guiasHojaRuta.Add(guia);
             }
@@ -507,8 +401,7 @@ namespace tutasa.RuteoTransporte
                 hojaRuta =
                 new FormRuteoTransporteModelo.HojaRutaTransporte
                 {
-                    Numero =
-                        DateTime.Now.ToString("yyyyMMddHHmmss"),
+                    Numero = DateTime.Now.ToString("yyyyMMddHHmmss"),
 
                     Empresa = empresa,
 
@@ -516,21 +409,20 @@ namespace tutasa.RuteoTransporte
 
                     CDDestino = cdDestino,
 
-                    Guias =
-                        guiasHojaRuta
+                    Guias = guiasHojaRuta
                 };
 
             // Guardar hoja de ruta
 
-            modelo.GuardarHojaRuta(hojaRuta);
+            int numeroHDR =modelo.GuardarHojaRuta(hojaRuta);
 
             MessageBox.Show(
                 "Hoja de ruta generada correctamente.\n" +
-                "Número: " + hojaRuta.Numero,
+                "Número: " + numeroHDR,
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
-            );
+                        );
 
             // Limpiar formulario
 
