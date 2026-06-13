@@ -91,6 +91,8 @@ namespace tutasa.RuteoTransporte
 
                     nuevoItem.SubItems.Add(guia.Cliente);
 
+                    nuevoItem.SubItems.Add(guia.CdDestino);
+
                     nuevoItem.Tag = guia;
 
                     LvSeleccion.Items.Add(nuevoItem);
@@ -158,6 +160,8 @@ namespace tutasa.RuteoTransporte
                 item.SubItems.Add(guia.Dimension);
 
                 item.SubItems.Add(guia.Cliente);
+
+                item.SubItems.Add(guia.CdDestino);
 
                 item.Tag = guia;
 
@@ -229,6 +233,8 @@ namespace tutasa.RuteoTransporte
                     nuevoItem.SubItems.Add(guia.Dimension);
 
                     nuevoItem.SubItems.Add(guia.Cliente);
+
+                    nuevoItem.SubItems.Add(guia.CdDestino);
 
                     nuevoItem.Tag = guia;
 
@@ -416,13 +422,23 @@ namespace tutasa.RuteoTransporte
 
             int numeroHDR =modelo.GuardarHojaRuta(hojaRuta);
 
+            string guiasIncluidas =
+    string.Join(
+        ", ",
+        guiasHojaRuta.Select(g => g.Numero));
+
             MessageBox.Show(
                 "Hoja de ruta generada correctamente.\n" +
-                "Número: " + numeroHDR,
+                "Número HDR: " + numeroHDR + "\n" +
+                "CD Destino: " + ComboCDDestino.Text + "\n\n" +
+                "Empresa: " + ComboEmpresa.Text + "\n" +
+                "Servicio: " + ComboServicio.Text + "\n\n" +
+                "Cantidad de guías: " + guiasHojaRuta.Count + "\n" +
+                "Guías: " + guiasIncluidas,
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
-                        );
+            );
 
             // Limpiar formulario
 

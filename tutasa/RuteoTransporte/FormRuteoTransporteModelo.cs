@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +26,8 @@ namespace tutasa.RuteoTransporte
             public string Cliente { get; set; }
 
             public string Cuit { get; set; }
+
+            public string CdDestino { get; set; }
 
         }
 
@@ -269,6 +269,8 @@ namespace tutasa.RuteoTransporte
                 guia.Cliente =cliente.Nombre+ " " + cliente.Apellido;
 
                 guia.Cuit = cliente.CuitCliente.ToString();
+
+                guia.CdDestino = cdDestino.NombreCD;
 
                 resultado.Add(guia);
             }
