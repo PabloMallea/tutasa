@@ -380,5 +380,15 @@ namespace tutasa.Imposicion_CD
                 LabelTamaño.Text = "S | M | L | XL";
             }
         }
+
+        private void GrupoCliente_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Impiscion_CD_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

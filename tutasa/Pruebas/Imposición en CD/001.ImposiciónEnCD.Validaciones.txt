@@ -2,51 +2,80 @@
 
 (Empieza con el menú principal)
 
-1- Botón                         "Buscar"
+1- Botón "Buscar"
 
-2- Mensaje                       "El campo CUIT debe ser completado"
+2- Mensaje "Debe ingresar un CUIT."
 
-3- Botón                         "Aceptar"
+3- Botón "Aceptar"
 
-4- Campo CUIT                    "ABC123"
+4- Campo CUIT "11111111111"
 
-5- Botón                         "Buscar"
+5- Botón "Buscar"
 
-6- Mensaje                       "El campo CUIT debe contener únicamente 11 valores numéricos"
+6- Mensaje "El CUIT ingresado no corresponde a un cliente registrado."
 
-7- Botón                         "Aceptar"
+7- Botón "Aceptar"
 
-8- Campo CUIT                    "11111111111"
+8- Campo CUIT "20333444556"
 
-9- Botón                         "Buscar"
+9- Botón "Buscar"
 
-10- Mensaje                      "El CUIT ingresado no corresponde a un cliente registrado"
+10- Nombre Cliente "Juan"
 
-11- Botón                        "Aceptar"
+11- Apellido Cliente "Perez"
 
-12- Botón                        "Buscar Localidad"
+12- Teléfono Cliente "1122334455"
 
-13- Mensaje                      "El campo Localidad debe ser completado"
+13- Campo Localidad "San@Rafael"
 
-14- Botón                        "Aceptar"
+14- Botón "Buscar"
 
-15- Campo Localidad              "San@Rafael"
+15- Mensaje "No se encontró la localidad ingresada."
 
-16- Botón                        "Buscar"
+16- Botón "Aceptar"
 
-17- Mensaje                      "Localidad inexistente"
+17- Campo Localidad "San Rafael"
 
-18- Botón                        "Aceptar"
+18- Botón "Buscar"
 
-19- Campo Peso (Kg)              "-5"
+19- Mensaje "Localidad encontrada correctamente."
 
-20- Botón                        "Confirmar"
+20- Botón "Aceptar"
 
-21- Mensaje                      "El campo Peso (Kg) debe ser completado con valores numéricos mayores a 0"
+21- Botón "Confirmar"
 
-22- Botón                        "Aceptar"
+22- Mensaje "Debe seleccionar un destino."
 
+23- Botón "Aceptar"
+
+24- Destino "Domicilio Destinatario"
+
+25- Calle Destino "Belgrano"
+
+26- Altura Destino "123"
+
+27- Botón "Confirmar"
+
+28- Mensaje "Debe ingresar un nombre."
+
+29- Botón "Aceptar"
+
+30- Nombre "Ana"
+
+31- Apellido "Garcia"
+
+32- DNI "30123456"
+
+33- Teléfono "1177788899"
+
+34- Peso (Kg) "-5"
+
+35- Botón "Confirmar"
+
+36- Mensaje "Debe ingresar un peso numérico válido y mayor a cero."
+
+37- Botón "Aceptar"
 
 Verificaciones
 
-23- No debe generarse ninguna nueva guía en: Guias.json
+21- No debe generarse ninguna nueva guía en: Guias.json

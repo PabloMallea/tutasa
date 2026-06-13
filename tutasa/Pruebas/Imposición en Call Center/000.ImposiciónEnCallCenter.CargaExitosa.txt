@@ -1,0 +1,84 @@
+﻿Plan de Prueba: 000.ImposicionEnCallCenter.CargaExitosa.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT "30712345678"
+2- Botón "Buscar"
+
+3- Nombre Cliente "Juan"
+4- Apellido Cliente "Perez"
+5- Teléfono Cliente "1155554444"
+6- Calle Cliente "Av. Cabildo"
+7- Altura Cliente "2450"
+8- Localidad Cliente "Buenos Aires"
+
+9- Campo Localidad "Cordoba"
+10- Botón "Buscar"
+11- Mensaje: "Localidad Encontrada Correctamente"
+12- Botón "Aceptar"
+
+13- Desplegable Destino "Agencia Cordoba Centro"
+
+14- Campo Nombre "Ana"
+15- Campo Apellido "Garcia"
+16- Campo DNI "30123456"
+17- Campo Teléfono "1177788899"
+
+18- Dimensión "M"
+
+19- Botón "Confirmar"
+
+20- Mensaje
+"La imposición fue registrada correctamente"
+
+21- Botón "Operación Exitosa"
+
+Verificaciones
+
+22- Archivo Guias.json - Verificar:
+{
+  "NumeroGuia": 100005,
+  "FechaAlta": "<fecha actual>",
+
+  "CuitCliente": 30712345678,
+
+  "IdCDOrigen": 1,
+
+  "TipoRetiro": "EnDomicilio",
+  "IdAgenciaRetiro": 0,
+
+  "IdCDDestino": 3,
+  "IdAgenciaDestino": 105,
+
+  "Destino": "Agencia",
+
+  "CalleDestino": "Av. Colon",
+  "AlturaDestino": "450",
+
+  "DniDestinatario": "30123456",
+  "TelefonoDestinatario": "1177788899",
+  "NombreDestinatario": "Ana",
+  "ApellidoDestinatario": "Garcia",
+
+  "Dimension": "M",
+
+  "IntentosEntrega": 0,
+
+  "EstadoActual": "Impuesta",
+
+  "Historial": [
+    {
+      "FechaHora": "<fecha actual>",
+      "Estado": "Impuesta",
+      "Ubicacion": "Call Center"
+    }
+  ],
+
+  "MontoFacturar": 0,
+
+  "ComisionesAgenciaOrigen": 0,
+  "ComisionesAgenciaDestino": 0,
+
+  "ComisionesFleteroOrigen": 0,
+  "ComisionesFleteroDestino": 0
+}

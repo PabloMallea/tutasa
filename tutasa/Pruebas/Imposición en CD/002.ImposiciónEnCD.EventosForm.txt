@@ -22,20 +22,20 @@
 
 10- Verificación                 "Se deshabilitan Calle y Altura"
 
-11- Campo Peso (Kg)             "2"
+11- Campo Peso (Kg)              "2"
 
-12- Verificación                "Dimensión = S"
+12- Verificación                 "Dimensión = S"
 
-13- Campo Peso (Kg)             "5"
+13- Campo Peso (Kg)              "5"
 
-14- Verificación                "Dimensión = M"
+14- Verificación                 "Dimensión = M"
 
-15- Campo Peso (Kg)             "10"
+15- Campo Peso (Kg)              "10"
 
-16- Verificación                "Dimensión = L"
+16- Verificación                 "Dimensión = L"
 
-17- Campo Peso (Kg)             "15"
+17- Campo Peso (Kg)              "15"
 
-18- Verificación                "Dimensión = XL"
+18- Verificación                 "Dimensión = XL"
 
-19- Botón                       "Cancelar"
+19- Botón                        "Cancelar"

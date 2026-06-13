@@ -1,0 +1,81 @@
+﻿Plan de Prueba: 001.ImposicionEnCallCenter.Validaciones.txt
+
+(Empieza con el menú principal)
+
+1- Botón "Buscar"
+
+2- Mensaje "Debe ingresar un CUIT."
+
+3- Botón "Aceptar"
+
+4- Campo CUIT "11111111111"
+
+5- Botón "Buscar"
+
+6- Mensaje "El CUIT ingresado no corresponde a un cliente registrado."
+
+7- Botón "Aceptar"
+
+8- Campo CUIT "20333444556"
+
+9- Botón "Buscar"
+
+10- Nombre Cliente "Juan"
+
+11- Campo Localidad ""
+
+12- Botón "Buscar"
+
+13- Mensaje "El campo Localidad debe ser completado."
+
+14- Botón "Aceptar"
+
+15- Campo Localidad "C0rdob4"
+
+16- Botón "Buscar"
+
+17- Mensaje "Localidad inexistente."
+
+18- Botón "Aceptar"
+
+19- Campo Localidad "Cordoba"
+
+20- Botón "Buscar"
+
+21- Mensaje "Localidad encontrada correctamente."
+
+22- Botón "Aceptar"
+
+23- Botón "Confirmar"
+
+24- Mensaje "Debe seleccionar un destino."
+
+25- Botón "Aceptar"
+
+26- Destino "Domicilio Destinatario"
+
+27- Calle Destino "Belgrano"
+
+28- Altura Destino "123"
+
+29- Campo Nombre ""
+
+30- Botón "Confirmar"
+
+31- Mensaje "Debe ingresar un nombre."
+
+32- Botón "Aceptar"
+
+33- Campo Nombre "Ana"
+
+34- Campo Apellido "Garcia"
+
+35- Campo DNI "ABC123"
+
+36- Botón "Confirmar"
+
+37- Mensaje "El campo DNI no puede contener caracteres alfabéticos o especiales y debe contener 8 dígitos."
+
+Verificaciones
+
+38- Guias.json: No debe generarse ninguna nueva guía.

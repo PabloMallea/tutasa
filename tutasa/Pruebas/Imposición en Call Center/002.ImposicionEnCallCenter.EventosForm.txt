@@ -1,0 +1,51 @@
+﻿Plan de Prueba: 002.ImposiciónEnCallCenter.EventosForm.txt
+
+(Empieza con el menú principal)
+
+1- Campo CUIT "30712345678"
+
+2- Botón "Buscar"
+
+3- Verificación "Se autocompletan Nombre, Apellido, Teléfono, Calle, Altura y Localidad del cliente"
+
+4- Campo Localidad "Cordoba"
+
+5- Botón "Buscar"
+
+6- Verificación "Se cargan destinos disponibles correspondientes a la localidad Cordoba"
+
+7- Verificación "El desplegable Destino contiene 'Agencia Cordoba Centro' y 'CD Cordoba'"
+
+8- Desplegable Destino "Agencia Cordoba Centro"
+
+9- Verificación "Se completan automáticamente Calle = 'Av. Colon' y Altura = '450'"
+
+10- Desplegable Destino "CD Cordoba"
+
+11- Verificación "Se completan automáticamente Calle = 'Ruta 9 Sur' y Altura = '7800'"
+
+12- Verificación "Los datos de Calle y Altura no son editables"
+
+13- Desplegable Destino "Agencia Cordoba Centro"
+
+14- Verificación "Se actualizan nuevamente Calle y Altura con los datos de la agencia"
+
+15- Desplegable Dimensión "S"
+
+16- Verificación "La dimensión seleccionada permanece visible"
+
+17- Desplegable Dimensión "M"
+
+18- Verificación "La dimensión seleccionada permanece visible"
+
+19- Desplegable Dimensión "L"
+
+20- Verificación "La dimensión seleccionada permanece visible"
+
+21- Desplegable Dimensión "XL"
+
+22- Verificación "La dimensión seleccionada permanece visible"
+
+23- Botón "Cancelar"
+
+24- Verificación "La pantalla se cierra y retorna al menú principal"

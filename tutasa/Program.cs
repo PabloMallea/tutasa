@@ -34,7 +34,7 @@ namespace tutasa
 
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
-            Application.Run(new tutasa.RuteoTransporte.FormRuteoTransporte());
+            Application.Run(new tutasa.ImposicionCallCenter.ImposicionCallCenter());
 
             AgenciasAlmacen.Guardar();
             CentroDistribucionAlmacen.Guardar();
