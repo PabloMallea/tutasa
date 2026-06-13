@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using tutasa.Almacenes;
 
 namespace tutasa.ConsultaEstadoInterna
 {
@@ -44,8 +45,8 @@ namespace tutasa.ConsultaEstadoInterna
                 return;
             }
 
-            // Buscar la guía usando el modelo
-            Guia guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
+            // Buscar la guía usando el modelo (desde el almacén)
+            GuiaEntidad guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
 
             // Validar existencia
             if (guiaEncontrada == null)
@@ -61,7 +62,7 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Buscar el historial de movimientos
-            List<MovimientoEstado> historial = modelo.BuscarMovimientosPorGuia(numeroGuia);
+            List<MovimientoEstadoDto> historial = guiaEncontrada.Historial;
 
             // Validar que exista historial
             if (historial == null || historial.Count == 0)
@@ -77,10 +78,11 @@ namespace tutasa.ConsultaEstadoInterna
             }
 
             // Obtener el último movimiento registrado
-            MovimientoEstado ultimoMovimiento = modelo.ObtenerUltimoMovimiento(numeroGuia);
+            MovimientoEstadoDto ultimoMovimiento = historial.OrderByDescending(m => m.FechaHora).FirstOrDefault();
+        
 
             // Completar labels con la información más reciente
-            LabelEstadoActual.Text = ultimoMovimiento.Estado;
+            LabelEstadoActual.Text = ultimoMovimiento.Estado.ToString();
             LabelUbicacionActual.Text = ultimoMovimiento.Ubicacion;
             LabelFechaActualizacion.Text = ultimoMovimiento.FechaHora.ToString("dd/MM/yyyy HH:mm");
 
@@ -88,13 +90,13 @@ namespace tutasa.ConsultaEstadoInterna
             ListViewHistorial.Items.Clear();
 
             // Recorrer todos los movimientos del historial
-            foreach (MovimientoEstado movimiento in historial)
+            foreach (MovimientoEstadoDto movimiento in historial)
             {
                 // Crear fila utilizando la fecha como primera columna
                 ListViewItem item = new ListViewItem(movimiento.FechaHora.ToString("dd/MM/yyyy HH:mm"));
 
                 // Agregar columnas restantes
-                item.SubItems.Add(movimiento.Estado);
+                item.SubItems.Add(movimiento.Estado.ToString());
                 item.SubItems.Add(movimiento.Ubicacion);
 
                 // Agregar fila al ListView
