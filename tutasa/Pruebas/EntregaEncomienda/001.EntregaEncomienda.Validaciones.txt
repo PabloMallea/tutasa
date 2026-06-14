@@ -1,0 +1,51 @@
+﻿Plan de Prueba: 001.EntregaEncomienda.Validaciones.txt
+
+(Empieza con el menú principal)
+
+
+1- Botón "Buscar"
+
+2- Mensaje
+
+"El campo Nº Guía debe ser completado."
+
+3- Botón "Aceptar"
+
+4- Campo Nº Guía "999999"
+
+5- Botón "Buscar"
+
+6- Mensaje
+
+"El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado Admitida."
+
+7- Botón "Aceptar"
+
+8- Campo Nº Guía "100003"
+
+9- Botón "Buscar"
+
+10- Mensaje
+
+"El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado Admitida."
+
+11- Botón "Aceptar"
+
+12- Botón "Confirmar Entrega"
+
+13- Mensaje
+
+"Todos los campos obligatorios deben ser completados."
+
+14- Botón "Aceptar"
+
+Verificaciones
+
+15- No debe modificarse ninguna guía.
+
+16- La guía 100003 debe continuar con:
+
+{
+  "NumeroGuia": 100003,
+  "EstadoActual": "EnTransporte"
+}

@@ -1,0 +1,100 @@
+﻿Plan de Prueba: 001.ImposicionAgencia.Validaciones.txt
+
+(Empieza con el menú principal)
+
+
+1- Botón "Buscar"
+
+2- Mensaje "Debe ingresar un CUIT."
+
+3- Botón "Aceptar"
+
+4- Campo CUIT "ABC123"
+
+5- Botón "Buscar"
+
+6- Mensaje "El campo CUIT debe contener únicamente 11 valores numéricos"
+
+7- Botón "Aceptar"
+
+8- Campo CUIT "11111111111"
+
+9- Botón "Buscar"
+
+10- Mensaje "El CUIT ingresado no corresponde a un cliente registrado."
+
+11- Botón "Aceptar"
+
+12- Campo CUIT "30712345678"
+
+13- Botón "Buscar"
+
+14- Verificación "Se muestran Nombre, Apellido y Teléfono del cliente"
+
+15- Campo Localidad ""
+
+16- Botón "Buscar"
+
+17- Mensaje "El campo Localidad debe ser completado."
+
+18- Botón "Aceptar"
+
+19- Campo Localidad "Laplata"
+
+20- Botón "Buscar"
+
+21- Mensaje "Localidad inexistente."
+
+22- Botón "Aceptar"
+
+23- Campo Localidad "La Plata"
+
+24- Botón "Buscar"
+
+25- Mensaje "Localidad encontrada correctamente."
+
+26- Botón "Aceptar"
+
+27- Botón "Confirmar"
+
+28- Mensaje "Debe seleccionar un destino."
+
+29- Botón "Aceptar"
+
+30- Desplegable Destino "Domicilio Destinatario"
+
+31- Campo Calle "Mitre"
+
+32- Campo Altura "123"
+
+33- Botón "Confirmar"
+
+34- Mensaje "Debe ingresar un nombre."
+
+35- Botón "Aceptar"
+
+36- Campo Nombre "Ana"
+
+37- Campo Apellido "Garcia"
+
+38- Campo DNI "ABC123"
+
+39- Botón "Confirmar"
+
+40- Mensaje "El campo DNI no puede contener caracteres alfabéticos o especiales y debe contener 8 dígitos."
+
+41- Botón "Aceptar"
+
+42- Campo DNI "30123456"
+
+43- Campo Teléfono "1177788899"
+
+44- Botón "Confirmar"
+
+45- Mensaje "Debe seleccionar una dimensión."
+
+46- Botón "Aceptar"
+
+Verificaciones
+
+47- No debe generarse ninguna nueva guía.
