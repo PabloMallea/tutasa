@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using tutasa.Admision;
+using static tutasa.EmitirFactura.EmitirFacturaModelo;
 
 namespace tutasa.EmitirFactura
 {
@@ -13,6 +15,10 @@ namespace tutasa.EmitirFactura
         // Instancia del modelo
         private EmitirFacturaModelo modelo = new EmitirFacturaModelo();
 
+        private List<EmitirFacturaModelo.Guia> guiasActuales = new List<EmitirFacturaModelo.Guia>();
+
+        private EmitirFacturaModelo.Cliente clienteActual;
+
         public EmitirFactura()
         {
             InitializeComponent();
@@ -20,19 +26,145 @@ namespace tutasa.EmitirFactura
 
         private void EmitirFactura_Load(object sender, EventArgs e)
         {
-            // Obtener clientes
-            List<EmitirFacturaModelo.Cliente> clientes = modelo.ObtenerClientes();
+            LimpiarPantalla();
 
-            // Limpiar combo
-            ComboCliente.Items.Clear();
-
-            // Cargar clientes
-            foreach (EmitirFacturaModelo.Cliente cliente in clientes)
-            {
-                ComboCliente.Items.Add(cliente.Nombre);
-            }
         }
 
+        private void BotonBuscarCliente_Click(object sender, EventArgs e)
+        {
+            // Validar CUIT
+            if (!long.TryParse(txtCuit.Text, out long cuit))
+            {
+                MessageBox.Show(
+                    "El CUIT ingresado no es válido. Debe ser un número sin guiones ni espacios.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+            // Buscar cliente
+            clienteActual = modelo.BuscarCliente(cuit);
+            if (clienteActual == null)
+            {
+                MessageBox.Show(
+                    "No se encontró un cliente con el CUIT ingresado.",
+                    "Resultado de búsqueda",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                LabelNombreCliente.Text = "";
+                return;
+            }
+            // Mostrar nombre del cliente
+            LabelNombreCliente.Text = clienteActual.Nombre;
+
+            guiasActuales = modelo.BuscarGuiasAFacturar(cuit);
+
+
+            ListViewFacturacion.Items.Clear();
+
+            decimal total = 0;
+
+            foreach (EmitirFacturaModelo.Guia guia in guiasActuales)
+            {
+
+                ListViewItem item = new ListViewItem(guia.NumeroGuia.ToString());
+
+                item.SubItems.Add(guia.MontoFacturar.ToString("C"));
+
+                ListViewFacturacion.Items.Add(item);
+
+                total += guia.MontoFacturar;
+            }
+            LabelTotal.Text = total.ToString("C");
+
+        }
+
+        private void btnEmitirFactura_Click(object sender, EventArgs e)
+        {
+            // validar cliente seleccionado
+            if (clienteActual == null)
+            {
+                MessageBox.Show(
+                    "Debe buscar y seleccionar un cliente antes de emitir la factura.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+            //validar que existan guias para facturar
+            if (ListViewFacturacion.Items.Count == 0)
+            {
+                MessageBox.Show(
+                    "El cliente no posee guías pendientes de facturar.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            long cuit = long.Parse(txtCuit.Text);
+
+            Factura factura = modelo.EmitirFactura(cuit, guiasActuales);
+
+            MessageBox.Show(
+                "Factura emitida correctamente.",
+                "Confirmación",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            LimpiarPantalla();
+
+        }
+
+        private void LimpiarPantalla()
+        {
+            txtCuit.Text = "";
+            txtCuit.Enabled = true;
+
+            LabelNombreCliente.Text = "";
+
+            LabelTotal.Text = 0.ToString("C");
+
+            ListViewFacturacion.Items.Clear();
+
+            clienteActual = null;
+
+            guiasActuales.Clear();
+        }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            if (ListViewFacturacion.Items.Count > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    "¿Está seguro que desea cancelar? Se perderán los cambios no confirmados.",
+                    "Confirmación de Cancelación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            MessageBox.Show(
+                "Cerrará la pantalla de Emitir Factura.",
+                "Cancelación",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            this.Close();
+        }
+    }
+}
+
+/*
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Validar selección
@@ -173,6 +305,4 @@ namespace tutasa.EmitirFactura
             ComboCliente.SelectedIndex = -1;
         }
 
-
-    }
-}
+*/

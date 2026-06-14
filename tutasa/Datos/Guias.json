@@ -79,7 +79,7 @@
     "ApellidoDestinatario": "Perez",
     "Dimension": "S",
     "IntentosEntrega": 0,
-    "EstadoActual": "enDestino",
+    "EstadoActual": "Entregada",
     "Historial": [
       {
         "FechaHora": "2026-06-02T10:00:00",
@@ -542,6 +542,59 @@
     "MontoFacturar": 8900,
     "ComisionesAgenciaOrigen": 0,
     "ComisionesAgenciaDestino": 0,
+    "ComisionesFleteroOrigen": 0,
+    "ComisionesFleteroDestino": 0
+  },
+
+  {
+    "NumeroGuia": 100014,
+    "FechaAlta": "2026-06-14T10:00:00",
+    "CuitCliente": 30555111222,
+    "IdCDOrigen": 3,
+    "TipoRetiro": "RecibidoEnCD",
+    "IdAgenciaRetiro": 0,
+    "IdCDDestino": 1,
+    "IdAgenciaDestino": 105,
+    "Destino": "Agencia",
+    "CalleDestino": "Av siempre viva",
+    "AlturaDestino": "123",
+    "DniDestinatario": "28999111",
+    "TelefonoDestinatario": "1166677788",
+    "NombreDestinatario": "Juana",
+    "ApellidoDestinatario": "Perez",
+    "Dimension": "S",
+    "IntentosEntrega": 0,
+    "EstadoActual": "Entregada",
+    "Historial": [
+      {
+        "FechaHora": "2026-06-02T10:00:00",
+        "Estado": "Impuesta",
+        "Ubicacion": "CD Buenos Aires"
+      },
+      {
+        "FechaHora": "2026-06-02T10:30:00",
+        "Estado": "Admitida",
+        "Ubicacion": "CD Buenos Aires"
+      },
+      {
+        "FechaHora": "2026-06-02T23:00:00",
+        "Estado": "EnTransporte",
+        "Ubicacion": "Ruta Nacional 14"
+      },
+      {
+        "FechaHora": "2026-06-03T08:20:00",
+        "Estado": "EnDestino",
+        "Ubicacion": "CD Cordoba"
+      },
+      {
+        "FechaHora": "2026-06-03T13:45:00",
+        "Estado": "Entregada",
+        "Ubicacion": "Agencia Cordoba Centro"
+      }
+    ],
+    "MontoFacturar": 9200,
+    "ComisionesAgenciaOrigen": 0,
+    "ComisionesAgenciaDestino": 1200,
     "ComisionesFleteroOrigen": 0,
     "ComisionesFleteroDestino": 0
   }
