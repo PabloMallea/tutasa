@@ -11,14 +11,12 @@
       {
         "NumeroFactura": 1001,
         "Fecha": "2026-06-01T10:00:00",
-        "MontoPago": 18500.50,
-        "Saldo": 120000.00
+        "MontoPago": 18500.50
       },
       {
         "NumeroFactura": 1005,
         "Fecha": "2026-06-08T14:30:00",
-        "MontoPago": 9500.00,
-        "Saldo": 110500.00
+        "MontoPago": 9500.00
       }
     ]
   },
@@ -34,8 +32,7 @@
       {
         "NumeroFactura": 1002,
         "Fecha": "2026-06-03T13:50:00",
-        "MontoPago": 9200.00,
-        "Saldo": 45200.00
+        "MontoPago": 9200.00
       }
     ]
   },
@@ -51,8 +48,7 @@
       {
         "NumeroFactura": 1003,
         "Fecha": "2026-06-05T09:20:00",
-        "MontoPago": 45200.75,
-        "Saldo": 98000.00
+        "MontoPago": 45200.75
       }
     ]
   },
@@ -68,8 +64,7 @@
       {
         "NumeroFactura": 1004,
         "Fecha": "2026-06-07T11:10:00",
-        "MontoPago": 27890.00,
-        "Saldo": 73000.00
+        "MontoPago": 27890.00
       }
     ]
   }

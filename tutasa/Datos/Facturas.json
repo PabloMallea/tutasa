@@ -4,6 +4,7 @@
     "CuitCliente": 30712345678,
     "FechaEmision": "2026-06-03T10:00:00",
     "Total": 27700.50,
+    "Paga": false,
     "Guias": [
       100001,
       100002
@@ -14,6 +15,7 @@
     "CuitCliente": 30777888999,
     "FechaEmision": "2026-06-05T09:20:00",
     "Total": 45200.75,
+    "Paga": true,
     "Guias": [
       100003
     ]
@@ -23,8 +25,19 @@
     "CuitCliente": 30444555666,
     "FechaEmision": "2026-06-07T11:10:00",
     "Total": 27890.00,
+    "Paga": false,
     "Guias": [
       100004
+    ]
+  },
+  {
+    "NumeroFactura": 1004,
+    "CuitCliente": 30777888999,
+    "FechaEmision": "2026-06-05T09:20:00",
+    "Total": 20200.75,
+    "Paga": false,
+    "Guias": [
+      1000016
     ]
   }
 ]

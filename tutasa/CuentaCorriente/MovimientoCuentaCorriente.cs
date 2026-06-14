@@ -4,19 +4,16 @@
     {
         public class MovimientoCuentaCorriente
         {
-            public string Cuit { get; set; }
+            public string CuitCliente { get; set; }
 
             public DateTime Fecha { get; set; }
 
-            public string NumeroComprobante { get; set; }
-
-            public string Concepto { get; set; }
+            public string NumeroFactura { get; set; }
 
             public decimal Monto { get; set; }
 
-            public decimal Pago { get; set; }
+            public bool Pago { get; set; }
 
-            public decimal Saldo { get; set; }
         }
     }
 }

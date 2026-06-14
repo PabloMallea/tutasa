@@ -31,7 +31,7 @@
             GrupoBusqueda = new GroupBox();
             BotonBuscarCuit = new Button();
             TextCuit = new TextBox();
-            BotonConfirmar = new Button();
+            btnBuscarFacturas = new Button();
             FechaHasta = new DateTimePicker();
             FechaDesde = new DateTimePicker();
             label6 = new Label();
@@ -40,14 +40,14 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            labelImporteSaldo = new Label();
+            labelSaldo = new Label();
             LvEstadoCuenta = new ListView();
             ColumnaFecha = new ColumnHeader();
-            ColumnaNComprobante = new ColumnHeader();
-            ColumnaConcepto = new ColumnHeader();
+            ColumnaNFactura = new ColumnHeader();
             ColumnaMonto = new ColumnHeader();
             ColumnaPago = new ColumnHeader();
-            ColumnaSaldo = new ColumnHeader();
-            button1 = new Button();
+            btnCancelar = new Button();
             label8 = new Label();
             GrupoBusqueda.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -57,7 +57,7 @@
             // 
             GrupoBusqueda.Controls.Add(BotonBuscarCuit);
             GrupoBusqueda.Controls.Add(TextCuit);
-            GrupoBusqueda.Controls.Add(BotonConfirmar);
+            GrupoBusqueda.Controls.Add(btnBuscarFacturas);
             GrupoBusqueda.Controls.Add(FechaHasta);
             GrupoBusqueda.Controls.Add(FechaDesde);
             GrupoBusqueda.Controls.Add(label6);
@@ -95,17 +95,17 @@
             TextCuit.Size = new Size(185, 23);
             TextCuit.TabIndex = 29;
             // 
-            // BotonConfirmar
+            // btnBuscarFacturas
             // 
-            BotonConfirmar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BotonConfirmar.Location = new Point(587, 159);
-            BotonConfirmar.Margin = new Padding(3, 2, 3, 2);
-            BotonConfirmar.Name = "BotonConfirmar";
-            BotonConfirmar.Size = new Size(81, 24);
-            BotonConfirmar.TabIndex = 28;
-            BotonConfirmar.Text = "Buscar";
-            BotonConfirmar.UseVisualStyleBackColor = true;
-            BotonConfirmar.Click += BotonConfirmar_Click;
+            btnBuscarFacturas.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBuscarFacturas.Location = new Point(587, 159);
+            btnBuscarFacturas.Margin = new Padding(3, 2, 3, 2);
+            btnBuscarFacturas.Name = "btnBuscarFacturas";
+            btnBuscarFacturas.Size = new Size(81, 24);
+            btnBuscarFacturas.TabIndex = 28;
+            btnBuscarFacturas.Text = "Buscar";
+            btnBuscarFacturas.UseVisualStyleBackColor = true;
+            btnBuscarFacturas.Click += btnBuscarFacturas_Click;
             // 
             // FechaHasta
             // 
@@ -153,7 +153,7 @@
             // 
             LabelNombreCliente.AutoSize = true;
             LabelNombreCliente.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelNombreCliente.Location = new Point(70, 45);
+            LabelNombreCliente.Location = new Point(95, 60);
             LabelNombreCliente.Name = "LabelNombreCliente";
             LabelNombreCliente.Size = new Size(0, 15);
             LabelNombreCliente.TabIndex = 3;
@@ -180,6 +180,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(labelImporteSaldo);
+            groupBox2.Controls.Add(labelSaldo);
             groupBox2.Controls.Add(LvEstadoCuenta);
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(15, 231);
@@ -191,9 +193,27 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Estado Cuenta";
             // 
+            // labelImporteSaldo
+            // 
+            labelImporteSaldo.AutoSize = true;
+            labelImporteSaldo.Location = new Point(116, 250);
+            labelImporteSaldo.Name = "labelImporteSaldo";
+            labelImporteSaldo.Size = new Size(39, 15);
+            labelImporteSaldo.TabIndex = 14;
+            labelImporteSaldo.Text = "label4";
+            // 
+            // labelSaldo
+            // 
+            labelSaldo.AutoSize = true;
+            labelSaldo.Location = new Point(14, 250);
+            labelSaldo.Name = "labelSaldo";
+            labelSaldo.Size = new Size(96, 15);
+            labelSaldo.TabIndex = 13;
+            labelSaldo.Text = "Saldo Pendiente:";
+            // 
             // LvEstadoCuenta
             // 
-            LvEstadoCuenta.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNComprobante, ColumnaConcepto, ColumnaMonto, ColumnaPago, ColumnaSaldo });
+            LvEstadoCuenta.Columns.AddRange(new ColumnHeader[] { ColumnaFecha, ColumnaNFactura, ColumnaMonto, ColumnaPago });
             LvEstadoCuenta.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LvEstadoCuenta.Location = new Point(5, 19);
             LvEstadoCuenta.Margin = new Padding(3, 2, 3, 2);
@@ -208,15 +228,10 @@
             ColumnaFecha.Text = "Fecha";
             ColumnaFecha.Width = 120;
             // 
-            // ColumnaNComprobante
+            // ColumnaNFactura
             // 
-            ColumnaNComprobante.Text = "N° Comprobante";
-            ColumnaNComprobante.Width = 150;
-            // 
-            // ColumnaConcepto
-            // 
-            ColumnaConcepto.Text = "Concepto";
-            ColumnaConcepto.Width = 120;
+            ColumnaNFactura.Text = "N° Factura";
+            ColumnaNFactura.Width = 150;
             // 
             // ColumnaMonto
             // 
@@ -228,21 +243,17 @@
             ColumnaPago.Text = "Pago";
             ColumnaPago.Width = 120;
             // 
-            // ColumnaSaldo
+            // btnCancelar
             // 
-            ColumnaSaldo.Text = "Saldo";
-            ColumnaSaldo.Width = 120;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(622, 533);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 25);
-            button1.TabIndex = 30;
-            button1.Text = "Aceptar";
-            button1.UseVisualStyleBackColor = true;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancelar.Location = new Point(608, 533);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(75, 25);
+            btnCancelar.TabIndex = 30;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // label8
             // 
@@ -260,7 +271,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(705, 565);
             Controls.Add(label8);
-            Controls.Add(button1);
+            Controls.Add(btnCancelar);
             Controls.Add(groupBox2);
             Controls.Add(GrupoBusqueda);
             Margin = new Padding(3, 2, 3, 2);
@@ -270,6 +281,7 @@
             GrupoBusqueda.ResumeLayout(false);
             GrupoBusqueda.PerformLayout();
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -288,17 +300,16 @@
         private GroupBox groupBox2;
         private ListView LvEstadoCuenta;
         private ColumnHeader ColumnaFecha;
-        private ColumnHeader ColumnaNComprobante;
-        private ColumnHeader ColumnaConcepto;
+        private ColumnHeader ColumnaNFactura;
         private ColumnHeader ColumnaMonto;
         private ColumnHeader ColumnaPago;
-        private ColumnHeader ColumnaSaldo;
-        private Button button1;
+        private Button btnCancelar;
         private Label label8;
         private Button BotonBuscarCuit;
         private TextBox TextCuit;
         private Label LabelNombreCliente;
-        private Button BotonConfirmar;
-
+        private Button btnBuscarFacturas;
+        private Label labelImporteSaldo;
+        private Label labelSaldo;
     }
 }
