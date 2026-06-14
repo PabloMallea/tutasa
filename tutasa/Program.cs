@@ -7,7 +7,6 @@ namespace tutasa
     internal static class Program
     {
         //Datos de "Entorno"
-        public static int CdActual = 1;
 
         public static JsonSerializerOptions jsonOptions = new JsonSerializerOptions
         {
@@ -39,7 +38,9 @@ namespace tutasa
 
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
-            Application.Run(new RuteoTransporte.FormRuteoTransporte());
+            Application.Run(new MenuPrincipal());
+            //Application.Run(new RendicionHDRultimaMilla.RendicionHDRultimaMilla());
+
 
             AgenciasAlmacen.Guardar();
             CentroDistribucionAlmacen.Guardar();

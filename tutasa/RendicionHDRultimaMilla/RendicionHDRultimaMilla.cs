@@ -1,4 +1,5 @@
-﻿using tutasa.Almacenes;
+﻿using System.Diagnostics.Eventing.Reader;
+using tutasa.Almacenes;
 using static tutasa.RendicionHDRultimaMilla.RendicionHDRultimaMillaModelo;
 
 namespace tutasa.RendicionHDRultimaMilla
@@ -14,12 +15,11 @@ namespace tutasa.RendicionHDRultimaMilla
 
         private void RendicionHDRultimaMilla_Load(object sender, EventArgs e)
         {
+            int IdCdActual = modelo.IdCdActual;
 
-            List<FleteroHDRultimaMilla> fleteros = modelo.ObtenerFleteros(1);
+            List<string> fleteros = modelo.ObtenerFleteros(IdCdActual);
 
-            cbox_fletero.DisplayMember = "Nombre";
-
-            foreach (FleteroHDRultimaMilla fletero in fleteros)
+            foreach (string fletero in fleteros)
             {
                 cbox_fletero.Items.Add(fletero);
             }
@@ -34,10 +34,10 @@ namespace tutasa.RendicionHDRultimaMilla
             cbox_fletero.DropDownStyle = ComboBoxStyle.DropDownList;
             cbox_tipo.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            listview_hdr_asignadas.MultiSelect = true;
+            listview_hdr_emitidas.MultiSelect = true;
             listview_hdr_rendidas.MultiSelect = true;
 
-            listview_hdr_asignadas.FullRowSelect = true;
+            listview_hdr_emitidas.FullRowSelect = true;
             listview_hdr_rendidas.FullRowSelect = true;
         }
 
@@ -59,10 +59,10 @@ namespace tutasa.RendicionHDRultimaMilla
                 return;
             }
 
-            int idFletero = ((FleteroHDRultimaMilla)cbox_fletero.SelectedItem).IdFletero;
+            string fleteroSeleccionado = cbox_fletero.SelectedItem.ToString();
             string tipoHdr = cbox_tipo.SelectedItem.ToString();
 
-            List<HDRultimaMilla> hdrAsignadas = modelo.ObtenerHdrUltimaMillaAsignadas(idFletero, tipoHdr);
+            List<HDRultimaMilla> hdrAsignadas = modelo.ObtenerHdrUltimaMillaEmitida(fleteroSeleccionado, tipoHdr);
 
             if (hdrAsignadas.Count == 0)
             {
@@ -74,9 +74,8 @@ namespace tutasa.RendicionHDRultimaMilla
 
             foreach (var hdr in hdrAsignadas)
             {
-                // Verificar si ya existe en listview_hdr_asignadas
                 bool yaExisteEnAsignadas = false;
-                foreach (ListViewItem existingItem in listview_hdr_asignadas.Items)
+                foreach (ListViewItem existingItem in listview_hdr_emitidas.Items)
                 {
                     if (existingItem.Text == hdr.NumeroHDR.ToString())
                     {
@@ -85,7 +84,6 @@ namespace tutasa.RendicionHDRultimaMilla
                     }
                 }
 
-                // Verificar también en listview_hdr_rendidas para no volver a cargarla
                 bool yaExisteEnRendidas = false;
                 foreach (ListViewItem rendidasItem in listview_hdr_rendidas.Items)
                 {
@@ -98,36 +96,22 @@ namespace tutasa.RendicionHDRultimaMilla
 
                 if (!yaExisteEnAsignadas && !yaExisteEnRendidas)
                 {
-                    listview_hdr_asignadas.Items.Add(CrearItemHDR(hdr));
+                    listview_hdr_emitidas.Items.Add(CrearItemHDR(hdr));
                 }
             }
-        }
-
-        private string ObtenerNombreFletero(int idFletero)
-        {
-            Fletero fletero = FleteroAlmacen.fleteros
-                .Find(f => f.IdFletero == idFletero);
-
-            return fletero?.Nombre ?? "Desconocido";
         }
 
         private ListViewItem CrearItemHDR(HDRultimaMilla hdr)
         {
             ListViewItem item = new ListViewItem(hdr.NumeroHDR.ToString());
 
-            item.SubItems.Add(ObtenerNombreFletero(hdr.IdFletero));
+            item.SubItems.Add(hdr.Fletero);
 
-            item.SubItems.Add(hdr.Estado.ToString());
+            item.SubItems.Add(hdr.Estado);
 
-            item.SubItems.Add(hdr.Tipo.ToString());
+            item.SubItems.Add(hdr.Tipo);
 
-            string cumplidaTexto = hdr.Cumplida switch
-            {
-                true => "Cumplida",
-                false => "No Cumplida"
-            };
-
-            item.SubItems.Add(cumplidaTexto);
+            item.SubItems.Add(hdr.Cumplida);
 
             item.Tag = hdr;
 
@@ -135,23 +119,23 @@ namespace tutasa.RendicionHDRultimaMilla
         }
         private void btn_agregar_seleccion_Click(object sender, EventArgs e)
         {
-            MoverHDRSeleccionadasArendicion(true);
+            MoverHDRSeleccionadasARendicion("Cumplida");
         }
 
         private void btn_agregar_no_cumplida_Click(object sender, EventArgs e)
         {
-            MoverHDRSeleccionadasArendicion(false);
+            MoverHDRSeleccionadasARendicion("No Cumplida");
         }
 
         private void btn_quitar_seleccion_Click(object sender, EventArgs e)
         {
-            MoverHDRSeleccionadasAasignada();
+            MoverHDRSeleccionadasAEmitida();
         }
 
 
-        private void MoverHDRSeleccionadasArendicion(bool cumplida)
+        private void MoverHDRSeleccionadasARendicion(string cumplida)
         {
-            if (listview_hdr_asignadas.SelectedItems.Count == 0)
+            if (listview_hdr_emitidas.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar al menos una HDR.");
                 return;
@@ -159,12 +143,12 @@ namespace tutasa.RendicionHDRultimaMilla
 
             List<ListViewItem> itemsAMover = new();
 
-            foreach (ListViewItem item in listview_hdr_asignadas.SelectedItems)
+            foreach (ListViewItem item in listview_hdr_emitidas.SelectedItems)
             {
                 HDRultimaMilla hdr = (HDRultimaMilla)item.Tag;
 
                 hdr.Cumplida = cumplida;
-                hdr.Estado = EstadoHDRUltimaMilla.Rendida;
+                hdr.Estado = "Rendida";
 
                 listview_hdr_rendidas.Items.Add(CrearItemHDR(hdr));
 
@@ -173,11 +157,11 @@ namespace tutasa.RendicionHDRultimaMilla
 
             foreach (ListViewItem item in itemsAMover)
             {
-                listview_hdr_asignadas.Items.Remove(item);
+                listview_hdr_emitidas.Items.Remove(item);
             }
         }
 
-        private void MoverHDRSeleccionadasAasignada()
+        private void MoverHDRSeleccionadasAEmitida()
         {
             if (listview_hdr_rendidas.SelectedItems.Count == 0)
             {
@@ -191,10 +175,10 @@ namespace tutasa.RendicionHDRultimaMilla
             {
                 HDRultimaMilla hdr = (HDRultimaMilla)item.Tag;
 
-                hdr.Cumplida = false;
-                hdr.Estado = EstadoHDRUltimaMilla.Asignada;
+                hdr.Cumplida = "";
+                hdr.Estado = "Emitida";
 
-                listview_hdr_asignadas.Items.Add(CrearItemHDR(hdr));
+                listview_hdr_emitidas.Items.Add(CrearItemHDR(hdr));
 
                 itemsAMover.Add(item);
             }
@@ -203,6 +187,9 @@ namespace tutasa.RendicionHDRultimaMilla
             {
                 listview_hdr_rendidas.Items.Remove(item);
             }
+
+            listview_hdr_emitidas.SelectedItems.Clear();
+            listview_hdr_rendidas.SelectedItems.Clear();
         }
 
         private void btn_quitar_todo_Click(object sender, EventArgs e)
@@ -211,10 +198,10 @@ namespace tutasa.RendicionHDRultimaMilla
             {
                 HDRultimaMilla hdr = (HDRultimaMilla)item.Tag;
 
-                hdr.Cumplida = false;
-                hdr.Estado = EstadoHDRUltimaMilla.Asignada;
+                hdr.Cumplida = "";
+                hdr.Estado = "Emitida";
 
-                listview_hdr_asignadas.Items.Add(CrearItemHDR(hdr));
+                listview_hdr_emitidas.Items.Add(CrearItemHDR(hdr));
             }
 
             listview_hdr_rendidas.Items.Clear();
@@ -224,7 +211,8 @@ namespace tutasa.RendicionHDRultimaMilla
         {
             if (listview_hdr_rendidas.Items.Count == 0)
             {
-                MessageBox.Show("No hay HDR rendidas para confirmar.",
+                MessageBox.Show(
+                    "No hay HDR rendidas para confirmar.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -232,31 +220,34 @@ namespace tutasa.RendicionHDRultimaMilla
                 return;
             }
 
-            List<int> hdrRendidas = new();
-
-            string nombreFletero = cbox_fletero.Text;
+            List<HDRultimaMilla> hdrRendidas = new();
 
             foreach (ListViewItem item in listview_hdr_rendidas.Items)
             {
                 HDRultimaMilla hdr = (HDRultimaMilla)item.Tag;
 
-                hdrRendidas.Add(hdr.NumeroHDR);
+                hdrRendidas.Add(hdr);
+            }
 
-                Console.WriteLine(
-                    $"HDR {hdr.NumeroHDR} | " +
-                    $"Fletero: {ObtenerNombreFletero(hdr.IdFletero)} | " +
-                    $"Estado: {hdr.Estado} | " +
-                    $"Tipo: {hdr.Tipo} | " +
-                    $"Cumplida: {hdr.Cumplida}"
-                );
+            bool resultadoConfirmacion =
+                modelo.ConfirmarRendicionHDR(hdrRendidas);
+
+            if (!resultadoConfirmacion)
+            {
+                MessageBox.Show(
+                    "Ocurrió un error al confirmar la rendición.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
             }
 
             MessageBox.Show(
-                $"Se confirmaron {hdrRendidas.Count} HDR del fletero '{nombreFletero}'.",
+                $"Se confirmaron {hdrRendidas.Count} HDR.",
                 "Confirmación",
                 MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+                MessageBoxIcon.Information);
 
             limpiarCampos_Click();
         }
@@ -265,7 +256,7 @@ namespace tutasa.RendicionHDRultimaMilla
             cbox_fletero.SelectedIndex = -1;
             cbox_fletero.Enabled = true;
             cbox_tipo.SelectedIndex = -1;
-            listview_hdr_asignadas.Items.Clear();
+            listview_hdr_emitidas.Items.Clear();
             listview_hdr_rendidas.Items.Clear();
         }
 

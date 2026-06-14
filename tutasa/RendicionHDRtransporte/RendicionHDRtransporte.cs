@@ -15,29 +15,26 @@ namespace tutasa.RendicionHDRtransporte
 
         
         private RendicionHDRtransporteModelo modelo = new RendicionHDRtransporteModelo();
-        
-
+       
         private void RendicionHDRtransporte_Load(object sender, EventArgs e)
         {
             // Simulación de usuario logueado
             
-            label_cd.Text = modelo.NombreCdUsuario;
+            label_cd.Text = modelo.ObtenerCDActual(modelo.IdCdActual);
 
 
-            List<EmpresaTransporte> empresas = modelo.ObtenerEmpresas();
+            List<string> empresas = modelo.ObtenerEmpresas();
 
-            cbox_empresa.DisplayMember = "Nombre";
-
-            foreach (EmpresaTransporte empresa in empresas)
+            foreach (string empresa in empresas)
             {
                 cbox_empresa.Items.Add(empresa);
             }
 
 
-            listview_hdr_asignadas.MultiSelect = true;
+            listview_hdr_emitidas.MultiSelect = true;
             listview_hdr_rendidas.MultiSelect = true;
 
-            listview_hdr_asignadas.FullRowSelect = true;
+            listview_hdr_emitidas.FullRowSelect = true;
             listview_hdr_rendidas.FullRowSelect = true;
         }
 
@@ -48,15 +45,11 @@ namespace tutasa.RendicionHDRtransporte
 
             if (cbox_empresa.SelectedIndex != -1)
             {
-                EmpresaTransporte empresaSeleccionada = (EmpresaTransporte)cbox_empresa.SelectedItem;
+                string nombreEmpresa = cbox_empresa.SelectedItem.ToString();
 
-                int idEmpresa = empresaSeleccionada.IdEmpresa;
+                List<string> serviciosFiltrados = modelo.ObtenerServiciosPorEmpresa(nombreEmpresa);
 
-                List<Servicio> serviciosFiltrados = modelo.ObtenerServiciosPorEmpresa(idEmpresa);
-
-                cbox_servicio.DisplayMember = "NombreServicio";
-
-                foreach (Servicio servicio in serviciosFiltrados)
+                foreach (string servicio in serviciosFiltrados)
                 {
                     cbox_servicio.Items.Add(servicio);
                 }
@@ -87,11 +80,9 @@ namespace tutasa.RendicionHDRtransporte
                 return;
             }
 
-            Servicio servicioSeleccionado = (Servicio)cbox_servicio.SelectedItem;
+            string nombreServicio = cbox_servicio.SelectedItem.ToString();
 
-            int idServicio = servicioSeleccionado.IdServicio;
-
-            List<HDRtransporte> resultadosFiltrados = modelo.ObtenerHdrTransporteAsignadas(idServicio);
+            List<HDRtransporte> resultadosFiltrados = modelo.ObtenerHdrTransporteEmitidas(nombreServicio);
 
             if (resultadosFiltrados.Count == 0)
             {
@@ -108,15 +99,15 @@ namespace tutasa.RendicionHDRtransporte
 
             foreach (HDRtransporte hdr in resultadosFiltrados)
             {
-                bool yaExisteEnAsignadas = false;
+                bool yaExisteEnEmitidas = false;
 
-                foreach (ListViewItem existingItem in listview_hdr_asignadas.Items)
+                foreach (ListViewItem existingItem in listview_hdr_emitidas.Items)
                 {
                     HDRtransporte hdrExistente = (HDRtransporte)existingItem.Tag;
 
                     if (hdrExistente.NumeroHdrTransporte == hdr.NumeroHdrTransporte)
                     {
-                        yaExisteEnAsignadas = true;
+                        yaExisteEnEmitidas = true;
                         break;
                     }
                 }
@@ -134,9 +125,9 @@ namespace tutasa.RendicionHDRtransporte
                     }
                 }
 
-                if (!yaExisteEnAsignadas && !yaExisteEnRendidas)
+                if (!yaExisteEnEmitidas && !yaExisteEnRendidas)
                 {
-                    listview_hdr_asignadas.Items.Add(CrearItemHDR(hdr));
+                    listview_hdr_emitidas.Items.Add(CrearItemHDR(hdr));
                 }
             }
         }
@@ -145,11 +136,9 @@ namespace tutasa.RendicionHDRtransporte
         {
             ListViewItem item = new ListViewItem(hdr.NumeroHdrTransporte.ToString());
 
-            EmpresaTransporte empresa = modelo.ObtenerEmpresas().FirstOrDefault(x => x.IdEmpresa == hdr.Servicio.IdEmpresa);
-            
-            item.SubItems.Add(empresa?.Nombre ?? "");
+            item.SubItems.Add(hdr.NombreEmpresa);
 
-            item.SubItems.Add(hdr.EstadoHdr.ToString());
+            item.SubItems.Add(hdr.EstadoHdr);
 
             item.SubItems.Add(hdr.Servicio.NombreServicio);
 
@@ -165,7 +154,7 @@ namespace tutasa.RendicionHDRtransporte
 
         private void btn_agregar_todo_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listview_hdr_asignadas.Items)
+            foreach (ListViewItem item in listview_hdr_emitidas.Items)
             {
                 item.Selected = true;
             }
@@ -175,7 +164,7 @@ namespace tutasa.RendicionHDRtransporte
 
         private void btn_quitar_seleccion_Click(object sender, EventArgs e)
         {
-            MoverHDRSeleccionadasAasignada();
+            MoverHDRSeleccionadasAEmitidas();
         }
 
         private void btn_quitar_todo_Click(object sender, EventArgs e)
@@ -185,12 +174,12 @@ namespace tutasa.RendicionHDRtransporte
                 item.Selected = true;
             }
 
-            MoverHDRSeleccionadasAasignada();
+            MoverHDRSeleccionadasAEmitidas();
         }
 
         private void MoverHDRSeleccionadasArendicion()
         {
-            if (listview_hdr_asignadas.SelectedItems.Count == 0)
+            if (listview_hdr_emitidas.SelectedItems.Count == 0)
             {
                 MessageBox.Show(
                     "Debe seleccionar al menos una HDR.",
@@ -203,12 +192,11 @@ namespace tutasa.RendicionHDRtransporte
 
             List<ListViewItem> itemsAMover = new();
 
-            foreach (ListViewItem item in listview_hdr_asignadas.SelectedItems)
+            foreach (ListViewItem item in listview_hdr_emitidas.SelectedItems)
             {
                 HDRtransporte hdr = (HDRtransporte)item.Tag;
 
-                hdr.EstadoHdr = EstadoHdrTransporte.Rendida;
-                
+                hdr.EstadoHdr = "Rendida";
 
                 listview_hdr_rendidas.Items.Add(CrearItemHDR(hdr));
 
@@ -217,11 +205,11 @@ namespace tutasa.RendicionHDRtransporte
 
             foreach (ListViewItem item in itemsAMover)
             {
-                listview_hdr_asignadas.Items.Remove(item);
+                listview_hdr_emitidas.Items.Remove(item);
             }
         }
 
-        private void MoverHDRSeleccionadasAasignada()
+        private void MoverHDRSeleccionadasAEmitidas()
         {
             if (listview_hdr_rendidas.SelectedItems.Count == 0)
             {
@@ -240,9 +228,9 @@ namespace tutasa.RendicionHDRtransporte
             {
                 HDRtransporte hdr = (HDRtransporte)item.Tag;
 
-                hdr.EstadoHdr = EstadoHdrTransporte.Asignada;
+                hdr.EstadoHdr = "Emitida";
 
-                listview_hdr_asignadas.Items.Add(CrearItemHDR(hdr));
+                listview_hdr_emitidas.Items.Add(CrearItemHDR(hdr));
 
                 itemsAMover.Add(item);
             }
@@ -275,14 +263,21 @@ namespace tutasa.RendicionHDRtransporte
                 hdrRendidas.Add(hdr);
             }
 
-            (bool hdrActualizadas, List<int> guiasActualizadas) = modelo.ActualizarEstadoHDR(hdrRendidas);
+            bool resultadoConfirmacion = modelo.ActualizarEstadoHDR(hdrRendidas);
 
-            string guiasActualizadasTexto = guiasActualizadas.Count > 0 ? string.Join(", ", guiasActualizadas) : "0";  
+            if (!resultadoConfirmacion)
+            {
+                MessageBox.Show(
+                    "Ocurrió un error al confirmar la rendición.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
 
-            string mensajeFinal = $"Se han confirmado {hdrRendidas.Count} HDR rendidas. Y se han actualizado {guiasActualizadasTexto} guías.";
+                return;
+            }
 
             MessageBox.Show(
-                mensajeFinal,
+                $"Se confirmaron {hdrRendidas.Count} HDR.",
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -330,7 +325,7 @@ namespace tutasa.RendicionHDRtransporte
             cbox_servicio.Text = "";
             cbox_servicio.Items.Clear();
 
-            listview_hdr_asignadas.Items.Clear();
+            listview_hdr_emitidas.Items.Clear();
             listview_hdr_rendidas.Items.Clear();
         }
     }

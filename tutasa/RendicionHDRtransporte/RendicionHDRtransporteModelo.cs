@@ -7,61 +7,65 @@ namespace tutasa.RendicionHDRtransporte
 {
     internal partial class RendicionHDRtransporteModelo
     {
-        public int IdCdUsuario { get; set; } = 1;
+        public int IdCdActual = Program.IdCDActual;
 
-        public string? NombreCdUsuario { get; set; } = "Buenos Aires";
-
-        public List<EmpresaTransporte> ObtenerEmpresas()
+        public List<string> ObtenerEmpresas()
         {
-            List<EmpresaTransporte> empresas = new List<EmpresaTransporte>();
+            List<string> empresas = new List<string>();
 
             foreach (EmpresaTransporteEntidad empresa in EmpresaTransporteAlmacen.empresas)
             {
-                empresas.Add(new EmpresaTransporte()
-                {
-                    IdEmpresa = empresa.IdEmpresa,
-                    Nombre = empresa.NombreEmpresa
-                });
+                empresas.Add(empresa.NombreEmpresa);
             }
 
             return empresas;
         }
 
-        public List<Servicio> ObtenerServiciosPorEmpresa(int idEmpresa)
+        public List<string> ObtenerServiciosPorEmpresa(string nombreEmpresa)
         {
-            List<Servicio> servicios = new List<Servicio>();
+            int idEmpresa = EmpresaTransporteAlmacen.empresas.Find(e => e.NombreEmpresa == nombreEmpresa)?.IdEmpresa ?? -1;
+
+            if (idEmpresa == -1)
+            {
+                return new List<string>();
+            }
+
+            List<string> servicios = new List<string>();
 
             foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
             {
                 if (servicio.IdEmpresa == idEmpresa && servicio.EstadoServicio == EstadoServicioEnum.EnRecorrido)
                 {
-                    servicios.Add(MapearServicio(servicio));
+                    servicios.Add(servicio.NombreServicio);
                 }
             }
 
             return servicios;
         }
 
-        public List<HDRtransporte> ObtenerHdrTransporteAsignadas(int idServicio)
+        public List<HDRtransporte> ObtenerHdrTransporteEmitidas(string nombreServicio)
         {
             List<HDRtransporte> hdrTransporteList = new List<HDRtransporte>();
 
-            ServicioEntidad servicioEntidad = ServiciosAlmacen.servicio.Find(s => s.IdServicio == idServicio);
+            ServicioEntidad servicioEntidad = ServiciosAlmacen.servicio.Find(s => s.NombreServicio == nombreServicio);
 
             if (servicioEntidad == null)
             {
                 return new List<HDRtransporte>();
             }
 
+            int idServicio = servicioEntidad.IdServicio;
+
             foreach (HojaRutaDeTransporteEntidad hdr in HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte)
             {
-                if (hdr.IdServicio == idServicio && hdr.EstadoHDR == EstadoHDRTransporteEnum.Asignada)
+                if (hdr.IdServicio == idServicio && hdr.EstadoHDR == EstadoHDRTransporteEnum.Emitida)
                 {
 
                     hdrTransporteList.Add(new HDRtransporte()
                     {
                         NumeroHdrTransporte = hdr.NumeroHDRTransporte,
-                        EstadoHdr = (EstadoHdrTransporte)hdr.EstadoHDR,
+                        NombreEmpresa = EmpresaTransporteAlmacen.empresas.Find(e => e.IdEmpresa == servicioEntidad.IdEmpresa)?.NombreEmpresa ?? "Desconocida",
+                        EstadoHdr = hdr.EstadoHDR.ToString(),
                         Servicio = MapearServicio(servicioEntidad),
                         Guia = new List<int>(hdr.Guias)
 
@@ -82,68 +86,60 @@ namespace tutasa.RendicionHDRtransporte
                 FechaLlegada = servicioEntidad.FechaLlegada,
                 IdCdOrigen = servicioEntidad.IdCDOrigen,
                 IdCdDestino = servicioEntidad.IdCDDestino,
-                EstadoServicio = (EstadoServicio)servicioEntidad.EstadoServicio
+                EstadoServicio = servicioEntidad.EstadoServicio.ToString()
             };
         }
 
-        public (bool, List<int>) ActualizarEstadoHDR(List<HDRtransporte> hdrRendidas)
+        public bool ActualizarEstadoHDR(List<HDRtransporte> hdrRendidas)
         {
-            bool exito = false;
-
-            List<int> guiasActualizadas = new List<int>();
 
             foreach (HDRtransporte hdr in hdrRendidas)
             {
-                HojaRutaDeTransporteEntidad hdrEntidad = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Find(h => h.NumeroHDRTransporte == hdr.NumeroHdrTransporte);
+                HojaRutaDeTransporteEntidad hdrAlmacen = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Find(h => h.NumeroHDRTransporte == hdr.NumeroHdrTransporte);
 
-                if (hdrEntidad != null)
+                if (hdrAlmacen != null)
                 {
-                    hdrEntidad.EstadoHDR = (EstadoHDRTransporteEnum)hdr.EstadoHdr;
+                    hdrAlmacen.EstadoHDR = (EstadoHDRTransporteEnum)Enum.Parse(typeof(EstadoHDRTransporteEnum), hdr.EstadoHdr);
 
-                    guiasActualizadas.AddRange(ActualizarEstadoGuias(hdr));
-
-                    exito = true;
-                }
-            }
-
-            return (exito, guiasActualizadas);
-        }
-
-        public List<int> ActualizarEstadoGuias(HDRtransporte hdr)
-        {
-            List<int> resultado = new List<int>();
-
-            foreach (int numeroGuia in hdr.Guia)
-            {
-                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.Find(g => g.NumeroGuia == numeroGuia);
-                if (guiaEntidad != null)
-                {
-                    EstadoGuiaEnum nuevoEstado;
-
-                    if (guiaEntidad.IdCDDestino == IdCdUsuario)
+                    foreach (int numeroGuia in hdr.Guia)
                     {
-                        nuevoEstado = EstadoGuiaEnum.EnDestino;
-                    }
-                    else
-                    {
-                        nuevoEstado = EstadoGuiaEnum.Admitida;
+                        GuiaEntidad guiaEntidad = GuiaAlmacen.guias.Find(g => g.NumeroGuia == numeroGuia);
 
-                    }
-
-                    guiaEntidad.EstadoActual = nuevoEstado;
-
-                    guiaEntidad.Historial.Add(
-                        new MovimientoEstadoDto()
+                        if (guiaEntidad != null)
                         {
-                            FechaHora = DateTime.Now,
-                            Estado = nuevoEstado,
-                            Ubicacion = NombreCdUsuario
-                        });
+                            EstadoGuiaEnum nuevoEstado;
 
-                    resultado.Add(guiaEntidad.NumeroGuia);
+                            if (guiaEntidad.IdCDDestino == IdCdActual)
+                            {
+                                nuevoEstado = EstadoGuiaEnum.EnDestino;
+                            }
+                            else
+                            {
+                                nuevoEstado = EstadoGuiaEnum.Admitida;
+
+                            }
+
+                            guiaEntidad.EstadoActual = nuevoEstado;
+
+                            guiaEntidad.Historial.Add(
+                                new MovimientoEstadoDto()
+                                {
+                                    FechaHora = DateTime.Now,
+                                    Estado = nuevoEstado,
+                                    Ubicacion = ObtenerCDActual(IdCdActual)
+                                }
+                            );
+                        }
+                    }
                 }
             }
-            return resultado;
+            return true;
+        }
+        
+        public string ObtenerCDActual(int IdCdActual)
+        {
+            CentroDistribucion cd = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == IdCdActual);
+            return cd != null ? cd.NombreCD : "Desconocido";
 
         }
     }
