@@ -9,7 +9,7 @@ namespace tutasa.RuteoTransporte
 {
     internal class FormRuteoTransporteModelo
     {
-        private int idCDActual = Program.CdActual;
+        private int idCDActual = Program.IdCDActual;
 
         // CLASES DE PANTALLA
 

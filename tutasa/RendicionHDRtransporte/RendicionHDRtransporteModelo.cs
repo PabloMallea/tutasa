@@ -7,7 +7,7 @@ namespace tutasa.RendicionHDRtransporte
 {
     internal partial class RendicionHDRtransporteModelo
     {
-        public int IdCdActual = Program.CdActual;
+        public int IdCdActual = Program.IdCDActual;
 
         public List<string> ObtenerEmpresas()
         {

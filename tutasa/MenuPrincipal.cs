@@ -22,7 +22,7 @@ public partial class MenuPrincipal : Form
 
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //Estableces Program.CdActual al valor del combo.
-        Program.CdActual = 1;
+        //Estableces Program.IdCDActual al valor del combo.
+        Program.IdCDActual = 1;
     }
 }

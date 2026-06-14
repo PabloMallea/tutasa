@@ -11,7 +11,7 @@ namespace tutasa.RendicionHDRultimaMilla
 {
     internal partial class RendicionHDRultimaMillaModelo
     {
-        public int IdCdActual = Program.CdActual;
+        public int IdCdActual = Program.IdCDActual;
 
         public List<string> ObtenerFleteros(int IdCdActual)
         {
