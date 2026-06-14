@@ -31,5 +31,16 @@
     "Cumplida": true,
     "IdFletero": 303,
     "Estado": "Rendida"
+  },
+  {
+    "NumeroHDR": 4,
+    "Tipo": "Entrega",
+    "DireccionDestino": "Av. Cabildo 2450",
+    "Guias": [
+      100005
+    ],
+    "Cumplida": false,
+    "IdFletero": 301,
+    "Estado": "Emitida"
   }
 ]

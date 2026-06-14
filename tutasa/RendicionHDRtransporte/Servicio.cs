@@ -4,13 +4,13 @@ using System.Text;
 
 namespace tutasa.RendicionHDRtransporte
 {
-    public enum EstadoServicio
+    /*public enum EstadoServicio
     {
         Pendiente,
         ConAsignacion,
         EnRecorrido,
         Finalizado
-    }
+    }*/
     internal class Servicio
     {
         public int IdServicio { get; set; }
@@ -25,6 +25,6 @@ namespace tutasa.RendicionHDRtransporte
 
         public int IdCdDestino { get; set; }
 
-        public EstadoServicio EstadoServicio { get; set; } 
+        public string? EstadoServicio { get; set; } 
     }
 }

@@ -40,14 +40,14 @@
             btn_buscar = new Button();
             cbox_empresa = new ComboBox();
             LabelEmpresa = new Label();
-            listview_hdr_asignadas = new ListView();
+            listview_hdr_emitidas = new ListView();
             ColumnaNHDRAsignadas = new ColumnHeader();
             ColumnaEmpresaAsignadas = new ColumnHeader();
             ColumnaEstadoAsignadas = new ColumnHeader();
             ColumnaServicioAsignadas = new ColumnHeader();
             btn_agregar_seleccion = new Button();
             btn_agregar_todo = new Button();
-            GrupoHDRAsignadas = new GroupBox();
+            GrupoHDREmitidas = new GroupBox();
             GrupoHDRRendidas = new GroupBox();
             btn_quitar_todo = new Button();
             btn_quitar_seleccion = new Button();
@@ -57,7 +57,7 @@
             ColumnaEstadoRendidas = new ColumnHeader();
             ColumnaServicioRendidas = new ColumnHeader();
             GrupoBusqueda.SuspendLayout();
-            GrupoHDRAsignadas.SuspendLayout();
+            GrupoHDREmitidas.SuspendLayout();
             GrupoHDRRendidas.SuspendLayout();
             SuspendLayout();
             // 
@@ -183,15 +183,15 @@
             LabelEmpresa.TabIndex = 5;
             LabelEmpresa.Text = "Empesa";
             // 
-            // listview_hdr_asignadas
+            // listview_hdr_emitidas
             // 
-            listview_hdr_asignadas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRAsignadas, ColumnaEmpresaAsignadas, ColumnaEstadoAsignadas, ColumnaServicioAsignadas });
-            listview_hdr_asignadas.Location = new Point(9, 30);
-            listview_hdr_asignadas.Name = "listview_hdr_asignadas";
-            listview_hdr_asignadas.Size = new Size(695, 200);
-            listview_hdr_asignadas.TabIndex = 4;
-            listview_hdr_asignadas.UseCompatibleStateImageBehavior = false;
-            listview_hdr_asignadas.View = View.Details;
+            listview_hdr_emitidas.Columns.AddRange(new ColumnHeader[] { ColumnaNHDRAsignadas, ColumnaEmpresaAsignadas, ColumnaEstadoAsignadas, ColumnaServicioAsignadas });
+            listview_hdr_emitidas.Location = new Point(9, 30);
+            listview_hdr_emitidas.Name = "listview_hdr_emitidas";
+            listview_hdr_emitidas.Size = new Size(695, 200);
+            listview_hdr_emitidas.TabIndex = 4;
+            listview_hdr_emitidas.UseCompatibleStateImageBehavior = false;
+            listview_hdr_emitidas.View = View.Details;
             // 
             // ColumnaNHDRAsignadas
             // 
@@ -233,17 +233,17 @@
             btn_agregar_todo.UseVisualStyleBackColor = true;
             btn_agregar_todo.Click += btn_agregar_todo_Click;
             // 
-            // GrupoHDRAsignadas
+            // GrupoHDREmitidas
             // 
-            GrupoHDRAsignadas.Controls.Add(btn_agregar_todo);
-            GrupoHDRAsignadas.Controls.Add(btn_agregar_seleccion);
-            GrupoHDRAsignadas.Controls.Add(listview_hdr_asignadas);
-            GrupoHDRAsignadas.Location = new Point(12, 141);
-            GrupoHDRAsignadas.Name = "GrupoHDRAsignadas";
-            GrupoHDRAsignadas.Size = new Size(710, 275);
-            GrupoHDRAsignadas.TabIndex = 17;
-            GrupoHDRAsignadas.TabStop = false;
-            GrupoHDRAsignadas.Text = "HDR Asignadas";
+            GrupoHDREmitidas.Controls.Add(btn_agregar_todo);
+            GrupoHDREmitidas.Controls.Add(btn_agregar_seleccion);
+            GrupoHDREmitidas.Controls.Add(listview_hdr_emitidas);
+            GrupoHDREmitidas.Location = new Point(12, 141);
+            GrupoHDREmitidas.Name = "GrupoHDREmitidas";
+            GrupoHDREmitidas.Size = new Size(710, 275);
+            GrupoHDREmitidas.TabIndex = 17;
+            GrupoHDREmitidas.TabStop = false;
+            GrupoHDREmitidas.Text = "HDR Emitidas";
             // 
             // GrupoHDRRendidas
             // 
@@ -319,13 +319,13 @@
             Controls.Add(label_cd);
             Controls.Add(LabelCDOrigen);
             Controls.Add(LabelRendicionHDRT);
-            Controls.Add(GrupoHDRAsignadas);
+            Controls.Add(GrupoHDREmitidas);
             Name = "RendicionHDRtransporte";
             Text = "RendicionHDRtransporte";
             Load += RendicionHDRtransporte_Load;
             GrupoBusqueda.ResumeLayout(false);
             GrupoBusqueda.PerformLayout();
-            GrupoHDRAsignadas.ResumeLayout(false);
+            GrupoHDREmitidas.ResumeLayout(false);
             GrupoHDRRendidas.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -344,14 +344,14 @@
         private Button btn_buscar;
         private ComboBox cbox_empresa;
         private Label LabelEmpresa;
-        private ListView listview_hdr_asignadas;
+        private ListView listview_hdr_emitidas;
         private ColumnHeader ColumnaNHDRAsignadas;
         private ColumnHeader ColumnaEmpresaAsignadas;
         private ColumnHeader ColumnaEstadoAsignadas;
         private ColumnHeader ColumnaServicioAsignadas;
         private Button btn_agregar_seleccion;
         private Button btn_agregar_todo;
-        private GroupBox GrupoHDRAsignadas;
+        private GroupBox GrupoHDREmitidas;
         private GroupBox GrupoHDRRendidas;
         private Button btn_quitar_todo;
         private Button btn_quitar_seleccion;
