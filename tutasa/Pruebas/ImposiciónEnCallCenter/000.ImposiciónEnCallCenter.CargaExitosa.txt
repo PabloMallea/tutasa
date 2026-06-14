@@ -12,7 +12,13 @@
 
 5- Teléfono Cliente "1133344455"
 
-6- Campo Localidad "Rosario"
+6- Calle: "Bv. Oroño"
+
+7- Altura: "980"
+
+8- Localidad: "Rosario"
+
+6- Campo Localidad "Mendoza"
 
 7- Botón "Buscar"
 
@@ -20,11 +26,11 @@
 
 9- Botón "Aceptar"
 
-10- Desplegable Destino "Agencia Rosario Norte"
+10- Desplegable Destino "Agencia Mendoza Terminal"
 
 11- Verificación:
-Calle = "Bv. Oroño"
-Altura = "980"
+Calle = "Acceso Sur"
+Altura = "2100"
 
 12- Campo Nombre "Ana"
 
@@ -53,17 +59,17 @@ Verificaciones
 
 "CuitCliente": 30777888999,
 
-"IdCDOrigen": 2,
+"IdCDOrigen": 1,
 
 "IdAgenciaOrigen": 201,
 
-"IdCDDestino": 2,
-"IdAgenciaDestino": 201,
+"IdCDDestino": 4,
+"IdAgenciaDestino": 203,
 
 "Destino": "Agencia",
 
-"CalleDestino": "Bv. Oroño",
-"AlturaDestino": "980",
+"CalleDestino": "Acceso Sur",
+"AlturaDestino": "2100",
 
 "DniDestinatario": "30123456",
 "TelefonoDestinatario": "1177788899",
