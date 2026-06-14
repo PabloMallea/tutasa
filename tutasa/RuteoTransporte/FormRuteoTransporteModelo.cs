@@ -119,8 +119,7 @@ namespace tutasa.RuteoTransporte
         {
             List<Dimension> resultado = new List<Dimension>();
 
-            foreach (DimensionEnum dimension
-                in Enum.GetValues(typeof(DimensionEnum)))
+            foreach (tutasa.Almacenes.DimensionEnum dimension in Enum.GetValues(typeof(tutasa.Almacenes.DimensionEnum)))
             {
                 Dimension item = new Dimension();
 
@@ -204,7 +203,59 @@ namespace tutasa.RuteoTransporte
 
             foreach (GuiaEntidad guiaEntidad in GuiaAlmacen.guias)
             {
-                if (guiaEntidad.EstadoActual != EstadoGuiaEnum.Admitida)
+                /* if (guiaEntidad.EstadoActual != EstadoGuiaEnum.Admitida)
+                 {
+                     continue;
+                 }*/
+                bool mostrarGuia = false;
+
+                // Guía recién admitida en el CD origen
+
+                if (guiaEntidad.EstadoActual
+                    == EstadoGuiaEnum.Admitida)
+                {
+                    if (guiaEntidad.IdCDOrigen
+                        == Program.IdCDActual)
+                    {
+                        mostrarGuia = true;
+                    }
+                }
+
+                // Guía que ya llegó a un CD intermedio o final
+
+                if (guiaEntidad.EstadoActual
+                    == EstadoGuiaEnum.EnDestino)
+                {
+                    HojaRutaDeTransporteEntidad ultimaHDR =
+                        HojasDeRutaTransporteAlmacen
+                        .HojasDeRutaTransporte
+                        .Where(h =>
+                            h.Guias.Contains(
+                                guiaEntidad.NumeroGuia))
+                        .OrderByDescending(h =>
+                            h.NumeroHDRTransporte)
+                        .FirstOrDefault();
+
+                    if (ultimaHDR != null)
+                    {
+                        ServicioEntidad servicio =
+                            ServiciosAlmacen.servicio
+                            .FirstOrDefault(s =>
+                                s.IdServicio ==
+                                ultimaHDR.IdServicio);
+
+                        if (servicio != null)
+                        {
+                            if (servicio.IdCDDestino
+                                == Program.IdCDActual)
+                            {
+                                mostrarGuia = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!mostrarGuia)
                 {
                     continue;
                 }

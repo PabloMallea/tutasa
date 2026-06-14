@@ -1,0 +1,60 @@
+﻿Plan de Prueba: 002.ImposicionAgencia.EventosFormulario.txt
+
+(Empieza con el menú principal)
+
+
+1- Campo CUIT "30712345678"
+
+2- Botón "Buscar"
+
+3- Verificación "Se autocompletan Nombre, Apellido y Teléfono"
+
+4- Campo Localidad "San Rafael"
+
+5- Botón "Buscar"
+
+6- Mensaje "Localidad encontrada correctamente."
+
+7- Botón "Aceptar"
+
+8- Verificación "Se cargan destinos disponibles"
+
+9- Verificación "El desplegable Destino contiene:"
+
+Domicilio Destinatario
+Agencia San Rafael Centro
+CD San Rafael
+
+10- Desplegable Destino "Domicilio Destinatario"
+
+11- Verificación "Calle y Altura quedan habilitados para edición"
+
+12- Desplegable Destino "Agencia San Rafael Centro"
+
+13- Verificación "Calle = Av. Mitre"
+
+14- Verificación "Altura = 875"
+
+15- Verificación "Calle y Altura quedan deshabilitados"
+
+16- Desplegable Destino "CD San Rafael Centro"
+
+17- Verificación "Calle = Av. Hipólito Yrigoyen"
+
+18- Verificación "Altura = 2450"
+
+19- Verificación "Calle y Altura permanecen deshabilitados"
+
+20- Desplegable Dimensión "S"
+
+21- Verificación "La dimensión queda seleccionada"
+
+22- Desplegable Dimensión "XL"
+
+23- Verificación "La dimensión cambia correctamente"
+
+24- Botón "Cancelar"
+
+25- Verificación "Se limpian CUIT, Localidad, Calle, Altura, Nombre, Apellido, DNI, Teléfono y los desplegables"
+
+26- Verificación "Nombre, Apellido y Teléfono del cliente quedan vacíos"
