@@ -226,28 +226,16 @@ namespace tutasa.RuteoTransporte
                 if (guiaEntidad.EstadoActual
                     == EstadoGuiaEnum.EnDestino)
                 {
-                    HojaRutaDeTransporteEntidad ultimaHDR =
-                        HojasDeRutaTransporteAlmacen
-                        .HojasDeRutaTransporte
-                        .Where(h =>
-                            h.Guias.Contains(
-                                guiaEntidad.NumeroGuia))
-                        .OrderByDescending(h =>
-                            h.NumeroHDRTransporte)
-                        .FirstOrDefault();
+                    HojaRutaDeTransporteEntidad ultimaHDR = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Where
+                        (h => h.Guias.Contains(guiaEntidad.NumeroGuia)).OrderByDescending(h =>h.NumeroHDRTransporte).FirstOrDefault();
 
                     if (ultimaHDR != null)
                     {
-                        ServicioEntidad servicio =
-                            ServiciosAlmacen.servicio
-                            .FirstOrDefault(s =>
-                                s.IdServicio ==
-                                ultimaHDR.IdServicio);
+                        ServicioEntidad servicio =ServiciosAlmacen.servicio.FirstOrDefault(s =>s.IdServicio ==ultimaHDR.IdServicio);
 
                         if (servicio != null)
                         {
-                            if (servicio.IdCDDestino
-                                == Program.IdCDActual)
+                            if (servicio.IdCDDestino== Program.IdCDActual)
                             {
                                 mostrarGuia = true;
                             }
