@@ -29,9 +29,6 @@ namespace tutasa.Admision
                 return;
             }
 
-            //TODO:Validar formato de guia
-           
-
             // Validar que sea un número válido
             if (!int.TryParse(intNroGuia.Text, out int numeroGuia))
             {
@@ -39,13 +36,18 @@ namespace tutasa.Admision
                 return;
             }
 
-            // Buscar la guía usando el modelo (datos mock por ahora)
             Guia guiaEncontrada = modelo.BuscarGuiaPorIdentificador(numeroGuia);
 
-            // Verificar si se encontró la guía
             if (guiaEncontrada == null)
             {
                 MessageBox.Show("No se encontró ninguna guía con ese número.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
+                return;
+            }
+            
+            if (!modelo.EsPendienteAdmision(numeroGuia))
+            {
+                MessageBox.Show("La guía no está pendiente de admisión.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarFormulario();
                 return;
             }
@@ -62,7 +64,7 @@ namespace tutasa.Admision
 
             // Cargar los datos del cliente (remitente) en la pantalla
             txtNombreRemitente.Text = $"{clienteEncontrado.Nombre} {clienteEncontrado.Apellido}";
-            txtCUITCliente.Text = clienteEncontrado.CUIT;
+            txtCUITCliente.Text = clienteEncontrado.CUIT.ToString();
             txtDireccionOrigen.Text = clienteEncontrado.Direccion;
 
             // Cargar los datos del destinatario en la pantalla
@@ -70,14 +72,11 @@ namespace tutasa.Admision
             txtDNIDestinatario.Text = guiaEncontrada.DniDestinatario;
             txtDireccionDestino.Text = guiaEncontrada.DireccionDestino;
 
-            // Cargar peso y dimensión precargados
-            intPeso.Text = guiaEncontrada.Peso.ToString("0.00");
-            txtDimension.Text = guiaEncontrada.Dimension;
+            // Cargar dimensión precargada
+            txtDimension.Text = guiaEncontrada.Dimension.ToString();
 
             // Habilitar el botón Confirmar
             btnConfirmar.Enabled = true;
-
-            //MessageBox.Show("Guía encontrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarFormulario()
@@ -148,7 +147,7 @@ namespace tutasa.Admision
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             // Validar que se haya ingresado un número de guía
-            if (string.IsNullOrWhiteSpace(intNroGuia.Text) || string.IsNullOrWhiteSpace(txtNGuia.Text))
+            if (string.IsNullOrWhiteSpace(intNroGuia.Text))
             {
                 MessageBox.Show("Primero debe buscar una guía antes de confirmar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -218,7 +217,7 @@ namespace tutasa.Admision
             }
 
             // Registrar la admisión en el modelo
-            bool exitoso = modelo.RegistrarAdmision(guiaEncontrada, peso, dimensionCalculada);
+            var (exitoso, mensajeError) = modelo.RegistrarAdmision(guiaEncontrada, peso, dimensionCalculada);
 
             if (exitoso)
             {
@@ -240,7 +239,7 @@ namespace tutasa.Admision
             else
             {
                 MessageBox.Show(
-                    "Ocurrió un error al registrar la admisión. Por favor, intente nuevamente.",
+                    mensajeError ?? "Ocurrió un error al registrar la admisión. Por favor, intente nuevamente.",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error

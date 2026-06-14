@@ -8,7 +8,7 @@ namespace tutasa.Admision
     {
         public int NumeroGuia { get; set; }
 
-        public string CuitCliente { get; set; } = string.Empty;
+        public long CuitCliente { get; set; }
 
         public string DireccionDestino { get; set; } = string.Empty;
 
@@ -18,8 +18,6 @@ namespace tutasa.Admision
 
         public string DniDestinatario { get; set; } = string.Empty;
 
-        public string Dimension { get; set; } = string.Empty;
-
-        public decimal Peso { get; set; }
+        public DimensionEnum Dimension { get; set; }
     }
 }
