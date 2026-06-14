@@ -4,6 +4,8 @@
     {
         public class Fletero
         {
+            public int IdFletero { get; set; }
+
             public string Nombre { get; set; }
         }
     }
