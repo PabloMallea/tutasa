@@ -39,7 +39,7 @@ namespace tutasa
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
             //Application.Run(new MenuPrincipal());
-            Application.Run(new EmisionHojasRuta.EmisonHojasRuta());
+            Application.Run(new EmisionHojasRutaTransporte.EmisionHojasRutaTransporte());
 
 
             AgenciasAlmacen.Guardar();

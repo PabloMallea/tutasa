@@ -7,77 +7,9 @@ using tutasa.Almacenes;
 
 namespace tutasa.RuteoTransporte
 {
-    internal class FormRuteoTransporteModelo
+    internal partial class FormRuteoTransporteModelo
     {
         private int idCDActual = Program.IdCDActual;
-
-        // CLASES DE PANTALLA
-
-        public class Guia
-        {
-            public int Numero { get; set; }
-
-            public string Localidad { get; set; }
-
-            public string Direccion { get; set; }
-
-            public string Dimension { get; set; }
-
-            public string Cliente { get; set; }
-
-            public string Cuit { get; set; }
-
-            public string CdDestino { get; set; }
-
-        }
-
-        public class CD
-        {
-            public int Id { get; set; }
-
-            public string Nombre { get; set; }
-
-        }
-
-        public class EmpresaTransporte
-        {
-            public int Id { get; set; }
-
-            public string Nombre { get; set; }
-
-        }
-
-        public class Servicio
-        {
-            public int Id { get; set; }
-
-            public string Descripcion { get; set; }
-
-        }
-
-        public class HojaRutaTransporte
-        {
-            public string Numero { get; set; }
-
-            public string Empresa { get; set; }
-
-            public string Servicio { get; set; }
-
-            public string CDDestino { get; set; }
-
-            public List<Guia> Guias { get; set; }
-
-        }
-        public class Localidad
-        {
-            public int Id { get; set; }
-
-            public string Nombre { get; set; }
-        }
-        public class Dimension
-        {
-            public string Nombre { get; set; }
-        }
         // COMBOS
 
         public List<CD> ObtenerCDs()
@@ -361,15 +293,15 @@ namespace tutasa.RuteoTransporte
                 {
                     guiaEntidad.EstadoActual = EstadoGuiaEnum.PlanificadaTransporte;
 
-                    guiaEntidad.Historial.Add(
-                        new MovimientoEstadoDto
+                    
+                    guiaEntidad.Historial.Add(new MovimientoEstadoDto
                         {
                             FechaHora = DateTime.Now,
 
                             Estado = EstadoGuiaEnum.PlanificadaTransporte,
 
-                            Ubicacion = "CD Buenos Aires"
-                        });
+                            Ubicacion = ObtenerCDActual(Program.IdCDActual)
+                    });
                 }
             }
 
@@ -383,7 +315,15 @@ namespace tutasa.RuteoTransporte
 
             return hdr.NumeroHDRTransporte;
         }
+        public string ObtenerCDActual(int IdCdActual)
+        {
+            CentroDistribucion cd = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == IdCdActual);
+            return cd != null ? cd.NombreCD : "Desconocido";
+
+        }
+
     }
+
 }
 
 /*using System;

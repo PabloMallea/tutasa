@@ -5,54 +5,9 @@ using tutasa.Almacenes;
 
 namespace tutasa.RuteoUltimaMilla
 {
-    internal class RuteoUltimaMillaModelo
+    internal partial class RuteoUltimaMillaModelo
     {
-        #region Clases de pantalla
 
-        public class Fletero
-        {
-            public int IdFletero { get; set; }
-
-            public string Nombre { get; set; }
-        }
-
-        public class Guia
-        {
-            public int NumeroGuia { get; set; }
-
-            public string Cliente { get; set; }
-
-            public string Cuit { get; set; }
-
-            public string Localidad { get; set; }
-
-            public string DireccionOrigen { get; set; }
-
-            public string Direccion { get; set; }
-
-            public string Dimension { get; set; }
-        }
-
-        public class HojaRuta
-        {
-            public int Numero { get; set; }
-
-            public string Fletero { get; set; }
-
-            public string TipoRuteo { get; set; }
-
-            public string Direccion { get; set; }
-
-            public List<Guia> Guias { get; set; }
-        }
-        public class Localidad
-        {
-            public int IdLocalidad { get; set; }
-
-            public string NombreLocalidad { get; set; }
-        }
-
-        #endregion
 
         public List<Localidad> ObtenerLocalidades()
         {
@@ -266,11 +221,7 @@ namespace tutasa.RuteoUltimaMilla
 
                 hdr.Guias.Add(numeroGuia);
 
-                GuiaEntidad guiaEntidad =
-                    GuiaAlmacen.guias
-                    .FirstOrDefault(g =>
-                        g.NumeroGuia ==
-                        numeroGuia);
+                GuiaEntidad guiaEntidad =GuiaAlmacen.guias.FirstOrDefault(g =>g.NumeroGuia == numeroGuia);
 
                 if (guiaEntidad == null)
                 {
@@ -309,15 +260,12 @@ namespace tutasa.RuteoUltimaMilla
                             Estado =
                                 EstadoGuiaEnum.PlanificadaDistribucion,
 
-                            Ubicacion =
-                                "CD Buenos Aires"
+                            Ubicacion = ObtenerCDActual(Program.IdCDActual)
                         });
                 }
             }
 
-            HojaDeRutaUltimaMillaAlmacen
-                .HojaDeRutaUltimaMilla
-                .Add(hdr);
+            HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.Add(hdr);
 
             GuiaAlmacen.Guardar();
 
@@ -349,6 +297,12 @@ namespace tutasa.RuteoUltimaMilla
             }
 
             GuiaAlmacen.Guardar();
+        }
+        public string ObtenerCDActual(int IdCdActual)
+        {
+            CentroDistribucion cd = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == IdCdActual);
+            return cd != null ? cd.NombreCD : "Desconocido";
+
         }
     }
 }
