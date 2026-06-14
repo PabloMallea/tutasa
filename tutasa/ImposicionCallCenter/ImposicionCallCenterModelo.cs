@@ -7,6 +7,8 @@ namespace tutasa.ImposicionCallCenter
 {
     internal partial class ImposicionCallCenterModelo
     {
+        public int idCDActual = Program.IdCDActual; //Asi tengo en mi modelo el CD donde estoy parado
+
         public List<string> ObtenerDimensiones()
         {
             List<string> resultado = new List<string>();
@@ -157,6 +159,38 @@ namespace tutasa.ImposicionCallCenter
                     }
                 }
             }
+
+            // ----------------------------------------------------------------------
+            // 🛡️ INICIALIZACIÓN DEFENSIVA
+            // ----------------------------------------------------------------------
+
+            // 1. DATOS DE ORIGEN Y RETIRO
+            // ¡Aca usamos la variable global que vi en tu Program.cs! 
+            // Como el Call Center siempre impone en un CD, tomamos el CD en el que está logueado el sistema.
+            nuevaGuia.IdCDOrigen = tutasa.Program.IdCDActual; //¡¡OJO!! Bajo esta idea una guía podría ser impuesta y admitida en dos CD distintos
+
+            // Si el Call Center toma el pedido, generalmente es para buscar por la casa del cliente.
+            // (Asegurate de que el Enum se llame así en tu archivo de Almacenes, si no, cambialo por el correcto).
+            nuevaGuia.TipoRetiro = TipoRetiroEnum.EnDomicilio;
+
+            // Como se retira por domicilio, no hay agencia de retiro involucrada (nace en 0).
+            nuevaGuia.IdAgenciaRetiro = 0;
+
+            // 2. DATOS DE DISTRIBUCIÓN
+            // Recién nace la guía, así que nadie intentó entregarla todavía.
+            nuevaGuia.IntentosEntrega = 0;
+
+            // 3. DATOS DE FACTURACIÓN Y CUENTA CORRIENTE (Los inicializamos en 0)
+            // Cuando el paquete llegue a la sucursal, lo pesarán y le calcularán el precio real.
+            nuevaGuia.MontoFacturar = 0;
+
+            // 4. DATOS DE COMISIONES (Para que no explote el módulo de Transporte)
+            nuevaGuia.ComisionesAgenciaOrigen = 0;
+            nuevaGuia.ComisionesAgenciaDestino = 0;
+            nuevaGuia.ComisionesFleteroOrigen = 0;
+            nuevaGuia.ComisionesFleteroDestino = 0;
+
+            // ----------------------------------------------------------------------
 
             // 6. HISTORIAL: Agregamos el primer movimiento (Nacimiento de la guía)
             nuevaGuia.Historial.Add(new MovimientoEstadoDto

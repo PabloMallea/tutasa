@@ -119,8 +119,8 @@ namespace tutasa.RuteoTransporte
         {
             List<Dimension> resultado = new List<Dimension>();
 
-            foreach (DimensionEnum dimension
-                in Enum.GetValues(typeof(DimensionEnum)))
+            foreach (tutasa.Almacenes.DimensionEnum dimension
+                in Enum.GetValues(typeof(tutasa.Almacenes.DimensionEnum)))
             {
                 Dimension item = new Dimension();
 
