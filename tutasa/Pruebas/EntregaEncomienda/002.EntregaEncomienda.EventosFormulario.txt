@@ -1,0 +1,43 @@
+﻿Plan de Prueba: 002.EntregaEncomienda.EventosFormulario.txt
+
+(Empieza con el menú principal)
+
+1- Campo Nº Guía "100008"
+
+2- Botón "Buscar"
+
+Verificaciones
+
+3- Se muestra una fila en la grilla.
+
+4- Cliente "Juan Perez"
+
+5- Destinatario "Martin Ruiz"
+
+6- DNI Destinatario "30222111"
+
+7- Botón "Cancelar"
+
+Verificaciones
+
+8- El formulario se cierra.
+
+9- Volver a ingresar a Entrega de Encomienda.
+
+10- Verificar que el campo Nº Guía se encuentra vacío.
+
+11- Verificar que la grilla se encuentra vacía.
+
+12- Campo Nº Guía "100005"
+
+13- Botón "Buscar"
+
+Verificaciones
+
+14- Se muestran los datos de la guía.
+
+15- Cliente "Maria Gomez"
+
+16- Destinatario "Sofia Martinez"
+
+17- DNI Destinatario "31222333"

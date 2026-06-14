@@ -38,6 +38,26 @@
     "FechaLlegada": "2026-07-30T16:30:00",
     "IdCDOrigen": 1,
     "IdCDDestino": 2
+  },
+  {
+    "IdServicio": 5,
+    "IdEmpresa": 10,
+    "NombreServicio": "Rosario - Buenos Aires Retorno",
+    "EstadoServicio": "Finalizado",
+    "FechaSalida": "2026-06-08T20:00:00",
+    "FechaLlegada": "2026-06-09T07:00:00",
+    "IdCDOrigen": 2,
+    "IdCDDestino": 1
+  },
+  {
+    "IdServicio": 6,
+    "IdEmpresa": 11,
+    "NombreServicio": "Buenos Aires - Mendoza",
+    "EstadoServicio": "Finalizado",
+    "FechaSalida": "2026-06-08T21:00:00",
+    "FechaLlegada": "2026-06-09T11:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 4
   }
 ]
 

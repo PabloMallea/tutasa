@@ -20,13 +20,20 @@
     "Calle": "Florida",
     "Altura": "120"
   },
-  {
-    "IdAgencia": 203,
-    "IdCD": 4,
-    "NombreAgencia": "Agencia Mendoza Terminal",
-    "Calle": "Acceso Sur",
-    "Altura": "2100"
-  }
+    {
+        "IdAgencia": 203,
+        "IdCD": 4,
+        "NombreAgencia": "Agencia Mendoza Terminal",
+        "Calle": "Acceso Sur",
+        "Altura": "2100"
+    },
+    {
+        "IdAgencia": 204,
+        "IdCD":6,
+        "NombreAgencia": "Agencia San Rafael Centro",
+        "Calle": "Av. Mitre",
+        "Altura": "875"
+    }
 
 ]
 

@@ -3,17 +3,17 @@
 (Empieza con el menú principal)
 
 
-1- Campo CUIT "30712345678"
+1- Campo CUIT "30444555666"
 
 2- Botón "Buscar"
 
-3- Nombre Cliente "Juan"
+3- Nombre Cliente "Lucia"
 
-4- Apellido Cliente "Perez"
+4- Apellido Cliente "Fernandez"
 
-5- Teléfono Cliente "1155554444"
+5- Teléfono Cliente "1199988877"
 
-6- Campo Localidad "Cordoba"
+6- Campo Localidad "Mendoza"
 
 7- Botón "Buscar"
 
@@ -21,21 +21,21 @@
 
 9- Botón "Aceptar"
 
-10- Desplegable Destino "Agencia Cordoba Centro"
+10- Desplegable Destino "Agencia Mendoza Terminal"
 
-11- Calle Destino "Av. Colon"
+11- Calle Destino "Acceso Sur"
 
-12- Altura Destino "450"
+12- Altura Destino "2100"
 
-13- Campo Nombre "Ana"
+13- Campo Nombre "Juana"
 
-14- Campo Apellido "Garcia"
+14- Campo Apellido "Perez"
 
 15- Campo DNI "30123456"
 
 16- Campo Teléfono "1177788899"
 
-17- Desplegable Dimensión "M"
+17- Desplegable Dimensión "XL"
 
 18- Botón "Confirmar"
 
@@ -46,30 +46,30 @@
 21- Guias.json: Verificar
 
 {
-  "NumeroGuia": 100006,
+  "NumeroGuia": 100016,
   "FechaAlta": "<fecha actual>",
 
-  "CuitCliente": 30712345678,
+  "CuitCliente": 30444555666,
 
   "IdCDOrigen": 1,
 
   "TipoRetiro": "EnAgencia",
   "IdAgenciaRetiro": 105,
 
-  "IdCDDestino": 3,
-  "IdAgenciaDestino": 105,
+  "IdCDDestino": 4,
+  "IdAgenciaDestino": 203,
 
   "Destino": "Agencia",
 
-  "CalleDestino": "Av. Colon",
-  "AlturaDestino": "450",
+  "CalleDestino": "Acceso Sur",
+  "AlturaDestino": "2100",
 
   "DniDestinatario": "30123456",
   "TelefonoDestinatario": "1177788899",
-  "NombreDestinatario": "Ana",
-  "ApellidoDestinatario": "Garcia",
+  "NombreDestinatario": "Juana",
+  "ApellidoDestinatario": "Perez",
 
-  "Dimension": "M",
+  "Dimension": "XL",
 
   "IntentosEntrega": 0,
 

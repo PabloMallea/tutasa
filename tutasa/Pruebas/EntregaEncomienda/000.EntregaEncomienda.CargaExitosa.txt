@@ -1,0 +1,37 @@
+﻿Plan de Prueba: 000.EntregaEncomienda.CargaExitosa.txt
+
+(Empieza con el menú principal)
+
+
+1- Campo Nº Guía "100005"
+
+2- Botón "Buscar"
+
+Verificaciones
+
+3- Cliente "Maria Gomez"
+
+4- Destinatario "Sofia Martinez"
+
+5- DNI Destinatario "31222333"
+
+6- Botón "Confirmar Entrega"
+
+7- Mensaje
+
+"Entrega registrada correctamente y se actualizo el estado a Entregada."
+
+8- Botón "Aceptar"
+
+Verificaciones
+
+9- Campo Nº Guía vacío
+
+10- Grilla de detalle vacía
+
+11- Archivo Guias.json - Verificar:
+
+{
+  "NumeroGuia": 100005,
+  "EstadoActual": "Entregada"
+}
