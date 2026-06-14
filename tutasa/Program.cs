@@ -16,6 +16,7 @@ namespace tutasa
                 new JsonStringEnumConverter()
             }
         };
+        public static int IdCDActual = 1;
 
         /// <summary>
         ///  The main entry point for the application.

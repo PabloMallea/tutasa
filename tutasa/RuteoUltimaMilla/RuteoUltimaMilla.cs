@@ -20,14 +20,14 @@ namespace tutasa.RuteoUltimaMilla
                 fleteros =
                     modelo.ObtenerFleteros();
 
-            List<string> localidades =
-                modelo.ObtenerLocalidades();
+            List<RuteoUltimaMillaModelo.Localidad> localidades = modelo.ObtenerLocalidades();
 
             // Se lo asignamos al Combobox de asignación de fletero. Acá ver si la opción óptima según Andrés es usar un foreach
 
-            foreach (string localidad in localidades)
+            foreach (RuteoUltimaMillaModelo.Localidad localidad in localidades)
             {
-                CmbLocalidad.Items.Add(localidad);
+                CmbLocalidad.Items.Add(
+                    localidad.NombreLocalidad);
             }
 
             // Se lo asignamos al Combobox de asignación de fletero
@@ -83,8 +83,17 @@ namespace tutasa.RuteoUltimaMilla
 
                 return;
             }
+            string tipoRuteo = "";
 
-            List<RuteoUltimaMillaModelo.Guia> GuiasEncontradas = modelo.BuscarGuias(localidad, cuit
+            if (RBEntrega.Checked)
+            {
+                tipoRuteo = "Entrega";
+            }
+            else if (RBRetiro.Checked)
+            {
+                tipoRuteo = "Retiro";
+            }
+            List<RuteoUltimaMillaModelo.Guia> GuiasEncontradas = modelo.BuscarGuias(localidad, cuit, tipoRuteo
                     );
 
             // Limpiar ListView antes de mostrar los resultados. Sino si aplicamos devuelta el buscar se acumularían los viejos
@@ -92,7 +101,7 @@ namespace tutasa.RuteoUltimaMilla
 
             foreach (RuteoUltimaMillaModelo.Guia Guia in GuiasEncontradas)
             {
-                ListViewItem item = new ListViewItem(Guia.Numero);
+                ListViewItem item = new ListViewItem(Guia.NumeroGuia.ToString());
 
                 item.Tag = Guia;
 
@@ -172,7 +181,7 @@ namespace tutasa.RuteoUltimaMilla
                     RuteoUltimaMillaModelo.Guia GuiaExistente = (RuteoUltimaMillaModelo.Guia)itemExistente.Tag;
 
                     // Si el número de Guia ya existe, marcar duplicado
-                    if (GuiaExistente.Numero == Guia.Numero)
+                    if (GuiaExistente.NumeroGuia == Guia.NumeroGuia)
                     {
                         existe = true;
                         break;
@@ -183,7 +192,7 @@ namespace tutasa.RuteoUltimaMilla
                 if (!existe)
                 {
                     // Crear fila para el ListView inferior
-                    ListViewItem nuevoItem = new ListViewItem(Guia.Numero);
+                    ListViewItem nuevoItem = new ListViewItem(Guia.NumeroGuia.ToString());
 
                     nuevoItem.SubItems.Add(Guia.Cliente);
 
@@ -251,8 +260,8 @@ namespace tutasa.RuteoUltimaMilla
                         itemExistente.Tag;
 
                     // Si ya existe el número de Guia, marcar duplicado
-                    if (GuiaExistente.Numero
-                        == Guia.Numero)
+                    if (GuiaExistente.NumeroGuia
+                        == Guia.NumeroGuia)
                     {
                         existe = true;
                         break;
@@ -264,7 +273,7 @@ namespace tutasa.RuteoUltimaMilla
                 {
                     // Crear fila para ListView inferior
                     ListViewItem nuevoItem =
-                        new ListViewItem(Guia.Numero);
+                        new ListViewItem(Guia.NumeroGuia.ToString());
 
                     nuevoItem.SubItems.Add(
                         Guia.Cliente);
@@ -394,7 +403,7 @@ namespace tutasa.RuteoUltimaMilla
 
                 RuteoUltimaMillaModelo.HojaRuta hojaRuta = new RuteoUltimaMillaModelo.HojaRuta
                     {
-                        Numero =proximoNumero.ToString(),
+                        Numero = proximoNumero,
 
                         Fletero = fletero,
 
@@ -411,7 +420,7 @@ namespace tutasa.RuteoUltimaMilla
 
                 mensaje +="Dirección: "+ hojaRuta.Direccion+ "\n";
 
-                mensaje += "Guías: "+ string.Join(", ",hojaRuta.Guias.Select(g => g.Numero))+ "\n\n";
+                mensaje += "Guías: "+ string.Join(", ",hojaRuta.Guias.Select(g => g.NumeroGuia))+ "\n\n";
 
                 proximoNumero++;
             }

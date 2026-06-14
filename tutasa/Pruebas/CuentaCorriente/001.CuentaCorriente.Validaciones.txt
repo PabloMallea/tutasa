@@ -126,7 +126,7 @@ Se usa un rango de fechas pasado donde no existe ningun movimiento.
 --- VALIDACION 10: Fecha Desde igual a Fecha Hasta con movimiento en esa fecha ---
 
 50- Campo CUIT/CUIL               "30777888999"
-    (Carlos Lopez, movimiento real del 05/06/2026 Factura 1002)
+    (Carlos Lopez, movimiento real del 05/06/2026 Factura 1003)
 
 51- Boton                         "Buscar"
 
@@ -136,7 +136,7 @@ Se usa un rango de fechas pasado donde no existe ningun movimiento.
 
 54- Boton                         "Buscar"
 
-55- Verificacion                  "Tabla muestra 1 fila: Factura 1002 del 05/06/2026"
+55- Verificacion                  "Tabla muestra 1 fila: Factura 1003 del 05/06/2026"
                                   "(filtro inclusivo en ambos extremos)"
 
 Verificaciones:

@@ -93,9 +93,9 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 37- Boton                         "Buscar"
 
-38- Verificacion fila Factura 1002:
+38- Verificacion fila Factura 1003:
     Fecha                         "05/06/2026"
-    N° Comprobante                "1002"
+    N° Comprobante                "1003"
     Monto                         "$45.200,75"
     Pago                          "$45.200,75"
     Saldo                         "$0,00"        
