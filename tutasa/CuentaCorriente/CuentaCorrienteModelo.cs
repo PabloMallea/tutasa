@@ -1,36 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using tutasa.Almacenes;
 
 namespace tutasa.CuentaCorriente
 {
-    internal class CuentaCorrienteModelo
+    internal partial class CuentaCorrienteModelo
     {
-        public class Cliente
+        public Cliente BuscarCliente(long cuit)
         {
-            public string Cuit { get; set; }
 
-            public string Nombre { get; set; }
+            ClienteEntidad clienteAlmacen = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente == cuit);
+
+            if (clienteAlmacen == null)
+            {
+                return null;
+            }
+
+            if (clienteAlmacen != null)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Cuit = clienteAlmacen.CuitCliente;
+                cliente.Nombre = clienteAlmacen.Nombre;
+
+                return cliente;
+            }
+
+            return null;
         }
 
-        public class MovimientoCuentaCorriente
+        public List<MovimientoCuentaCorriente> ObtenerMovimientos(long cuit, DateTime fechaDesde, DateTime fechaHasta)
         {
-            public string Cuit { get; set; }
-
-            public DateTime Fecha { get; set; }
-
-            public string NumeroComprobante { get; set; }
-
-            public string Concepto { get; set; }
-
-            public decimal Monto { get; set; }
-
-            public decimal Pago { get; set; }
-
-            public decimal Saldo { get; set; }
+            List<MovimientoCuentaCorriente> movimientos = new List<MovimientoCuentaCorriente>();
+            return movimientos;
         }
+    
+    }
+}
 
+
+/*
+ 
         private List<Cliente> clientes = new List<Cliente>
         {
             new Cliente
@@ -129,5 +136,4 @@ namespace tutasa.CuentaCorriente
 
             return movimientos.Where(m =>m.Cuit == cuit && m.Fecha.Date >= fechaDesde.Date && m.Fecha.Date <= fechaHasta.Date).ToList();
         }
-    }
-}
+ */

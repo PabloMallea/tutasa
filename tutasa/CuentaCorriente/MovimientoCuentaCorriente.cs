@@ -10,6 +10,8 @@
 
             public string NumeroComprobante { get; set; }
 
+            public string Concepto { get; set; }
+
             public decimal Monto { get; set; }
 
             public decimal Pago { get; set; }

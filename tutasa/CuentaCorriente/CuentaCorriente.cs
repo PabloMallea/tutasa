@@ -11,31 +11,20 @@ namespace tutasa.CuentaCorriente
 {
     public partial class CuentaCorriente : Form
     {
-        private CuentaCorrienteModelo modelo =
-            new CuentaCorrienteModelo();
+        private CuentaCorrienteModelo modelo = new CuentaCorrienteModelo();
 
         public CuentaCorriente()
         {
             InitializeComponent();
         }
 
-        private void CuentaCorriente_Load(
-            object sender,
-            EventArgs e)
+        private void CuentaCorriente_Load( object sender, EventArgs e)
         {
 
         }
 
-        private void TextCuit_TextChanged(
-            object sender,
-            EventArgs e)
-        {
 
-        }
-
-        private void BotonBuscarCuit_Click(
-            object sender,
-            EventArgs e)
+        private void BotonBuscarCuit_Click( object sender, EventArgs e)
         {
             // Limpiar datos previos al buscar otro cliente
 
@@ -79,7 +68,7 @@ namespace tutasa.CuentaCorriente
 
             // Buscar cliente
 
-            CuentaCorrienteModelo.Cliente cliente = modelo.BuscarCliente(cuit);
+            CuentaCorrienteModelo.Cliente cliente = modelo.BuscarCliente(cuitNumerico);
 
             // Validar existencia
 
@@ -100,26 +89,6 @@ namespace tutasa.CuentaCorriente
             LabelNombreCliente.Text = cliente.Nombre;
         }
 
-        private void LabelNombreCliente_Click(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void FechaDesde_ValueChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void FechaHasta_ValueChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
 
         private void BotonConfirmar_Click(
             object sender,
@@ -169,7 +138,21 @@ namespace tutasa.CuentaCorriente
 
             // Obtener movimientos
 
-            List<CuentaCorrienteModelo.MovimientoCuentaCorriente> movimientos = modelo.ObtenerMovimientos(cuit, fechaDesde, fechaHasta);
+            long cuitNumerico;
+
+            if (!long.TryParse(cuit, out cuitNumerico))
+            {
+                MessageBox.Show(
+                    "El CUIT/CUIL debe contener únicamente números.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            List<CuentaCorrienteModelo.MovimientoCuentaCorriente> movimientos = modelo.ObtenerMovimientos(cuitNumerico, fechaDesde, fechaHasta);
 
             // Mostrar movimientos
 
@@ -202,18 +185,6 @@ namespace tutasa.CuentaCorriente
                     MessageBoxIcon.Information
                 );
             }
-        }
-
-        private void LvEstadoCuenta_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
