@@ -25,13 +25,37 @@
   },
   {
     "IdLocalidadOrigen": 100,
-    "IdLocalidadDestino": 300,
+    "IdLocalidadDestino": 400,
     "Dimension": "S",
     "Precio": 9500.00
   },
   {
     "IdLocalidadOrigen": 100,
-    "IdLocalidadDestino": 300,
+    "IdLocalidadDestino": 400,
+    "Dimension": "M",
+    "Precio": 19200.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 400,
+    "Dimension": "L",
+    "Precio": 28900.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 400,
+    "Dimension": "XL",
+    "Precio": 47000.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 400,
+    "Dimension": "S",
+    "Precio": 9500.00
+  },
+  {
+    "IdLocalidadOrigen": 100,
+    "IdLocalidadDestino": 400,
     "Dimension": "M",
     "Precio": 19200.00
   },
