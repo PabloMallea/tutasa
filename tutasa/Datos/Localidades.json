@@ -15,9 +15,14 @@
     "IdLocalidad": 400,
     "NombreLocalidad": "Mendoza"
   },
-  {
-    "IdLocalidad": 500,
-    "NombreLocalidad": "La Plata"
-  }
+    {
+        "IdLocalidad": 500,
+        "NombreLocalidad": "La Plata"
+    },
+    {
+        "IdLocalidad": 600,
+        "NombreLocalidad": "San Rafael"
+    }
+
 ]
 
