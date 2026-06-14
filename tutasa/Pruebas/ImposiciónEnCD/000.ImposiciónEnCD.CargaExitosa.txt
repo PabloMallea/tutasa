@@ -37,7 +37,7 @@ Verificaciones:
 20- Archivo Guias.json - Verificar:
 
 {
-   "numeroGuia": 100006,
+   "numeroGuia": 100016,
    "fechaAlta": "fecha actual",
 
    "cuitCliente": 30712345678,

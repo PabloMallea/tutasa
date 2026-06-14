@@ -46,7 +46,7 @@
 21- Guias.json: Verificar
 
 {
-  "NumeroGuia": 100007,
+  "NumeroGuia": 100016,
   "FechaAlta": "<fecha actual>",
 
   "CuitCliente": 30444555666,
