@@ -141,6 +141,11 @@ namespace tutasa.EmisionHojasRuta
                 return;
             }
 
+            CentroDistribucion cdActual = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault( cd => cd.IdCD== Program.IdCDActual);
+
+            string ubicacion = cdActual?.NombreCD;
+
+
             foreach (int numeroGuia in hdr.Guias)
             {
                 GuiaEntidad guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
@@ -165,14 +170,11 @@ namespace tutasa.EmisionHojasRuta
 
                 guia.Historial.Add(new MovimientoEstadoDto
                     {
-                        FechaHora =
-                            DateTime.Now,
+                        FechaHora = DateTime.Now,
 
-                        Estado =
-                            nuevoEstado,
+                        Estado = nuevoEstado,
 
-                        Ubicacion =
-                            "CD Buenos Aires"
+                        Ubicacion = ubicacion
                     });
             }
 

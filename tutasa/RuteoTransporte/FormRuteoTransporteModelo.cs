@@ -377,9 +377,9 @@ namespace tutasa.RuteoTransporte
 
             HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Add(hdr);
 
-            GuiaAlmacen.Guardar();
-            ServiciosAlmacen.Guardar();
-            HojasDeRutaTransporteAlmacen.Guardar();
+            //GuiaAlmacen.Guardar();
+            //ServiciosAlmacen.Guardar();
+            //HojasDeRutaTransporteAlmacen.Guardar();
 
             return hdr.NumeroHDRTransporte;
         }
