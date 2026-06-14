@@ -13,6 +13,7 @@ namespace tutasa.Almacenes
         public DateTime FechaEmision { get; set; }
 
         public decimal Total { get; set; }
+        public bool Paga { get; set; }
 
         public List<int> Guias { get; set; } = new List<int>();
     }

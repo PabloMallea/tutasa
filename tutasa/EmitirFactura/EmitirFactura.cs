@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using tutasa.Admision;
@@ -71,13 +72,13 @@ namespace tutasa.EmitirFactura
 
                 ListViewItem item = new ListViewItem(guia.NumeroGuia.ToString());
 
-                item.SubItems.Add(guia.MontoFacturar.ToString("C"));
+                item.SubItems.Add(guia.MontoFacturar.ToString("C", new CultureInfo("es-AR")));
 
                 ListViewFacturacion.Items.Add(item);
 
                 total += guia.MontoFacturar;
             }
-            LabelTotal.Text = total.ToString("C");
+            LabelTotal.Text = total.ToString("C", new CultureInfo("es-AR"));
 
         }
 
@@ -128,7 +129,7 @@ namespace tutasa.EmitirFactura
 
             LabelNombreCliente.Text = "";
 
-            LabelTotal.Text = 0.ToString("C");
+            LabelTotal.Text = 0.ToString("C", new CultureInfo("es-AR"));
 
             ListViewFacturacion.Items.Clear();
 

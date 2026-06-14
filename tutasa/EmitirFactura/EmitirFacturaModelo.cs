@@ -60,6 +60,7 @@ namespace tutasa.EmitirFactura
             factura.FechaEmision = DateTime.Now;
             factura.Guias = guias.Select(g => g.NumeroGuia).ToList();
             factura.Total = CalcularTotal(guias);
+            factura.Paga = false;
 
             FacturaAlmacen.facturas.Add(factura);
 
