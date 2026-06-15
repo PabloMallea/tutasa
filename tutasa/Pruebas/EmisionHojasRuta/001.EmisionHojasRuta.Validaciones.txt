@@ -16,3 +16,4 @@
 10- Botón                         "Buscar"
 11- Mensaje                       "No se encontraron HDR Pendientes para los criterios de búsqueda seleccionados"
 12- Botón                         "Aceptar"
+

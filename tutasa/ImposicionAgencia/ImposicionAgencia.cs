@@ -140,9 +140,9 @@ namespace tutasa.Imposicion_Agencia
             LabelNombre.Text = cliente.Nombre;
             LabelApellido.Text = cliente.Apellido;
             LabelTEL.Text = cliente.Telefono;
+            // Guardamos el CUIT validado en el bolsillo secreto del TextBox
+            TxtCuit.Tag = cuit;
 
-            // Nota: Como mencionaste que en Agencia recupera menos datos, 
-            // no asignamos Calle, Altura ni Localidad del cliente acá.
         }
 
         // Este es el botón "Buscar Localidad" mapeado al nombre de tu formulario de Agencia
@@ -388,14 +388,16 @@ namespace tutasa.Imposicion_Agencia
                 return;
             }
 
-            // --- PARCHE DE SEGURIDAD 1: Verifica que el CUIT no haya sido alterado ---
-            ImposicionAgenciaModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
-
-            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            // --- PARCHE DE SEGURIDAD DEFINITIVO: Validación por llave primaria ---
+            // Verificamos si nunca se buscó (Tag nulo) o si el texto actual es distinto al que se validó
+            if (TxtCuit.Tag == null || TxtCuit.Text.Trim() != TxtCuit.Tag.ToString())
             {
-                MessageBox.Show("El CUIT fue alterado después de la búsqueda. Por favor, vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El CUIT fue alterado o no ha sido validado. Por favor, presione el botón Buscar Cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Si llegamos acá, es 100% seguro que el CUIT en pantalla es el que se buscó
+            ImposicionAgenciaModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
             // --- PARCHE DE SEGURIDAD 2: Verifica que la Localidad y Destino coincidan ---
             string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
@@ -436,37 +438,59 @@ namespace tutasa.Imposicion_Agencia
                 Dimension = ComboDimension.SelectedItem.ToString()
             };
 
-            // Guardar Guia en el modelo
-            modelo.GuardarGuia(Guia);
+            // --- GUARDADO CON MANEJO DE EXCEPCIONES ---
+            try
+            {
+                // Guardamos la guía en el modelo y atrapamos el número que nos devuelve
+                int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
 
-            MessageBox.Show("Operación exitosa", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Mostramos el mensaje de éxito incluyendo el número de Tracking
+                MessageBox.Show(
+                    $"Operación exitosa.\n\nEl paquete ha sido impuesto en la agencia.\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
+                    "Confirmación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
-            // Limpiar formulario completo
-            TxtCuit.Clear();
-            TextLocalidad.Clear();
-            TextCalle.Clear();
-            TextAltura.Clear();
-            TextNombre.Clear();
-            TextApellido.Clear();
-            TextDNI.Clear();
-            TextTEL.Clear();
+                // --- LIMPIEZA DE PANTALLA ---
+                TxtCuit.Clear();
+                TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
+                TextLocalidad.Clear();
+                TextCalle.Clear();
+                TextAltura.Clear();
+                TextNombre.Clear();
+                TextApellido.Clear();
+                TextDNI.Clear();
+                TextTEL.Clear();
 
-            ComboDestino.SelectedIndex = -1;
-            ComboDimension.SelectedIndex = -1;
+                ComboDestino.SelectedIndex = -1;
+                ComboDimension.SelectedIndex = -1;
 
-            LabelNombre.Text = "";
-            LabelApellido.Text = "";
-            LabelTEL.Text = ""; // Adecuado a tu UI
+                LabelNombre.Text = "";
+                LabelApellido.Text = "";
+                LabelTEL.Text = "";
 
-            // Rehabilitar edición de dirección manual por defecto
-            TextCalle.Enabled = true;
-            TextAltura.Enabled = true;
+                // Rehabilitar edición de dirección manual por defecto
+                TextCalle.Enabled = true;
+                TextAltura.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                // Si el Modelo detecta que no hay CD en el destino, lo atajamos aquí
+                MessageBox.Show(
+                    ex.Message,
+                    "Error de Regla de Negocio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
         // Si tenés un botón Cancelar asociado en tu diseño, podés usar este código:
         private void ButtonCancelar_Click(object sender, EventArgs e)
         {
             TxtCuit.Clear();
+            TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
             TextLocalidad.Clear();
             TextCalle.Clear();
             TextAltura.Clear();

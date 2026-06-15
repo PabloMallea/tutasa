@@ -1,0 +1,35 @@
+Plan de Prueba: 001.RendicionHDRUltimaMilla.Validaciones.txt
+
+(Empieza con el menú principal y la pantalla de Rendición HDR de Retiro/Entrega abierta)
+
+1- Botón                          "Buscar"
+
+2- Mensaje                        "El campo Fletero debe ser completado"   
+
+3- Botón                          "Aceptar"
+
+4- Desplegable Fletero            "Diego Ramirez"
+
+5- Desplegable Tipo               "Retiro"
+
+6- Botón                          "Buscar"
+
+7- Mensaje                        "No se a encontrado HDR Asignadas al Fletero seleccionado"   
+
+8- Botón                          "Aceptar"
+
+9- Desplegable Fletero            "Carlos Mendoza"
+
+10- Desplegable Tipo              "Retiro"
+
+11- Botón                         "Buscar"
+
+(El sistema carga la grilla "HDR Emitidas" correctamente, pero el operario no pasa ningún elemento a la tabla de abajo)
+
+12- Botón                         "Confirmar Rendición"
+
+13- Mensaje                       "La tabla "HDR Rendidas" debe tener al menos un elemento para confirmar la rendición"   
+
+14- Botón                         "Aceptar"Verificaciones
+
+15- No debe generarse ninguna rendición ni cambio de estado en los archivos HDRUltimaMilla.json ni en Guias.json.

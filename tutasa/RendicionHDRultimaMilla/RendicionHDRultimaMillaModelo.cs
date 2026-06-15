@@ -139,7 +139,7 @@ namespace tutasa.RendicionHDRultimaMilla
                         {
                             FechaHora = DateTime.Now,
                             Estado = guiaAlmacen.EstadoActual,
-                            Ubicacion = ObtenerCDActual(IdCdActual)
+                            Ubicacion = ObtenerCDActual(Program.IdCDActual)
                         });
                     }
                 }

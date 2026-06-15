@@ -1,67 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using tutasa.Almacenes;
 
 namespace tutasa.EntregaEncomienda
 {
     internal class EntregaEncomiendaModelo
     {
-        // Lista de guías de ejemplo (simula almacén <Guías>)
-        private List<Guia> guias = new List<Guia>
+        public Guia BuscarGuia(int nroGuia)
         {
-            new Guia
-            {
-                NroGuia = "G001",
-                Cliente = "Juan Perez",
-                Destinatario = "Carlos Lopez",
-                DniDestinatario = "32111222",
-                EstadoActual = "Admitida"
-            },
+            // Buscamos en la base de datos central
+            var guiaEntidad = tutasa.Almacenes.GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == nroGuia);
+            if (guiaEntidad == null) return null;
 
-            new Guia
-            {
-                NroGuia = "G002",
-                Cliente = "Maria Gomez",
-                Destinatario = "Ana Torres",
-                DniDestinatario = "28444555",
-                EstadoActual = "Admitida"
-            },
+            // REGLA 2: Validar estados permitidos para entrega en mostrador
+            bool estadoValido = guiaEntidad.EstadoActual == EstadoGuiaEnum.PendienteDeEntrega ||
+                               (guiaEntidad.Destino == DestinoGuiaEnum.CD && guiaEntidad.EstadoActual == EstadoGuiaEnum.EnDestino);
 
-            new Guia
-            {
-                NroGuia = "G003",
-                Cliente = "Roberto Diaz",
-                Destinatario = "Luis Fernandez",
-                DniDestinatario = "35777888",
-                EstadoActual = "Entregada"
-            }
-        };
+            if (!estadoValido) return null;
 
-        // Busca una guía por NroGuia y devuelve solo si está en estado "Admitida"
-        public Guia BuscarGuia(string nroGuia)
-        {
-            foreach (Guia guia in guias)
-            {
-                if (guia.NroGuia == nroGuia &&
-                    guia.EstadoActual == "Admitida")
-                {
-                    return guia;
-                }
-            }
+            // Armamos el nombre del Cliente (buscándolo por CUIT)
+            var cliente = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente == guiaEntidad.CuitCliente);
+            string nombreCliente = cliente != null ? $"{cliente.Nombre} {cliente.Apellido}" : "Cliente Desconocido";
 
-            return null;
+            // Retornamos el objeto respetando los tipos de datos originales (convirtiendo números a string)
+            return new Guia
+            {
+                NroGuia = guiaEntidad.NumeroGuia.ToString(),
+                Cliente = nombreCliente,
+                Destinatario = $"{guiaEntidad.NombreDestinatario} {guiaEntidad.ApellidoDestinatario}",
+                DniDestinatario = guiaEntidad.DniDestinatario,
+                EstadoActual = guiaEntidad.EstadoActual.ToString()
+            };
         }
 
-        // Actualiza el estado de la guía identificada por nroGuia a "Entregada"
-        public void ActualizarEstado(string nroGuia)
+        // Ahora devuelve un string para comunicarle a la interfaz dónde se entregó
+        public string ActualizarEstado(int nroGuia)
         {
-            foreach (Guia guia in guias)
+            var guiaEntidad = tutasa.Almacenes.GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == nroGuia);
+            if (guiaEntidad == null) throw new Exception("Error crítico: La guía desapareció de la base de datos.");
+
+            // REGLA 5: Resolver dinámicamente el nombre de la sucursal
+            string nombreUbicacion = "Sucursal Desconocida";
+            if (guiaEntidad.Destino == DestinoGuiaEnum.Agencia)
             {
-                if (guia.NroGuia == nroGuia)
-                {
-                    guia.EstadoActual = "Entregada";
-                    break;
-                }
+                var agencia = AgenciasAlmacen.agencias.FirstOrDefault(a => a.IdAgencia == guiaEntidad.IdAgenciaDestino);
+                if (agencia != null) nombreUbicacion = $"Agencia {agencia.NombreAgencia}";
             }
+            else if (guiaEntidad.Destino == DestinoGuiaEnum.CD)
+            {
+                var cd = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(c => c.IdCD == guiaEntidad.IdCDDestino);
+                if (cd != null) nombreUbicacion = $"CD {cd.NombreCD}";
+            }
+
+            // REGLA 4: Actualizar estado general y agregar trazabilidad
+            guiaEntidad.EstadoActual = EstadoGuiaEnum.Entregada;
+
+            guiaEntidad.Historial.Add(new MovimientoEstadoDto
+            {
+                Estado = EstadoGuiaEnum.Entregada,
+                FechaHora = DateTime.Now,
+                Ubicacion = nombreUbicacion
+            });
+
+            // Retornamos el nombre hacia la capa visual
+            return nombreUbicacion;
         }
     }
 }

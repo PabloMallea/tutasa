@@ -1,0 +1,57 @@
+﻿Plan de Prueba: 000.RendicionHDRtransporte.RendicionExitosa.txt
+
+(Empieza con el menú principal)
+
+1- Desplegable Empresa            "Transporte Ruta Sur"
+2- Desplegable Servicio           "Buenos Aires - Rosario Noche"
+
+3- Botón                          "Buscar"
+
+4- Fila HDR Asignadas             "Seleccionar N° HDR 3"
+
+5- Botón                          "Agregar Selección"
+
+6- Botón                          "Confirmar Rendición"
+
+7- Mensaje                        "Rendición de transporte exitosa"
+
+8- Botón                          "Aceptar"
+
+Verificaciones:
+
+9- Archivo HojasDeRutaTransporte.json - Verificar:
+
+{
+"NumeroHDRTransporte": 3,
+"IdServicio": 1,
+"EstadoHDR": "Rendida",
+"Guias": [
+100004
+]
+}
+
+10- Archivo Guias.json - Verificar:
+
+{
+"NumeroGuia": 100004,
+"EstadoActual": "EnDestino",
+"Historial": [
+{
+"fechaHora": "fecha actual",
+"estado": "EnDestino",
+"ubicacion": "CD Rosario"
+}
+]
+}
+
+11- Verificación adicional
+
+La tabla "HDR Asignadas" (luego del paso 3) debe mostrar la fila con los siguientes datos recuperados:
+
+N° HDR: 3
+
+Empresa: Transporte Ruta Sur
+
+Estado: Asignada
+
+Servicio: Buenos Aires - Rosario Noche

@@ -1,0 +1,61 @@
+﻿Plan de Prueba: 000.RendicionHDRUltimaMilla.RendicionExitosa.txt
+
+(Empieza con el menú principal y la pantalla de Rendición HDR de Retiro/Entrega abierta)
+
+1- Desplegable Fletero            "Carlos Mendoza"
+
+2- Desplegable Tipo               "Entrega"
+
+3- Botón                          "Buscar"
+
+4- Fila HDR Emitidas              "Seleccionar N° HDR 2"
+
+5- Botón                          "Agregar selección Cumplidas"
+
+6- Botón                          "Confirmar Rendición"
+
+7- Mensaje                        "Rendición Exitosa"
+
+8- Botón                          "Aceptar"
+
+Verificaciones:
+
+9- Archivo HDRUltimaMilla.json (o almacén correspondiente) - Verificar:
+
+{
+   "NumeroHDR": 2,
+   "Tipo": "Entrega",
+   "DireccionDestino": "San Martin 742",
+   "Guias": [
+      100004
+   ],
+   "Cumplida": true,
+   "IdFletero": 301,
+   "Estado": "Rendida"
+}
+
+10- Archivo Guias.json - Verificar:
+
+{
+   "NumeroGuia": 100004,
+   "EstadoActual": "Entregada",
+   "Historial": [
+      {
+         "fechaHora": "fecha actual",
+         "estado": "Entregada",
+         "ubicacion": "San Martin 742"
+      }
+   ]
+}
+
+11- Verificación adicional
+
+La tabla "HDR Emitidas" (luego del paso 3) debe mostrar la fila recuperada con los siguientes datos exactos:
+
+N° HDR: 2
+
+Fletero: Carlos Mendoza
+
+Estado: Asignada
+
+Tipo: Entrega

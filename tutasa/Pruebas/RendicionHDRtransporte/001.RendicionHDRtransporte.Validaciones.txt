@@ -1,0 +1,35 @@
+Plan de Prueba: 001.RendicionHDRtransporte.Validaciones.txt
+
+(Empieza con el menú principal)
+
+1- Botón "Buscar"
+
+2- Mensaje "Complete los campos solicitados"   
+
+3- Botón "Aceptar"
+
+4- Desplegable Empresa "Carga Federal Argentina"
+
+5- Desplegable Servicio "Buenos Aires - Rosario"
+
+6- Botón "Buscar"
+
+7- Mensaje "No se a encontrado HDR Asignadas a los criterios de búsqueda seleccionados"   
+
+8- Botón "Aceptar"
+
+9- Desplegable Empresa "Transporte Ruta Sur"
+
+10- Desplegable Servicio "Buenos Aires - Rosario Noche"
+
+11- Botón "Buscar"(El sistema carga la grilla "HDR Asignadas" correctamente, pero el operario no pasa ningún elemento a la tabla de abajo)
+
+12- Botón "Confirmar Rendición"
+
+13- Mensaje "Debe seleccionar al menos una HDR para rendir"   
+
+14- Botón "Aceptar"
+
+Verificaciones
+
+15- No debe generarse ninguna rendición ni cambio de estado en: HojasDeRutaTransporte.json ni en Guias.json.

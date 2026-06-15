@@ -1,0 +1,35 @@
+﻿Plan de prueba: 002.RuteoUltimaMilla.EventosForm.txt
+
+-- EVENTO 1: Agregar selección sin guías en tabla superior --
+
+(Empieza con el menú principal)
+
+1- Seleccionable Tipo de Ruteo    "Entrega de encomiendas"
+2- Botón                          "Buscar"
+3- Botón                          "Agregar selección"
+4- Mensaje                        "No se encontraron guías seleccionadas"
+5- Botón                          "Aceptar"
+
+-- EVENTO 2: Confirmar sin guías en tabla inferior --
+
+6- Botón                          "Agregar todos"
+7- Mensaje                        "No se encontraron guías seleccionadas"
+8- Botón                         "Aceptar"
+9- Desplegable Asignación de Fletero   "Fletero García"
+10- Botón                               "Confirmar"
+11- Mensaje                       "No se encontraron guías seleccionadas en la tabla inferior"
+15- Botón                         "Aceptar"
+16- Pantalla                      Se verificó que el sistema volvió al punto de búsqueda sin cambios
+
+-- EVENTO 3: Cancelar en cualquier momento --
+
+17- Seleccionable Tipo de Ruteo   "Entrega de encomiendas"
+18- Desplegable Localidad         "Buenos Aires"
+19- Campo CUIT Cliente            "20304050607"
+20- Se seleccionó la guía         Nro Guía 100010 de la tabla superior
+21- Botón                         "Agregar selección"
+
+22- Botón                         "Cancelar"
+
+23- Pantalla                      Se verificó que el sistema limpió todos los campos y tablas
+24- Menú principal                Se verificó que el sistema retornó al menú principal

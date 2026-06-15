@@ -10,60 +10,57 @@ namespace tutasa.EmisionHojasRutaTransporte
 {
     public partial class EmisionHojasRutaTransporte : Form
     {
-        // Modelo que contiene los datos y lógica de negocio
-        private EmisionHojasRutaTransporteModelo modelo =
-            new EmisionHojasRutaTransporteModelo();
+
+        private EmisionHojasRutaTransporteModelo modelo = new EmisionHojasRutaTransporteModelo();
 
         public EmisionHojasRutaTransporte()
         {
             InitializeComponent();
         }
 
-        private void EmisionHojasRutaTransporte_Load(
-            object sender,
+        private void EmisionHojasRutaTransporte_Load(object sender,
             EventArgs e)
         {
             // Cargar empresas al iniciar pantalla
 
             ComboEmpresa.Items.Clear();
 
-            foreach (string empresa
-                in modelo.ObtenerEmpresas())
-            {
-                ComboEmpresa.Items.Add(
-                    empresa);
-            }
+            ComboEmpresa.DataSource =modelo.ObtenerEmpresas();
+
+            ComboEmpresa.DisplayMember = "Nombre";
+
+            ComboEmpresa.ValueMember = "IdEmpresa";
+            ComboEmpresa.SelectedIndex = -1;
         }
 
-        private void ComboEmpresa_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void ComboEmpresa_SelectedIndexChanged(object sender,EventArgs e)
         {
-            // Cargar servicios de la empresa seleccionada
-
-            ComboServicio.Items.Clear();
-            ComboServicio.Text = "";
-
+            ComboServicio.DataSource = null;
 
             if (ComboEmpresa.SelectedItem == null)
             {
                 return;
             }
 
-            string empresa = ComboEmpresa.SelectedItem.ToString();
+          
+            EmisionHojasRutaTransporteModelo.EmpresaTransporte empresa = (EmisionHojasRutaTransporteModelo.EmpresaTransporte)ComboEmpresa.SelectedItem;
 
-            foreach (string servicio in modelo.ObtenerServicios(empresa))
-            {
-                ComboServicio.Items.Add(servicio);
-            }
+            ComboServicio.DataSource =modelo.ObtenerServicios(empresa.IdEmpresa);
+
+
+            ComboServicio.DisplayMember ="Nombre";
+
+            ComboServicio.ValueMember ="IdServicio";
+            ComboServicio.SelectedIndex = -1;
+            ComboServicio.Text = "";
+
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             // Validar filtros obligatorios
 
-            if (ComboEmpresa.SelectedItem == null
-                || ComboServicio.SelectedItem == null)
+            if (ComboEmpresa.SelectedItem == null || ComboServicio.SelectedItem == null)
             {
                 MessageBox.Show(
                     "Debe seleccionar empresa y servicio.",
@@ -74,19 +71,17 @@ namespace tutasa.EmisionHojasRutaTransporte
                 return;
             }
 
-            string empresa = ComboEmpresa.SelectedItem.ToString();
+            int idEmpresa =(int)ComboEmpresa.SelectedValue;
 
-            string servicio = ComboServicio.SelectedItem.ToString();
+            int idServicio =(int)ComboServicio.SelectedValue;
 
-            // Limpiar resultados anteriores
 
             ListViewRutasPendientes.Items.Clear();
 
             ListViewGuias.Items.Clear();
 
-            // Buscar HDR pendientes
 
-            List<EmisionHojasRutaTransporteModelo.HojaRutaTransporte> hdrs = modelo.BuscarHDRPendientes(empresa, servicio);
+            List<EmisionHojasRutaTransporteModelo.HojaRutaTransporte> hdrs = modelo.BuscarHDRPendientes(idEmpresa, idServicio);
 
             if (hdrs.Count == 0)
             {
@@ -99,17 +94,16 @@ namespace tutasa.EmisionHojasRutaTransporte
                 return;
             }
 
-            // Mostrar HDR encontradas
 
             foreach (EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr in hdrs)
             {
-                ListViewItem item = new ListViewItem(hdr.Numero);
+                ListViewItem item = new ListViewItem(hdr.NumeroHDR.ToString());
 
                 item.SubItems.Add(hdr.Empresa);
 
                 item.SubItems.Add(hdr.Servicio);
 
-                item.SubItems.Add(modelo.ObtenerGuiasHDR(hdr.Numero).Count.ToString());
+                item.SubItems.Add(modelo.ObtenerGuiasHDR(hdr.NumeroHDR).Count.ToString());
 
                 // Guardamos la HDR real
                 item.Tag = hdr;
@@ -122,8 +116,7 @@ namespace tutasa.EmisionHojasRutaTransporte
             object sender,
             EventArgs e)
         {
-            // Mostrar detalle de guías
-            // asociadas a las HDR seleccionadas
+
 
             ListViewGuias.Items.Clear();
 
@@ -131,11 +124,11 @@ namespace tutasa.EmisionHojasRutaTransporte
             {
                 EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr = (EmisionHojasRutaTransporteModelo.HojaRutaTransporte)itemHDR.Tag;
 
-                List<EmisionHojasRutaTransporteModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.Numero);
+                List<EmisionHojasRutaTransporteModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.NumeroHDR);
 
                 foreach (EmisionHojasRutaTransporteModelo.Guia guia in guias)
                 {
-                    ListViewItem fila = new ListViewItem(guia.Numero);
+                    ListViewItem fila = new ListViewItem(guia.Numero.ToString());
 
                     fila.SubItems.Add(guia.Cliente);
 
@@ -153,7 +146,6 @@ namespace tutasa.EmisionHojasRutaTransporte
 
         private void BotonSeleccionar_Click(object sender, EventArgs e)
         {
-            // Seleccionar todas las HDR
 
             if (ListViewRutasPendientes.Items.Count == 0)
             {
@@ -207,16 +199,18 @@ namespace tutasa.EmisionHojasRutaTransporte
 
                 // Emitir HDR
 
-                modelo.EmitirHDR(hdr.Numero);
+                modelo.EmitirHDR(hdr.NumeroHDR);
+                modelo.ActualizarEstadoGuias(hdr.NumeroHDR);
+                hdr.Estado = "Emitida";
 
                 mensaje += "====================================\n";
-                mensaje += "Hoja de Ruta: " + hdr.Numero + "\n";
+                mensaje += "Hoja de Ruta: " + hdr.NumeroHDR + "\n";
                 mensaje += "Empresa: " + hdr.Empresa + "\n";
                 mensaje += "Servicio: " + hdr.Servicio + "\n\n";
 
                 mensaje += "Detalle de Guías:\n\n";
 
-                List<EmisionHojasRutaTransporteModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.Numero);
+                List<EmisionHojasRutaTransporteModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.NumeroHDR);
 
                 foreach (EmisionHojasRutaTransporteModelo.Guia guia in guias)
                 {
@@ -233,9 +227,7 @@ namespace tutasa.EmisionHojasRutaTransporte
                 MessageBoxIcon.Information);
         }
 
-        private void BtnImprimirResumen_Click(
-    object sender,
-    EventArgs e)
+        private void BtnImprimirResumen_Click(object sender,EventArgs e)
         {
             // Validar selección
 
@@ -249,31 +241,35 @@ namespace tutasa.EmisionHojasRutaTransporte
 
                 return;
             }
+            foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
+            {
+                EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr = (EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
+
+                if (hdr.Estado != "Emitida")
+                {
+                    MessageBox.Show(
+                        "Todas las hojas de ruta seleccionadas deben estar emitidas antes de imprimir el resumen.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
 
             string mensaje =
                 "RESUMEN DE HOJAS DE RUTA\n\n";
 
             foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
             {
-                EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr =
-                    (EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
+                EmisionHojasRutaTransporteModelo.HojaRutaTransporte hdr = (EmisionHojasRutaTransporteModelo.HojaRutaTransporte)item.Tag;
 
-                // Emitir HDR
 
-                modelo.EmitirHDR(
-                    hdr.Numero);
 
-                // Actualizar estado de guías
-
-                modelo.ActualizarEstadoGuias(
-                    hdr.Numero);
-
-                List<EmisionHojasRutaTransporteModelo.Guia> guias =
-                    modelo.ObtenerGuiasHDR(
-                        hdr.Numero);
+                List<EmisionHojasRutaTransporteModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.NumeroHDR);
 
                 mensaje += "====================================\n";
-                mensaje += "Hoja de Ruta: " + hdr.Numero + "\n";
+                mensaje += "Hoja de Ruta: " + hdr.NumeroHDR + "\n";
                 mensaje += "Empresa: " + hdr.Empresa + "\n";
                 mensaje += "Servicio: " + hdr.Servicio + "\n";
                 mensaje += "Cantidad de Guías: " + guias.Count + "\n\n";
@@ -284,19 +280,21 @@ namespace tutasa.EmisionHojasRutaTransporte
                 "Resumen Impreso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
-        }
-
-        private void BotonCancelar_Click(
-            object sender,
-            EventArgs e)
-        {
-            // Limpiar formulario
-
             ComboEmpresa.SelectedIndex = -1;
 
-            ComboServicio.Items.Clear();
+            ComboServicio.DataSource = null;
 
-            ComboServicio.SelectedIndex = -1;
+            ListViewRutasPendientes.Items.Clear();
+
+            ListViewGuias.Items.Clear();
+        }
+
+        private void BotonCancelar_Click(object sender,EventArgs e)
+        {
+            // Limpiar formulario
+            ComboEmpresa.SelectedIndex = -1;
+
+            ComboServicio.DataSource = null;
 
             ListViewRutasPendientes.Items.Clear();
 
@@ -305,21 +303,15 @@ namespace tutasa.EmisionHojasRutaTransporte
 
         }
 
-        private void ComboServicio_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void ComboServicio_SelectedIndexChanged(object sender,EventArgs e)
         {
         }
 
-        private void ListViewGuias_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void ListViewGuias_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 
-        private void LbServicio_Click(
-            object sender,
-            EventArgs e)
+        private void LbServicio_Click(object sender, EventArgs e)
         {
         }
 

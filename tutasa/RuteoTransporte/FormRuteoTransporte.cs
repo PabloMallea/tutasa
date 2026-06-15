@@ -110,8 +110,7 @@ namespace tutasa.RuteoTransporte
 
             string cdDestino = "";
 
-            string cuit =
-                TxtCuit.Text.Trim();
+            string cuit = TxtCuit.Text.Trim();
 
             string localidad = "";
 
@@ -134,6 +133,17 @@ namespace tutasa.RuteoTransporte
             {
                 MessageBox.Show(
                     "El CUIT debe contener únicamente números.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+            if (cuit.Length > 11)
+            {
+                MessageBox.Show(
+                    "El CUIT del cliente no puede superar los 11 dígitos.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -283,7 +293,7 @@ namespace tutasa.RuteoTransporte
         {
             // Limpiar servicios previos
 
-            ComboServicio.Items.Clear();
+            ComboServicio.DataSource = null;
 
             ComboServicio.SelectedIndex = -1;
 
@@ -316,10 +326,13 @@ namespace tutasa.RuteoTransporte
 
             // Cargar combo de servicios
 
-            foreach (FormRuteoTransporteModelo.Servicio servicio in servicios)
-            {
-                ComboServicio.Items.Add(servicio.Descripcion);
-            }
+            ComboServicio.DataSource = servicios;
+
+            ComboServicio.DisplayMember = "Descripcion";
+
+            ComboServicio.ValueMember = "Id";
+
+            ComboServicio.SelectedIndex = -1;
         }
 
         private void BtnConfirmar_Click(object sender,EventArgs e)
@@ -386,7 +399,7 @@ namespace tutasa.RuteoTransporte
 
             string empresa = ComboEmpresa.SelectedItem.ToString();
 
-            string servicio =ComboServicio.SelectedItem.ToString();
+            FormRuteoTransporteModelo.Servicio servicio =(FormRuteoTransporteModelo.Servicio)ComboServicio.SelectedItem;
 
             // Lista de encomiendas de la hoja de ruta
 
@@ -411,7 +424,7 @@ namespace tutasa.RuteoTransporte
 
                     Empresa = empresa,
 
-                    Servicio = servicio,
+                    IdServicio = servicio.Id,
 
                     CDDestino = cdDestino,
 
@@ -458,9 +471,10 @@ namespace tutasa.RuteoTransporte
 
             ComboEmpresa.SelectedIndex = -1;
 
-            ComboServicio.Items.Clear();
+            ComboServicio.DataSource = null;
 
             ComboServicio.SelectedIndex = -1;
+
             ComboServicio.Text = "";
 
 

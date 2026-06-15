@@ -157,6 +157,8 @@ namespace tutasa.ImposicionCallCenter
             LabelCalle.Text = cliente.Calle;
             LabelAltura.Text = cliente.Altura;
             LabelLocalidad.Text = cliente.Localidad;
+            //Guardamos el CUIT validado en el bolsillo secreto del TextBox
+            TxtCuit.Tag = cuit;
         }
 
         private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
@@ -403,15 +405,16 @@ namespace tutasa.ImposicionCallCenter
                 return;
             }
 
-            // Buscar cliente seleccionado
-            ImposicionCallCenterModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
-
-            // --- PARCHE DE SEGURIDAD 1: Verifica que el CUIT no haya sido alterado ---
-            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            // --- PARCHE DE SEGURIDAD DEFINITIVO: Validación por llave primaria ---
+            // Verificamos si nunca se buscó (Tag nulo) o si el texto actual es distinto al que se validó
+            if (TxtCuit.Tag == null || TxtCuit.Text.Trim() != TxtCuit.Tag.ToString())
             {
-                MessageBox.Show("El CUIT fue alterado después de la búsqueda. Por favor, vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El CUIT fue alterado o no ha sido validado. Por favor, presione el botón Buscar Cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Si pasamos el escudo, es 100% seguro que el CUIT en pantalla es el que se buscó
+            var cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
             // --- PARCHE DE SEGURIDAD 2: Verifica que la Localidad y Destino coincidan ---
             string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
@@ -452,46 +455,62 @@ namespace tutasa.ImposicionCallCenter
                 Dimension = ComboDimension.SelectedItem.ToString()
             };
 
-            //Guardar Guia en el modelo y atrapar el número generado
-            int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
+            // --- GUARDADO CON MANEJO DE EXCEPCIONES ---
+            try
+            {
+                //Guardar Guia en el modelo y atrapar el número generado
+                int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
 
-            // Mostrar mensaje de confirmación con el número de Tracking (Cumpliendo el Paso 12)
-            MessageBox.Show(
-                $"Operación exitosa.\n\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
-                "Confirmación",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+                // Mostrar mensaje de confirmación con el número de Tracking
+                MessageBox.Show(
+                    $"Operación exitosa.\n\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
+                    "Confirmación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
-            // Limpiar formulario
-            TxtCuit.Clear();
-            TextLocalidad.Clear();
-            TextCalle.Clear();
-            TextAltura.Clear();
-            TextNombre.Clear();
-            TextApellido.Clear();
-            TextDni.Clear();
-            TextTEL.Clear();
+                // Limpiar formulario
+                TxtCuit.Clear();
+                TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
+                TextLocalidad.Clear();
+                TextCalle.Clear();
+                TextAltura.Clear();
+                TextNombre.Clear();
+                TextApellido.Clear();
+                TextDni.Clear();
+                TextTEL.Clear();
 
-            ComboDestino.SelectedIndex = -1;
-            ComboDimension.SelectedIndex = -1;
+                ComboDestino.SelectedIndex = -1;
+                ComboDimension.SelectedIndex = -1;
 
-            LabelNombre.Text = "";
-            LabelApellido.Text = "";
-            LabelTelefono.Text = "";
-            LabelCalle.Text = "";
-            LabelAltura.Text = "";
-            LabelLocalidad.Text = "";
+                LabelNombre.Text = "";
+                LabelApellido.Text = "";
+                LabelTelefono.Text = "";
+                LabelCalle.Text = "";
+                LabelAltura.Text = "";
+                LabelLocalidad.Text = "";
 
-            // Rehabilitar edición
-            TextCalle.Enabled = true;
-            TextAltura.Enabled = true;
+                // Rehabilitar edición
+                TextCalle.Enabled = true;
+                TextAltura.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                // El escudo protector unificado para el Call Center
+                MessageBox.Show(
+                    ex.Message,
+                    "Error de Regla de Negocio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
         private void ButtonCancelar_Click(object sender, EventArgs e)
         {
             // Limpiar formulario
             TxtCuit.Clear();
+            TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
             TextLocalidad.Clear();
             TextCalle.Clear();
             TextAltura.Clear();

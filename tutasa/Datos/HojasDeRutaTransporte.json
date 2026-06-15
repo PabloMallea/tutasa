@@ -47,6 +47,32 @@
     "Guias": [
       100015
     ]
+  },
+  {
+    "NumeroHDRTransporte": 7,
+    "IdServicio": 7,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100017,
+      100018
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 8,
+    "IdServicio": 7,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100019
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 9,
+    "IdServicio": 8,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100020,
+      100021
+    ]
   }
 ]
 

@@ -24,7 +24,9 @@ namespace tutasa.ImposicionCallCenter
 
         public Cliente BuscarCliente(string cuit)
         {
-            long cuitNumerico = long.Parse(cuit);
+            // EL FIX: Usamos TryParse para prevenir el Crash por formato inválido o campo vacío
+            if (!long.TryParse(cuit, out long cuitNumerico)) return null;
+
             var clienteDelJson = tutasa.Almacenes.ClientesAlmacen.clientes.Find(c => c.CuitCliente == cuitNumerico);
 
             if (clienteDelJson == null) return null;
@@ -137,43 +139,66 @@ namespace tutasa.ImposicionCallCenter
             if (guiaLocal.Destino == "Domicilio Destinatario")
             {
                 nuevaGuia.Destino = DestinoGuiaEnum.Domicilio;
+                nuevaGuia.IdAgenciaDestino = 0; // Aseguramos que inicie en 0
 
-                // NUEVO: Buscar el CD que le corresponde a esa localidad para que el transporte sepa a dónde ir
                 var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
                 if (localidadEntidad != null)
                 {
-                    // Buscamos TODOS los CDs que pertenezcan a esa localidad
                     var cdsEnLocalidad = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
 
-                    // Si hay al menos uno, ordenamos por IdCD de menor a mayor y nos quedamos con el primero (el más chico)
                     if (cdsEnLocalidad.Count > 0)
                     {
                         var cdDestino = cdsEnLocalidad.OrderBy(cd => cd.IdCD).First();
                         nuevaGuia.IdCDDestino = cdDestino.IdCD;
                     }
+                    else
+                    {
+                        // FIX LOGICO: Controlar si no hay galpones en la ciudad para entregar a domicilio
+                        throw new Exception($"Nuestra red logística aún no cuenta con un Centro de Distribución en {guiaLocal.LocalidadDestino} para procesar entregas a domicilio.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Localidad de destino no encontrada en el sistema central.");
                 }
             }
             else
             {
-                // ¿Es una Agencia?
-                var agenciaDestino = tutasa.Almacenes.AgenciasAlmacen.agencias.Find(a => a.NombreAgencia == guiaLocal.Destino);
-                if (agenciaDestino != null)
-                {
-                    nuevaGuia.Destino = DestinoGuiaEnum.Agencia;
-                    nuevaGuia.IdAgenciaDestino = agenciaDestino.IdAgencia;
+                // FIX NACIONAL: Filtramos estrictamente por la localidad de destino
+                var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
 
-                    // NUEVO: Heredar el CD al que pertenece esa Agencia
-                    nuevaGuia.IdCDDestino = agenciaDestino.IdCD;
+                if (localidadEntidad != null)
+                {
+                    // 1. Aislamos solo los CDs que pertenecen a esa ciudad
+                    var cdsEnLaLocalidad = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
+
+                    // 2. Buscamos la Agencia que se llame igual Y que pertenezca a la red de esos CDs locales
+                    var agenciaDestino = tutasa.Almacenes.AgenciasAlmacen.agencias.Find(a =>
+                        a.NombreAgencia == guiaLocal.Destino &&
+                        cdsEnLaLocalidad.Any(cd => cd.IdCD == a.IdCD)
+                    );
+
+                    if (agenciaDestino != null)
+                    {
+                        nuevaGuia.Destino = DestinoGuiaEnum.Agencia;
+                        nuevaGuia.IdAgenciaDestino = agenciaDestino.IdAgencia;
+                        nuevaGuia.IdCDDestino = agenciaDestino.IdCD;
+                    }
+                    else
+                    {
+                        // 3. Si no es agencia, verificamos si es un CD de esa misma ciudad local
+                        var cdDestino = cdsEnLaLocalidad.Find(cd => cd.NombreCD == guiaLocal.Destino);
+                        if (cdDestino != null)
+                        {
+                            nuevaGuia.Destino = DestinoGuiaEnum.CD;
+                            nuevaGuia.IdAgenciaDestino = 0;
+                            nuevaGuia.IdCDDestino = cdDestino.IdCD;
+                        }
+                    }
                 }
                 else
                 {
-                    // Si no es agencia, tiene que ser un Centro de Distribución
-                    var cdDestino = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.NombreCD == guiaLocal.Destino);
-                    if (cdDestino != null)
-                    {
-                        nuevaGuia.Destino = DestinoGuiaEnum.CD;
-                        nuevaGuia.IdCDDestino = cdDestino.IdCD;
-                    }
+                    throw new Exception("Localidad de destino no encontrada en el sistema central.");
                 }
             }
 
@@ -211,15 +236,14 @@ namespace tutasa.ImposicionCallCenter
 
             // 6. HISTORIAL: Agregamos el primer movimiento (Nacimiento de la guía)
 
-            // NUEVO: Buscar el nombre real del CD de Origen
-            var cdOrigen = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == tutasa.Program.IdCDActual);
-            string nombreUbicacion = cdOrigen != null ? cdOrigen.NombreCD : "Imposición Call Center";
+            // 6. HISTORIAL: Agregamos el primer movimiento (Nacimiento de la guía)
 
+            // Como la guía nace por un pedido telefónico del cliente, la ubicación física real del paquete en este instante es su domicilio.
             nuevaGuia.Historial.Add(new MovimientoEstadoDto
             {
                 Estado = EstadoGuiaEnum.Impuesta,
                 FechaHora = DateTime.Now,
-                Ubicacion = nombreUbicacion // Ahora dirá "CD Buenos Aires", etc.
+                Ubicacion = "Domicilio del Cliente"
             });
 
             // 7. EL IMPACTO EN LA MEMORIA RAM

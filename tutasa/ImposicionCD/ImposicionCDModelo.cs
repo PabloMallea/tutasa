@@ -113,6 +113,7 @@ namespace tutasa.Imposicion_CD
                 nuevaGuia.Destino = DestinoGuiaEnum.Domicilio;
                 nuevaGuia.IdAgenciaDestino = 0;
                 var localidadEntidad = LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
+
                 if (localidadEntidad != null)
                 {
                     var cdsEnLocalidad = CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
@@ -120,26 +121,54 @@ namespace tutasa.Imposicion_CD
                     {
                         nuevaGuia.IdCDDestino = cdsEnLocalidad.OrderBy(cd => cd.IdCD).First().IdCD;
                     }
+                    else
+                    {
+                        // FIX LOGICO: Evitar que intente enviar a domicilio en una ciudad sin CD
+                        throw new Exception($"Nuestra red logística aún no cuenta con un Centro de Distribución en {guiaLocal.LocalidadDestino} para procesar entregas a domicilio.");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Localidad de destino no encontrada en el sistema central.");
                 }
             }
             else
             {
-                var agenciaDestino = AgenciasAlmacen.agencias.Find(a => a.NombreAgencia == guiaLocal.Destino);
-                if (agenciaDestino != null)
+                // FIX NACIONAL: Filtramos estrictamente por la localidad de destino
+                var localidadEntidad = LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
+
+                if (localidadEntidad != null)
                 {
-                    nuevaGuia.Destino = DestinoGuiaEnum.Agencia;
-                    nuevaGuia.IdAgenciaDestino = agenciaDestino.IdAgencia;
-                    nuevaGuia.IdCDDestino = agenciaDestino.IdCD;
+                    // 1. Aislamos solo los CDs que pertenecen a esa ciudad
+                    var cdsEnLaLocalidad = CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
+
+                    // 2. Buscamos la Agencia que se llame igual Y que pertenezca a la red de esos CDs locales
+                    var agenciaDestino = AgenciasAlmacen.agencias.Find(a =>
+                        a.NombreAgencia == guiaLocal.Destino &&
+                        cdsEnLaLocalidad.Any(cd => cd.IdCD == a.IdCD)
+                    );
+
+                    if (agenciaDestino != null)
+                    {
+                        nuevaGuia.Destino = DestinoGuiaEnum.Agencia;
+                        nuevaGuia.IdAgenciaDestino = agenciaDestino.IdAgencia;
+                        nuevaGuia.IdCDDestino = agenciaDestino.IdCD;
+                    }
+                    else
+                    {
+                        // 3. Si no es agencia, verificamos si es un CD de esa misma ciudad local
+                        var cdDestino = cdsEnLaLocalidad.Find(cd => cd.NombreCD == guiaLocal.Destino);
+                        if (cdDestino != null)
+                        {
+                            nuevaGuia.Destino = DestinoGuiaEnum.CD;
+                            nuevaGuia.IdAgenciaDestino = 0;
+                            nuevaGuia.IdCDDestino = cdDestino.IdCD;
+                        }
+                    }
                 }
                 else
                 {
-                    var cdDestino = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.NombreCD == guiaLocal.Destino);
-                    if (cdDestino != null)
-                    {
-                        nuevaGuia.Destino = DestinoGuiaEnum.CD;
-                        nuevaGuia.IdAgenciaDestino = 0;
-                        nuevaGuia.IdCDDestino = cdDestino.IdCD;
-                    }
+                    throw new Exception("Localidad de destino no encontrada en el sistema central.");
                 }
             }
 
