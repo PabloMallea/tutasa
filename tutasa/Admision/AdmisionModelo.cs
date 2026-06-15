@@ -97,40 +97,44 @@ namespace tutasa.Admision
                 return (false, "La dimensión especificada no es válida.");
             }
 
-            // Actualizar dimensión
-            guiaAlmacen.Dimension = dimensionEnum;
-
-            decimal tarifaBase = CalcularTarifaBase(guiaAlmacen.IdCDOrigen, guiaAlmacen.IdCDDestino, dimensionEnum);
-
-            decimal extras = CalcularExtras(guiaAlmacen.TipoRetiro, guiaAlmacen.Destino);
-
-            //Monto a facturar
-            guiaAlmacen.MontoFacturar = tarifaBase + extras;
-
-            CalcularYAsignarComisiones(guiaAlmacen, dimensionEnum);
-
-            // Actualizar estado actual
-            guiaAlmacen.EstadoActual = EstadoGuiaEnum.Admitida;
-
-            // Crear movimiento de estado para la admisión
-            MovimientoEstadoDto movimiento = new MovimientoEstadoDto
+            try
             {
-                FechaHora = DateTime.Now,
-                Estado = EstadoGuiaEnum.Admitida,
-                Ubicacion = Program.IdCDActual.ToString(),
-            };
+                // Actualizar dimensión
+                guiaAlmacen.Dimension = dimensionEnum;
 
-            // Agregar el movimiento al historial de la guía
-            if (guiaAlmacen.Historial == null)
-            {
-                guiaAlmacen.Historial = new List<MovimientoEstadoDto>();
+                decimal tarifaBase = CalcularTarifaBase(guiaAlmacen.IdCDOrigen, guiaAlmacen.IdCDDestino, dimensionEnum);
+
+                decimal extras = CalcularExtras(guiaAlmacen.TipoRetiro, guiaAlmacen.Destino);
+
+                //Monto a facturar
+                guiaAlmacen.MontoFacturar = tarifaBase + extras;
+
+                CalcularYAsignarComisiones(guiaAlmacen, dimensionEnum);
+
+                // Actualizar estado actual
+                guiaAlmacen.EstadoActual = EstadoGuiaEnum.Admitida;
+
+                // Crear movimiento de estado para la admisión
+                MovimientoEstadoDto movimiento = new MovimientoEstadoDto
+                {
+                    FechaHora = DateTime.Now,
+                    Estado = EstadoGuiaEnum.Admitida,
+                    Ubicacion = Program.IdCDActual.ToString(),
+                };
+
+                // Agregar el movimiento al historial de la guía
+                if (guiaAlmacen.Historial == null)
+                {
+                    guiaAlmacen.Historial = new List<MovimientoEstadoDto>();
+                }
+                guiaAlmacen.Historial.Add(movimiento);
+
+                return (true, null);
             }
-            guiaAlmacen.Historial.Add(movimiento);
-
-            // Guardar los cambios en el almacén
-            
-
-            return (true, null);
+            catch (Exception ex)
+            {
+                return (false, $"No puede realizarse la admisión: {ex.Message}");
+            }
         }
 
         private decimal CalcularTarifaBase(int idCDOrigen, int idCDDestino, Almacenes.DimensionEnum dimension)
@@ -152,7 +156,7 @@ namespace tutasa.Admision
 
             if (tarifa == null)
             {
-                throw new Exception($"No se encontró tarifa para Origen: {cdOrigen.IdLocalidad}, Destino: {cdDestino.IdLocalidad}, Dimensión: {dimension}");
+                throw new Exception($"No se encontró tarifa definida para la ruta {cdOrigen.NombreCD} → {cdDestino.NombreCD} con dimensión {dimension}.");
             }
 
             return tarifa.Precio;
