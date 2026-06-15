@@ -139,19 +139,16 @@ namespace tutasa.RuteoTransporte
                 bool mostrarGuia = false;
 
 
-                if (guiaEntidad.EstadoActual
-                    == EstadoGuiaEnum.Admitida)
+                if (guiaEntidad.EstadoActual== EstadoGuiaEnum.Admitida)
                 {
-                    if (guiaEntidad.IdCDOrigen
-                        == Program.IdCDActual)
+                    if (guiaEntidad.IdCDOrigen== Program.IdCDActual)
                     {
                         mostrarGuia = true;
                     }
                 }
 
 
-                if (guiaEntidad.EstadoActual
-                    == EstadoGuiaEnum.EnDestino)
+                if (guiaEntidad.EstadoActual== EstadoGuiaEnum.EnDestino)
                 {
                     HojaRutaDeTransporteEntidad ultimaHDR = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Where
                         (h => h.Guias.Contains(guiaEntidad.NumeroGuia)).OrderByDescending(h =>h.NumeroHDRTransporte).FirstOrDefault();

@@ -305,7 +305,7 @@
     "IdAgenciaRetiro": 0,
     "IdCDDestino": 1,
     "IdAgenciaDestino": 0,
-    "Destino": "Agencia",
+    "Destino": "Domicilio",
     "CalleDestino": "Lavalle",
     "AlturaDestino": "890",
     "DniDestinatario": "27888999",

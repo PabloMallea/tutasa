@@ -87,17 +87,33 @@ namespace tutasa.RuteoUltimaMilla
             }
 
             // Validación: si se ingresó un CUIT, debe contener únicamente números. Noten que permitimos que el campo esté vacío, ya que la búsqueda podría realizarse sin filtrar por CUIT. Sin embargo, si se ingresa algo, debe ser numérico.
-            if (!string.IsNullOrEmpty(cuit) && !cuit.All(char.IsDigit))
+            if (!string.IsNullOrEmpty(cuit))
             {
-                MessageBox.Show(
-                    "El CUIT del cliente debe contener únicamente números.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                if (!cuit.All(char.IsDigit))
+                {
+                    MessageBox.Show(
+                        "El CUIT del cliente debe contener únicamente números.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
 
-                return;
+                    return;
+                }
+
+                if (cuit.Length > 11)
+                {
+                    MessageBox.Show(
+                        "El CUIT del cliente no puede superar los 11 dígitos.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
+                }
             }
+
             string tipoRuteo = "";
 
             if (RBEntrega.Checked)

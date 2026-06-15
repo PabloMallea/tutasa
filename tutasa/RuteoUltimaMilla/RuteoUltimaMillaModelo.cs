@@ -15,17 +15,13 @@ namespace tutasa.RuteoUltimaMilla
                 new List<Localidad>();
 
             foreach (
-                tutasa.Almacenes.Localidad entidad
-                in LocalidadAlmacen.localidades)
+                tutasa.Almacenes.Localidad entidad in LocalidadAlmacen.localidades)
             {
-                Localidad localidad =
-                    new Localidad();
+                Localidad localidad =new Localidad();
 
-                localidad.IdLocalidad =
-                    entidad.IdLocalidad;
+                localidad.IdLocalidad =entidad.IdLocalidad;
 
-                localidad.NombreLocalidad =
-                    entidad.NombreLocalidad;
+                localidad.NombreLocalidad =entidad.NombreLocalidad;
 
                 resultado.Add(localidad);
             }   
@@ -36,30 +32,24 @@ namespace tutasa.RuteoUltimaMilla
 
         public List<Fletero> ObtenerFleteros()
         {
-            List<Fletero> resultado =
-                new List<Fletero>();
+            List<Fletero> resultado = new List<Fletero>();
 
             foreach (
-                tutasa.Almacenes.Fletero fleteroEntidad
-                in FleteroAlmacen.fleteros)
+                tutasa.Almacenes.Fletero fleteroEntidad in FleteroAlmacen.fleteros)
             {
-                if (fleteroEntidad.IdCD
-                    != Program.IdCDActual)
+                if (fleteroEntidad.IdCD!= Program.IdCDActual)
                 {
                     continue;
                 }
 
-                Fletero fletero =
-                    new Fletero();
+                Fletero fletero =new Fletero();
 
-                fletero.IdFletero =
-                    fleteroEntidad.IdFletero;
+                fletero.IdFletero =fleteroEntidad.IdFletero;
 
                 fletero.Nombre =
                     fleteroEntidad.Nombre;
 
-                resultado.Add(
-                    fletero);
+                resultado.Add(fletero);
             }
 
             return resultado;
@@ -123,28 +113,31 @@ namespace tutasa.RuteoUltimaMilla
                     continue;
                 }
 
-                tutasa.Almacenes.Localidad localidadCliente = null;
+                CentroDistribucion cdReferencia = null;
 
-                foreach (tutasa.Almacenes.Localidad localidadEntidad in LocalidadAlmacen.localidades)
+                if (tipoRuteo == "Retiro")
                 {
-                    if (localidadEntidad.IdLocalidad == cliente.IdLocalidad)
-                    {
-                        localidadCliente = localidadEntidad;
-
-                        break;
-                    }
+                    cdReferencia =CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD ==guiaEntidad.IdCDOrigen);
+                }
+                else
+                {
+                    cdReferencia =CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD == guiaEntidad.IdCDDestino);
                 }
 
                 string nombreLocalidad = "";
 
-                if (localidadCliente != null)
+                if (cdReferencia != null)
                 {
-                    nombreLocalidad = localidadCliente.NombreLocalidad;
-                }
+                    tutasa.Almacenes.Localidad localidadEntidad =LocalidadAlmacen.localidades.FirstOrDefault( l => l.IdLocalidad ==cdReferencia.IdLocalidad);
 
+                    if (localidadEntidad != null)
+                    {
+                        nombreLocalidad =localidadEntidad.NombreLocalidad;
+                    }
+                }
                 if (!string.IsNullOrEmpty(localidad))
                 {
-                    if (nombreLocalidad!= localidad)
+                    if (nombreLocalidad != localidad)
                     {
                         continue;
                     }
@@ -179,6 +172,7 @@ namespace tutasa.RuteoUltimaMilla
 
             return resultado;
         }
+
 
         public void GuardarHojaRuta(HojaRuta hojaRuta)
         {

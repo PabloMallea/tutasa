@@ -140,6 +140,17 @@ namespace tutasa.RuteoTransporte
 
                 return;
             }
+            if (cuit.Length > 11)
+            {
+                MessageBox.Show(
+                    "El CUIT del cliente no puede superar los 11 dígitos.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
 
             List<FormRuteoTransporteModelo.Guia>guiasEncontradas =modelo.BuscarGuias(cuit,localidad,dimension);
 
