@@ -67,5 +67,42 @@
         "MontoPago": 27890.00
       }
     ]
+  },
+  {
+    "CuitCliente": 30999999999,
+    "Nombre": "Esteban",
+    "Apellido": "Quito",
+    "Telefono": "1122334455",
+    "IdLocalidad": 100,
+    "Calle": "Av. Corrientes",
+    "Altura": "3000",
+    "Movimientos": [
+      {
+        "NumeroFactura": 1005,
+        "Fecha": "2026-07-15T10:00:00",
+        "MontoPago": 15000.00
+      },
+      {
+        "NumeroFactura": 1006,
+        "Fecha": "2026-07-20T14:30:00",
+        "MontoPago": 8500.50
+      }
+    ]
+  },
+  {
+    "CuitCliente": 30888888888,
+    "Nombre": "Marta",
+    "Apellido": "Minujin",
+    "Telefono": "1144556677",
+    "IdLocalidad": 300,
+    "Calle": "San Martin",
+    "Altura": "150",
+    "Movimientos": [
+      {
+        "NumeroFactura": 1007,
+        "Fecha": "2026-07-22T09:15:00",
+        "MontoPago": 42300.75
+      }
+    ]
   }
 ]

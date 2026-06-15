@@ -236,15 +236,14 @@ namespace tutasa.ImposicionCallCenter
 
             // 6. HISTORIAL: Agregamos el primer movimiento (Nacimiento de la guía)
 
-            // NUEVO: Buscar el nombre real del CD de Origen
-            var cdOrigen = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == tutasa.Program.IdCDActual);
-            string nombreUbicacion = cdOrigen != null ? cdOrigen.NombreCD : "Imposición Call Center";
+            // 6. HISTORIAL: Agregamos el primer movimiento (Nacimiento de la guía)
 
+            // Como la guía nace por un pedido telefónico del cliente, la ubicación física real del paquete en este instante es su domicilio.
             nuevaGuia.Historial.Add(new MovimientoEstadoDto
             {
                 Estado = EstadoGuiaEnum.Impuesta,
                 FechaHora = DateTime.Now,
-                Ubicacion = nombreUbicacion // Ahora dirá "CD Buenos Aires", etc.
+                Ubicacion = "Domicilio del Cliente"
             });
 
             // 7. EL IMPACTO EN LA MEMORIA RAM

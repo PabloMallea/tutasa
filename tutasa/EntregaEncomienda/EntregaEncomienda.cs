@@ -1,15 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace tutasa.EntregaEncomienda
 {
     public partial class EntregaEncomienda : Form
     {
-        // Instancia del modelo
-        private EntregaEncomiendaModelo modelo =
-            new EntregaEncomiendaModelo();
+        // Instancia del modelo (El Cerebro)
+        private EntregaEncomiendaModelo modelo = new EntregaEncomiendaModelo();
 
-        // NO se toca!! Clara 
         public EntregaEncomienda()
         {
             InitializeComponent();
@@ -17,46 +16,42 @@ namespace tutasa.EntregaEncomienda
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            // Obtener Nº Guía ingresado
-            string nroGuia = txtNumeroGuia.Text.Trim();
+            // 1. CAPA VISUAL: Recolección y limpieza
+            string nroGuiaTexto = txtNumeroGuia.Text.Trim();
 
-            // Validar que se haya ingresado Nº Guía
-            if (string.IsNullOrEmpty(nroGuia))
+            // 2. CAPA VISUAL: Validación de nulos o vacíos
+            if (string.IsNullOrWhiteSpace(nroGuiaTexto))
             {
-                MessageBox.Show(
-                    "El campo Nº Guía debe ser completado.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show("El campo Nº Guía debe ser completado.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Buscar guía en el modelo (solo devuelve si está en estado "Admitida")
-            Guia guia = modelo.BuscarGuia(nroGuia);
+            // 3. CAPA VISUAL: Validación estricta de formato (solo números)
+            if (!nroGuiaTexto.All(char.IsDigit))
+            {
+                MessageBox.Show("El Nº Guía debe contener únicamente números.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Validar existencia y estado de la guía
+            // 4. CAPA VISUAL: Conversión a tipo de dato fuerte (int)
+            int numeroGuiaValidado = int.Parse(nroGuiaTexto);
+
+            // 5. DELEGACIÓN AL MODELO: Le pasamos el int limpio
+            Guia guia = modelo.BuscarGuia(numeroGuiaValidado);
+
+            // Verificamos la respuesta de las reglas de negocio
             if (guia == null)
             {
-                MessageBox.Show(
-                    "El Nº Guía ingresado no corresponde a una guía registrada o no se encuentra en estado Admitida.",
-                    "Búsqueda",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                txtNumeroGuia.Clear();
-
+                MessageBox.Show("El Nº Guía ingresado no corresponde a una guía registrada o no está habilitada para ser entregada.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
                 return;
             }
 
-            // Limpiar ListView antes de cargar
+            // 6. CARGA DE UI: Limpiamos y llenamos la lista
             lvDetalle.Items.Clear();
-
-            // Cargar datos de la guía en el ListView
             ListViewItem item = new ListViewItem(guia.Cliente);
 
+            // Guardamos el objeto original en el bolsillo secreto
             item.Tag = guia;
 
             item.SubItems.Add(guia.Destinatario);
@@ -67,46 +62,42 @@ namespace tutasa.EntregaEncomienda
 
         private void btnConfirmarEntrega_Click(object sender, EventArgs e)
         {
-            // Validar que haya una guía cargada en el ListView
-            if (lvDetalle.Items.Count == 0)
+            // Validamos que exista una fila seleccionable y que tenga el objeto secreto
+            if (lvDetalle.Items.Count == 0 || lvDetalle.Items[0].Tag == null)
             {
-                MessageBox.Show(
-                    "Todos los campos obligatorios deben ser completados.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show("Debe buscar y visualizar una guía válida antes de confirmar la entrega.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Recuperar la guía desde el Tag del item
+            // Recuperamos la guía respetando tu clase original (que tiene el NroGuia como string)
             Guia guia = (Guia)lvDetalle.Items[0].Tag;
 
-            // Actualizar estado de la guía a "Entregada"
-            modelo.ActualizarEstado(guia.NroGuia);
+            try
+            {
+                // Convertimos el string a int para mandárselo al cerebro
+                int numeroAActualizar = int.Parse(guia.NroGuia);
 
-            MessageBox.Show(
-                "Entrega registrada correctamente  y se actualizo el estado a Entregada.",
-                "Confirmación",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+                // El modelo actualiza, guarda el historial y nos devuelve en qué sucursal se hizo la entrega
+                string ubicacionEntrega = modelo.ActualizarEstado(numeroAActualizar);
 
-            // Limpiar formulario
-            LimpiarFormulario();
+                // Mostramos el mensaje dinámico
+                MessageBox.Show($"Entrega registrada correctamente en {ubicacionEntrega} y se actualizó el estado a Entregada.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LimpiarFormulario();
+            }
+            catch (Exception ex)
+            {
+                // El escudo protector contra reglas de negocio rotas o caídas de base de datos
+                MessageBox.Show(ex.Message, "Error de Regla de Negocio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            // Descartar entrega y volver al menú principal
             LimpiarFormulario();
-
-            // Cerrar o navegar al menú principal según la arquitectura del sistema
-            this.Close();
+            // this.Close(); 
         }
 
-        // Limpia todos los campos del formulario
         private void LimpiarFormulario()
         {
             txtNumeroGuia.Clear();
@@ -115,7 +106,6 @@ namespace tutasa.EntregaEncomienda
 
         private void lvDetalle_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
