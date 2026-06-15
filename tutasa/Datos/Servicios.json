@@ -58,6 +58,26 @@
     "FechaLlegada": "2026-06-09T11:00:00",
     "IdCDOrigen": 1,
     "IdCDDestino": 4
+  },
+  {
+    "IdServicio": 7,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - Mendoza Noche",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-07-15T21:00:00",
+    "FechaLlegada": "2026-07-16T08:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 4
+  },
+  {
+    "IdServicio": 8,
+    "IdEmpresa": 11,
+    "NombreServicio": "Buenos Aires - Cordoba Refuerzo",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-07-15T22:00:00",
+    "FechaLlegada": "2026-07-16T07:30:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 3
   }
 ]
 

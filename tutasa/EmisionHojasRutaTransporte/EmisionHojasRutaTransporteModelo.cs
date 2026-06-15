@@ -5,130 +5,58 @@ using tutasa.Almacenes;
 
 namespace tutasa.EmisionHojasRutaTransporte
 {
-    internal class EmisionHojasRutaTransporteModelo
+    internal partial class EmisionHojasRutaTransporteModelo
     {
-        // =====================================
-        // EMPRESA
-        // =====================================
-
-        public class EmpresaTransporte
-        {
-            public int IdEmpresa { get; set; }
-
-            public string Nombre { get; set; }
-        }
-
-
-        public class ServicioTransporte
-        {
-            public int IdServicio { get; set; }
-
-            public string Nombre { get; set; }
-
-            public int IdEmpresa { get; set; }
-        }
-
-
-        public class Guia
-        {
-            public int Numero { get; set; }
-
-            public string Cliente { get; set; }
-
-            public string Direccion { get; set; }
-
-
-            public string Dimension { get; set; }
-
-            public string Estado { get; set; }
-        }
-
-
-
-
-        public class HojaRutaTransporte
-        {
-            public int NumeroHDR { get; set; }
-
-            public int IdServicio { get; set; }
-
-            public string Empresa { get; set; }
-
-            public string Servicio { get; set; }
-
-            public string Estado { get; set; }
-
-            public List<int> Guias { get; set; } =new List<int>();
-        }
 
 
         public List<EmpresaTransporte> ObtenerEmpresas()
         {
-            List<EmpresaTransporte> resultado =
-                new List<EmpresaTransporte>();
+            List<EmpresaTransporte> resultado = new List<EmpresaTransporte>();
 
-            foreach (
-                tutasa.Almacenes.EmpresaTransporteEntidad empresaEntidad
-                in EmpresaTransporteAlmacen.empresas)
+            foreach (tutasa.Almacenes.EmpresaTransporteEntidad empresaEntidad in EmpresaTransporteAlmacen.empresas)
             {
-                EmpresaTransporte empresa =
-                    new EmpresaTransporte();
+                EmpresaTransporte empresa = new EmpresaTransporte();
 
-                empresa.IdEmpresa =
-                    empresaEntidad.IdEmpresa;
+                empresa.IdEmpresa = empresaEntidad.IdEmpresa;
 
-                empresa.Nombre =
-                    empresaEntidad.NombreEmpresa;
+                empresa.Nombre = empresaEntidad.NombreEmpresa;
 
-                resultado.Add(
-                    empresa);
+                resultado.Add(empresa);
             }
 
             return resultado;
         }
 
-        public List<ServicioTransporte> ObtenerServicios(
-    int idEmpresa)
+        public List<ServicioTransporte> ObtenerServicios(int idEmpresa)
         {
-            List<ServicioTransporte> resultado =
-                new List<ServicioTransporte>();
+            List<ServicioTransporte> resultado = new List<ServicioTransporte>();
 
-            foreach (
-                ServicioEntidad servicioEntidad
-                in ServiciosAlmacen.servicio)
+            foreach (ServicioEntidad servicioEntidad in ServiciosAlmacen.servicio)
             {
-                if (servicioEntidad.IdEmpresa
-                    != idEmpresa)
+                if (servicioEntidad.IdEmpresa != idEmpresa)
                 {
                     continue;
                 }
 
-                if (servicioEntidad.IdCDOrigen
-                    != Program.IdCDActual)
+                if (servicioEntidad.IdCDOrigen!= Program.IdCDActual)
                 {
                     continue;
                 }
 
-                if (servicioEntidad.EstadoServicio
-                    != EstadoServicioEnum.ConAsignacion)
+                if (servicioEntidad.EstadoServicio!= EstadoServicioEnum.ConAsignacion)
                 {
                     continue;
                 }
 
-                ServicioTransporte servicio =
-                    new ServicioTransporte();
+                ServicioTransporte servicio = new ServicioTransporte();
 
-                servicio.IdServicio =
-                    servicioEntidad.IdServicio;
+                servicio.IdServicio = servicioEntidad.IdServicio;
 
-                servicio.Nombre =
-                    servicioEntidad.NombreServicio;
+                servicio.Nombre = servicioEntidad.NombreServicio;
 
-                servicio.IdEmpresa =
-                    servicioEntidad.IdEmpresa;
+                servicio.IdEmpresa = servicioEntidad.IdEmpresa;
 
-                resultado.Add(
-                    servicio);
+                resultado.Add(servicio);
             }
 
             return resultado;
@@ -137,106 +65,71 @@ namespace tutasa.EmisionHojasRutaTransporte
 
 
         public List<HojaRutaTransporte>
-    BuscarHDRPendientes(
-        int idEmpresa,
-        int idServicio)
+    BuscarHDRPendientes(int idEmpresa,int idServicio)
         {
-            List<HojaRutaTransporte> resultado =
-                new List<HojaRutaTransporte>();
+            List<HojaRutaTransporte> resultado = new List<HojaRutaTransporte>();
 
-            foreach (
-                HojaRutaDeTransporteEntidad hdrEntidad
-                in HojasDeRutaTransporteAlmacen
-                .HojasDeRutaTransporte)
+            foreach (HojaRutaDeTransporteEntidad hdrEntidad in HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte)
             {
-                if (hdrEntidad.EstadoHDR
-                    != EstadoHDRTransporteEnum.Asignada)
+                if (hdrEntidad.EstadoHDR!= EstadoHDRTransporteEnum.Asignada)
                 {
                     continue;
                 }
 
-                ServicioEntidad servicioEntidad =
-                    ServiciosAlmacen.servicio
-                    .FirstOrDefault(
-                        s => s.IdServicio
-                        == hdrEntidad.IdServicio);
+                ServicioEntidad servicioEntidad = ServiciosAlmacen.servicio.FirstOrDefault(s => s.IdServicio== hdrEntidad.IdServicio);
 
                 if (servicioEntidad == null)
                 {
                     continue;
                 }
 
-                if (servicioEntidad.IdServicio
-                    != idServicio)
+                if (servicioEntidad.IdServicio!= idServicio)
                 {
                     continue;
                 }
 
-                if (servicioEntidad.IdEmpresa
-                    != idEmpresa)
+                if (servicioEntidad.IdEmpresa!= idEmpresa)
                 {
                     continue;
                 }
 
-                if (servicioEntidad.EstadoServicio
-                    != EstadoServicioEnum.ConAsignacion)
+                if (servicioEntidad.EstadoServicio!= EstadoServicioEnum.ConAsignacion)
                 {
                     continue;
                 }
 
-                if (servicioEntidad.IdCDOrigen
-                    != Program.IdCDActual)
+                if (servicioEntidad.IdCDOrigen!= Program.IdCDActual)
                 {
                     continue;
                 }
 
-                tutasa.Almacenes.EmpresaTransporteEntidad empresaEntidad =
-                    EmpresaTransporteAlmacen.empresas
-                    .FirstOrDefault(
-                        e => e.IdEmpresa
-                        == servicioEntidad.IdEmpresa);
+                tutasa.Almacenes.EmpresaTransporteEntidad empresaEntidad =EmpresaTransporteAlmacen.empresas.FirstOrDefault(e => e.IdEmpresa == servicioEntidad.IdEmpresa);
 
-                HojaRutaTransporte hdr =
-                    new HojaRutaTransporte();
+                HojaRutaTransporte hdr =new HojaRutaTransporte();
 
-                hdr.NumeroHDR =
-                    hdrEntidad.NumeroHDRTransporte;
+                hdr.NumeroHDR = hdrEntidad.NumeroHDRTransporte;
 
-                hdr.IdServicio =
-                    hdrEntidad.IdServicio;
+                hdr.IdServicio = hdrEntidad.IdServicio;
 
-                hdr.Empresa =
-                    empresaEntidad.NombreEmpresa;
+                hdr.Empresa = empresaEntidad.NombreEmpresa;
 
-                hdr.Servicio =
-                    servicioEntidad.NombreServicio;
+                hdr.Servicio = servicioEntidad.NombreServicio;
 
-                hdr.Estado =
-                    hdrEntidad.EstadoHDR
-                    .ToString();
+                hdr.Estado = hdrEntidad.EstadoHDR.ToString();
 
-                hdr.Guias =
-                    hdrEntidad.Guias;
+                hdr.Guias = hdrEntidad.Guias;
 
-                resultado.Add(
-                    hdr);
+                resultado.Add(hdr);
             }
 
             return resultado;
         }
 
-        public List<Guia> ObtenerGuiasHDR(
-    int numeroHDR)
+        public List<Guia> ObtenerGuiasHDR(int numeroHDR)
         {
-            List<Guia> resultado =
-                new List<Guia>();
+            List<Guia> resultado = new List<Guia>();
 
-            HojaRutaDeTransporteEntidad hdr =
-                HojasDeRutaTransporteAlmacen
-                .HojasDeRutaTransporte
-                .FirstOrDefault(
-                    h => h.NumeroHDRTransporte
-                    == numeroHDR);
+            HojaRutaDeTransporteEntidad hdr = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.FirstOrDefault( h => h.NumeroHDRTransporte == numeroHDR);
 
             if (hdr == null)
             {
@@ -245,140 +138,91 @@ namespace tutasa.EmisionHojasRutaTransporte
 
             foreach (int numeroGuia in hdr.Guias)
             {
-                GuiaEntidad guiaEntidad =
-                    GuiaAlmacen.guias
-                    .FirstOrDefault(
-                        g => g.NumeroGuia
-                        == numeroGuia);
+                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
 
                 if (guiaEntidad == null)
                 {
                     continue;
                 }
 
-                Guia guia =
-                    new Guia();
+                Guia guia = new Guia();
 
-                guia.Numero =
-                    guiaEntidad.NumeroGuia;
+                guia.Numero = guiaEntidad.NumeroGuia;
 
-                guia.Cliente =
-                    guiaEntidad.CuitCliente
-                    .ToString();
+                guia.Cliente = guiaEntidad.CuitCliente.ToString();
 
-                guia.Direccion =
-                    guiaEntidad.CalleDestino
-                    + " "
-                    + guiaEntidad.AlturaDestino;
+                guia.Direccion =guiaEntidad.CalleDestino + " " + guiaEntidad.AlturaDestino;
 
-                guia.Dimension =
-                    guiaEntidad.Dimension
-                    .ToString();
+                guia.Dimension = guiaEntidad.Dimension.ToString();
 
-                guia.Estado =
-                    guiaEntidad.EstadoActual
-                    .ToString();
+                guia.Estado = guiaEntidad.EstadoActual.ToString();
 
-                resultado.Add(
-                    guia);
+                resultado.Add(guia);
             }
 
             return resultado;
         }
 
-        public void EmitirHDR(
-    int numeroHDR)
+        public void EmitirHDR(int numeroHDR)
         {
-            HojaRutaDeTransporteEntidad hdr =
-                HojasDeRutaTransporteAlmacen
-                .HojasDeRutaTransporte
-                .FirstOrDefault(
-                    h => h.NumeroHDRTransporte
-                    == numeroHDR);
+            HojaRutaDeTransporteEntidad hdr =HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.FirstOrDefault
+                (h => h.NumeroHDRTransporte == numeroHDR);
 
             if (hdr == null)
             {
                 return;
             }
 
-            hdr.EstadoHDR =
-                EstadoHDRTransporteEnum.Emitida;
+            hdr.EstadoHDR =EstadoHDRTransporteEnum.Emitida;
 
-            ServicioEntidad servicio =
-                ServiciosAlmacen.servicio
-                .FirstOrDefault(
-                    s => s.IdServicio
-                    == hdr.IdServicio);
+            ServicioEntidad servicio = ServiciosAlmacen.servicio.FirstOrDefault(s => s.IdServicio== hdr.IdServicio);
 
             if (servicio != null)
             {
-                servicio.EstadoServicio =
-                    EstadoServicioEnum.EnRecorrido;
+                servicio.EstadoServicio = EstadoServicioEnum.EnRecorrido;
             }
 
-            HojasDeRutaTransporteAlmacen.Guardar();
+           // HojasDeRutaTransporteAlmacen.Guardar();
 
-            ServiciosAlmacen.Guardar();
+            //ServiciosAlmacen.Guardar();
         }
 
-        public void ActualizarEstadoGuias(
-    int numeroHDR)
+        public void ActualizarEstadoGuias(int numeroHDR)
         {
-            HojaRutaDeTransporteEntidad hdr =
-                HojasDeRutaTransporteAlmacen
-                .HojasDeRutaTransporte
-                .FirstOrDefault(
-                    h => h.NumeroHDRTransporte
-                    == numeroHDR);
+            HojaRutaDeTransporteEntidad hdr = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.FirstOrDefault
+                ( h => h.NumeroHDRTransporte == numeroHDR);
 
             if (hdr == null)
             {
                 return;
             }
 
-            CentroDistribucion cdActual =
-                CentroDistribucionAlmacen
-                .CentrosDistribucion
-                .FirstOrDefault(
-                    cd => cd.IdCD
-                    == Program.IdCDActual);
+            CentroDistribucion cdActual =CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD == Program.IdCDActual);
 
-            string ubicacion =
-                cdActual != null
-                ? cdActual.NombreCD
-                : "Desconocido";
+            string ubicacion =cdActual != null? cdActual.NombreCD: "Desconocido";
 
             foreach (int numeroGuia in hdr.Guias)
             {
-                GuiaEntidad guia =
-                    GuiaAlmacen.guias
-                    .FirstOrDefault(
-                        g => g.NumeroGuia
-                        == numeroGuia);
+                GuiaEntidad guia =GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
 
                 if (guia == null)
                 {
                     continue;
                 }
 
-                guia.EstadoActual =
-                    EstadoGuiaEnum.EnTransporte;
+                guia.EstadoActual = EstadoGuiaEnum.EnTransporte;
 
-                guia.Historial.Add(
-                    new MovimientoEstadoDto
+                guia.Historial.Add(new MovimientoEstadoDto
                     {
-                        FechaHora =
-                            DateTime.Now,
+                        FechaHora = DateTime.Now,
 
-                        Estado =
-                            EstadoGuiaEnum.EnTransporte,
+                        Estado =EstadoGuiaEnum.EnTransporte,
 
-                        Ubicacion =
-                            ubicacion
+                        Ubicacion = ubicacion
                     });
             }
 
-            GuiaAlmacen.Guardar();
+            //GuiaAlmacen.Guardar();
         }
 
 
