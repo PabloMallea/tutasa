@@ -52,6 +52,8 @@ namespace tutasa.Imposicion_CD
             LabelNombre.Text = cliente.Nombre;
             LabelApellido.Text = cliente.Apellido;
             LabelTelefono.Text = cliente.Telefono;
+            // Guardamos el CUIT validado en el bolsillo secreto del TextBox
+            TxtCuit.Tag = cuit;
         }
 
         private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
@@ -251,14 +253,16 @@ namespace tutasa.Imposicion_CD
 
             // --- 2. CREACIÓN Y GUARDADO ---
 
-            ImposicionCDModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
-
-            // PARCHE DE SEGURIDAD: Evita que confirmen si alteraron el CUIT después de buscarlo
-            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            // --- PARCHE DE SEGURIDAD DEFINITIVO: Validación por llave primaria ---
+            // Verificamos si nunca se buscó (Tag nulo) o si el texto actual es distinto al que se validó
+            if (TxtCuit.Tag == null || TxtCuit.Text.Trim() != TxtCuit.Tag.ToString())
             {
-                MessageBox.Show("El CUIT actual no coincide con el cliente buscado. Vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El CUIT fue alterado o no ha sido validado. Por favor, presione el botón Buscar Cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Si llegamos acá, es 100% seguro que el CUIT en pantalla es el que se buscó
+            var cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
             // PARCHE DE SEGURIDAD 2: Verifica que la Localidad exista y que el destino coincida con ella
             string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
@@ -317,6 +321,7 @@ namespace tutasa.Imposicion_CD
 
                 // --- 3. LIMPIEZA DE PANTALLA ---
                 TxtCuit.Clear();
+                TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
                 TextLocalidad.Clear();
                 TextCalle.Clear();
                 TextAltura.Clear();
@@ -370,6 +375,7 @@ namespace tutasa.Imposicion_CD
         private void ButtonCancelar_Click_1(object sender, EventArgs e)
         {
             TxtCuit.Clear();
+            TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
             TextLocalidad.Clear();
             TextCalle.Clear();
             TextAltura.Clear();
