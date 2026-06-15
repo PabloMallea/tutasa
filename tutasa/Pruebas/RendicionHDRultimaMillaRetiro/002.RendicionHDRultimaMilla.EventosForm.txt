@@ -1,0 +1,45 @@
+Plan de Prueba: 002.RendicionHDRUltimaMilla.EventosForm.txt
+
+(Empieza con el menú principal y la pantalla de Rendición HDR de Retiro/Entrega abierta)
+
+1- Desplegable Fletero           "Carlos Mendoza"
+
+2- Desplegable Tipo              "Retiro"
+
+3- Botón                         "Buscar"
+
+4- Verificación                  "Se carga la grilla superior 'HDR Emitidas' con los resultados correspondientes"
+
+5- Fila HDR Emitidas             "Seleccionar un registro (Ej: N° HDR 2)"
+
+6- Botón                         "Agregar selección Cumplidas"
+
+7- Verificación                  "El registro desaparece de 'HDR Emitidas' y se mueve a la tabla 'HDR Rendidas' con la columna 'Cumplida' tildada (o en 'Sí'/'True')"
+
+8- Fila HDR Emitidas             "Seleccionar otro registro (Ej: N° HDR 4)"
+
+9- Botón                         "Agregar selección No Cumplidas"
+
+10- Verificación                 "El registro se mueve a la tabla 'HDR Rendidas' con la columna 'Cumplida' destildada (o en 'No'/'False')"
+
+11- Botón                        "Quitar Todo"
+
+12- Verificación                 "Todos los registros desaparecen de la tabla 'HDR Rendidas' y vuelven a la tabla 'HDR Emitidas'"
+
+13- Fila HDR Emitidas            "Seleccionar un registro nuevamente"
+
+14- Botón                        "Agregar selección Cumplidas"
+
+15- Fila HDR Rendidas            "Seleccionar el registro movido previamente"
+
+16- Botón                        "Quitar selección"
+
+17- Verificación                 "El registro vuelve a la tabla superior 'HDR Emitidas' y la tabla inferior queda vacía"
+
+18- Botón                        "Limpiar Campos"
+
+19- Verificación                 "Se vacían los desplegables Fletero y Tipo, y se vacían ambas grillas ('HDR Emitidas' y 'HDR Rendidas')"
+
+20- Botón                        "Cancelar"
+
+21- Verificación                 "Se limpian todos los campos, se descarta la operación y el sistema vuelve al menú principal"

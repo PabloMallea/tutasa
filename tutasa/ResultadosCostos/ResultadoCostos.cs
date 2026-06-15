@@ -219,6 +219,16 @@ namespace tutasa.ResultadosCostos
 
             this.Close();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ResultadoCostos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
