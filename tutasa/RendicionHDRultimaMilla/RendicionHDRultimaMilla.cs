@@ -17,11 +17,11 @@ namespace tutasa.RendicionHDRultimaMilla
         {
             int IdCdActual = modelo.IdCdActual;
 
-            List<RendicionHDRultimaMillaModelo.Fletero> fleteros =modelo.ObtenerFleteros(IdCdActual);
+            List<string> fleteros = modelo.ObtenerFleteros(IdCdActual);
 
-            foreach (RendicionHDRultimaMillaModelo.Fletero fletero in fleteros)
+            foreach (string fletero in fleteros)
             {
-                cbox_fletero.Items.Add(fletero.Nombre);
+                cbox_fletero.Items.Add(fletero);
             }
 
             List<string> tipos = modelo.ObtenerTiposHDR();

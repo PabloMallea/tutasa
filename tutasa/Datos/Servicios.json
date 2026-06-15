@@ -78,6 +78,126 @@
     "FechaLlegada": "2026-07-16T07:30:00",
     "IdCDOrigen": 1,
     "IdCDDestino": 3
+  },
+  {
+    "IdServicio": 9,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - La Plata",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-07-25T21:00:00",
+    "FechaLlegada": "2026-07-26T00:30:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 5
+  },
+  {
+    "IdServicio": 10,
+    "IdEmpresa": 11,
+    "NombreServicio": "Buenos Aires - San Rafael",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-07-25T22:00:00",
+    "FechaLlegada": "2026-07-26T08:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 6
+  },
+  {
+    "IdServicio": 11,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - Mendoza Refuerzo",
+    "EstadoServicio": "Pendiente",
+    "FechaSalida": "2026-07-27T21:00:00",
+    "FechaLlegada": "2026-07-28T08:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 4
+  },
+  {
+    "IdServicio": 12,
+    "IdEmpresa": 11,
+    "NombreServicio": "Rosario - Mendoza",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-07-27T22:00:00",
+    "FechaLlegada": "2026-07-28T09:00:00",
+    "IdCDOrigen": 2,
+    "IdCDDestino": 4
+  },
+  {
+    "IdServicio": 13,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - Rosario Refuerzo",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-01T20:00:00",
+    "FechaLlegada": "2026-08-02T05:30:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 2
+  },
+  {
+    "IdServicio": 14,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - Cordoba Noche",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-01T22:00:00",
+    "FechaLlegada": "2026-08-02T08:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 3
+  },
+  {
+    "IdServicio": 15,
+    "IdEmpresa": 11,
+    "NombreServicio": "Buenos Aires - Mendoza Express",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-02T21:00:00",
+    "FechaLlegada": "2026-08-03T07:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 4
+  },
+  {
+    "IdServicio": 16,
+    "IdEmpresa": 11,
+    "NombreServicio": "Buenos Aires - La Plata Directo",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-02T18:00:00",
+    "FechaLlegada": "2026-08-02T21:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 5
+  },
+  {
+    "IdServicio": 17,
+    "IdEmpresa": 10,
+    "NombreServicio": "Buenos Aires - San Rafael",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-03T20:00:00",
+    "FechaLlegada": "2026-08-04T08:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 6
+  },
+  {
+    "IdServicio": 18,
+    "IdEmpresa": 13,
+    "NombreServicio": "Buenos Aires - Rosario Premium",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-06T21:00:00",
+    "FechaLlegada": "2026-08-07T06:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 2
+  },
+  {
+    "IdServicio": 19,
+    "IdEmpresa": 13,
+    "NombreServicio": "Buenos Aires - Mendoza Premium",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-06T22:00:00",
+    "FechaLlegada": "2026-08-07T09:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 4
+  },
+  {
+    "IdServicio": 20,
+    "IdEmpresa": 13,
+    "NombreServicio": "Buenos Aires - La Plata Premium",
+    "EstadoServicio": "ConAsignacion",
+    "FechaSalida": "2026-08-07T18:00:00",
+    "FechaLlegada": "2026-08-07T21:00:00",
+    "IdCDOrigen": 1,
+    "IdCDDestino": 5
   }
 ]
 

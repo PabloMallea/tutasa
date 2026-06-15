@@ -13,5 +13,13 @@
     "IdEmpresa": 12,
     "NombreEmpresa": "Carga Federal Argentina",
     "TarifaMensual": 980000.00
+  },
+  {
+    "IdEmpresa": 13,
+    "NombreEmpresa": "Transporte Federal"
+  },
+  {
+    "IdEmpresa": 14,
+    "NombreEmpresa": "Logistica Patagonia"
   }
 ]

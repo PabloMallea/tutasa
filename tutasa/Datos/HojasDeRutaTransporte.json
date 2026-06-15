@@ -62,7 +62,8 @@
     "IdServicio": 7,
     "EstadoHDR": "Asignada",
     "Guias": [
-      100019
+      100019,
+      100025
     ]
   },
   {
@@ -72,6 +73,122 @@
     "Guias": [
       100020,
       100021
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 10,
+    "IdServicio": 9,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100025,
+      100026,
+      100028
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 11,
+    "IdServicio": 10,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100027,
+      100017,
+      100018
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 12,
+    "IdServicio": 7,
+    "EstadoHDR": "Emitida",
+    "Guias": [
+      100015,
+      100014,
+      100003
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 13,
+    "IdServicio": 10,
+    "EstadoHDR": "Rendida",
+    "Guias": [
+      100022,
+      100023
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 14,
+    "IdServicio": 13,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100008,
+      100025,
+      100026
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 15,
+    "IdServicio": 14,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100005,
+      100028
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 16,
+    "IdServicio": 15,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100017,
+      100018,
+      100019
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 17,
+    "IdServicio": 16,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100025,
+      100026
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 18,
+    "IdServicio": 17,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100027,
+      100003
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 19,
+    "IdServicio": 18,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100008,
+      100006,
+      100010
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 20,
+    "IdServicio": 19,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100017,
+      100018,
+      100019
+    ]
+  },
+  {
+    "NumeroHDRTransporte": 21,
+    "IdServicio": 20,
+    "EstadoHDR": "Asignada",
+    "Guias": [
+      100025,
+      100026,
+      100028
     ]
   }
 ]

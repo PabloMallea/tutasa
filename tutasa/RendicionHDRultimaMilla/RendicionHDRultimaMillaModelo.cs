@@ -13,26 +13,19 @@ namespace tutasa.RendicionHDRultimaMilla
     {
         public int IdCdActual = Program.IdCDActual;
 
-        public List<Fletero> ObtenerFleteros(int idCdActual)
+        public List<string> ObtenerFleteros(int IdCdActual)
         {
-            List<Fletero> resultado = new List<Fletero>();
+            List<string> fleteros = new List<string>();
 
-            foreach (tutasa.Almacenes.Fletero fleteroEntidad in FleteroAlmacen.fleteros)
+            foreach (Fletero fletero in FleteroAlmacen.fleteros)
             {
-                if (fleteroEntidad.IdCD != idCdActual)
+                if (fletero.IdCD == IdCdActual)
                 {
-                    continue;
+                    fleteros.Add(fletero.Nombre);
                 }
 
-                resultado.Add(new Fletero
-                    {
-                        IdFletero = fleteroEntidad.IdFletero,
-
-                        Nombre = fleteroEntidad.Nombre
-                    });
             }
-
-            return resultado;
+            return fleteros;
         }
 
         public List<string> ObtenerTiposHDR()
@@ -51,7 +44,7 @@ namespace tutasa.RendicionHDRultimaMilla
         {
             List<HDRultimaMilla> hdrUltimaMillaList = new();
 
-            tutasa.Almacenes.Fletero fletero =FleteroAlmacen.fleteros.Find(f => f.Nombre == fleteroSeleccionado);
+            Fletero fletero = FleteroAlmacen.fleteros.Find(f => f.Nombre == fleteroSeleccionado);
 
             if (fletero == null)
             {
@@ -139,7 +132,7 @@ namespace tutasa.RendicionHDRultimaMilla
                         {
                             FechaHora = DateTime.Now,
                             Estado = guiaAlmacen.EstadoActual,
-                            Ubicacion = ObtenerCDActual(Program.IdCDActual)
+                            Ubicacion = ObtenerCDActual(IdCdActual)
                         });
                     }
                 }
@@ -157,7 +150,7 @@ namespace tutasa.RendicionHDRultimaMilla
     }
 }
 
- 
+
 
 /*
 public List<string> tipos = new List<string> { "Retiro", "Distribución" };
