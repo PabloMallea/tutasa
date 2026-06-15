@@ -12,7 +12,9 @@ namespace tutasa.Imposicion_CD
         // ----------------------------------------------------------------------
         public Cliente BuscarCliente(string cuit)
         {
-            long cuitNumerico = long.Parse(cuit);
+            // EL FIX: Usamos TryParse para que no explote si le mandan vacío o letras
+            if (!long.TryParse(cuit, out long cuitNumerico)) return null;
+
             var clienteDelJson = ClientesAlmacen.clientes.Find(c => c.CuitCliente == cuitNumerico);
             if (clienteDelJson == null) return null;
 
@@ -80,9 +82,9 @@ namespace tutasa.Imposicion_CD
         // ----------------------------------------------------------------------
         // 3. NÚCLEO DEL MODELO: GUARDADO Y GENERACIÓN
         // ----------------------------------------------------------------------
-        public void GuardarGuia(Guia guiaLocal)
+        public int GuardarGuia(Guia guiaLocal)
         {
-            GuiaEntidad nuevaGuia = new GuiaEntidad();
+            tutasa.Almacenes.GuiaEntidad nuevaGuia = new tutasa.Almacenes.GuiaEntidad();
 
             // 1. Autoincremental
             int ultimoNumero = GuiaAlmacen.guias.Count > 0 ? GuiaAlmacen.guias.Max(g => g.NumeroGuia) : 0;
@@ -168,7 +170,10 @@ namespace tutasa.Imposicion_CD
             });
 
             // 7. Impacto en Memoria
-            GuiaAlmacen.guias.Add(nuevaGuia);
+            tutasa.Almacenes.GuiaAlmacen.guias.Add(nuevaGuia);
+
+            // Retornamos el número que acabamos de crear hacia el formulario
+            return nuevaGuia.NumeroGuia;
         }
 
         // ----------------------------------------------------------------------

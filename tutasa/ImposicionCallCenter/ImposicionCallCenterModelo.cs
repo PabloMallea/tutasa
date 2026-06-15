@@ -106,7 +106,7 @@ namespace tutasa.ImposicionCallCenter
         }
 
         // Guardar Guia generada
-        public void GuardarGuia(Guia guiaLocal)
+        public int GuardarGuia(Guia guiaLocal)
         {
             // 1. Instanciamos la entidad oficial que va a viajar al JSON
             GuiaEntidad nuevaGuia = new GuiaEntidad();
@@ -115,7 +115,6 @@ namespace tutasa.ImposicionCallCenter
             int ultimoNumero = 0;
             if (tutasa.Almacenes.GuiaAlmacen.guias.Count > 0)
             {
-                // Usamos LINQ para encontrar el número más alto
                 ultimoNumero = tutasa.Almacenes.GuiaAlmacen.guias.Max(g => g.NumeroGuia);
             }
             nuevaGuia.NumeroGuia = ultimoNumero + 1;
@@ -226,6 +225,9 @@ namespace tutasa.ImposicionCallCenter
             // 7. EL IMPACTO EN LA MEMORIA RAM
             // Solo agregamos a la lista. El método .Guardar() lo va a ejecutar Program.cs al final.
             tutasa.Almacenes.GuiaAlmacen.guias.Add(nuevaGuia);
+
+            //Retornamos el número que acabamos de crear hacia el formulario
+            return nuevaGuia.NumeroGuia;
         }
     }
 }

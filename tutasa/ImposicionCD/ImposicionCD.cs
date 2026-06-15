@@ -304,15 +304,16 @@ namespace tutasa.Imposicion_CD
             try
             {
                 // Intentamos guardar. Si falla un cálculo (ej: no hay tarifa en el JSON), salta al catch
-                modelo.GuardarGuia(Guia);
+                // Atrapamos el número que nos devuelve el modelo
+                int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
 
                 // Si pasamos la línea anterior, fue un éxito rotundo
                 MessageBox.Show(
-                    $"Operación exitosa.\n\nEl paquete ha sido impuesto y admitido en el sistema",
-                    "Confirmación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                     $"Operación exitosa.\n\nEl paquete ha sido impuesto y admitido en el sistema.\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
+                     "Confirmación",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information
+                 );
 
                 // --- 3. LIMPIEZA DE PANTALLA ---
                 TxtCuit.Clear();
