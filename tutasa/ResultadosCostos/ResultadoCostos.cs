@@ -216,8 +216,6 @@ namespace tutasa.ResultadosCostos
             txtCostoMensual.Text = "";
             txtMargen.Text = "";
             txtResultado.Text = "";
-
-            this.Close();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
