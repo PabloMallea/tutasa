@@ -1,0 +1,31 @@
+Plan de Prueba: 001.ResultadoCostos.Validaciones.txt
+
+(Empieza con el menú principal y la pantalla Resultado Costos vs. Ventas abierta)
+
+1- Botón                                  "Buscar"
+
+2- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"
+
+3- Botón                                  "Aceptar"
+
+4- Desplegable Empresa de Transporte      "Transporte Ruta Sur"
+
+5- Botón                                  "Buscar"
+
+6- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"
+
+7- Botón                                  "Aceptar"
+
+8- Desplegable Seleccionar Mes            "6"
+
+9- Botón                                  "Buscar"
+
+10- Mensaje                               "Debe completar todos los criterios de búsqueda para continuar"
+
+11- Botón                                 "Aceptar"
+
+Verificaciones
+
+12- La grilla "Detalle de Envíos y Guías" debe mantenerse vacía en todo momento.
+
+13- Los campos del "Resumen de Resultados Mensuales" deben mantenerse vacíos (o en su estado por defecto, ej. $0).

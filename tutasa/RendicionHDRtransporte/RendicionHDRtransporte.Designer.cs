@@ -179,9 +179,9 @@
             LabelEmpresa.AutoSize = true;
             LabelEmpresa.Location = new Point(9, 30);
             LabelEmpresa.Name = "LabelEmpresa";
-            LabelEmpresa.Size = new Size(48, 15);
+            LabelEmpresa.Size = new Size(52, 15);
             LabelEmpresa.TabIndex = 5;
-            LabelEmpresa.Text = "Empesa";
+            LabelEmpresa.Text = "Empresa";
             // 
             // listview_hdr_emitidas
             // 

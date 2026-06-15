@@ -13,13 +13,13 @@ namespace tutasa.RendicionHDRtransporte
             InitializeComponent();
         }
 
-        
+
         private RendicionHDRtransporteModelo modelo = new RendicionHDRtransporteModelo();
-       
+
         private void RendicionHDRtransporte_Load(object sender, EventArgs e)
         {
             // Simulación de usuario logueado
-            
+
             label_cd.Text = modelo.ObtenerCDActual(modelo.IdCdActual);
 
 
