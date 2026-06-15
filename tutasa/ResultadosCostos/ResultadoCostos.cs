@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Linq;
+﻿
 
 namespace tutasa.ResultadosCostos
 {
@@ -116,7 +109,7 @@ namespace tutasa.ResultadosCostos
 
             // BUSCAR GUIAS
 
-            List<ResultadoCostosModelo.Guia> guias = modelo.ObtenerGuias(empresa, mes, anio);
+            List<Guia> guias = modelo.ObtenerGuias(empresa, mes, anio);
 
 
             // LIMPIAR LISTVIEW
@@ -127,13 +120,13 @@ namespace tutasa.ResultadosCostos
             // CARGAR LISTVIEW
 
 
-            foreach (ResultadoCostosModelo.Guia guia in guias)
+            foreach (Guia guia in guias)
             {
                 ListViewItem item =
-                    new ListViewItem(guia.NumeroGuia);
+                    new ListViewItem(guia.NumeroGuia.ToString());
 
                 item.SubItems.Add(
-                    guia.Tamanio);
+                    guia.Dimension);
 
                 item.SubItems.Add(
                     guia.ImporteGuia.ToString("C"));
@@ -225,11 +218,6 @@ namespace tutasa.ResultadosCostos
             txtResultado.Text = "";
 
             this.Close();
-        }
-
-        private void txtVentasMes_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

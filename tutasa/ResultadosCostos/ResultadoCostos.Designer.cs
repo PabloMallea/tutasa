@@ -212,7 +212,7 @@ namespace tutasa.ResultadosCostos
             txtVentasMes.Size = new Size(25, 20);
             txtVentasMes.TabIndex = 20;
             txtVentasMes.Text = "$0";
-            txtVentasMes.Click += txtVentasMes_Click;
+            
             // 
             // label13
             // 
