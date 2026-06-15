@@ -17,8 +17,7 @@ namespace tutasa.RuteoUltimaMilla
         {
             // Obtener fleteros desde el modelo
             List<RuteoUltimaMillaModelo.Fletero>
-                fleteros =
-                    modelo.ObtenerFleteros();
+                fleteros =modelo.ObtenerFleteros();
 
             List<RuteoUltimaMillaModelo.Localidad> localidades = modelo.ObtenerLocalidades();
 
@@ -26,25 +25,41 @@ namespace tutasa.RuteoUltimaMilla
 
             foreach (RuteoUltimaMillaModelo.Localidad localidad in localidades)
             {
-                CmbLocalidad.Items.Add(
-                    localidad.NombreLocalidad);
+                CmbLocalidad.Items.Add(localidad.NombreLocalidad);
             }
 
             // Se lo asignamos al Combobox de asignación de fletero
-            foreach (RuteoUltimaMillaModelo.Fletero fletero in fleteros)
-            {
-                ComboAsignarFletero.Items.Add(fletero.Nombre);
-            }
+            ComboAsignarFletero.DataSource = fleteros;
+
+            ComboAsignarFletero.DisplayMember = "Nombre";
+
+            ComboAsignarFletero.ValueMember = "IdFletero";
+
+            ComboAsignarFletero.SelectedIndex = -1;
         }
 
         private void RbEntrega(object sender, EventArgs e)
         {
+            if (!RBEntrega.Checked)
+            {
+                return;
+            }
 
+            LvSeleccion.Items.Clear();
+
+            LvGuiasDisponibles.Items.Clear();
         }
 
         private void RbRetiro(object sender, EventArgs e)
         {
+            if (!RBRetiro.Checked)
+            {
+                return;
+            }
 
+            LvSeleccion.Items.Clear();
+
+            LvGuiasDisponibles.Items.Clear();
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -324,9 +339,7 @@ namespace tutasa.RuteoUltimaMilla
             }
         }
 
-        private void BtnConfirmar_Click(
-    object sender,
-    EventArgs e)
+        private void BtnConfirmar_Click(object sender,EventArgs e)
         {
             // Validar fletero seleccionado
             if (ComboAsignarFletero.SelectedIndex == -1)
@@ -367,7 +380,7 @@ namespace tutasa.RuteoUltimaMilla
             }
 
             // Obtener fletero
-            string fletero =ComboAsignarFletero.SelectedItem.ToString();
+            RuteoUltimaMillaModelo.Fletero fletero =(RuteoUltimaMillaModelo.Fletero)ComboAsignarFletero.SelectedItem;
 
             // Recuperar todas las guías seleccionadas
 
@@ -405,7 +418,7 @@ namespace tutasa.RuteoUltimaMilla
                     {
                         Numero = proximoNumero,
 
-                        Fletero = fletero,
+                        IdFletero = fletero.IdFletero,
 
                         TipoRuteo = tipoRuteo,
 

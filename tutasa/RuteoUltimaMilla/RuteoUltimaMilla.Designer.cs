@@ -88,6 +88,7 @@
             RBRetiro.TabStop = true;
             RBRetiro.Text = "Retiro de encomiendas";
             RBRetiro.UseVisualStyleBackColor = true;
+            RBRetiro.CheckedChanged += RbRetiro;
             // 
             // RBEntrega
             // 
@@ -100,6 +101,7 @@
             RBEntrega.TabStop = true;
             RBEntrega.Text = "Entrega de encomiendas";
             RBEntrega.UseVisualStyleBackColor = true;
+            RBEntrega.CheckedChanged += RbEntrega;
             // 
             // LvGuiasDisponibles
             // 

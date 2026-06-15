@@ -135,13 +135,9 @@ namespace tutasa.RuteoTransporte
 
             foreach (GuiaEntidad guiaEntidad in GuiaAlmacen.guias)
             {
-                /* if (guiaEntidad.EstadoActual != EstadoGuiaEnum.Admitida)
-                 {
-                     continue;
-                 }*/
+
                 bool mostrarGuia = false;
 
-                // Guía recién admitida en el CD origen
 
                 if (guiaEntidad.EstadoActual
                     == EstadoGuiaEnum.Admitida)
@@ -153,7 +149,6 @@ namespace tutasa.RuteoTransporte
                     }
                 }
 
-                // Guía que ya llegó a un CD intermedio o final
 
                 if (guiaEntidad.EstadoActual
                     == EstadoGuiaEnum.EnDestino)
@@ -254,19 +249,7 @@ namespace tutasa.RuteoTransporte
 
         public int GuardarHojaRuta(HojaRutaTransporte hojaRuta)
         {
-            ServicioEntidad servicioSeleccionado = null;
-
-            foreach (ServicioEntidad servicio in ServiciosAlmacen.servicio)
-            {
-                string descripcion = servicio.NombreServicio + " - " + servicio.FechaSalida.ToString("dd/MM/yyyy HH:mm") + " - " + servicio.FechaLlegada.ToString("dd/MM/yyyy HH:mm");
-
-                if (descripcion == hojaRuta.Servicio)
-                {
-                    servicioSeleccionado = servicio;
-
-                    break;
-                }
-            }
+            ServicioEntidad servicioSeleccionado = ServiciosAlmacen.servicio.FirstOrDefault(s => s.IdServicio ==hojaRuta.IdServicio);
 
             if (servicioSeleccionado == null)
             {

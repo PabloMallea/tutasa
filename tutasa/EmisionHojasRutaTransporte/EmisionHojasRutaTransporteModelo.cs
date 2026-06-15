@@ -65,7 +65,7 @@ namespace tutasa.EmisionHojasRutaTransporte
 
 
         public List<HojaRutaTransporte>
-    BuscarHDRPendientes(int idEmpresa,int idServicio)
+        BuscarHDRPendientes(int idEmpresa,int idServicio)
         {
             List<HojaRutaTransporte> resultado = new List<HojaRutaTransporte>();
 

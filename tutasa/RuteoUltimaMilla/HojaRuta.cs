@@ -6,8 +6,7 @@
         {
             public int Numero { get; set; }
 
-            public string Fletero { get; set; }
-
+            public int IdFletero { get; set; }
             public string TipoRuteo { get; set; }
 
             public string Direccion { get; set; }
