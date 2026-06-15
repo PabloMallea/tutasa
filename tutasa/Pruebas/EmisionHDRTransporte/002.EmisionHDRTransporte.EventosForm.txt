@@ -1,0 +1,33 @@
+﻿002.EmisionHDRTransporte.EventosForm.txt
+
+-- EVENTO 1: Emitir hojas de ruta sin HDR seleccionadas --
+
+(Empieza con el menú principal)
+
+1- Desplegable Empresa            "Transporte Ruta Sur"
+2- Desplegable Servicio           "Buenos Aires - Rosario Noche"
+3- Botón                          "Buscar"
+
+4- Tabla HDR Pendientes           Se verificó que se listaron HDR disponibles
+5- Botón                          "Emitir hojas de ruta"
+
+6- Mensaje                        "No se encontraron HDR seleccionadas"
+7- Botón                          "Aceptar"
+
+-- EVENTO 2: Imprimir resumen sin HDR seleccionadas --
+
+8- Botón                         "Imprimir resumen"
+9- Pop-up                        "No se encontraron HDR seleccionadas"
+10- Botón                         "Aceptar"
+
+-- EVENTO 3: Cancelar en cualquier momento --
+
+20- Desplegable Empresa           "Transporte Ruta Sur"
+21- Desplegable Servicio          "Buenos Aires - Rosario Noche"
+22- Botón                         "Buscar"
+23- Se seleccionó la HDR          N° HDR 500001 de la tabla
+
+24- Botón                         "Cancelar"
+
+25- Pantalla                      Se verificó que el sistema limpió todos los campos y tablas
+26- Menú principal                Se verificó que el sistema retornó al menú principal

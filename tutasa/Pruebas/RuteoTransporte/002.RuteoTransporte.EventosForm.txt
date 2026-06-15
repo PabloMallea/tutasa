@@ -1,0 +1,34 @@
+﻿Plan de prueba: 002.RuteoTransporte.EventosForm.txt
+
+
+-- EVENTO 1: Buscar sin resultados --
+(Empieza con el menú principal)
+
+1- Desplegable CD Destino         "CD Mendoza"
+2- Desplegable Dimensión          "XL"
+3- Botón                          "Buscar"
+4- Mensaje                        "No se encontraron guías para los criterios de búsqueda seleccionados"
+5- Botón                          "Aceptar"
+
+-- EVENTO 2: Confirmar sin guías en tabla inferior --
+
+6- Botón                          "Buscar"
+7- Desplegable Centro de distribución de destino   "CD Rosario"
+8- Desplegable Empresa                             "Transporte Rápido S.A."
+9- Desplegable Servicio                            "Estándar"
+10- Botón                                          "Confirmar"
+11- Mensaje                       "No se encontraron guías seleccionadas en la tabla inferior"
+12- Botón                         "Aceptar"
+
+-- EVENTO 3: Cancelar en cualquier momento --
+
+13- Desplegable CD Destino        "CD Rosario"
+14- Botón                         "Buscar"
+15- Se seleccionó la guía         N° Guía 100020 de la tabla superior
+16- Botón                         "Agregar selección"
+17- Desplegable Centro de distribución de destino   "CD Rosario"
+
+18- Botón                         "Cancelar"
+
+23- Pantalla                      Se verificó que el sistema limpió todos los campos y tablas
+24- Menú principal                Se verificó que el sistema retornó al menú principal
