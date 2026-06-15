@@ -280,6 +280,13 @@ namespace tutasa.EmisionHojasRutaTransporte
                 "Resumen Impreso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+            ComboEmpresa.SelectedIndex = -1;
+
+            ComboServicio.DataSource = null;
+
+            ListViewRutasPendientes.Items.Clear();
+
+            ListViewGuias.Items.Clear();
         }
 
         private void BotonCancelar_Click(object sender,EventArgs e)

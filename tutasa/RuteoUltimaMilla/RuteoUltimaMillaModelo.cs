@@ -15,17 +15,13 @@ namespace tutasa.RuteoUltimaMilla
                 new List<Localidad>();
 
             foreach (
-                tutasa.Almacenes.Localidad entidad
-                in LocalidadAlmacen.localidades)
+                tutasa.Almacenes.Localidad entidad in LocalidadAlmacen.localidades)
             {
-                Localidad localidad =
-                    new Localidad();
+                Localidad localidad =new Localidad();
 
-                localidad.IdLocalidad =
-                    entidad.IdLocalidad;
+                localidad.IdLocalidad =entidad.IdLocalidad;
 
-                localidad.NombreLocalidad =
-                    entidad.NombreLocalidad;
+                localidad.NombreLocalidad =entidad.NombreLocalidad;
 
                 resultado.Add(localidad);
             }   
@@ -36,30 +32,24 @@ namespace tutasa.RuteoUltimaMilla
 
         public List<Fletero> ObtenerFleteros()
         {
-            List<Fletero> resultado =
-                new List<Fletero>();
+            List<Fletero> resultado = new List<Fletero>();
 
             foreach (
-                tutasa.Almacenes.Fletero fleteroEntidad
-                in FleteroAlmacen.fleteros)
+                tutasa.Almacenes.Fletero fleteroEntidad in FleteroAlmacen.fleteros)
             {
-                if (fleteroEntidad.IdCD
-                    != Program.IdCDActual)
+                if (fleteroEntidad.IdCD!= Program.IdCDActual)
                 {
                     continue;
                 }
 
-                Fletero fletero =
-                    new Fletero();
+                Fletero fletero =new Fletero();
 
-                fletero.IdFletero =
-                    fleteroEntidad.IdFletero;
+                fletero.IdFletero =fleteroEntidad.IdFletero;
 
                 fletero.Nombre =
                     fleteroEntidad.Nombre;
 
-                resultado.Add(
-                    fletero);
+                resultado.Add(fletero);
             }
 
             return resultado;
@@ -92,12 +82,16 @@ namespace tutasa.RuteoUltimaMilla
 
                 if (tipoRuteo == "Entrega")
                 {
-                    if (guiaEntidad.EstadoActual!= EstadoGuiaEnum.EnDestino)
+                    if (guiaEntidad.EstadoActual != EstadoGuiaEnum.EnDestino)
                     {
                         continue;
                     }
 
-                    if (guiaEntidad.IdCDDestino!= Program.IdCDActual)
+                    if (guiaEntidad.IdCDDestino != Program.IdCDActual)
+                    {
+                        continue;
+                    }
+                    if (guiaEntidad.Destino == DestinoGuiaEnum.CD)
                     {
                         continue;
                     }
@@ -119,28 +113,31 @@ namespace tutasa.RuteoUltimaMilla
                     continue;
                 }
 
-                tutasa.Almacenes.Localidad localidadCliente = null;
+                CentroDistribucion cdReferencia = null;
 
-                foreach (tutasa.Almacenes.Localidad localidadEntidad in LocalidadAlmacen.localidades)
+                if (tipoRuteo == "Retiro")
                 {
-                    if (localidadEntidad.IdLocalidad == cliente.IdLocalidad)
-                    {
-                        localidadCliente = localidadEntidad;
-
-                        break;
-                    }
+                    cdReferencia =CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD ==guiaEntidad.IdCDOrigen);
+                }
+                else
+                {
+                    cdReferencia =CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault(cd => cd.IdCD == guiaEntidad.IdCDDestino);
                 }
 
                 string nombreLocalidad = "";
 
-                if (localidadCliente != null)
+                if (cdReferencia != null)
                 {
-                    nombreLocalidad = localidadCliente.NombreLocalidad;
-                }
+                    tutasa.Almacenes.Localidad localidadEntidad =LocalidadAlmacen.localidades.FirstOrDefault( l => l.IdLocalidad ==cdReferencia.IdLocalidad);
 
+                    if (localidadEntidad != null)
+                    {
+                        nombreLocalidad =localidadEntidad.NombreLocalidad;
+                    }
+                }
                 if (!string.IsNullOrEmpty(localidad))
                 {
-                    if (nombreLocalidad!= localidad)
+                    if (nombreLocalidad != localidad)
                     {
                         continue;
                     }
@@ -176,18 +173,10 @@ namespace tutasa.RuteoUltimaMilla
             return resultado;
         }
 
+
         public void GuardarHojaRuta(HojaRuta hojaRuta)
         {
-            tutasa.Almacenes.Fletero fleteroSeleccionado = null;
-
-            foreach (tutasa.Almacenes.Fletero fletero in FleteroAlmacen.fleteros)
-            {
-                if (fletero.Nombre == hojaRuta.Fletero)
-                {
-                    fleteroSeleccionado = fletero;
-                    break;
-                }
-            }
+            tutasa.Almacenes.Fletero fleteroSeleccionado = FleteroAlmacen.fleteros.FirstOrDefault(f => f.IdFletero == hojaRuta.IdFletero);
 
             if (fleteroSeleccionado == null)
             {
@@ -230,35 +219,26 @@ namespace tutasa.RuteoUltimaMilla
 
                 if (hojaRuta.TipoRuteo == "Retiro")
                 {
-                    guiaEntidad.EstadoActual =
-                        EstadoGuiaEnum.PlanificadaRetiro;
+                    guiaEntidad.EstadoActual = EstadoGuiaEnum.PlanificadaRetiro;
 
-                    guiaEntidad.Historial.Add(
-                        new MovimientoEstadoDto
+                    guiaEntidad.Historial.Add(new MovimientoEstadoDto
                         {
-                            FechaHora =
-                                DateTime.Now,
+                            FechaHora =DateTime.Now,
 
-                            Estado =
-                                EstadoGuiaEnum.PlanificadaRetiro,
+                            Estado = EstadoGuiaEnum.PlanificadaRetiro,
 
-                            Ubicacion =
-                                "CD Buenos Aires"
+                            Ubicacion = ObtenerCDActual(Program.IdCDActual)
                         });
                 }
                 else
                 {
-                    guiaEntidad.EstadoActual =
-                        EstadoGuiaEnum.PlanificadaDistribucion;
+                    guiaEntidad.EstadoActual = EstadoGuiaEnum.PlanificadaDistribucion;
 
-                    guiaEntidad.Historial.Add(
-                        new MovimientoEstadoDto
+                    guiaEntidad.Historial.Add(new MovimientoEstadoDto
                         {
-                            FechaHora =
-                                DateTime.Now,
+                            FechaHora = DateTime.Now,
 
-                            Estado =
-                                EstadoGuiaEnum.PlanificadaDistribucion,
+                            Estado = EstadoGuiaEnum.PlanificadaDistribucion,
 
                             Ubicacion = ObtenerCDActual(Program.IdCDActual)
                         });
@@ -267,9 +247,9 @@ namespace tutasa.RuteoUltimaMilla
 
             HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.Add(hdr);
 
-            GuiaAlmacen.Guardar();
+          //  GuiaAlmacen.Guardar();
 
-            HojaDeRutaUltimaMillaAlmacen.Guardar();
+            //HojaDeRutaUltimaMillaAlmacen.Guardar();
         }
 
         public int ObtenerProximoNumeroHojaRuta()
@@ -277,27 +257,6 @@ namespace tutasa.RuteoUltimaMilla
             return HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.Count + 1;
         }
 
-        public void ActualizarEstadoGuia(string numeroGuia,string tipoRuteo)
-        {
-            foreach (GuiaEntidad guia in GuiaAlmacen.guias)
-            {
-                if (guia.NumeroGuia.ToString() == numeroGuia)
-                {
-                    if (tipoRuteo == "Retiro")
-                    {
-                        guia.EstadoActual =EstadoGuiaEnum.PlanificadaRetiro;
-                    }
-                    else
-                    {
-                        guia.EstadoActual =EstadoGuiaEnum.PlanificadaDistribucion;
-                    }
-
-                    break;
-                }
-            }
-
-            GuiaAlmacen.Guardar();
-        }
         public string ObtenerCDActual(int IdCdActual)
         {
             CentroDistribucion cd = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == IdCdActual);
@@ -495,5 +454,22 @@ namespace tutasa.RuteoUltimaMilla
         }
     }
 }
+ public void ActualizarEstadoGuia(string numeroGuia,string tipoRuteo)
+        {
+            foreach (GuiaEntidad guia in GuiaAlmacen.guias)
+            {
+                if (guia.NumeroGuia.ToString() == numeroGuia)
+                {
+                    if (tipoRuteo == "Retiro")
+                    {
+                        guia.EstadoActual =EstadoGuiaEnum.PlanificadaRetiro;
+                    }
+                    else
+                    {
+                        guia.EstadoActual =EstadoGuiaEnum.PlanificadaDistribucion;
+                    }
 
+                    break;
+                }
+            }
 */

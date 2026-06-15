@@ -175,14 +175,13 @@ namespace tutasa.EmisionHojasRuta
             string mensaje =
                 "EMISIÓN DE HOJAS DE RUTA\n\n";
 
-            foreach (
-                ListViewItem item
-                in ListViewRutasPendientes.SelectedItems)
+            foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
             {
                 EmisionHojasRutaModelo.HojaRuta hdr = (EmisionHojasRutaModelo.HojaRuta)item.Tag;
 
                 modelo.EmitirHDR(hdr.NumeroHDR);
                 modelo.ActualizarEstadoGuias(hdr.NumeroHDR);
+                hdr.Estado = "Emitida";
 
                 mensaje +=
                     "====================================\n";
@@ -234,18 +233,11 @@ namespace tutasa.EmisionHojasRuta
 
                 return;
             }
-            foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
-            {
+            foreach(ListViewItem item in ListViewRutasPendientes.SelectedItems)
+              {
                 EmisionHojasRutaModelo.HojaRuta hdr =(EmisionHojasRutaModelo.HojaRuta)item.Tag;
-                HojaDeRutaUltimaMilla hdrEntidad =HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.FirstOrDefault(h => h.NumeroHDR == hdr.NumeroHDR);
 
-                if (hdrEntidad == null)
-                {
-                    continue;
-                }
-
-                if (hdrEntidad.Estado
-                    != EstadoHDRUltimaMillaEnum.Emitida)
+                if (hdr.Estado != "Emitida")
                 {
                     MessageBox.Show(
                         "Todas las hojas de ruta seleccionadas deben estar emitidas antes de imprimir el resumen.",
@@ -255,7 +247,8 @@ namespace tutasa.EmisionHojasRuta
 
                     return;
                 }
-            }
+            
+        }
 
             string mensaje = "RESUMEN DE HOJAS DE RUTA\n\n";
 

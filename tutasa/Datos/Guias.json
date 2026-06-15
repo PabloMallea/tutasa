@@ -458,7 +458,7 @@
     "IdAgenciaRetiro": 101,
     "IdCDDestino": 3,
     "IdAgenciaDestino": 0,
-    "Destino": "Domicilio",
+    "Destino": "CD",
     "CalleDestino": "Maipu",
     "AlturaDestino": "850",
     "DniDestinatario": "30999888",

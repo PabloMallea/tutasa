@@ -17,8 +17,7 @@ namespace tutasa.RuteoUltimaMilla
         {
             // Obtener fleteros desde el modelo
             List<RuteoUltimaMillaModelo.Fletero>
-                fleteros =
-                    modelo.ObtenerFleteros();
+                fleteros =modelo.ObtenerFleteros();
 
             List<RuteoUltimaMillaModelo.Localidad> localidades = modelo.ObtenerLocalidades();
 
@@ -26,25 +25,41 @@ namespace tutasa.RuteoUltimaMilla
 
             foreach (RuteoUltimaMillaModelo.Localidad localidad in localidades)
             {
-                CmbLocalidad.Items.Add(
-                    localidad.NombreLocalidad);
+                CmbLocalidad.Items.Add(localidad.NombreLocalidad);
             }
 
             // Se lo asignamos al Combobox de asignación de fletero
-            foreach (RuteoUltimaMillaModelo.Fletero fletero in fleteros)
-            {
-                ComboAsignarFletero.Items.Add(fletero.Nombre);
-            }
+            ComboAsignarFletero.DataSource = fleteros;
+
+            ComboAsignarFletero.DisplayMember = "Nombre";
+
+            ComboAsignarFletero.ValueMember = "IdFletero";
+
+            ComboAsignarFletero.SelectedIndex = -1;
         }
 
         private void RbEntrega(object sender, EventArgs e)
         {
+            if (!RBEntrega.Checked)
+            {
+                return;
+            }
 
+            LvSeleccion.Items.Clear();
+
+            LvGuiasDisponibles.Items.Clear();
         }
 
         private void RbRetiro(object sender, EventArgs e)
         {
+            if (!RBRetiro.Checked)
+            {
+                return;
+            }
 
+            LvSeleccion.Items.Clear();
+
+            LvGuiasDisponibles.Items.Clear();
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -72,17 +87,33 @@ namespace tutasa.RuteoUltimaMilla
             }
 
             // Validación: si se ingresó un CUIT, debe contener únicamente números. Noten que permitimos que el campo esté vacío, ya que la búsqueda podría realizarse sin filtrar por CUIT. Sin embargo, si se ingresa algo, debe ser numérico.
-            if (!string.IsNullOrEmpty(cuit) && !cuit.All(char.IsDigit))
+            if (!string.IsNullOrEmpty(cuit))
             {
-                MessageBox.Show(
-                    "El CUIT del cliente debe contener únicamente números.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                if (!cuit.All(char.IsDigit))
+                {
+                    MessageBox.Show(
+                        "El CUIT del cliente debe contener únicamente números.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
 
-                return;
+                    return;
+                }
+
+                if (cuit.Length > 11)
+                {
+                    MessageBox.Show(
+                        "El CUIT del cliente no puede superar los 11 dígitos.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
+                }
             }
+
             string tipoRuteo = "";
 
             if (RBEntrega.Checked)
@@ -324,9 +355,7 @@ namespace tutasa.RuteoUltimaMilla
             }
         }
 
-        private void BtnConfirmar_Click(
-    object sender,
-    EventArgs e)
+        private void BtnConfirmar_Click(object sender,EventArgs e)
         {
             // Validar fletero seleccionado
             if (ComboAsignarFletero.SelectedIndex == -1)
@@ -367,7 +396,7 @@ namespace tutasa.RuteoUltimaMilla
             }
 
             // Obtener fletero
-            string fletero =ComboAsignarFletero.SelectedItem.ToString();
+            RuteoUltimaMillaModelo.Fletero fletero =(RuteoUltimaMillaModelo.Fletero)ComboAsignarFletero.SelectedItem;
 
             // Recuperar todas las guías seleccionadas
 
@@ -405,7 +434,7 @@ namespace tutasa.RuteoUltimaMilla
                     {
                         Numero = proximoNumero,
 
-                        Fletero = fletero,
+                        IdFletero = fletero.IdFletero,
 
                         TipoRuteo = tipoRuteo,
 

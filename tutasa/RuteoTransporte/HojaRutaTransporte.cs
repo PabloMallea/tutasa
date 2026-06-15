@@ -8,7 +8,7 @@
 
             public string Empresa { get; set; }
 
-            public string Servicio { get; set; }
+            public int IdServicio { get; set; }
 
             public string CDDestino { get; set; }
 
