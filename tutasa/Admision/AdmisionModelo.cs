@@ -117,7 +117,7 @@ namespace tutasa.Admision
             {
                 FechaHora = DateTime.Now,
                 Estado = EstadoGuiaEnum.Admitida,
-                Ubicacion = "CD Origen"
+                Ubicacion = Program.IdCDActual.ToString(),
             };
 
             // Agregar el movimiento al historial de la guía
@@ -162,7 +162,7 @@ namespace tutasa.Admision
         {
             decimal totalExtras = 0;
 
-            // Extra por tipo de retiro
+            // Extra por retiro a domicilio
             if (tipoRetiro == TipoRetiroEnum.EnDomicilio)
             {
                 var extraRetiro = ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == TipoExtraEnum.Retiro);
@@ -171,17 +171,18 @@ namespace tutasa.Admision
                     totalExtras += extraRetiro.Precio;
                 }
             }
-            else if (tipoRetiro == TipoRetiroEnum.EnAgencia)
+
+            // Extra por entrega a domicilio
+            if (destino == DestinoGuiaEnum.Domicilio)
             {
-                var extraRetiro = ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == TipoExtraEnum.Retiro);
-                if (extraRetiro != null)
+                var extraEntrega = ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == TipoExtraEnum.Entrega);
+                if (extraEntrega != null)
                 {
-                    totalExtras += extraRetiro.Precio;
+                    totalExtras += extraEntrega.Precio;
                 }
             }
-
-            // Extra por tipo de entrega
-            if (destino == DestinoGuiaEnum.Agencia)
+            // Extra por entrega en agencia
+            else if (destino == DestinoGuiaEnum.Agencia)
             {
                 var extraEntrega = ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == TipoExtraEnum.EntregaEnAgencia);
                 if (extraEntrega != null)
