@@ -76,6 +76,7 @@ namespace tutasa.ResultadosCostos
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Criterios de Búsqueda";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // btnBuscar
             // 
@@ -209,10 +210,9 @@ namespace tutasa.ResultadosCostos
             txtVentasMes.Font = new Font("Segoe UI", 9F);
             txtVentasMes.Location = new Point(110, 30);
             txtVentasMes.Name = "txtVentasMes";
-            txtVentasMes.Size = new Size(25, 20);
+            txtVentasMes.Size = new Size(19, 15);
             txtVentasMes.TabIndex = 20;
             txtVentasMes.Text = "$0";
-            txtVentasMes.Click += txtVentasMes_Click;
             // 
             // label13
             // 
@@ -230,7 +230,7 @@ namespace tutasa.ResultadosCostos
             txtResultado.Font = new Font("Segoe UI", 9F);
             txtResultado.Location = new Point(110, 120);
             txtResultado.Name = "txtResultado";
-            txtResultado.Size = new Size(25, 20);
+            txtResultado.Size = new Size(19, 15);
             txtResultado.TabIndex = 18;
             txtResultado.Text = "$0";
             // 
@@ -250,7 +250,7 @@ namespace tutasa.ResultadosCostos
             txtMargen.Font = new Font("Segoe UI", 9F);
             txtMargen.Location = new Point(110, 90);
             txtMargen.Name = "txtMargen";
-            txtMargen.Size = new Size(0, 15);
+            txtMargen.Size = new Size(44, 15);
             txtMargen.TabIndex = 16;
             txtMargen.Text = "%00,00";
             // 
@@ -279,7 +279,7 @@ namespace tutasa.ResultadosCostos
             txtCostoMensual.Font = new Font("Segoe UI", 9F);
             txtCostoMensual.Location = new Point(110, 60);
             txtCostoMensual.Name = "txtCostoMensual";
-            txtCostoMensual.Size = new Size(25, 20);
+            txtCostoMensual.Size = new Size(19, 15);
             txtCostoMensual.TabIndex = 13;
             txtCostoMensual.Text = "$0";
             // 
@@ -349,6 +349,7 @@ namespace tutasa.ResultadosCostos
             Margin = new Padding(3, 2, 3, 2);
             Name = "ResultadoCostos";
             Text = "Resultado Costos vs Ventas";
+            Load += ResultadoCostos_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

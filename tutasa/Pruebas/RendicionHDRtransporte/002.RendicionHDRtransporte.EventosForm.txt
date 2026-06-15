@@ -1,0 +1,39 @@
+Plan de Prueba: 002.RendicionHDRtransporte.EventosForm.txt
+
+(Empieza con el menú principal y la pantalla de Rendición abierta)
+
+1- Desplegable Empresa           "Transporte Ruta Sur"
+
+2- Desplegable Servicio          "Buenos Aires - Rosario Noche"
+
+3- Botón                         "Buscar"
+
+4- Verificación                  "Se carga la grilla superior 'HDR Asignadas' con los resultados correspondientes "  
+
+5- Botón                         "Agregar Todo"
+
+6- Verificación                  "Todos los registros desaparecen de la tabla 'HDR Asignadas' y se mueven a la tabla 'HDR Rendidas' "  
+
+7- Botón                         "Quitar Todo"
+
+8- Verificación                  "Todos los registros desaparecen de la tabla 'HDR Rendidas' y vuelven a la tabla 'HDR Asignadas' "  
+
+9- Fila HDR Asignadas            "Seleccionar un único registro (Ej: N° HDR 3) " 
+
+10- Botón                        "Agregar Selección"
+
+11- Verificación                 "Solo el registro seleccionado se mueve a la tabla 'HDR Rendidas'. El resto permanece arriba "  
+
+12- Fila HDR Rendidas            "Seleccionar el registro movido previamente "  
+
+13- Botón                        "Quitar Selección"
+
+14- Verificación                 "El registro vuelve a la tabla superior 'HDR Asignadas' y la tabla inferior queda vacía "  
+
+15- Botón                        "Limpiar Campos"
+
+16- Verificación                 "Se vacían los desplegables Empresa y Servicio, y se vacían ambas grillas ('HDR Asignadas' y 'HDR Rendidas')"
+
+17- Botón                        "Cancelar"
+
+18- Verificación                 "Se limpian todos los campos, se descarta la operación y el sistema vuelve al menú principal "

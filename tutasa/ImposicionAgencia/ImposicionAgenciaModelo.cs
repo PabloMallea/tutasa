@@ -1,187 +1,203 @@
-﻿using tutasa.Almacenes;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace tutasa.Imposicion_Agencia
 {
     internal partial class ImposicionAgenciaModelo
     {
-        //Acá validar si hay que poner la siguiente expresión
-
-
-
-        private List<Agencia> agencias = new List<Agencia>
-        {
-            new Agencia
-            {
-                Nombre = "Agencia San Rafael - Centro",
-                Calle = "Calle Falsa",
-                Altura = 37,
-                Localidad = "San Rafael",
-            }
-        };
-
-        private List<CentroDistribucion> centrosdistrucion = new List<CentroDistribucion>
-        {
-            new CentroDistribucion
-            {
-                Nombre = "CD  San Rafael - Centro",
-                Calle = "Calle Re Falsa",
-                Altura = 38,
-                Localidad = "San Rafael",
-            }
-        };
-
-        //Clientes de ejemplo
-
-        private List<Cliente> clientes = new List<Cliente>
-        {
-            new Cliente
-            {
-                Cuit = "20333444556",
-                Nombre = "Juan",
-                Apellido = "Perez",
-                Telefono = "1122334455",
-            },
-
-            new Cliente
-            {
-                Cuit = "30777888999",
-                Nombre = "Maria",
-                Apellido = "Lopez",
-                Telefono = "1166677788",
-            }
-        };
-
-        private List<Localidad> localidades = new List<Localidad>
-        {
-            new Localidad
-            {
-                Nombre = "San Rafael",
-            },
-
-            new Localidad
-            {
-                Nombre = "Mar del Plata",
-            }
-        };
-
-        // Acá hice un método para obtener las dimensiones creando la lista directamente,
-        // ya que no se especificó una clase para eso, y es un dato fijo.
-
+        // ----------------------------------------------------------------------
+        // 1. MÉTODOS DE LECTURA Y BÚSQUEDA
+        // ----------------------------------------------------------------------
         public List<string> ObtenerDimensiones()
         {
-            return new List<string>
+            List<string> resultado = new List<string>();
+            foreach (string nombreDimension in Enum.GetNames(typeof(tutasa.Almacenes.DimensionEnum)))
             {
-                "S",
-                "M",
-                "L",
-                "XL"
+                resultado.Add(nombreDimension);
+            }
+            return resultado;
+        }
+
+        public Cliente BuscarCliente(string cuit)
+        {
+            // Blindaje contra "Cajero Arrepentido" (Evita Exception si llega vacío)
+            if (!long.TryParse(cuit, out long cuitNumerico)) return null;
+
+            var clienteDelJson = tutasa.Almacenes.ClientesAlmacen.clientes.Find(c => c.CuitCliente == cuitNumerico);
+            if (clienteDelJson == null) return null;
+
+            return new Cliente
+            {
+                Cuit = clienteDelJson.CuitCliente.ToString(),
+                Nombre = clienteDelJson.Nombre,
+                Apellido = clienteDelJson.Apellido,
+                Telefono = clienteDelJson.Telefono
             };
         }
 
-        // Lista donde se almacenan las Guias generadas
-
-        private List<Guia> Guias = new List<Guia>();
-        /*
-                public Cliente BuscarCliente(string cuit)
-                {
-                    foreach (Cliente cliente in clientes)
-                    {
-                        // Si el CUIT coincide, retornar cliente encontrado
-                        if (cliente.Cuit == cuit)
-                        {
-                            return cliente;
-                        }
-                    }
-
-                    // Si no se encontró coincidencia, retornar null
-                    return null;
-
-                }*/
-
-        public Cliente BuscarCliente(
-          string cuit)
-        {
-            foreach (ClienteEntidad entidad in ClientesAlmacen.clientes)
-            {
-                if (entidad.CuitCliente.ToString() == cuit)
-                {
-                    Cliente cliente = new Cliente();
-
-                    cliente.Cuit = entidad.CuitCliente.ToString();
-
-                    cliente.Nombre = entidad.Nombre;
-
-                    cliente.Apellido = entidad.Apellido;
-
-                    cliente.Telefono = entidad.Telefono;
-
-                    return cliente;
-                }
-            }
-
-            return null;
-        }
-
-
         public Localidad BuscarLocalidad(string nombre)
         {
-            // Recorrer lista de localidades
-            foreach (Localidad localidad in localidades)
-            {
-                // Si coincide nombre, retornar localidad
-                if (localidad.Nombre == nombre)
-                {
-                    return localidad;
-                }
-            }
-
-            // Si no se encontró coincidencia
-            return null;
+            var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == nombre);
+            if (localidadEntidad == null) return null;
+            return new Localidad { Nombre = localidadEntidad.NombreLocalidad };
         }
 
-        // Método para devolver Agencias
         public List<Agencia> ObtenerAgencias(string localidad)
         {
             List<Agencia> resultado = new List<Agencia>();
-            foreach (Agencia agencia in agencias)
+            var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == localidad);
+            if (localidadEntidad == null) return resultado;
+
+            foreach (var agenciaJson in tutasa.Almacenes.AgenciasAlmacen.agencias)
             {
-                if (agencia.Localidad == localidad)
+                var cdDeLaAgencia = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == agenciaJson.IdCD);
+                if (cdDeLaAgencia != null && cdDeLaAgencia.IdLocalidad == localidadEntidad.IdLocalidad)
                 {
-                    resultado.Add(agencia);
+                    long alturaAgencia = 0;
+                    long.TryParse(agenciaJson.Altura, out alturaAgencia);
+                    resultado.Add(new Agencia { Nombre = agenciaJson.NombreAgencia, Calle = agenciaJson.Calle, Altura = alturaAgencia, Localidad = localidadEntidad.NombreLocalidad });
                 }
             }
             return resultado;
         }
 
-        // Método para devolver CD
         public List<CentroDistribucion> ObtenerCD(string localidad)
         {
             List<CentroDistribucion> resultado = new List<CentroDistribucion>();
-            foreach (CentroDistribucion CD in centrosdistrucion)
+            var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == localidad);
+            if (localidadEntidad == null) return resultado;
+
+            var cdsJson = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
+            foreach (var cdJson in cdsJson)
             {
-                if (CD.Localidad == localidad)
-                {
-                    resultado.Add(CD);
-                }
+                long alturaCd = 0;
+                long.TryParse(cdJson.Altura, out alturaCd);
+                resultado.Add(new CentroDistribucion { Nombre = cdJson.NombreCD, Calle = cdJson.Calle, Altura = alturaCd, Localidad = localidadEntidad.NombreLocalidad });
             }
             return resultado;
         }
 
-        // Guardar Guia generada
-        public void GuardarGuia(Guia Guia)
+        // ----------------------------------------------------------------------
+        // 2. NÚCLEO: CREACIÓN DE LA GUÍA (Ahora devuelve numero de guía)
+        // ----------------------------------------------------------------------
+        public int GuardarGuia(Guia guiaLocal)
         {
-            //Por el momento no me preocupo de esto
+            tutasa.Almacenes.GuiaEntidad nuevaGuia = new tutasa.Almacenes.GuiaEntidad();
 
-            // 1. Asignamos el estado inicial que pide el caso de uso
-            // Guia.Estado = "Impuesta";
-            // 2. Generamos el tracking correlativo. Contamos cuántas hay en la lista y le sumamos 1.
-            // int numeroCorrelativo = Guias.Count + 1;
-            // Decimos que va a ser impuesta en CD porque el fletero lo lleva a alguno -> ¿¿¿¿¿¿¿¿¿¿¿No va así!!!!!!¿?
-            // Guia.Tracking = "CD - " + numeroCorrelativo.ToString();
+            // 1. Autoincremental
+            int ultimoNumero = tutasa.Almacenes.GuiaAlmacen.guias.Count > 0 ? tutasa.Almacenes.GuiaAlmacen.guias.Max(g => g.NumeroGuia) : 0;
+            nuevaGuia.NumeroGuia = ultimoNumero + 1;
 
-            // 3. Finalmente, la guardamos en la lista
-            Guias.Add(Guia);
+            // 2. Transcripción directa
+            nuevaGuia.FechaAlta = DateTime.Now;
+            nuevaGuia.CuitCliente = long.Parse(guiaLocal.Cliente.Cuit);
+            nuevaGuia.CalleDestino = guiaLocal.CalleDestino;
+            nuevaGuia.AlturaDestino = guiaLocal.AlturaDestino;
+            nuevaGuia.NombreDestinatario = guiaLocal.NombreDestinatario;
+            nuevaGuia.ApellidoDestinatario = guiaLocal.ApellidoDestinatario;
+            nuevaGuia.DniDestinatario = guiaLocal.DniDestinatario;
+            nuevaGuia.TelefonoDestinatario = guiaLocal.TelefonoDestinatario;
+            nuevaGuia.Dimension = (tutasa.Almacenes.DimensionEnum)Enum.Parse(typeof(tutasa.Almacenes.DimensionEnum), guiaLocal.Dimension);
+
+            // 3. Reglas de Origen (¡La Clave de esta pantalla!)
+            nuevaGuia.TipoRetiro = tutasa.Almacenes.TipoRetiroEnum.EnAgencia;
+            nuevaGuia.IdAgenciaRetiro = tutasa.Program.IdAgenciaActual;
+
+            // Buscamos la agencia actual para saber a qué CD enviar el camión a retirar
+            var agenciaOrigen = tutasa.Almacenes.AgenciasAlmacen.agencias.Find(a => a.IdAgencia == tutasa.Program.IdAgenciaActual);
+            if (agenciaOrigen != null)
+            {
+                nuevaGuia.IdCDOrigen = agenciaOrigen.IdCD;
+            }
+            else
+            {
+                throw new Exception("Error de configuración: La Agencia actual no existe en el sistema."); //Esto pasa si pongo una agencia en el program que no existe en el json
+            }
+
+            nuevaGuia.IntentosEntrega = 0;
+
+            // 4. Enrutamiento del Destino (Con blindaje lógico)
+            if (guiaLocal.Destino == "Domicilio Destinatario")
+            {
+                nuevaGuia.Destino = tutasa.Almacenes.DestinoGuiaEnum.Domicilio;
+                nuevaGuia.IdAgenciaDestino = 0;
+                var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
+                if (localidadEntidad != null)
+                {
+                    var cdsEnLocalidad = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
+                    if (cdsEnLocalidad.Count > 0)
+                    {
+                        nuevaGuia.IdCDDestino = cdsEnLocalidad.OrderBy(cd => cd.IdCD).First().IdCD;
+                    }
+                    else
+                    {
+                        throw new Exception($"Nuestra red logística aún no cuenta con un Centro de Distribución en {guiaLocal.LocalidadDestino} para procesar entregas a domicilio.");
+                    }
+                }
+            }
+            else
+            {
+                // FIX NACIONAL: Filtramos estrictamente por la localidad de destino
+                var localidadEntidad = tutasa.Almacenes.LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
+
+                if (localidadEntidad != null)
+                {
+                    // 1. Aislamos solo los CDs que pertenecen a esa ciudad
+                    var cdsEnLaLocalidad = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
+
+                    // 2. Buscamos la Agencia que se llame igual Y que pertenezca a la red de esos CDs locales
+                    var agenciaDestino = tutasa.Almacenes.AgenciasAlmacen.agencias.Find(a =>
+                        a.NombreAgencia == guiaLocal.Destino &&
+                        cdsEnLaLocalidad.Any(cd => cd.IdCD == a.IdCD)
+                    );
+
+                    if (agenciaDestino != null)
+                    {
+                        nuevaGuia.Destino = tutasa.Almacenes.DestinoGuiaEnum.Agencia;
+                        nuevaGuia.IdAgenciaDestino = agenciaDestino.IdAgencia;
+                        nuevaGuia.IdCDDestino = agenciaDestino.IdCD;
+                    }
+                    else
+                    {
+                        // 3. Si no es agencia, verificamos si es un CD de esa misma ciudad local
+                        var cdDestino = cdsEnLaLocalidad.Find(cd => cd.NombreCD == guiaLocal.Destino);
+                        if (cdDestino != null)
+                        {
+                            nuevaGuia.Destino = tutasa.Almacenes.DestinoGuiaEnum.CD;
+                            nuevaGuia.IdAgenciaDestino = 0;
+                            nuevaGuia.IdCDDestino = cdDestino.IdCD;
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("Localidad de destino no encontrada en el sistema central.");
+                }
+            }
+
+            // 5. Cálculos Financieros Diferidos (Cobrarán en el CD cuando el fletero lo lleve)
+            nuevaGuia.MontoFacturar = 0;
+            nuevaGuia.ComisionesAgenciaOrigen = 0;
+            nuevaGuia.ComisionesAgenciaDestino = 0;
+            nuevaGuia.ComisionesFleteroOrigen = 0;
+            nuevaGuia.ComisionesFleteroDestino = 0;
+
+            // 6. Historial y Trazabilidad (Nace en el mostrador de la Agencia)
+            nuevaGuia.EstadoActual = tutasa.Almacenes.EstadoGuiaEnum.Impuesta;
+            string nombreUbicacion = agenciaOrigen != null ? agenciaOrigen.NombreAgencia : "Agencia Origen";
+
+            nuevaGuia.Historial.Add(new tutasa.Almacenes.MovimientoEstadoDto
+            {
+                Estado = tutasa.Almacenes.EstadoGuiaEnum.Impuesta,
+                FechaHora = DateTime.Now,
+                Ubicacion = nombreUbicacion
+            });
+
+            // 7. Impacto en Memoria
+            tutasa.Almacenes.GuiaAlmacen.guias.Add(nuevaGuia);
+
+            return nuevaGuia.NumeroGuia; // Respondemos con el número de Tracking al Formulario
         }
     }
 }

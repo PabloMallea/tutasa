@@ -52,6 +52,8 @@ namespace tutasa.Imposicion_CD
             LabelNombre.Text = cliente.Nombre;
             LabelApellido.Text = cliente.Apellido;
             LabelTelefono.Text = cliente.Telefono;
+            // Guardamos el CUIT validado en el bolsillo secreto del TextBox
+            TxtCuit.Tag = cuit;
         }
 
         private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
@@ -251,14 +253,16 @@ namespace tutasa.Imposicion_CD
 
             // --- 2. CREACIÓN Y GUARDADO ---
 
-            ImposicionCDModelo.Cliente cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
-
-            // PARCHE DE SEGURIDAD: Evita que confirmen si alteraron el CUIT después de buscarlo
-            if (cliente == null || cliente.Nombre != LabelNombre.Text)
+            // --- PARCHE DE SEGURIDAD DEFINITIVO: Validación por llave primaria ---
+            // Verificamos si nunca se buscó (Tag nulo) o si el texto actual es distinto al que se validó
+            if (TxtCuit.Tag == null || TxtCuit.Text.Trim() != TxtCuit.Tag.ToString())
             {
-                MessageBox.Show("El CUIT actual no coincide con el cliente buscado. Vuelva a buscar el cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El CUIT fue alterado o no ha sido validado. Por favor, presione el botón Buscar Cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Si llegamos acá, es 100% seguro que el CUIT en pantalla es el que se buscó
+            var cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
             // PARCHE DE SEGURIDAD 2: Verifica que la Localidad exista y que el destino coincida con ella
             string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
@@ -300,66 +304,53 @@ namespace tutasa.Imposicion_CD
                 Dimension = dimensionFinal
             };
 
-            modelo.GuardarGuia(Guia);
+            // --- GUARDADO CON MANEJO DE EXCEPCIONES (NUEVO) --- Acá se hizo esto porque antes nos comimos la funcionalidad, por eso se tocó
+            try
+            {
+                // Intentamos guardar. Si falla un cálculo (ej: no hay tarifa en el JSON), salta al catch
+                // Atrapamos el número que nos devuelve el modelo
+                int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
 
-            MessageBox.Show("Operación exitosa", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Si pasamos la línea anterior, fue un éxito rotundo
+                MessageBox.Show(
+                     $"Operación exitosa.\n\nEl paquete ha sido impuesto y admitido en el sistema.\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
+                     "Confirmación",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information
+                 );
 
-            // --- 3. LIMPIEZA DE PANTALLA ---
+                // --- 3. LIMPIEZA DE PANTALLA ---
+                TxtCuit.Clear();
+                TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
+                TextLocalidad.Clear();
+                TextCalle.Clear();
+                TextAltura.Clear();
+                TextNombre.Clear();
+                TextApellido.Clear();
+                TextDNI.Clear();
+                TextTEL.Clear();
+                TextPeso.Clear();
 
-            TxtCuit.Clear();
-            TextLocalidad.Clear();
-            TextCalle.Clear();
-            TextAltura.Clear();
-            TextNombre.Clear();
-            TextApellido.Clear();
-            TextDNI.Clear();
-            TextTEL.Clear();
-            TextPeso.Clear();
+                ComboDestino.SelectedIndex = -1;
 
-            ComboDestino.SelectedIndex = -1;
+                LabelNombre.Text = "";
+                LabelApellido.Text = "";
+                LabelTelefono.Text = "";
+                LabelTamaño.Text = "S | M | L | XL";
 
-            LabelNombre.Text = "";
-            LabelApellido.Text = "";
-            LabelTelefono.Text = "";
-            LabelTamaño.Text = "S | M | L | XL";
-
-            TextCalle.Enabled = true;
-            TextAltura.Enabled = true;
-        }
-
-        private void ButtonCancelar_Click(object sender, EventArgs e)
-        {
-            TxtCuit.Clear();
-            TextLocalidad.Clear();
-            TextCalle.Clear();
-            TextAltura.Clear();
-            TextNombre.Clear();
-            TextApellido.Clear();
-            TextDNI.Clear();
-            TextTEL.Clear();
-            TextPeso.Clear();
-
-            ComboDestino.SelectedIndex = -1;
-
-            LabelNombre.Text = "";
-            LabelApellido.Text = "";
-            LabelTelefono.Text = "";
-            LabelTamaño.Text = "S | M | L | XL";
-
-            TextCalle.Enabled = true;
-            TextAltura.Enabled = true;
-
-            this.Close();
-        }
-
-        private void LabelTamaño_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LabelDimension_Click(object sender, EventArgs e)
-        {
-
+                TextCalle.Enabled = true;
+                TextAltura.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                // Atrapamos la excepción del Modelo y se la mostramos al operador de forma prolija ->Suponiendo que el JSON no tiene algún dato necesario
+                MessageBox.Show(
+                    ex.Message,
+                    "Error de Regla de Negocio",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
         private void TextPeso_TextChanged(object sender, EventArgs e)
@@ -381,14 +372,30 @@ namespace tutasa.Imposicion_CD
             }
         }
 
-        private void GrupoCliente_Enter(object sender, EventArgs e)
+        private void ButtonCancelar_Click_1(object sender, EventArgs e)
         {
+            TxtCuit.Clear();
+            TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
+            TextLocalidad.Clear();
+            TextCalle.Clear();
+            TextAltura.Clear();
+            TextNombre.Clear();
+            TextApellido.Clear();
+            TextDNI.Clear();
+            TextTEL.Clear();
+            TextPeso.Clear();
 
-        }
+            ComboDestino.SelectedIndex = -1;
 
-        private void Impiscion_CD_Load_1(object sender, EventArgs e)
-        {
+            LabelNombre.Text = "";
+            LabelApellido.Text = "";
+            LabelTelefono.Text = "";
+            LabelTamaño.Text = "S | M | L | XL";
 
+            TextCalle.Enabled = true;
+            TextAltura.Enabled = true;
+
+            //this.Close();
         }
     }
 }
