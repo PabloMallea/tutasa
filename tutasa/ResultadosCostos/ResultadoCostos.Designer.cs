@@ -76,7 +76,6 @@ namespace tutasa.ResultadosCostos
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Criterios de Búsqueda";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // btnBuscar
             // 
@@ -349,7 +348,6 @@ namespace tutasa.ResultadosCostos
             Margin = new Padding(3, 2, 3, 2);
             Name = "ResultadoCostos";
             Text = "Resultado Costos vs Ventas";
-            Load += ResultadoCostos_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

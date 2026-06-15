@@ -1,6 +1,4 @@
-﻿
-
-namespace tutasa.ResultadosCostos
+﻿namespace tutasa.ResultadosCostos
 {
     public partial class ResultadoCostos : Form
     {
@@ -107,6 +105,17 @@ namespace tutasa.ResultadosCostos
                 Convert.ToInt32(
                     cmbAnio.SelectedItem.ToString());
 
+            DateTime hoy = DateTime.Today;
+            if (anio > hoy.Year || (anio == hoy.Year && mes > hoy.Month))
+            {
+                MessageBox.Show(
+                    "No se pueden realizar consultas de fechas futuras.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             // BUSCAR GUIAS
 
             List<Guia> guias = modelo.ObtenerGuias(empresa, mes, anio);
@@ -149,7 +158,7 @@ namespace tutasa.ResultadosCostos
 
             decimal margen = 0;
 
-            if (ventasMes > 0)
+            if ( ventasMes > 0)
             {
                 margen =
                     ((ventasMes - costoMensual)
@@ -216,19 +225,8 @@ namespace tutasa.ResultadosCostos
             txtCostoMensual.Text = "";
             txtMargen.Text = "";
             txtResultado.Text = "";
-
-            this.Close();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ResultadoCostos_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 
