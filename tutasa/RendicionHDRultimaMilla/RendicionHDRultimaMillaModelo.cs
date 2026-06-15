@@ -13,19 +13,26 @@ namespace tutasa.RendicionHDRultimaMilla
     {
         public int IdCdActual = Program.IdCDActual;
 
-        public List<string> ObtenerFleteros(int IdCdActual)
+        public List<Fletero> ObtenerFleteros(int idCdActual)
         {
-            List<string> fleteros = new List<string>();
+            List<Fletero> resultado = new List<Fletero>();
 
-            foreach (Fletero fletero in FleteroAlmacen.fleteros)
+            foreach (tutasa.Almacenes.Fletero fleteroEntidad in FleteroAlmacen.fleteros)
             {
-                if (fletero.IdCD == IdCdActual)
+                if (fleteroEntidad.IdCD != idCdActual)
                 {
-                    fleteros.Add(fletero.Nombre);
+                    continue;
                 }
 
+                resultado.Add(new Fletero
+                    {
+                        IdFletero = fleteroEntidad.IdFletero,
+
+                        Nombre = fleteroEntidad.Nombre
+                    });
             }
-            return fleteros;
+
+            return resultado;
         }
 
         public List<string> ObtenerTiposHDR()
@@ -44,7 +51,7 @@ namespace tutasa.RendicionHDRultimaMilla
         {
             List<HDRultimaMilla> hdrUltimaMillaList = new();
 
-            Fletero fletero = FleteroAlmacen.fleteros.Find(f => f.Nombre == fleteroSeleccionado);
+            tutasa.Almacenes.Fletero fletero =FleteroAlmacen.fleteros.Find(f => f.Nombre == fleteroSeleccionado);
 
             if (fletero == null)
             {

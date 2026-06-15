@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using tutasa.Almacenes;
 using static tutasa.RuteoUltimaMilla.RuteoUltimaMillaModelo;
 
 namespace tutasa.EmisionHojasRuta
@@ -8,251 +9,176 @@ namespace tutasa.EmisionHojasRuta
     internal partial class EmisionHojasRutaModelo
     {
 
-
-
-        private List<Fletero> fleteros =
-            new List<Fletero>
-        {
-            new Fletero
-            {
-                Nombre = "Juan Perez"
-            },
-
-            new Fletero
-            {
-                Nombre = "Nicolas Martinez"
-            },
-
-            new Fletero
-            {
-                Nombre = "Jesica Lopez"
-            }
-        };
-
-
-
-        private List<Guia> guias =
-            new List<Guia>
-        {
-            new Guia
-            {
-                Numero = "0001",
-                Cliente = "ACME",
-                Direccion = "Av Siempre Viva 123",
-                Dimension = "S",
-                Estado = ""
-            },
-
-            new Guia
-            {
-                Numero = "0002",
-                Cliente = "Tech SA",
-                Direccion = "Av Siempre Viva 123",
-                Dimension = "M",
-                Estado = ""
-            },
-
-            new Guia
-            {
-                Numero = "0003",
-                Cliente = "Mercurio",
-                Direccion = "Belgrano 789",
-                Dimension = "L",
-                Estado = ""
-            },
-
-            new Guia
-            {
-                Numero = "0004",
-                Cliente = "Farmacia Central",
-                Direccion = "Belgrano 789",
-                Dimension = "S",
-                Estado = ""
-            },
-
-            new Guia
-            {
-                Numero = "0005",
-                Cliente = "Electro SRL",
-                Direccion = "Rivadavia 900",
-                Dimension = "XL",
-                Estado = "Pendiente de impresión"
-            },
-
-            new Guia
-            {
-                Numero = "0006",
-                Cliente = "Supermercado Norte",
-                Direccion = "Sarmiento 150",
-                Dimension = "M",
-                Estado = ""
-            },
-
-            new Guia
-            {
-                Numero = "0007",
-                Cliente = "Distribuidora Sur",
-                Direccion = "Colon 350",
-                Dimension = "L",
-                Estado = ""
-            }
-        };
-
-
-
-        private List<HojaRuta> hdrs =
-            new List<HojaRuta>
-        {
-            new HojaRuta
-            {
-                Numero = "HDR0001",
-                Tipo = "Distribución",
-                Fletero = "Juan Perez",
-                Direccion = "Av Siempre Viva 123",
-                Estado = "Pendiente de Emisión"
-            },
-
-            new HojaRuta
-            {
-                Numero = "HDR0002",
-                Tipo = "Distribución",
-                Fletero = "Juan Perez",
-                Direccion = "Belgrano 789",
-                Estado = "Pendiente de Emisión"
-            },
-
-            new HojaRuta
-            {
-                Numero = "HDR0003",
-                Tipo = "Retiro",
-                Fletero = "Logistica Sur",
-                Direccion = "Zona Sur",
-                Estado = "Pendiente de Emisión"
-            },
-
-            new HojaRuta
-            {
-                Numero = "HDR0004",
-                Tipo = "Retiro",
-                Fletero = "Logistica Sur",
-                Direccion = "Zona Oeste",
-                Estado = "Pendiente de Emisión"
-            }
-        };
-
-
-
-        private List<GuiaHDR> guiasHDR =
-            new List<GuiaHDR>
-        {
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0001",
-                NumeroGuia = "0001"
-            },
-
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0001",
-                NumeroGuia = "0002"
-            },
-
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0002",
-                NumeroGuia = "0003"
-            },
-
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0002",
-                NumeroGuia = "0004"
-            },
-
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0003",
-                NumeroGuia = "0005"
-            },
-
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0003",
-                NumeroGuia = "0006"
-            },
-
-            new GuiaHDR
-            {
-                NumeroHDR = "HDR0004",
-                NumeroGuia = "0007"
-            }
-        };
-
-
-
         public List<string> ObtenerFleteros()
         {
-            List<string> resultado =
-                new List<string>();
+            List<string> resultado =new List<string>();
 
-            foreach (Fletero fletero in fleteros)
+            foreach (tutasa.Almacenes.Fletero fleteroEntidad in FleteroAlmacen.fleteros)
             {
-                resultado.Add(fletero.Nombre);
+                if (fleteroEntidad.IdCD!= Program.IdCDActual)
+                {
+                    continue;
+                }
+
+                resultado.Add(fleteroEntidad.Nombre);
             }
 
             return resultado;
         }
 
-        public List<HojaRuta> BuscarHDRPendientes(string fletero, string tipo)
+
+        public List<HojaRuta> BuscarHDRPendientes(string fletero,string tipo)
         {
-            return hdrs.Where(h => h.Fletero == fletero && h.Tipo == tipo && h.Estado == "Pendiente de Emisión").ToList();
+            List<HojaRuta> resultado = new List<HojaRuta>();
+
+            foreach (tutasa.Almacenes.HojaDeRutaUltimaMilla hdrEntidad in HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla)
+            {
+                if (hdrEntidad.Estado!= EstadoHDRUltimaMillaEnum.Asignada)
+                {
+                    continue;
+                }
+
+                tutasa.Almacenes.Fletero fleteroEntidad = FleteroAlmacen.fleteros.FirstOrDefault(f => f.IdFletero == hdrEntidad.IdFletero);
+
+                if (fleteroEntidad == null)
+                {
+                    continue;
+                }
+
+                string tipoHDR = hdrEntidad.Tipo == TipoHDREnum.Entrega ? "Distribución": "Retiro";
+
+                if (fleteroEntidad.Nombre!= fletero)
+                {
+                    continue;
+                }
+
+                if (tipoHDR!= tipo)
+                {
+                    continue;
+                }
+
+                HojaRuta item =new HojaRuta();
+
+                item.NumeroHDR =hdrEntidad.NumeroHDR;
+
+                item.Tipo =tipoHDR;
+
+                item.IdFletero = hdrEntidad.IdFletero;
+
+                item.Fletero = fleteroEntidad.Nombre;
+
+                item.Direccion = hdrEntidad.DireccionDestino;
+
+                item.Estado = hdrEntidad.Estado.ToString();
+
+                item.Guias = hdrEntidad.Guias;
+
+                resultado.Add(item);
+            }
+
+            return resultado;
         }
 
-        public List<Guia> ObtenerGuiasHDR(string numeroHDR)
+        public List<Guia> ObtenerGuiasHDR(int numeroHDR)
         {
             List<Guia> resultado = new List<Guia>();
 
-            foreach (GuiaHDR relacion in guiasHDR)
-            {
-                if (relacion.NumeroHDR == numeroHDR)
-                {
-                    Guia guia = guias.FirstOrDefault(g => g.Numero == relacion.NumeroGuia);
+            HojaDeRutaUltimaMilla hdr = HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.FirstOrDefault(h => h.NumeroHDR == numeroHDR);
 
-                    if (guia != null)
-                    {
-                        resultado.Add(guia);
-                    }
+            if (hdr == null)
+            {
+                return resultado;
+            }
+
+            foreach (int numeroGuia in hdr.Guias)
+            {
+                GuiaEntidad guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
+
+                if (guiaEntidad == null)
+                {
+                    continue;
                 }
+
+                Guia guia = new Guia();
+
+                guia.Numero = guiaEntidad.NumeroGuia;
+
+                guia.Cliente = guiaEntidad.CuitCliente.ToString();
+
+                guia.Direccion = guiaEntidad.CalleDestino + " " + guiaEntidad.AlturaDestino;
+
+                guia.Dimension = guiaEntidad.Dimension.ToString();
+
+                guia.Estado = guiaEntidad.EstadoActual.ToString();
+
+                resultado.Add(guia);
             }
 
             return resultado;
         }
 
-        public void EmitirHDR(string numeroHDR)
-        {
-            HojaRuta hdr = hdrs.FirstOrDefault(h => h.Numero == numeroHDR);
 
-            if (hdr != null)
+        public void EmitirHDR(int numeroHDR)
+        {
+            HojaDeRutaUltimaMilla hdr =HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.FirstOrDefault(h => h.NumeroHDR == numeroHDR);
+
+            if (hdr == null)
             {
-                hdr.Estado = "Emitida";
+                return;
             }
+
+            hdr.Estado = EstadoHDRUltimaMillaEnum.Emitida;
+
+            HojaDeRutaUltimaMillaAlmacen.Guardar();
         }
 
-        public void ActualizarEstadoGuias(string numeroHDR)
+        public void ActualizarEstadoGuias(int numeroHDR)
         {
-            foreach (GuiaHDR relacion in guiasHDR)
+            HojaDeRutaUltimaMilla hdr =HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.FirstOrDefault(h => h.NumeroHDR == numeroHDR);
+
+            if (hdr == null)
             {
-                if (relacion.NumeroHDR == numeroHDR)
+                return;
+            }
+
+            CentroDistribucion cdActual = CentroDistribucionAlmacen.CentrosDistribucion.FirstOrDefault( cd => cd.IdCD== Program.IdCDActual);
+
+            string ubicacion = cdActual?.NombreCD;
+
+
+            foreach (int numeroGuia in hdr.Guias)
+            {
+                GuiaEntidad guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
+
+                if (guia == null)
                 {
-                    Guia guia = guias.FirstOrDefault(g => g.Numero == relacion.NumeroGuia);
-
-                    if (guia != null)
-                    {
-                        guia.Estado =
-                            "Pendiente de distribución";
-                    }
+                    continue;
                 }
+
+                EstadoGuiaEnum nuevoEstado;
+
+                if (hdr.Tipo == TipoHDREnum.Retiro)
+                {
+                    nuevoEstado = EstadoGuiaEnum.EnProcesoRetiro;
+                }
+                else
+                {
+                    nuevoEstado = EstadoGuiaEnum.EnProcesoDistribucion;
+                }
+
+                guia.EstadoActual = nuevoEstado;
+
+                guia.Historial.Add(new MovimientoEstadoDto
+                    {
+                        FechaHora = DateTime.Now,
+
+                        Estado = nuevoEstado,
+
+                        Ubicacion = ubicacion
+                    });
             }
+
         }
+
     }
 }

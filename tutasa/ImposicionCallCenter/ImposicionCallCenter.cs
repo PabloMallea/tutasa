@@ -452,12 +452,12 @@ namespace tutasa.ImposicionCallCenter
                 Dimension = ComboDimension.SelectedItem.ToString()
             };
 
-            // Guardar Guia en el modelo (se le asigna Tracking y Estado automáticamente)
-            modelo.GuardarGuia(Guia);
+            //Guardar Guia en el modelo y atrapar el número generado
+            int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
 
             // Mostrar mensaje de confirmación con el número de Tracking (Cumpliendo el Paso 12)
             MessageBox.Show(
-                "Operación exitosa",
+                $"Operación exitosa.\n\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
                 "Confirmación",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information

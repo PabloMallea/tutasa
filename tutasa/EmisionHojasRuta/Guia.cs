@@ -8,7 +8,7 @@ namespace tutasa.EmisionHojasRuta
     {
         public class Guia
         {
-            public string Numero { get; set; }
+            public int Numero { get; set; }
 
             public string Cliente { get; set; }
 

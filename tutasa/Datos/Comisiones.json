@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "Tipo": "Agencia",
+    "Dimension": "S",
+    "Precio": 500.00
+  },
+  {
+    "Tipo": "Agencia",
+    "Dimension": "M",
+    "Precio": 800.00
+  },
+  {
+    "Tipo": "Agencia",
+    "Dimension": "L",
+    "Precio": 1200.00
+  },
+  {
+    "Tipo": "Agencia",
+    "Dimension": "XL",
+    "Precio": 2000.00
+  },
+  {
+    "Tipo": "Fletero",
+    "Dimension": "S",
+    "Precio": 1000.00
+  },
+  {
+    "Tipo": "Fletero",
+    "Dimension": "M",
+    "Precio": 1500.00
+  },
+  {
+    "Tipo": "Fletero",
+    "Dimension": "L",
+    "Precio": 2000.00
+  },
+  {
+    "Tipo": "Fletero",
+    "Dimension": "XL",
+    "Precio": 3000.00
+  }
+]

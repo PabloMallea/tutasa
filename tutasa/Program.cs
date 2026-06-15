@@ -17,6 +17,9 @@ namespace tutasa
         };
         public static int IdCDActual = 1;
 
+        // NUEVA VARIABLE: Simula la agencia donde está logueado el empleado (CORDOBA)
+        public static int IdAgenciaActual = 105;
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -39,7 +42,7 @@ namespace tutasa
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
             Application.Run(new MenuPrincipal());
-            //Application.Run(new RendicionHDRultimaMilla.RendicionHDRultimaMilla());
+            //Application.Run(new CuentaCorriente.CuentaCorriente());
 
 
             AgenciasAlmacen.Guardar();

@@ -1,12 +1,104 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using tutasa.Almacenes;
 
 namespace tutasa.EmitirFactura
 {
-    internal class EmitirFacturaModelo
+    internal partial class EmitirFacturaModelo
     {
+        public Cliente BuscarCliente(long cuit)
+        {
 
+            ClienteEntidad clienteAlmacen = ClientesAlmacen.clientes.FirstOrDefault(c => c.CuitCliente == cuit);
+
+            if (clienteAlmacen == null)
+            {
+                return null;
+            }
+
+            if (clienteAlmacen != null)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Cuit = clienteAlmacen.CuitCliente;
+                cliente.Nombre = clienteAlmacen.Nombre;
+
+                return cliente;
+            }
+
+            return null;
+        }
+
+        public List<Guia> BuscarGuiasAFacturar(long cuit)
+        {
+            List<Guia> guiasAFacturar = new List<Guia>();
+
+            foreach (GuiaEntidad guia in GuiaAlmacen.guias)
+            {
+                if (guia.CuitCliente == cuit && guia.EstadoActual == EstadoGuiaEnum.Entregada)
+                {
+                    if (FacturaAlmacen.facturas.All(f => !f.Guias.Contains(guia.NumeroGuia)))
+                    {
+                        guiasAFacturar.Add(new Guia
+                        {
+                            NumeroGuia = guia.NumeroGuia,
+                            CuitCliente = guia.CuitCliente,
+                            MontoFacturar = guia.MontoFacturar,
+                            Facturada = false
+                        });
+                    }
+                }
+            }
+            return guiasAFacturar;
+        }
+
+        public Factura EmitirFactura(long cuit, List<Guia> guias)
+        {
+            FacturaEntidad factura = new FacturaEntidad();
+            factura.NumeroFactura = ObtenerSiguienteNumeroFactura();
+            factura.CuitCliente = cuit;
+            factura.FechaEmision = DateTime.Now;
+            factura.Guias = guias.Select(g => g.NumeroGuia).ToList();
+            factura.Total = CalcularTotal(guias);
+            factura.Paga = false;
+
+            FacturaAlmacen.facturas.Add(factura);
+
+            return new Factura
+            {
+                NumeroFactura = factura.NumeroFactura,
+                CuitCliente = factura.CuitCliente,
+                FechaEmision = factura.FechaEmision,
+                Guias = factura.Guias,
+                Total = factura.Total
+            };
+        }
+
+        public int ObtenerSiguienteNumeroFactura()
+        {
+            if (FacturaAlmacen.facturas.Count == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return FacturaAlmacen.facturas.Max(f => f.NumeroFactura) + 1;
+            }
+        }
+
+        public decimal CalcularTotal(List<Guia> guias)
+        {
+            decimal total = 0;
+            foreach (Guia guia in guias)
+            {
+                total += guia.MontoFacturar;
+            }
+            return total;
+        }
+    }
+}
+
+/*
 
         public class Cliente
         {
@@ -241,6 +333,4 @@ namespace tutasa.EmitirFactura
 
             return sb.ToString();
         }
-
-    }
-}
+*/

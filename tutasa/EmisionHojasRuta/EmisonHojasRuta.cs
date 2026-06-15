@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using tutasa.Almacenes;
 using static System.Net.WebRequestMethods;
 
 namespace tutasa.EmisionHojasRuta
@@ -77,7 +78,7 @@ namespace tutasa.EmisionHojasRuta
             foreach (
                 EmisionHojasRutaModelo.HojaRuta hdr in hdrs)
             {
-                ListViewItem item = new ListViewItem(hdr.Numero);
+                ListViewItem item = new ListViewItem(hdr.NumeroHDR.ToString());
                 item.SubItems.Add(hdr.Tipo);
 
                 item.SubItems.Add(hdr.Fletero);
@@ -86,7 +87,7 @@ namespace tutasa.EmisionHojasRuta
 
                 item.SubItems.Add(hdr.Direccion);
 
-                item.SubItems.Add(modelo.ObtenerGuiasHDR(hdr.Numero).Count.ToString());
+                item.SubItems.Add(modelo.ObtenerGuiasHDR(hdr.NumeroHDR).Count.ToString());
 
                 item.Tag = hdr;
 
@@ -104,16 +105,17 @@ namespace tutasa.EmisionHojasRuta
             {
                 EmisionHojasRutaModelo.HojaRuta hdr = (EmisionHojasRutaModelo.HojaRuta)itemHDR.Tag;
 
-                List<EmisionHojasRutaModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.Numero);
+                List<EmisionHojasRutaModelo.Guia> guias =modelo.ObtenerGuiasHDR(hdr.NumeroHDR);
 
                 foreach (EmisionHojasRutaModelo.Guia guia in guias)
                 {
-                    ListViewItem fila = new ListViewItem(guia.Numero);
+                    ListViewItem fila = new ListViewItem(guia.Numero.ToString());
 
                     fila.SubItems.Add(guia.Cliente);
 
                     fila.SubItems.Add(guia.Direccion);
 
+                    fila.SubItems.Add(hdr.Tipo);
 
                     fila.SubItems.Add(guia.Dimension);
 
@@ -179,14 +181,15 @@ namespace tutasa.EmisionHojasRuta
             {
                 EmisionHojasRutaModelo.HojaRuta hdr = (EmisionHojasRutaModelo.HojaRuta)item.Tag;
 
-                modelo.EmitirHDR(hdr.Numero);
+                modelo.EmitirHDR(hdr.NumeroHDR);
+                modelo.ActualizarEstadoGuias(hdr.NumeroHDR);
 
                 mensaje +=
                     "====================================\n";
 
                 mensaje +=
                     "Hoja de Ruta: " +
-                    hdr.Numero + "\n";
+                    hdr.NumeroHDR + "\n";
 
                 mensaje +=
                     "Tipo: " +
@@ -199,7 +202,7 @@ namespace tutasa.EmisionHojasRuta
                 mensaje +=
                     "Detalle de Guías:\n\n";
 
-                List<EmisionHojasRutaModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.Numero);
+                List<EmisionHojasRutaModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.NumeroHDR);
 
                 foreach (EmisionHojasRutaModelo.Guia guia in guias)
                 {
@@ -231,6 +234,28 @@ namespace tutasa.EmisionHojasRuta
 
                 return;
             }
+            foreach (ListViewItem item in ListViewRutasPendientes.SelectedItems)
+            {
+                EmisionHojasRutaModelo.HojaRuta hdr =(EmisionHojasRutaModelo.HojaRuta)item.Tag;
+                HojaDeRutaUltimaMilla hdrEntidad =HojaDeRutaUltimaMillaAlmacen.HojaDeRutaUltimaMilla.FirstOrDefault(h => h.NumeroHDR == hdr.NumeroHDR);
+
+                if (hdrEntidad == null)
+                {
+                    continue;
+                }
+
+                if (hdrEntidad.Estado
+                    != EstadoHDRUltimaMillaEnum.Emitida)
+                {
+                    MessageBox.Show(
+                        "Todas las hojas de ruta seleccionadas deben estar emitidas antes de imprimir el resumen.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
 
             string mensaje = "RESUMEN DE HOJAS DE RUTA\n\n";
 
@@ -238,15 +263,13 @@ namespace tutasa.EmisionHojasRuta
             {
                 EmisionHojasRutaModelo.HojaRuta hdr = (EmisionHojasRutaModelo.HojaRuta)item.Tag;
 
-                modelo.EmitirHDR(hdr.Numero);
+             
 
-                modelo.ActualizarEstadoGuias(hdr.Numero);
-
-                List<EmisionHojasRutaModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.Numero);
+                List<EmisionHojasRutaModelo.Guia> guias = modelo.ObtenerGuiasHDR(hdr.NumeroHDR);
 
                 mensaje += "====================================\n";
 
-                mensaje += "Hoja de Ruta: " + hdr.Numero + "\n";
+                mensaje += "Hoja de Ruta: " + hdr.NumeroHDR + "\n";
 
                 mensaje += "Tipo: " + hdr.Tipo + "\n";
 
@@ -262,6 +285,14 @@ namespace tutasa.EmisionHojasRuta
                 "Resumen Impreso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+
+            ComboFletero.SelectedIndex = -1;
+
+            ComboTipo.SelectedIndex = -1;
+
+            ListViewRutasPendientes.Items.Clear();
+
+            ListViewGuias.Items.Clear();
         }
 
         private void BotonCancelar_Click(object sender, EventArgs e)
@@ -273,10 +304,6 @@ namespace tutasa.EmisionHojasRuta
             ListViewRutasPendientes.Items.Clear();
 
             ListViewGuias.Items.Clear();
-        }
-
-        private void ListViewGuias_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
     }
 }
