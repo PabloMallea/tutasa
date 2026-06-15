@@ -18,6 +18,16 @@
     "IdFletero": 304,
     "IdCD": 4,
     "Nombre": "Diego Ramirez"
+  },
+  {
+    "IdFletero": 305,
+    "IdCD": 1,
+    "Nombre": "Pablo Ruiz"
+  },
+  {
+    "IdFletero": 306,
+    "IdCD": 1,
+    "Nombre": "Matias Suarez"
   }
 ]
 
