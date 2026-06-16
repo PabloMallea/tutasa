@@ -8,12 +8,13 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
                                   "- CUIT/CUIL: vacio y habilitado"
                                   "- Boton Buscar: habilitado"
                                   "- Campo Cliente: vacio"
-                                  "- Fecha Desde: DateTimePicker con fecha actual"
+                                  "- Fecha Desde: DateTimePicker con fecha de hace un mes"
                                   "- Fecha Hasta: DateTimePicker con fecha actual"
                                   "- Boton Buscar: habilitado"
                                   "- Tabla Estado Cuenta: vacia"
-                                  "    Columnas: Fecha | N° Comprobante | Concepto | Monto | Pago | Saldo"
-                                  "- Boton Aceptar: habilitado"
+                                  "    Columnas: Fecha | N° Factura | Monto | Pago"
+                                  "- Saldo Pendiente: $0,00"
+                                  "- Boton Cancelar: habilitado"
 
 --- EVENTO 2: Buscar CUIT limpia datos anteriores y autocompleta Cliente ---
 
@@ -22,23 +23,23 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 3- Boton                          "Buscar"
 
 4- Verificacion                   "Campo Cliente y Tabla se limpian al inicio del handler"
-5- Verificacion                   "Campo Cliente: 'Juan Perez'"
+5- Verificacion                   "Campo Cliente: 'Juan'"
 
 --- EVENTO 3: Autocompletado con los cuatro clientes reales de Clientes.json ---
 
 6- Campo CUIT/CUIL                "30555111222"
 7- Boton                          "Buscar"
-8- Verificacion                   "Campo Cliente: 'Maria Gomez'"
+8- Verificacion                   "Campo Cliente: 'Maria'"
 
 9- Campo CUIT/CUIL                "30777888999"
 10- Boton                         "Buscar"
-11- Verificacion                  "Campo Cliente: 'Carlos Lopez'"
+11- Verificacion                  "Campo Cliente: 'Carlos'"
 
 12- Campo CUIT/CUIL               "30444555666"
 13- Boton                         "Buscar"
-14- Verificacion                  "Campo Cliente: 'Lucia Fernandez'"
+14- Verificacion                  "Campo Cliente: 'Lucia'"
 
---- EVENTO 4: Carga de tabla - Juan Perez, rango junio 2026 ---
+--- EVENTO 4: Carga de tabla - Juan, rango junio 2026 ---
 
 15- Campo CUIT/CUIL               "30712345678"
 
@@ -48,76 +49,88 @@ Plan de Prueba: 002.CuentaCorriente.EventosForm.txt
 
 18- Fecha Hasta                   "10/06/2026"
 
-19- Boton                         "Buscar" 
+19- Boton                         "Buscar"
 
 20- Verificacion                  "Tabla se limpia y carga con filas"
 
 21- Verificacion fila Factura 1001:
     Fecha                         "03/06/2026"
-    N° Comprobante                "1001"
+    N° Factura                    "1001"
     Monto                         "$27.700,50"
-    Pago                          "$18.500,50"
-    Saldo                         "$9.200,00"    
+    Pago                          "Pendiente"
+
+22- Verificacion                  "Saldo Pendiente: $27.700,50"
 
 --- EVENTO 5: Cambio de rango filtra correctamente ---
 
-22- Fecha Desde                   "03/06/2026"
+23- Fecha Desde                   "03/06/2026"
 
-23- Fecha Hasta                   "03/06/2026"
+24- Fecha Hasta                   "03/06/2026"
 
-24- Boton                         "Buscar"
+25- Boton                         "Buscar"
 
-25- Verificacion                  "Tabla muestra solo Factura 1001"
+26- Verificacion                  "Tabla muestra 1 fila: solo Factura 1001"
 
-26- Fecha Desde                   "01/06/2026"
+27- Fecha Desde                   "01/06/2026"
 
-27- Fecha Hasta                   "10/06/2026"
+28- Fecha Hasta                   "10/06/2026"
 
-28- Boton                         "Buscar"
+29- Boton                         "Buscar"
 
-29- Verificacion                  "Tabla muestra todas las facturas del rango"
+30- Verificacion                  "Tabla muestra 1 fila: Factura 1001 del rango"
 
 --- EVENTO 6: Nueva busqueda de CUIT limpia tabla anterior ---
 
-30- Campo CUIT/CUIL               "30777888999"
+31- Campo CUIT/CUIL               "30777888999"
 
-31- Boton                         "Buscar"
+32- Boton                         "Buscar"
 
-32- Verificacion                  "Tabla Estado Cuenta se limpia"
-33- Verificacion                  "Campo Cliente: 'Carlos Lopez'"
-34- Verificacion                  "No quedan datos de Juan Perez"
+33- Verificacion                  "Tabla Estado Cuenta se limpia"
+34- Verificacion                  "Campo Cliente: 'Carlos'"
+35- Verificacion                  "No quedan datos de Juan"
 
-35- Fecha Desde                   "01/06/2026"
+36- Fecha Desde                   "01/06/2026"
 
-36- Fecha Hasta                   "10/06/2026"
+37- Fecha Hasta                   "10/06/2026"
 
-37- Boton                         "Buscar"
+38- Boton                         "Buscar"
 
-38- Verificacion fila Factura 1003:
+39- Verificacion tabla fila 1:
     Fecha                         "05/06/2026"
-    N° Comprobante                "1003"
+    N° Factura                    "1002"
     Monto                         "$45.200,75"
-    Pago                          "$45.200,75"
-    Saldo                         "$0,00"        
+    Pago                          "Realizado"
 
---- EVENTO 7: Boton Aceptar cierra el formulario ---
+40- Verificacion tabla fila 2:
+    Fecha                         "05/06/2026"
+    N° Factura                    "1004"
+    Monto                         "$20.200,75"
+    Pago                          "Pendiente"
 
-39- Boton                         "Aceptar"
+41- Verificacion                  "Saldo Pendiente: $20.200,75"
 
-40- Verificacion                  "El formulario retorna al menu principal"
+--- EVENTO 7: Boton Cancelar cierra el formulario ---
+
+42- Boton                         "Cancelar"
+
+43- Mensaje                       "Cerrará la pantalla de Cuenta Corriente."
+
+44- Boton                         "Aceptar"
+
+45- Verificacion                  "El formulario se cierra"
 
 --- EVENTO 8: Consistencia entre tabla y almacenes ---
 
-41- Verificacion                  "Fecha = FechaEmision de Facturas.json"
-42- Verificacion                  "N° Comprobante = NumeroFactura de Facturas.json"
-43- Verificacion                  "Monto = Total de Facturas.json"
-44- Verificacion                  "Pago = MontoPago de Clientes.json"
-45- Verificacion                  "Saldo = Total - MontoPago"
-46- Verificacion                  "Filas = cantidad de movimientos del cliente en el rango"
+46- Verificacion                  "Fecha   = FechaEmision de Facturas.json"
+47- Verificacion                  "N° Factura = NumeroFactura de Facturas.json"
+48- Verificacion                  "Monto   = Total de Facturas.json"
+49- Verificacion                  "Pago    = Paga de Facturas.json (true->'Realizado', false->'Pendiente')"
+50- Verificacion                  "Saldo Pendiente = suma de Total donde Paga=false en el rango"
+51- Verificacion                  "Filas = cantidad de facturas del cliente con FechaEmision en el rango"
 
---- EVENTO 9: Verificacion de los tres estados de factura ---
+--- EVENTO 9: Verificacion de los dos estados de factura ---
 
-47- Verificacion                  "Parcial:   0 < Pago < Monto -> Saldo = diferencia"
-48- Verificacion                  "Pagada:    Pago == Monto    -> Saldo = $0,00"
-49- Verificacion                  "Pendiente: Pago == 0        -> Saldo = Monto completo"
-                                  
+52- Verificacion                  "Realizado: Paga=true en Facturas.json"
+                                  "           -> no suma al Saldo Pendiente"
+53- Verificacion                  "Pendiente: Paga=false en Facturas.json"
+                                  "           -> suma Total al Saldo Pendiente"

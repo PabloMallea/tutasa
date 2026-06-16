@@ -1,5 +1,3 @@
-Plan de Prueba: 000.AdmisionEncomiendas.CargaExitosa.txt
-
 (Empieza con el menu principal)
 
 1- Menu principal                 Seleccionar opcion "Admision"
@@ -9,7 +7,7 @@ Plan de Prueba: 000.AdmisionEncomiendas.CargaExitosa.txt
                                   "- Boton Buscar: habilitado"
                                   "- Seccion Datos de Guia: campos vacios"
                                   "- Peso (Kg): vacio"
-                                  "- Dimension: S | M | L | XL (sin valor resaltado)"
+                                  "- Dimension: sin valor"
                                   "- Boton Confirmar: deshabilitado"
                                   "- Boton Cancelar: habilitado"
 
@@ -18,14 +16,14 @@ Plan de Prueba: 000.AdmisionEncomiendas.CargaExitosa.txt
 4- Boton                          "Buscar"
 
 5- Verificacion autocompletado:
-   Remitente                      "Lucia Fernandez"
-   Direccion Origen               "Ruta 9 Sur 7800"
-   CUIT                           "30444555666"
-   Destinatario                   "Ludmila Paz"
-   Direccion Destino              "San Martin 742"
-   DNI                            "27777888"
-   Peso (Kg)                      "0,00"
-   Dimension                      "L"
+   Remitente                      "Juan Perez"
+   Direccion Origen               "Av. Cabildo 2450"
+   CUIT                           "30712345678"
+   Destinatario                   "Pedro Lopez"
+   Direccion Destino              "Corrientes 1500"
+   DNI                            "30123456"
+   Peso (Kg)                      vacio
+   Dimension                      "S"
 
 6- Verificacion                   "Boton Confirmar: habilitado"
 
@@ -66,23 +64,15 @@ Estado ANTERIOR:
 {
   "NumeroGuia": 100006,
   "EstadoActual": "PendienteAdmision",
-  "Dimension": "L",
-  "MontoFacturar": 0,
-  "ComisionesAgenciaOrigen": 0,
+  "Dimension": "S",
+  "MontoFacturar": 8500,
+  "ComisionesAgenciaOrigen": 1200,
   "ComisionesAgenciaDestino": 0,
   "ComisionesFleteroOrigen": 0,
   "ComisionesFleteroDestino": 0,
   "Historial": [
-    {
-      "FechaHora": "2026-06-10T08:00:00",
-      "Estado": "Impuesta",
-      "Ubicacion": "CD Cordoba"
-    },
-    {
-      "FechaHora": "2026-06-10T08:30:00",
-      "Estado": "PendienteAdmision",
-      "Ubicacion": "CD Cordoba"
-    }
+    { "FechaHora": "2026-06-12T09:00:00", "Estado": "Impuesta",          "Ubicacion": "CD Buenos Aires" },
+    { "FechaHora": "2026-06-12T09:30:00", "Estado": "PendienteAdmision", "Ubicacion": "CD Buenos Aires" }
   ]
 }
 
@@ -91,27 +81,15 @@ Estado NUEVO:
   "NumeroGuia": 100006,
   "EstadoActual": "Admitida",
   "Dimension": "L",
-  "MontoFacturar": 0,
-  "ComisionesAgenciaOrigen": 0,
+  "MontoFacturar": 31390.00,
+  "ComisionesAgenciaOrigen": 1200.00,
   "ComisionesAgenciaDestino": 0,
-  "ComisionesFleteroOrigen": 0,
-  "ComisionesFleteroDestino": 0,
+  "ComisionesFleteroOrigen": 2000.00,
+  "ComisionesFleteroDestino": 2000.00,
   "Historial": [
-    {
-      "FechaHora": "2026-06-10T08:00:00",
-      "Estado": "Impuesta",
-      "Ubicacion": "CD Cordoba"
-    },
-    {
-      "FechaHora": "2026-06-10T08:30:00",
-      "Estado": "PendienteAdmision",
-      "Ubicacion": "CD Cordoba"
-    },
-    {
-      "FechaHora": "fecha actual",
-      "Estado": "Admitida",
-      "Ubicacion": "CD Cordoba"
-    }
+    { "FechaHora": "2026-06-12T09:00:00", "Estado": "Impuesta",          "Ubicacion": "CD Buenos Aires" },
+    { "FechaHora": "2026-06-12T09:30:00", "Estado": "PendienteAdmision", "Ubicacion": "CD Buenos Aires" },
+    { "FechaHora": "[timestamp del sistema]", "Estado": "Admitida",      "Ubicacion": "[Program.IdCDActual]" }
   ]
 }
 
@@ -121,8 +99,20 @@ Campos modificados:
   "PendienteAdmision" -> "Admitida"
 
 - Dimension:
-  "L" confirmada (8 kg corresponde a L)
+  "S" -> "L" (8 kg corresponde a L)
+
+- MontoFacturar:
+  Tarifa origen Localidad 100 destino Localidad 200 dimension L = $27.890,00
+  Extra Entrega a Domicilio                                      = $ 3.500,00
+  Total MontoFacturar                                            = $31.390,00
+
+- Comisiones:
+  ComisionesAgenciaOrigen  (TipoRetiro=EnAgencia, L):  $1.200,00
+  ComisionesAgenciaDestino (Destino=Domicilio):         $    0,00
+  ComisionesFleteroOrigen  (TipoRetiro=EnAgencia, L):  $2.000,00
+  ComisionesFleteroDestino (Destino=Domicilio, L):     $2.000,00
 
 - Historial:
   nueva entrada Estado="Admitida"
-  Ubicacion="CD Cordoba"
+  Ubicacion=Program.IdCDActual (valor numerico del CD en ejecucion)
+  FechaHora=timestamp del momento de ejecucion

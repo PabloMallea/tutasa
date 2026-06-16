@@ -4,7 +4,8 @@ Plan de Prueba: 001.CuentaCorriente.Validaciones.txt
 
 --- VALIDACION 1: CUIT/CUIL vacio ---
 
-1- Boton                          "Buscar"   
+1- Boton                          "Buscar"
+    (seccion Busqueda - boton de busqueda de cliente)
 
 2- Mensaje                        "Debe ingresar un CUIT/CUIL."
 
@@ -60,7 +61,8 @@ Plan de Prueba: 001.CuentaCorriente.Validaciones.txt
 
 23- (Campo Cliente vacio)
 
-24- Boton                         "Buscar"   (seccion fechas)
+24- Boton                         "Buscar"
+    (seccion fechas)
 
 25- Mensaje                       "Debe buscar un cliente primero."
 
@@ -72,7 +74,7 @@ Plan de Prueba: 001.CuentaCorriente.Validaciones.txt
 
 28- Boton                         "Buscar"
 
-29- Verificacion                  "Campo Cliente: 'Juan Perez'"
+29- Verificacion                  "Campo Cliente: 'Juan'"
 
 30- Fecha Desde                   "10/06/2026"
 
@@ -89,8 +91,8 @@ Plan de Prueba: 001.CuentaCorriente.Validaciones.txt
 --- VALIDACION 8: Rango valido sin movimientos para el cliente ---
 
 DATOS DE PRE-TEST
-Razon: ningún cliente tiene movimientos anteriores a junio 2026 en Clientes.json.
-Se usa un rango de fechas pasado donde no existe ningun movimiento.
+Razon: ninguna factura en Facturas.json tiene FechaEmision anterior a junio 2026.
+Se usa un rango de fechas anterior donde no existe ninguna factura.
 
 36- Fecha Desde                   "01/01/2025"
 
@@ -104,14 +106,13 @@ Se usa un rango de fechas pasado donde no existe ningun movimiento.
 
 41- Boton                         "Aceptar"
 
---- VALIDACION 9: Cliente con movimientos pero todos fuera del rango ---
+--- VALIDACION 9: Cliente con facturas pero todas fuera del rango ---
 
-42- Campo CUIT/CUIL               "30555111222"
-    (Maria Gomez, movimiento real del 03/06/2026 Factura 1002)
+42- Campo CUIT/CUIL               "30712345678"
 
 43- Boton                         "Buscar"
 
-44- Verificacion                  "Campo Cliente: 'Maria Gomez'"
+44- Verificacion                  "Campo Cliente: 'Juan'"
 
 45- Fecha Desde                   "01/07/2026"
 
@@ -123,25 +124,25 @@ Se usa un rango de fechas pasado donde no existe ningun movimiento.
 
 49- Boton                         "Aceptar"
 
---- VALIDACION 10: Fecha Desde igual a Fecha Hasta con movimiento en esa fecha ---
+--- VALIDACION 10: Fecha Desde igual a Fecha Hasta con movimientos en esa fecha ---
 
 50- Campo CUIT/CUIL               "30777888999"
-    (Carlos Lopez, movimiento real del 05/06/2026 Factura 1003)
 
 51- Boton                         "Buscar"
 
-52- Fecha Desde                   "05/06/2026"
+52- Verificacion                  "Campo Cliente: 'Carlos'"
 
-53- Fecha Hasta                   "05/06/2026"
+53- Fecha Desde                   "05/06/2026"
 
-54- Boton                         "Buscar"
+54- Fecha Hasta                   "05/06/2026"
 
-55- Verificacion                  "Tabla muestra 1 fila: Factura 1003 del 05/06/2026"
-                                  "(filtro inclusivo en ambos extremos)"
+55- Boton                         "Buscar"
+
+56- Verificacion                  "Tabla muestra 2 filas: Facturas 1002 y 1004 del 05/06/2026"
 
 Verificaciones:
 
-56- En todos los casos de validacion fallida no se modifica ningun almacen.
-57- Clientes.json: sin modificaciones.
-58- Facturas.json: sin modificaciones.
-59- Tabla Estado Cuenta permanece vacia o sin cambios segun el caso.
+57- En todos los casos de validacion fallida no se modifica ningun almacen.
+58- Clientes.json: sin modificaciones.
+59- Facturas.json: sin modificaciones.
+60- Tabla Estado Cuenta permanece vacia o sin cambios segun el caso.

@@ -81,7 +81,7 @@ namespace tutasa.EntregaEncomienda
                 string ubicacionEntrega = modelo.ActualizarEstado(numeroAActualizar);
 
                 // Mostramos el mensaje dinámico
-                MessageBox.Show($"Entrega registrada correctamente en {ubicacionEntrega} y se actualizó el estado a Entregada.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Entrega registrada correctamente y se actualizó el estado a Entregada.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LimpiarFormulario();
             }

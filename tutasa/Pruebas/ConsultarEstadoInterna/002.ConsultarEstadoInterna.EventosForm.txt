@@ -1,10 +1,12 @@
-Plan de Prueba: 002.ConsultarEstadoInterna.EventosForm.txt
+Plan de Prueba: 000.ConsultarEstadoInterna.CargaExitosa.txt
 
-(Empieza con el menu principal - se accede al formulario Estado de Encomienda)
+(Empieza con el menu principal)
 
---- EVENTO 1: Estado inicial del formulario ---
+CASO A: Guia 100002 - 5 movimientos, estado Entregada, destino Agencia
 
-1- Verificacion                   "Al abrir el formulario Estado de Encomienda:"
+1- Menu principal                 Seleccionar opcion "Consulta Estado de la Guia"
+
+2- Verificacion                   "Formulario Estado de Encomienda abierto:"
                                   "- N°Guia: vacio y habilitado"
                                   "- Boton Buscar: habilitado"
                                   "- Estado Actual: vacio"
@@ -14,121 +16,78 @@ Plan de Prueba: 002.ConsultarEstadoInterna.EventosForm.txt
                                   "    Columnas: Fecha y Hora | Estado | Ubicación"
                                   "- Boton Cancelar: habilitado"
 
---- EVENTO 2: Busqueda exitosa - guia 100001 (7 movimientos) ---
+3- Campo N°Guia                  "100002"
 
-2- Campo N°Guia                   "100001"
-
-3- Boton                          "Buscar"
-
-4- Verificacion                   "Tabla Historial se limpia antes de cargar"
+4- Boton                         "Buscar"
 
 5- Verificacion:
-   Estado Actual                  "EnProcesoDistribucion"
-                                  "(Guias.json EstadoActual de guia 100001)"
-   Ubicación Actual               "Rosario"
-                                  "(Ubicacion del ultimo MovimientoEstadoDto)"
-   Ultima fecha actualizada       "03/06/2026 10:00"
-                                  "(FechaHora del ultimo MovimientoEstadoDto)"
-
-6- Verificacion tabla Historial   "7 filas en orden cronologico ascendente:"
-                                  "Fila 1: 01/06/2026 09:15 | Impuesta              | CD Buenos Aires"
-                                  "Fila 2: 01/06/2026 11:00 | PlanificadaRetiro     | CD Buenos Aires"
-                                  "Fila 3: 01/06/2026 15:30 | EnProcesoRetiro       | CABA"
-                                  "Fila 4: 02/06/2026 08:00 | Admitida              | CD Buenos Aires"
-                                  "Fila 5: 02/06/2026 22:15 | EnTransporte          | Ruta Nacional 9"
-                                  "Fila 6: 03/06/2026 07:40 | EnDestino             | CD Rosario"
-                                  "Fila 7: 03/06/2026 10:00 | EnProcesoDistribucion | Rosario"
-
-7- Verificacion                   "Estado Actual, Ubicación Actual y Ultima fecha actualizada
-                                   son de solo lectura (no editables)"
-
---- EVENTO 3: Nueva busqueda limpia resultados anteriores - guia 100002 ---
-
-8- Campo N°Guia                   "100002"
-
-9- Boton                          "Buscar"
-
-10- Verificacion                  "Tabla Historial se limpia"
-
-11- Verificacion:
     Estado Actual                 "Entregada"
     Ubicación Actual              "Agencia Cordoba Centro"
     Ultima fecha actualizada      "03/06/2026 13:45"
 
-12- Verificacion tabla            "5 filas - ver plan 000 Caso B"
-13- Verificacion                  "No quedan datos residuales de la guia 100001"
+6- Verificacion tabla Historial  "5 filas:"
 
---- EVENTO 4: Guia 100003 - verifica estado PendienteAdmision en el Historial ---
+    Fila 1: "02/06/2026 10:00" | "Impuesta"     | "CD Buenos Aires"
+    Fila 2: "02/06/2026 10:30" | "Admitida"     | "CD Buenos Aires"
+    Fila 3: "02/06/2026 23:00" | "EnTransporte" | "Ruta Nacional 14"
+    Fila 4: "03/06/2026 08:20" | "EnDestino"    | "CD Cordoba"
+    Fila 5: "03/06/2026 13:45" | "Entregada"    | "Agencia Cordoba Centro"
 
-14- Campo N°Guia                  "100003"
+---
 
-15- Boton                         "Buscar"
+CASO B: Guia 100003 - 4 movimientos, estado EnTransporte, incluye PendienteAdmision
 
-16- Verificacion:
+7- Campo N°Guia                  "100003"
+
+8- Boton                         "Buscar"
+
+9- Verificacion:
     Estado Actual                 "EnTransporte"
     Ubicación Actual              "Ruta Nacional 7"
     Ultima fecha actualizada      "05/06/2026 01:30"
 
-17- Verificacion                  "Fila 2 del Historial: '04/06/2026 16:00 | PendienteAdmision | CD Rosario'"
-                                  "(verifica que el estado PendienteAdmision del enum se muestra)"
+10- Verificacion tabla Historial  "4 filas:"
 
---- EVENTO 5: Guia 100004 - 7 movimientos, PendienteDeEntrega ---
+    Fila 1: "04/06/2026 14:20" | "Impuesta"          | "Agencia Rosario Norte"
+    Fila 2: "04/06/2026 16:00" | "PendienteAdmision" | "CD Rosario"
+    Fila 3: "04/06/2026 18:45" | "Admitida"          | "CD Rosario"
+    Fila 4: "05/06/2026 01:30" | "EnTransporte"      | "Ruta Nacional 7"
 
-18- Campo N°Guia                  "100004"
+---
 
-19- Boton                         "Buscar"
+CASO C: Guia 100004 - 7 movimientos, estado PendienteDeEntrega
 
-20- Verificacion:
+11- Campo N°Guia                  "100004"
+
+12- Boton                         "Buscar"
+
+13- Verificacion:
     Estado Actual                 "PendienteDeEntrega"
     Ubicación Actual              "Buenos Aires"
     Ultima fecha actualizada      "07/06/2026 09:00"
 
-21- Verificacion tabla            "7 filas - ver plan 000 Caso D"
+14- Verificacion tabla Historial  "7 filas:"
 
---- EVENTO 6: Consistencia total entre pantalla y Guias.json ---
+    Fila 1: "05/06/2026 08:10" | "Impuesta"           | "CD Cordoba"
+    Fila 2: "05/06/2026 09:30" | "PlanificadaRetiro"  | "Cordoba"
+    Fila 3: "05/06/2026 13:00" | "EnProcesoRetiro"    | "Cordoba Capital"
+    Fila 4: "06/06/2026 07:45" | "Admitida"           | "CD Cordoba"
+    Fila 5: "06/06/2026 22:10" | "EnTransporte"       | "Ruta Nacional 8"
+    Fila 6: "07/06/2026 06:30" | "EnDestino"          | "CD Buenos Aires"
+    Fila 7: "07/06/2026 09:00" | "PendienteDeEntrega" | "Buenos Aires"
 
-22- Verificacion                  "Estado Actual = GuiaEntidad.EstadoActual (Guias.json)"
-23- Verificacion                  "Ubicación Actual = Ubicacion del ultimo MovimientoEstadoDto"
-24- Verificacion                  "Ultima fecha actualizada = FechaHora del ultimo MovimientoEstadoDto"
-25- Verificacion                  "Filas en Historial = longitud del array Historial en Guias.json"
+Verificaciones:
 
---- EVENTO 7: Cancelar - elige No - formulario sin cambios ---
+15- Para cada guia consultada, verificar que:
+    Estado Actual = Estado del ultimo MovimientoEstadoDto del Historial (por FechaHora descendente)
+    Ubicación Actual = Ubicacion del ultimo MovimientoEstadoDto del Historial
+    Ultima fecha actualizada = FechaHora del ultimo MovimientoEstadoDto
+    Filas en tabla Historial = cantidad de elementos en array Historial:
+    Guia 100002: 5 | Guia 100003: 4 | Guia 100004: 7
 
-26- Boton                         "Cancelar"
-27- Mensaje                       "¿Está seguro que desea cancelar la operación?"
-28- Boton                         "No"
-29- Verificacion                  "Formulario permanece con los datos de guia 100004"
+16- Guias.json no es modificado en ningun campo. Operacion de solo lectura.
 
---- EVENTO 8: Cancelar - elige Si - limpieza completa ---
-
-30- Boton                         "Cancelar"
-31- Mensaje                       "¿Está seguro que desea cancelar la operación?"
-32- Boton                         "Si"
-33- Verificacion                  "N°Guia: vacio"
-34- Verificacion                  "Estado Actual: vacio"
-35- Verificacion                  "Ubicación Actual: vacio"
-36- Verificacion                  "Ultima fecha actualizada: vacio"
-37- Verificacion                  "Tabla Historial: sin filas"
-38- Verificacion                  "Foco en N°Guia - Formulario permanece abierto"
-
---- EVENTO 9: Busqueda fallida limpia resultados de busqueda anterior ---
-
-39- Campo N°Guia                  "100001"
-40- Boton                         "Buscar"
-41- Verificacion                  "Datos de guia 100001 cargados"
-
-42- Campo N°Guia                  "999999"
-43- Boton                         "Buscar"
-44- Mensaje                       "No se encontró ninguna guía asociada al valor ingresado."
-45- Boton                         "Aceptar"
-46- Verificacion                  "Estado Actual, Ubicación Actual, Ultima fecha actualizada: vacios"
-47- Verificacion                  "Tabla Historial: sin filas"
-48- Verificacion                  "No quedan datos residuales de guia 100001"
-
---- EVENTO 10: Cancelar sin datos cargados ---
-
-49- (Formulario limpio)
-50- Boton                         "Cancelar"
-51- Mensaje                       "¿Está seguro que desea cancelar la operación?"
-52- Boton                         "Si"
-53- Verificacion                  "Formulario queda limpio sin errores - Foco en N°Guia"
+17- Los estados cubiertos por los 3 casos son valores reales de EstadoGuiaEnum:
+    Entregada | EnTransporte | PendienteDeEntrega
+    El Historial incluye ademas: Impuesta | PlanificadaRetiro | EnProcesoRetiro
+    | Admitida | EnDestino | PendienteAdmision

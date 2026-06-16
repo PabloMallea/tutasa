@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using tutasa.Almacenes;
+using tutasa.RendicionHDRtransporte;
 
 namespace tutasa
 {
@@ -15,10 +16,10 @@ namespace tutasa
                 new JsonStringEnumConverter()
             }
         };
-        public static int IdCDActual = 1;
+        public static int IdCDActual = 4;
 
         // NUEVA VARIABLE: Simula la agencia donde está logueado el empleado (CORDOBA)
-        public static int IdAgenciaActual = 105;
+        public static int IdAgenciaActual = 203;
 
         /// <summary>
         ///  The main entry point for the application.
@@ -41,8 +42,8 @@ namespace tutasa
 
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
-           // Application.Run(new MenuPrincipal());
-            Application.Run(new RuteoUltimaMilla.RuteoUltimaMilla());
+            //Application.Run(new MenuPrincipal());
+            Application.Run(new RendicionHDRtransporte.RendicionHDRtransporte());
 
 
             AgenciasAlmacen.Guardar();
