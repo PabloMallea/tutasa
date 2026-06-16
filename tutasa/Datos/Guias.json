@@ -282,11 +282,11 @@
     "ApellidoDestinatario": "Lopez",
     "Dimension": "S",
     "IntentosEntrega": 0,
-    "EstadoActual": "Impuesta",
+    "EstadoActual": "PendienteAdmision",
     "Historial": [
       {
-        "FechaHora": "2026-06-12T09:00:00",
-        "Estado": "Impuesta",
+        "FechaHora": "2026-06-12T09:30:00",
+        "Estado": "PendienteAdmision",
         "Ubicacion": "CD Buenos Aires"
       }
     ],
