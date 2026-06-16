@@ -913,5 +913,24 @@
     "EstadoActual": "EnDestino",
     "IntentosEntrega": 0,
     "Historial": []
+  },
+  {
+    "NumeroGuia": 100029,
+    "CuitCliente": 30999999999,
+    "IdCDOrigen": 4,
+    "IdCDDestino": 1,
+    "Destino": "Domicilio",
+    "CalleDestino": "Av. Santa Fe",
+    "AlturaDestino": "3250",
+    "Dimension": "M",
+    "EstadoActual": "Admitida",
+    "IntentosEntrega": 0,
+    "Historial": [
+      {
+        "FechaHora": "2026-08-05T10:00:00",
+        "Estado": "Admitida",
+        "Ubicacion": "CD Buenos Aires"
+      }
+    ]
   }
 ]

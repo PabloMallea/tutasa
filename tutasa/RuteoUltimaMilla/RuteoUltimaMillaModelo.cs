@@ -82,7 +82,7 @@ namespace tutasa.RuteoUltimaMilla
 
                 if (tipoRuteo == "Entrega")
                 {
-                    if (guiaEntidad.EstadoActual != EstadoGuiaEnum.EnDestino)
+                    if (guiaEntidad.EstadoActual != EstadoGuiaEnum.EnDestino && guiaEntidad.EstadoActual != EstadoGuiaEnum.Admitida)
                     {
                         continue;
                     }
@@ -91,6 +91,7 @@ namespace tutasa.RuteoUltimaMilla
                     {
                         continue;
                     }
+
                     if (guiaEntidad.Destino == DestinoGuiaEnum.CD)
                     {
                         continue;
