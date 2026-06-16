@@ -93,13 +93,13 @@ Plan de Prueba: 001.ConsultarEstadoInterna.Validaciones.txt
 
 40- Mensaje                       "¿Está seguro que desea cancelar la operación?"
 
-45- Boton                         "Si"
+41- Boton                         "Si"
 
-41- Verificacion                  "Formulario queda limpio sin errores"
-42- Verificacion                  "Foco en N°Guia"
+42- Verificacion                  "Formulario queda limpio sin errores"
+43- Verificacion                  "Foco en N°Guia"
 
 Verificaciones:
 
-43- En todos los casos de validacion fallida no se modifica ningun registro en Guias.json.
-44- El Historial de ninguna guia es modificado.
-45- Estado Actual, Ubicación Actual y Ultima fecha actualizada permanecen vacios.
+44- En todos los casos de validacion fallida no se modifica ningun registro en Guias.json.
+45- El Historial de ninguna guia es modificado.
+46- Estado Actual, Ubicación Actual y Ultima fecha actualizada permanecen vacios.

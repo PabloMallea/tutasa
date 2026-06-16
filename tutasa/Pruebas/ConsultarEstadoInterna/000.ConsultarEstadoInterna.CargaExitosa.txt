@@ -79,7 +79,7 @@ CASO C: Guia 100004 - 7 movimientos, estado PendienteDeEntrega
 Verificaciones:
 
 15- Para cada guia consultada, verificar que:
-    Estado Actual = GuiaEntidad.EstadoActual (Guias.json)
+    Estado Actual = Estado del ultimo MovimientoEstadoDto del Historial (por FechaHora descendente)
     Ubicación Actual = Ubicacion del ultimo MovimientoEstadoDto del Historial
     Ultima fecha actualizada = FechaHora del ultimo MovimientoEstadoDto
     Filas en tabla Historial = cantidad de elementos en array Historial:
@@ -87,7 +87,7 @@ Verificaciones:
 
 16- Guias.json no es modificado en ningun campo. Operacion de solo lectura.
 
-17- Los estados cubiertos por los 4 casos son valores reales de EstadoGuiaEnum:
+17- Los estados cubiertos por los 3 casos son valores reales de EstadoGuiaEnum:
     Entregada | EnTransporte | PendienteDeEntrega
-    El Historial incluye ademas: Impuesta | PlanificadaRetiro | EnProcesoRetiro 
+    El Historial incluye ademas: Impuesta | PlanificadaRetiro | EnProcesoRetiro
     | Admitida | EnDestino | PendienteAdmision
