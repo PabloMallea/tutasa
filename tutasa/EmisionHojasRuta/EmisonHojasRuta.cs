@@ -20,9 +20,9 @@ namespace tutasa.EmisionHojasRuta
         {
             ComboFletero.Items.Clear();
 
-            foreach (string fletero in modelo.ObtenerFleteros())
+            foreach (EmisionHojasRutaModelo.Fletero fletero in modelo.ObtenerFleteros())
             {
-                ComboFletero.Items.Add(fletero);
+                ComboFletero.Items.Add(fletero.Nombre);
             }
 
             ComboTipo.Items.Clear();
@@ -54,15 +54,11 @@ namespace tutasa.EmisionHojasRuta
                 return;
             }
 
-            string fletero = ComboFletero.SelectedItem.ToString();
+            EmisionHojasRutaModelo.Fletero fletero =modelo.ObtenerFleteros()[ComboFletero.SelectedIndex];
 
             string tipo = ComboTipo.SelectedItem.ToString();
 
-            ListViewRutasPendientes.Items.Clear();
-
-            ListViewGuias.Items.Clear();
-
-            List<EmisionHojasRutaModelo.HojaRuta> hdrs = modelo.BuscarHDRPendientes(fletero, tipo);
+            List<EmisionHojasRutaModelo.HojaRuta> hdrs =modelo.BuscarHDRPendientes(fletero.IdFletero, tipo);
 
             if (hdrs.Count == 0)
             {

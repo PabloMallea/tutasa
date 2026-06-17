@@ -16,7 +16,7 @@ namespace tutasa
                 new JsonStringEnumConverter()
             }
         };
-        public static int IdCDActual = 4;
+        public static int IdCDActual = 1;
 
         // NUEVA VARIABLE: Simula la agencia donde está logueado el empleado (CORDOBA)
         public static int IdAgenciaActual = 203;
@@ -43,7 +43,7 @@ namespace tutasa
             ApplicationConfiguration.Initialize();
             //Aca se instancia el formulario correspondiente y se lo establece como formulario principal de ejecuci�n de la aplicaci�n.
             //Application.Run(new MenuPrincipal());
-            Application.Run(new RendicionHDRtransporte.RendicionHDRtransporte());
+            Application.Run(new EmisionHojasRuta.EmisonHojasRuta());
 
 
             AgenciasAlmacen.Guardar();
