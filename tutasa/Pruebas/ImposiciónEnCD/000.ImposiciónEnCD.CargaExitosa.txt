@@ -37,7 +37,7 @@ Verificaciones:
 20- Archivo Guias.json - Verificar:
 
 {
-   "numeroGuia": 100016,
+   "numeroGuia": 100030,
    "fechaAlta": "fecha actual",
 
    "cuitCliente": 30712345678,
@@ -68,13 +68,13 @@ Verificaciones:
 
    "Historial": [
       {
-         "fechaHora": "10-06-2026 10:30:00",
+         "fechaHora": FechaHoraActual,
          "estado": "Admitida",
          "ubicacion": "CD Buenos Aires"
       }
    ],
 
-   "montoFacturar": 0,
+   "montoFacturar": 18500.50,
 
    "comisionesAgenciaOrigen": 0,
    "comisionesAgenciaDestino": 0,

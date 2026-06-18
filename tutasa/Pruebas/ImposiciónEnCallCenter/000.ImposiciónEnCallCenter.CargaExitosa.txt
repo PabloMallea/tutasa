@@ -18,7 +18,7 @@
 
 8- Localidad: "Rosario"
 
-6- Campo Localidad "Mendoza"
+6- Campo Localidad "Cordoba"
 
 7- Botón "Buscar"
 
@@ -26,11 +26,11 @@
 
 9- Botón "Aceptar"
 
-10- Desplegable Destino "Agencia Mendoza Terminal"
+10- Desplegable Destino "CD Cordoba"
 
 11- Verificación:
-Calle = "Acceso Sur"
-Altura = "2100"
+Calle = "Ruta 9 Sur"
+Altura = "7800"
 
 12- Campo Nombre "Ana"
 
@@ -54,22 +54,22 @@ Verificaciones
 20- Archivo Guias.json - Verificar:
 
 {
-"NumeroGuia": 100016,
+"NumeroGuia": 100030,
 "FechaAlta": "Fecha Actual",
 
 "CuitCliente": 30777888999,
 
 "IdCDOrigen": 1,
 
-"IdAgenciaOrigen": 201,
+"IdAgenciaOrigen": 202,
 
-"IdCDDestino": 4,
-"IdAgenciaDestino": 203,
+"IdCDDestino": 3
+"IdAgenciaDestino": 0,
 
-"Destino": "Agencia",
+"Destino": "CD",
 
-"CalleDestino": "Acceso Sur",
-"AlturaDestino": "2100",
+"CalleDestino": "Ruta 9 Sur",
+"AlturaDestino": "7800",
 
 "DniDestinatario": "30123456",
 "TelefonoDestinatario": "1177788899",
@@ -86,7 +86,7 @@ Verificaciones
 {
 "FechaHora": "",
 "Estado": "Impuesta",
-"Ubicacion": "Agencia Rosario Norte"
+"Ubicacion": "CD Buenos Aires"
 }
 ],
 

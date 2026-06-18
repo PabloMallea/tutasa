@@ -270,7 +270,7 @@
     "CuitCliente": 30712345678,
     "IdCDOrigen": 1,
     "TipoRetiro": "EnAgencia",
-    "IdAgenciaRetiro": 101,
+    "IdAgenciaRetiro": 105,
     "IdCDDestino": 2,
     "IdAgenciaDestino": 0,
     "Destino": "Domicilio",
@@ -284,14 +284,19 @@
     "IntentosEntrega": 0,
     "EstadoActual": "PendienteAdmision",
     "Historial": [
-      {
-        "FechaHora": "2026-06-12T09:30:00",
-        "Estado": "PendienteAdmision",
-        "Ubicacion": "CD Buenos Aires"
-      }
+        {
+            "FechaHora": "2026-06-12T09:30:00",
+            "Estado": "Impuesta",
+            "Ubicacion": "CD Buenos Aires"
+        },
+        {
+            "FechaHora": "2026-06-12T09:30:00",
+            "Estado": "PendienteAdmision",
+            "Ubicacion": "CD Buenos Aires"
+        }
     ],
-    "MontoFacturar": 8500,
-    "ComisionesAgenciaOrigen": 1200,
+    "MontoFacturar": 0,
+    "ComisionesAgenciaOrigen": 0,
     "ComisionesAgenciaDestino": 0,
     "ComisionesFleteroOrigen": 0,
     "ComisionesFleteroDestino": 0

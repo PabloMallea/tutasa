@@ -65,8 +65,8 @@ Estado ANTERIOR:
   "NumeroGuia": 100006,
   "EstadoActual": "PendienteAdmision",
   "Dimension": "S",
-  "MontoFacturar": 8500,
-  "ComisionesAgenciaOrigen": 1200,
+  "MontoFacturar": 0,
+  "ComisionesAgenciaOrigen": 0,
   "ComisionesAgenciaDestino": 0,
   "ComisionesFleteroOrigen": 0,
   "ComisionesFleteroDestino": 0,
@@ -81,7 +81,7 @@ Estado NUEVO:
   "NumeroGuia": 100006,
   "EstadoActual": "Admitida",
   "Dimension": "L",
-  "MontoFacturar": 31390.00,
+  "MontoFacturar": 34700.00,
   "ComisionesAgenciaOrigen": 1200.00,
   "ComisionesAgenciaDestino": 0,
   "ComisionesFleteroOrigen": 2000.00,
@@ -89,7 +89,7 @@ Estado NUEVO:
   "Historial": [
     { "FechaHora": "2026-06-12T09:00:00", "Estado": "Impuesta",          "Ubicacion": "CD Buenos Aires" },
     { "FechaHora": "2026-06-12T09:30:00", "Estado": "PendienteAdmision", "Ubicacion": "CD Buenos Aires" },
-    { "FechaHora": "[timestamp del sistema]", "Estado": "Admitida",      "Ubicacion": "[Program.IdCDActual]" }
+    { "FechaHora": "[timestamp del sistema]", "Estado": "Admitida",      "Ubicacion": "CD Buenos Aires" }
   ]
 }
 
@@ -102,9 +102,11 @@ Campos modificados:
   "S" -> "L" (8 kg corresponde a L)
 
 - MontoFacturar:
-  Tarifa origen Localidad 100 destino Localidad 200 dimension L = $27.890,00
-  Extra Entrega a Domicilio                                      = $ 3.500,00
-  Total MontoFacturar                                            = $31.390,00
+  Tarifa base (Localidad 300 → Localidad 200, Dimensión L) ....... $31.200,00
+  Extra por entrega a domicilio .................................. $ 3.500,00
+                                                                   -----------
+  Total Monto a Facturar ......................................... $34.700,00
+
 
 - Comisiones:
   ComisionesAgenciaOrigen  (TipoRetiro=EnAgencia, L):  $1.200,00

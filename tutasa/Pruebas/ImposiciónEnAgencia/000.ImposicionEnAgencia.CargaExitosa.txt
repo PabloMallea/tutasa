@@ -46,7 +46,7 @@
 21- Guias.json: Verificar
 
 {
-  "NumeroGuia": 100016,
+  "NumeroGuia": 100030,
   "FechaAlta": "<fecha actual>",
 
   "CuitCliente": 30444555666,
@@ -54,7 +54,7 @@
   "IdCDOrigen": 1,
 
   "TipoRetiro": "EnAgencia",
-  "IdAgenciaRetiro": 105,
+  "IdAgenciaRetiro": 202,
 
   "IdCDDestino": 4,
   "IdAgenciaDestino": 203,
@@ -80,7 +80,7 @@
     {
       "FechaHora": "<fecha actual>",
       "Estado": "Impuesta",
-      "Ubicacion": "Agencia Cordoba Centro"
+      "Ubicacion": "Agencia Buenos Aires Microcentro"
     }
   ],
 
