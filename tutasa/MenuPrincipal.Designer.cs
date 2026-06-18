@@ -86,6 +86,7 @@ partial class MenuPrincipal
         RuteoUltimaMillaBtn.TabIndex = 3;
         RuteoUltimaMillaBtn.Text = "Ruteo Ultima Milla";
         RuteoUltimaMillaBtn.UseVisualStyleBackColor = true;
+        RuteoUltimaMillaBtn.Click += RuteoUltimaMillaBtn_Click;
         // 
         // ImposiciónEnAgenciaBtn
         // 
@@ -96,6 +97,7 @@ partial class MenuPrincipal
         ImposiciónEnAgenciaBtn.TabIndex = 4;
         ImposiciónEnAgenciaBtn.Text = "Imposición En Agencia";
         ImposiciónEnAgenciaBtn.UseVisualStyleBackColor = true;
+        ImposiciónEnAgenciaBtn.Click += ImposiciónEnAgenciaBtn_Click;
         // 
         // ImposicionEnCallCenterBtn
         // 
@@ -106,6 +108,7 @@ partial class MenuPrincipal
         ImposicionEnCallCenterBtn.TabIndex = 5;
         ImposicionEnCallCenterBtn.Text = "Imposición En Call Center";
         ImposicionEnCallCenterBtn.UseVisualStyleBackColor = true;
+        ImposicionEnCallCenterBtn.Click += ImposicionEnCallCenterBtn_Click;
         // 
         // ImposicionEnCDBtn
         // 
@@ -116,6 +119,7 @@ partial class MenuPrincipal
         ImposicionEnCDBtn.TabIndex = 6;
         ImposicionEnCDBtn.Text = "Imposición En CD";
         ImposicionEnCDBtn.UseVisualStyleBackColor = true;
+        ImposicionEnCDBtn.Click += ImposicionEnCDBtn_Click;
         // 
         // AdmisionBtn
         // 
@@ -126,6 +130,7 @@ partial class MenuPrincipal
         AdmisionBtn.TabIndex = 7;
         AdmisionBtn.Text = "Admisión";
         AdmisionBtn.UseVisualStyleBackColor = true;
+        AdmisionBtn.Click += AdmisionBtn_Click;
         // 
         // EmisionUltimaMillaBtn
         // 
@@ -136,6 +141,7 @@ partial class MenuPrincipal
         EmisionUltimaMillaBtn.TabIndex = 8;
         EmisionUltimaMillaBtn.Text = "Emision Ultima Milla";
         EmisionUltimaMillaBtn.UseVisualStyleBackColor = true;
+        EmisionUltimaMillaBtn.Click += EmisionUltimaMillaBtn_Click;
         // 
         // RendicionUltimaMillaBtn
         // 
@@ -146,6 +152,7 @@ partial class MenuPrincipal
         RendicionUltimaMillaBtn.TabIndex = 9;
         RendicionUltimaMillaBtn.Text = "Rendición Ultima Milla";
         RendicionUltimaMillaBtn.UseVisualStyleBackColor = true;
+        RendicionUltimaMillaBtn.Click += RendicionUltimaMillaBtn_Click;
         // 
         // EmisionTransporteBtn
         // 
@@ -156,6 +163,7 @@ partial class MenuPrincipal
         EmisionTransporteBtn.TabIndex = 10;
         EmisionTransporteBtn.Text = "Emision Transporte";
         EmisionTransporteBtn.UseVisualStyleBackColor = true;
+        EmisionTransporteBtn.Click += EmisionTransporteBtn_Click;
         // 
         // RendicionTransporteBtn
         // 
@@ -166,6 +174,7 @@ partial class MenuPrincipal
         RendicionTransporteBtn.TabIndex = 11;
         RendicionTransporteBtn.Text = "Rendición Transporte";
         RendicionTransporteBtn.UseVisualStyleBackColor = true;
+        RendicionTransporteBtn.Click += RendicionTransporteBtn_Click;
         // 
         // EntregaEncomiendaBtn
         // 
@@ -176,6 +185,7 @@ partial class MenuPrincipal
         EntregaEncomiendaBtn.TabIndex = 12;
         EntregaEncomiendaBtn.Text = "Entrega Encomienda";
         EntregaEncomiendaBtn.UseVisualStyleBackColor = true;
+        EntregaEncomiendaBtn.Click += EntregaEncomiendaBtn_Click;
         // 
         // ConsultaEstadoBtn
         // 
@@ -186,6 +196,7 @@ partial class MenuPrincipal
         ConsultaEstadoBtn.TabIndex = 13;
         ConsultaEstadoBtn.Text = "Consulta Estado";
         ConsultaEstadoBtn.UseVisualStyleBackColor = true;
+        ConsultaEstadoBtn.Click += ConsultaEstadoBtn_Click;
         // 
         // CuentaCorrienteBtn
         // 
@@ -196,6 +207,7 @@ partial class MenuPrincipal
         CuentaCorrienteBtn.TabIndex = 14;
         CuentaCorrienteBtn.Text = "Consulta Cuenta Corriente";
         CuentaCorrienteBtn.UseVisualStyleBackColor = true;
+        CuentaCorrienteBtn.Click += CuentaCorrienteBtn_Click;
         // 
         // EmitirFacturaBtn
         // 
@@ -206,6 +218,7 @@ partial class MenuPrincipal
         EmitirFacturaBtn.TabIndex = 15;
         EmitirFacturaBtn.Text = "Emitir Factura";
         EmitirFacturaBtn.UseVisualStyleBackColor = true;
+        EmitirFacturaBtn.Click += EmitirFacturaBtn_Click;
         // 
         // RdoCostosVsVentasBtn
         // 
@@ -216,6 +229,7 @@ partial class MenuPrincipal
         RdoCostosVsVentasBtn.TabIndex = 16;
         RdoCostosVsVentasBtn.Text = "Rdos Costos vs Ventas";
         RdoCostosVsVentasBtn.UseVisualStyleBackColor = true;
+        RdoCostosVsVentasBtn.Click += RdoCostosVsVentasBtn_Click;
         // 
         // MenuPrincipal
         // 
