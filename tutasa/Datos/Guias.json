@@ -282,11 +282,11 @@
     "ApellidoDestinatario": "Lopez",
     "Dimension": "S",
     "IntentosEntrega": 0,
-    "EstadoActual": "Impuesta",
+    "EstadoActual": "PendienteAdmision",
     "Historial": [
       {
-        "FechaHora": "2026-06-12T09:00:00",
-        "Estado": "Impuesta",
+        "FechaHora": "2026-06-12T09:30:00",
+        "Estado": "PendienteAdmision",
         "Ubicacion": "CD Buenos Aires"
       }
     ],
@@ -398,7 +398,7 @@
     "ApellidoDestinatario": "Fernandez",
     "Dimension": "XL",
     "IntentosEntrega": 0,
-    "EstadoActual": "enDestino",
+    "EstadoActual": "EnDestino",
     "Historial": [
       {
         "FechaHora": "2026-06-12T11:15:00",
@@ -861,5 +861,76 @@
     "ComisionesAgenciaDestino": 0,
     "ComisionesFleteroOrigen": 0,
     "ComisionesFleteroDestino": 0
+  },
+  {
+    "NumeroGuia": 100025,
+    "CuitCliente": 30999999999,
+    "IdCDOrigen": 1,
+    "IdCDDestino": 5,
+    "Destino": "CD",
+    "CalleDestino": "Av. 44",
+    "AlturaDestino": "3200",
+    "Dimension": "M",
+    "EstadoActual": "Admitida",
+    "IntentosEntrega": 0,
+    "Historial": []
+  },
+  {
+    "NumeroGuia": 100026,
+    "CuitCliente": 30888888888,
+    "IdCDOrigen": 1,
+    "IdCDDestino": 5,
+    "Destino": "CD",
+    "CalleDestino": "Diagonal 80",
+    "AlturaDestino": "450",
+    "Dimension": "L",
+    "EstadoActual": "Admitida",
+    "IntentosEntrega": 0,
+    "Historial": []
+  },
+  {
+    "NumeroGuia": 100027,
+    "CuitCliente": 30999999999,
+    "IdCDOrigen": 1,
+    "IdCDDestino": 6,
+    "Destino": "CD",
+    "CalleDestino": "Av. Hipolito Yrigoyen",
+    "AlturaDestino": "2450",
+    "Dimension": "XL",
+    "EstadoActual": "Admitida",
+    "IntentosEntrega": 0,
+    "Historial": []
+  },
+  {
+    "NumeroGuia": 100028,
+    "CuitCliente": 30888888888,
+    "IdCDOrigen": 1,
+    "IdCDDestino": 3,
+    "Destino": "CD",
+    "CalleDestino": "Av. Colon",
+    "AlturaDestino": "450",
+    "Dimension": "S",
+    "EstadoActual": "EnDestino",
+    "IntentosEntrega": 0,
+    "Historial": []
+  },
+  {
+    "NumeroGuia": 100029,
+    "CuitCliente": 30999999999,
+    "IdCDOrigen": 4,
+    "IdCDDestino": 1,
+    "Destino": "Domicilio",
+    "CalleDestino": "Av. Santa Fe",
+    "AlturaDestino": "3250",
+    "Dimension": "M",
+    "EstadoActual": "Admitida",
+    "IntentosEntrega": 0,
+    "Historial": [
+      {
+        "FechaHora": "2026-08-05T10:00:00",
+        "Estado": "Admitida",
+        "Ubicacion": "CD Buenos Aires"
+      }
+    ]
   }
 ]

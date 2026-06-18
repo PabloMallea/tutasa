@@ -45,7 +45,7 @@ namespace tutasa.EntregaEncomienda
             if (guiaEntidad.Destino == DestinoGuiaEnum.Agencia)
             {
                 var agencia = AgenciasAlmacen.agencias.FirstOrDefault(a => a.IdAgencia == guiaEntidad.IdAgenciaDestino);
-                if (agencia != null) nombreUbicacion = $"Agencia {agencia.NombreAgencia}";
+                if (agencia != null) nombreUbicacion = $"{agencia.NombreAgencia}";
             }
             else if (guiaEntidad.Destino == DestinoGuiaEnum.CD)
             {

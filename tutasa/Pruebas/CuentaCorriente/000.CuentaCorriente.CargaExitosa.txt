@@ -2,8 +2,7 @@ Plan de Prueba: 000.CuentaCorriente.CargaExitosa.txt
 
 (Empieza con el menu principal)
 
-CASO A: Juan Perez (CUIT 30712345678) - rango que cubre Facturas 1001 y 1003
-
+CASO A: Juan Perez (CUIT 30712345678) - Factura 1001 en rango junio 2026
 
 1- Menu principal                 Seleccionar opcion "Estado Cuenta Corriente"
 
@@ -11,72 +10,83 @@ CASO A: Juan Perez (CUIT 30712345678) - rango que cubre Facturas 1001 y 1003
                                   "- CUIT/CUIL: vacio y habilitado"
                                   "- Boton Buscar: habilitado"
                                   "- Campo Cliente: vacio"
-                                  "- Fecha Desde: DateTimePicker con fecha actual"
+                                  "- Fecha Desde: DateTimePicker con fecha de hace un mes"
                                   "- Fecha Hasta: DateTimePicker con fecha actual"
                                   "- Boton Buscar: habilitado"
                                   "- Seccion Estado Cuenta: tabla vacia"
-                                  "    Columnas: Fecha | N° Comprobante | Concepto | Monto | Pago | Saldo"
-                                  "- Boton Aceptar: habilitado"
+                                  "    Columnas: Fecha | N° Factura | Monto | Pago"
+                                  "- Saldo Pendiente: $0,00"
+                                  "- Boton Cancelar: habilitado"
 
 3- Campo CUIT/CUIL                "30712345678"
 
-4- Boton                          "Buscar"   
+4- Boton                          "Buscar"
 
-5- Verificacion                   "Campo Cliente muestra: 'Juan Perez'"
+5- Verificacion                   "Campo Cliente muestra: 'Juan'"
 
 6- Fecha Desde                    "01/06/2026"
 
 7- Fecha Hasta                    "10/06/2026"
 
-8- Boton                          "Buscar"   
+8- Boton                          "Buscar"
 
-9- Verificacion                   "Tabla Estado Cuenta se carga con 1 filas"
+9- Verificacion                   "Tabla Estado Cuenta se carga con 1 fila"
 
 10- Verificacion tabla fila 1:
     Fecha                         "03/06/2026"
-    N° Comprobante                "1001"
-    Concepto                      "Guias 100001 y 100002"
+    N° Factura                    "1001"
     Monto                         "$27.700,50"
-    Pago                          "$18.500,50"
-    Saldo                         "$9.200,00"
-    Estado                        "Parcial"
+    Pago                          "Pendiente"
 
-11- Boton                         "Aceptar"
+11- Verificacion                  "Saldo Pendiente: $27.700,50"
 
-12- Verificacion                  "El formulario retorna al menu principal"
+12- Boton                         "Cancelar"
+
+13- Mensaje                       "Cerrará la pantalla de Cuenta Corriente."
+
+14- Boton                         "Aceptar"
+
+15- Verificacion                  "El formulario se cierra"
 
 ---
 
-CASO B: Carlos Lopez (CUIT 30777888999) - estado Pagada
+CASO B: Carlos Lopez (CUIT 30777888999) - Facturas 1002 y 1004, estado mixto
 
-13- Campo CUIT/CUIL               "30777888999"
+16- (Reabrir formulario Cuenta Corriente desde el menu principal)
 
-14- Boton                         "Buscar"
-
-15- Verificacion                  "Campo Cliente muestra: 'Carlos Lopez'"
-
-16- Fecha Desde                   "01/06/2026"
-
-17- Fecha Hasta                   "10/06/2026"
+17- Campo CUIT/CUIL               "30777888999"
 
 18- Boton                         "Buscar"
 
-19- Verificacion tabla fila 1:
-    Fecha                         "05/06/2026"
-    N° Comprobante                "1003"
-    Concepto                      "Guia 100004"
-    Monto                         "$45.200,75"
-    Pago                          "$45.200,75"
-    Saldo                         "$0,00"
-    Estado                        "Pagada"
+19- Verificacion                  "Campo Cliente muestra: 'Carlos'"
 
-20- Boton                         "Aceptar"
+20- Fecha Desde                   "01/06/2026"
+
+21- Fecha Hasta                   "10/06/2026"
+
+22- Boton                         "Buscar"
+
+23- Verificacion                  "Tabla Estado Cuenta se carga con 2 filas"
+
+24- Verificacion tabla fila 1:
+    Fecha                         "05/06/2026"
+    N° Factura                    "1002"
+    Monto                         "$45.200,75"
+    Pago                          "Realizado"
+
+25- Verificacion tabla fila 2:
+    Fecha                         "05/06/2026"
+    N° Factura                    "1004"
+    Monto                         "$20.200,75"
+    Pago                          "Pendiente"
+
+26- Verificacion                  "Saldo Pendiente: $20.200,75"
 
 Verificaciones:
 
-21- Los datos mostrados en la tabla coinciden exactamente con:
-    - Facturas.json: NumeroFactura, FechaEmision, Total, Guias
-    - Clientes.json: MontoPago del movimiento correspondiente
-    - Saldo calculado: Total - MontoPago
+27- Los datos mostrados en la tabla coinciden exactamente con:
+    - Facturas.json: NumeroFactura, FechaEmision, Total (como Monto)
+    - Facturas.json: Paga (true -> 'Realizado', false -> 'Pendiente')
+    - Saldo Pendiente = suma de Total de facturas con Paga=false en el rango
 
-22- El almacen NO es modificado en ningun campo. Operacion de solo lectura.
+28- El almacen NO es modificado en ningun campo. Operacion de solo lectura.

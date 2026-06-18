@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using tutasa.Almacenes;
+using static tutasa.EmisionHojasRuta.EmisionHojasRutaModelo;
 using static tutasa.RuteoUltimaMilla.RuteoUltimaMillaModelo;
 
 namespace tutasa.EmisionHojasRuta
@@ -9,25 +10,31 @@ namespace tutasa.EmisionHojasRuta
     internal partial class EmisionHojasRutaModelo
     {
 
-        public List<string> ObtenerFleteros()
+        public List<Fletero> ObtenerFleteros()
         {
-            List<string> resultado =new List<string>();
+            List<Fletero> resultado = new List<Fletero>();
 
             foreach (tutasa.Almacenes.Fletero fleteroEntidad in FleteroAlmacen.fleteros)
             {
-                if (fleteroEntidad.IdCD!= Program.IdCDActual)
+                if (fleteroEntidad.IdCD != Program.IdCDActual)
                 {
                     continue;
                 }
 
-                resultado.Add(fleteroEntidad.Nombre);
+                Fletero fletero = new Fletero();
+
+                fletero.IdFletero = fleteroEntidad.IdFletero;
+
+                fletero.Nombre = fleteroEntidad.Nombre;
+
+                resultado.Add(fletero);
             }
 
             return resultado;
         }
 
 
-        public List<HojaRuta> BuscarHDRPendientes(string fletero,string tipo)
+        public List<HojaRuta> BuscarHDRPendientes(int idFletero,string tipo)
         {
             List<HojaRuta> resultado = new List<HojaRuta>();
 
@@ -47,7 +54,7 @@ namespace tutasa.EmisionHojasRuta
 
                 string tipoHDR = hdrEntidad.Tipo == TipoHDREnum.Entrega ? "Distribución": "Retiro";
 
-                if (fleteroEntidad.Nombre!= fletero)
+                if (fleteroEntidad.IdFletero != idFletero)
                 {
                     continue;
                 }
@@ -176,6 +183,7 @@ namespace tutasa.EmisionHojasRuta
 
                         Ubicacion = ubicacion
                     });
+                GuiaAlmacen.Guardar();
             }
 
         }

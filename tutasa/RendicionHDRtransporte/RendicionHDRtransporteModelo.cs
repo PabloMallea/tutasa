@@ -92,6 +92,19 @@ namespace tutasa.RendicionHDRtransporte
 
         public bool ActualizarEstadoHDR(List<HDRtransporte> hdrRendidas)
         {
+            // Actualizar estado de servicio a finalizado
+            if (hdrRendidas.Count > 0)
+            {
+                int idServicio = HojasDeRutaTransporteAlmacen.HojasDeRutaTransporte.Find(h => h.NumeroHDRTransporte == hdrRendidas[0].NumeroHdrTransporte)?.IdServicio ?? -1;
+                if (idServicio != -1)
+                {
+                    ServicioEntidad servicioEntidad = ServiciosAlmacen.servicio.Find(s => s.IdServicio == idServicio);
+                    if (servicioEntidad != null)
+                    {
+                        servicioEntidad.EstadoServicio = EstadoServicioEnum.Finalizado;
+                    }
+                }
+            }
 
             foreach (HDRtransporte hdr in hdrRendidas)
             {
