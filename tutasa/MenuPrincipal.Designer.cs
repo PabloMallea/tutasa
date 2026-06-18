@@ -60,6 +60,7 @@ partial class MenuPrincipal
         // 
         // comboBox1
         // 
+        comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
         comboBox1.FormattingEnabled = true;
         comboBox1.Location = new Point(70, 49);
         comboBox1.Margin = new Padding(3, 4, 3, 4);

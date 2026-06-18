@@ -16,14 +16,22 @@ public partial class MenuPrincipal : Form
 
     private void MenuPrincipal_Load(object sender, EventArgs e)
     {
-        //cargas comboBox1 con los cds.
-        //comboBox1.Items.Add ...
+        comboBox1.Items.Clear();
+
+        comboBox1.Items.Add("CD Buenos Aires");
+        comboBox1.Items.Add("CD Rosario");
+        comboBox1.Items.Add("CD Cordoba");
+        comboBox1.Items.Add("CD Mendoza");
+        comboBox1.Items.Add("CD La Plata");
+        comboBox1.Items.Add("CD San Rafael");
+
+        comboBox1.SelectedIndex = 0;
     }
 
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
         //Estableces Program.IdCDActual al valor del combo.
-        Program.IdCDActual = 1;
+        Program.IdCDActual = comboBox1.SelectedIndex + 1;
     }
 
     private void ImposiciónEnAgenciaBtn_Click(object sender, EventArgs e)
