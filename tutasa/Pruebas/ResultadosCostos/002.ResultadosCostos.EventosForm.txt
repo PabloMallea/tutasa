@@ -1,31 +1,31 @@
-Plan de Prueba: 001.ResultadoCostos.Validaciones.txt
+Plan de Prueba: 002.ResultadoCostos.EventosForm.txt
 
 (Empieza con el menú principal y la pantalla Resultado Costos vs. Ventas abierta)
 
-1- Botón                                  "Buscar"
+1- Verificación inicial                   "Los campos de resumen muestran '$0' y '0%' por defecto, y los tres desplegables están vacíos."   
 
-2- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"
+2- Desplegable Empresa de Transporte      "Transporte Ruta Sur"
 
-3- Botón                                  "Aceptar"
+3- Desplegable Seleccionar Mes            "6"
 
-4- Desplegable Empresa de Transporte      "Transporte Ruta Sur"
+4- Desplegable Seleccionar Año            "2026"
 
 5- Botón                                  "Buscar"
 
-6- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"
+6- Verificación                           "Los campos de resumen se actualizan mostrando el formato correcto de moneda ($) y porcentaje (%)."   
 
-7- Botón                                  "Aceptar"
+7- Botón                                  "Confirmar"
 
-8- Desplegable Seleccionar Mes            "6"
+8- Mensaje                                "Consulta realizada correctamente"   
 
-9- Botón                                  "Buscar"
+9- Botón                                  "Aceptar"
 
-10- Mensaje                               "Debe completar todos los criterios de búsqueda para continuar"
+10- Verificación                          
 
-11- Botón                                 "Aceptar"
+"Se vacían los tres desplegables, se limpia la grilla 'Detalle de Envíos y Guías', y los cuatro campos de texto del resumen quedan vacíos ("")."   
 
-Verificaciones
+11- Desplegable Seleccionar Mes           "7"
 
-12- La grilla "Detalle de Envíos y Guías" debe mantenerse vacía en todo momento.
+12- Botón                                 "Cancelar"
 
-13- Los campos del "Resumen de Resultados Mensuales" deben mantenerse vacíos (o en su estado por defecto, ej. $0).
+13- Verificación                          "Se limpian internamente los campos (desplegables, grilla y textos del resumen)."

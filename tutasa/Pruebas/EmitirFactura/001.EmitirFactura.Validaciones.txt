@@ -1,0 +1,38 @@
+Plan de Prueba: 001.EmitirFactura.Validaciones.txt
+
+(Empieza con el menú principal y la pantalla de Emitir Factura abierta)
+
+1- Botón "Emitir Factura"
+
+2- Mensaje "Debe buscar y seleccionar un cliente antes de emitir la factura."   
+
+3- Botón "Aceptar"4- Campo CUIT "1234ABCD" (o dejarlo vacío)
+
+5- Botón "Buscar"
+
+6- Mensaje "El CUIT ingresado no es válido. Debe ser un número sin guiones ni espacios."   
+
+7- Botón "Aceptar"8- Campo CUIT "11111111111"
+
+9- Botón "Buscar"
+
+10- Mensaje "No se encontró un cliente con el CUIT ingresado."   
+
+11- Botón "Aceptar"
+
+12- Campo CUIT "30444555666" (Nota: Asumiendo que es un cliente válido pero que actualmente no tiene guías pendientes)
+
+13- Botón "Buscar"
+
+14- Verificación "Se muestra el Nombre del Cliente, pero la tabla de facturación queda vacía."
+
+15- Botón "Emitir Factura"
+
+16- Mensaje "El cliente no posee guías pendientes de facturar."   
+
+17- Botón "Aceptar"
+
+Verificaciones
+
+18- Facturas.json: No debe generarse ninguna nueva factura en el sistema.
+

@@ -1,0 +1,45 @@
+Plan de Prueba: 000.EmitirFactura.EmisionExitosa.txt
+
+(Empieza con el menú principal y la pantalla de Emitir Factura abierta)
+
+1- Campo CUIT "30712345678"
+
+2- Botón "Buscar" (correspondiente a BotonBuscarCliente)
+
+3- Verificación: Nombre Cliente "Juan"   
+
+4- Verificación en tabla de facturación (ListViewFacturacion): Se listan las guías pendientes del cliente recuperadas por el sistema.  
+
+Fila 1: N° Guía "100001", Monto "$ 18.500,50"   
+
+Fila 2: N° Guía "100002", Monto "$ 9.200,00"   
+
+5- Verificación LabelTotal: "$ 27.700,50"   
+
+6- Botón "Emitir Factura" (correspondiente a btnEmitirFactura)   
+
+7- Mensaje "Factura emitida correctamente."   
+
+8- Botón "Aceptar"
+
+9- Verificación en pantalla: Se ejecuta LimpiarPantalla(). Se vacían los campos de CUIT y Nombre, se limpia la tabla de guías, y el Total vuelve a "$ 0,00".
+
+Verificaciones
+
+10- Archivo Facturas.json (o el almacén correspondiente a FacturaEntidad) - Verificar que se haya creado el nuevo registro:
+
+{
+  "NumeroFactura": 1005,
+  "CuitCliente": 30712345678,
+  "FechaEmision": "Fecha Actual",
+  "Total": 27700.50,
+  "Paga": false,
+  "Guias": [
+    100001,
+    100002
+  ]
+}
+
+11- Archivo Guias.json - Verificar:
+
+Las guías 100001 y 100002 deben registrar un cambio en su estado, pasando a estar como facturadas dentro de tu flujo de almacenes.

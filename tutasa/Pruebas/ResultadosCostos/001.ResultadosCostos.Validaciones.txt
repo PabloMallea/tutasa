@@ -4,7 +4,7 @@ Plan de Prueba: 001.ResultadoCostos.Validaciones.txt
 
 1- Botón                                  "Buscar"
 
-2- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"
+2- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"   
 
 3- Botón                                  "Aceptar"
 
@@ -12,20 +12,19 @@ Plan de Prueba: 001.ResultadoCostos.Validaciones.txt
 
 5- Botón                                  "Buscar"
 
-6- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"
+6- Mensaje                                "Debe completar todos los criterios de búsqueda para continuar"   
 
 7- Botón                                  "Aceptar"
 
-8- Desplegable Seleccionar Mes            "6"
+8- Desplegable Seleccionar Mes            "12"
 
-9- Botón                                  "Buscar"
+9- Desplegable Seleccionar Año            "2026"
 
-10- Mensaje                               "Debe completar todos los criterios de búsqueda para continuar"
+10- Botón                                 "Buscar"
 
-11- Botón                                 "Aceptar"
+11- Mensaje                               "No se pueden realizar consultas de fechas futuras."  
+(Nota: Esto salta porque el sistema detecta que el mes 12 del 2026 es mayor al mes actual)  
 
-Verificaciones
+12- Botón                                 "Aceptar"Verificaciones
 
-12- La grilla "Detalle de Envíos y Guías" debe mantenerse vacía en todo momento.
-
-13- Los campos del "Resumen de Resultados Mensuales" deben mantenerse vacíos (o en su estado por defecto, ej. $0).
+13- La grilla "Detalle de Envíos y Guías" debe mantenerse vacía en todo momento al saltar las validaciones.

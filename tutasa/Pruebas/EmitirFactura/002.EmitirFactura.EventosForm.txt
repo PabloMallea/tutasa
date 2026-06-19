@@ -1,0 +1,37 @@
+Plan de Prueba: 002.EmitirFactura.EventosForm.txt
+
+(Empieza con el menú principal y la pantalla de Emitir Factura abierta)
+
+1- Verificación inicial "El campo Total muestra formato de moneda por defecto ($ 0,00), el campo Nombre Cliente está vacío y la tabla de guías está vacía"
+
+2- Botón "Cancelar"
+
+3- Verificación "Como la tabla está vacía, el sistema omite la advertencia de pérdida de datos y muestra directamente el mensaje: 'Cerrará la pantalla de Emitir Factura.'"   
+
+4- Botón "Aceptar" (en el pop-up)
+
+5- Verificación "La pantalla se cierra y retorna al menú principal"   
+
+(El operario vuelve a ingresar a la pantalla de Emitir Factura)
+
+6- Campo CUIT "30712345678"
+
+7- Botón "Buscar"
+
+8- Verificación "Se autocompleta el Nombre del Cliente"   
+
+9- Verificación "Se carga la grilla de facturación y el campo Total se actualiza automáticamente con la sumatoria, adoptando el formato moneda de Argentina"
+
+10- Botón "Cancelar"
+
+11- Verificación "Como hay guías cargadas en la tabla, el sistema detecta el riesgo y muestra el mensaje de advertencia: '¿Está seguro que desea cancelar? Se perderán los cambios no confirmados.'"   
+
+12- Botón "No" (en el pop-up de advertencia)13- Verificación "El pop-up se cierra, la acción se interrumpe y la pantalla mantiene todos los datos del cliente y las guías intactas"   
+
+14- Botón "Cancelar"
+
+15- Botón "Sí" (en el pop-up de advertencia)
+
+16- Mensaje "Cerrará la pantalla de Emitir Factura."   
+
+17- Botón "Aceptar"18- Verificación "La pantalla se cierra de forma segura y retorna al menú principal" 

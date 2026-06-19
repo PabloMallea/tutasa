@@ -1,18 +1,35 @@
-Plan de Prueba: 002.ResultadoCostos.EventosForm.txt
-
+Plan de Prueba: 000.ResultadoCostos.CargaExitosa.txt
 (Empieza con el menú principal y la pantalla Resultado Costos vs. Ventas abierta)
 
-1- Verificación inicial                   "Los campos de resumen muestran '$0' y '0%' por defecto, y los tres desplegables están vacíos."
+1- Desplegable Empresa de Transporte      "Transporte Ruta Sur"
 
-2- Desplegable Empresa de Transporte      "Transporte Ruta Sur"
+2- Desplegable Seleccionar Mes            "6"
 
-3- Desplegable Seleccionar Mes            "6"
+3- Desplegable Seleccionar Año            "2026"
 
-4- Desplegable Seleccionar Año            "2026"
+4- Botón                                  "Buscar"
 
-5- Botón                                  "Buscar"
+5- Verificación en Detalle de Envíos y Guías:
 
-6- Verificación                           "Los campos de resumen se actualizan mostrando el formato correcto de moneda ($) y porcentaje (%)."
+Fila 1: N° Guía "100001", Tamaño "M", Importe Guía "$ 18.500,50"
+
+Fila 2: N° Guía "100003", Tamaño "XL", Importe Guía "$ 45.200,75"
+
+Fila 3: N° Guía "100004", Tamaño "L", Importe Guía "$ 27.890,00"
+
+Fila 4: N° Guía "100005", Tamaño "M", Importe Guía "$ 13.450,00"
+
+Fila 5: N° Guía "100014", Tamaño "M", Importe Guía "$ 15.000,00"
+
+6- Verificación en Resumen de Resultados Mensuales:
+
+Ventas del Mes:                       "$ 120.041,25"
+
+Costo Mensual:                        "$ 1.250.000,50"
+
+Margen %:                             "-941,31%"
+
+Resultado:                            "$ -1.129.959,25"
 
 7- Botón                                  "Confirmar"
 
@@ -20,10 +37,4 @@ Plan de Prueba: 002.ResultadoCostos.EventosForm.txt
 
 9- Botón                                  "Aceptar"
 
-10- Verificación                          "Se vacían los tres desplegables, se limpia la grilla 'Detalle de Envíos y Guías', y los cuatro campos de texto del resumen quedan completamente en blanco."
-
-11- Desplegable Seleccionar Mes           "7" (Nota: Seleccionamos un dato suelto para ensuciar la pantalla)
-
-12- Botón                                 "Cancelar"
-
-13- Verificación                          "Se limpian internamente los campos y la ventana de la pantalla se cierra, regresando al menú principal."
+10- Verificación                          "Se limpian los desplegables, se vacía la grilla y los campos de resumen quedan vacíos."
