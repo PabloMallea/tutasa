@@ -30,8 +30,9 @@
         {
             LabelImposicion = new Label();
             GrupoDestinatario = new GroupBox();
-            BotonBuscarD = new Button();
-            TextLocalidad = new TextBox();
+            label1 = new Label();
+            ComboProvincias = new ComboBox();
+            ComboLocalidad = new ComboBox();
             LabelLocalidadD = new Label();
             LabelDestinoD = new Label();
             LabelTELD = new Label();
@@ -81,8 +82,9 @@
             // 
             // GrupoDestinatario
             // 
-            GrupoDestinatario.Controls.Add(BotonBuscarD);
-            GrupoDestinatario.Controls.Add(TextLocalidad);
+            GrupoDestinatario.Controls.Add(label1);
+            GrupoDestinatario.Controls.Add(ComboProvincias);
+            GrupoDestinatario.Controls.Add(ComboLocalidad);
             GrupoDestinatario.Controls.Add(LabelLocalidadD);
             GrupoDestinatario.Controls.Add(LabelDestinoD);
             GrupoDestinatario.Controls.Add(LabelTELD);
@@ -99,36 +101,48 @@
             GrupoDestinatario.Controls.Add(LabelNombreD);
             GrupoDestinatario.Controls.Add(LabelDNI);
             GrupoDestinatario.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GrupoDestinatario.Location = new Point(406, 40);
+            GrupoDestinatario.Location = new Point(406, 10);
             GrupoDestinatario.Name = "GrupoDestinatario";
-            GrupoDestinatario.Size = new Size(382, 280);
+            GrupoDestinatario.Size = new Size(382, 310);
             GrupoDestinatario.TabIndex = 44;
             GrupoDestinatario.TabStop = false;
             GrupoDestinatario.Text = "Destinatario";
             // 
-            // BotonBuscarD
+            // label1
             // 
-            BotonBuscarD.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BotonBuscarD.Location = new Point(298, 30);
-            BotonBuscarD.Name = "BotonBuscarD";
-            BotonBuscarD.Size = new Size(75, 25);
-            BotonBuscarD.TabIndex = 41;
-            BotonBuscarD.Text = "Buscar";
-            BotonBuscarD.UseVisualStyleBackColor = true;
-            BotonBuscarD.Click += BotonBuscarLocalidad_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F);
+            label1.Location = new Point(10, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(56, 15);
+            label1.TabIndex = 45;
+            label1.Text = "Provincia";
             // 
-            // TextLocalidad
+            // ComboProvincias
             // 
-            TextLocalidad.Location = new Point(76, 30);
-            TextLocalidad.Name = "TextLocalidad";
-            TextLocalidad.Size = new Size(216, 25);
-            TextLocalidad.TabIndex = 39;
+            ComboProvincias.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboProvincias.FormattingEnabled = true;
+            ComboProvincias.Location = new Point(76, 31);
+            ComboProvincias.Name = "ComboProvincias";
+            ComboProvincias.Size = new Size(297, 25);
+            ComboProvincias.TabIndex = 44;
+            ComboProvincias.SelectedIndexChanged += ComboProvincias_SelectedIndexChanged;
+            // 
+            // ComboLocalidad
+            // 
+            ComboLocalidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboLocalidad.FormattingEnabled = true;
+            ComboLocalidad.Location = new Point(76, 62);
+            ComboLocalidad.Name = "ComboLocalidad";
+            ComboLocalidad.Size = new Size(297, 25);
+            ComboLocalidad.TabIndex = 43;
+            ComboLocalidad.SelectedIndexChanged += ComboLocalidad_SelectedIndexChanged;
             // 
             // LabelLocalidadD
             // 
             LabelLocalidadD.AutoSize = true;
             LabelLocalidadD.Font = new Font("Segoe UI", 9F);
-            LabelLocalidadD.Location = new Point(9, 30);
+            LabelLocalidadD.Location = new Point(9, 67);
             LabelLocalidadD.Name = "LabelLocalidadD";
             LabelLocalidadD.Size = new Size(58, 15);
             LabelLocalidadD.TabIndex = 38;
@@ -138,7 +152,7 @@
             // 
             LabelDestinoD.AutoSize = true;
             LabelDestinoD.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelDestinoD.Location = new Point(9, 60);
+            LabelDestinoD.Location = new Point(9, 96);
             LabelDestinoD.Name = "LabelDestinoD";
             LabelDestinoD.Size = new Size(52, 17);
             LabelDestinoD.TabIndex = 42;
@@ -148,7 +162,7 @@
             // 
             LabelTELD.AutoSize = true;
             LabelTELD.Font = new Font("Segoe UI", 9F);
-            LabelTELD.Location = new Point(9, 240);
+            LabelTELD.Location = new Point(9, 284);
             LabelTELD.Name = "LabelTELD";
             LabelTELD.Size = new Size(52, 15);
             LabelTELD.TabIndex = 37;
@@ -158,7 +172,7 @@
             // 
             ComboDestino.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboDestino.FormattingEnabled = true;
-            ComboDestino.Location = new Point(76, 60);
+            ComboDestino.Location = new Point(76, 93);
             ComboDestino.Name = "ComboDestino";
             ComboDestino.Size = new Size(297, 25);
             ComboDestino.TabIndex = 40;
@@ -166,21 +180,21 @@
             // 
             // TextTEL
             // 
-            TextTEL.Location = new Point(76, 240);
+            TextTEL.Location = new Point(76, 279);
             TextTEL.Name = "TextTEL";
             TextTEL.Size = new Size(297, 25);
             TextTEL.TabIndex = 36;
             // 
             // TextNombre
             // 
-            TextNombre.Location = new Point(76, 150);
+            TextNombre.Location = new Point(76, 186);
             TextNombre.Name = "TextNombre";
             TextNombre.Size = new Size(297, 25);
             TextNombre.TabIndex = 35;
             // 
             // TextAltura
             // 
-            TextAltura.Location = new Point(76, 120);
+            TextAltura.Location = new Point(76, 155);
             TextAltura.Name = "TextAltura";
             TextAltura.Size = new Size(297, 25);
             TextAltura.TabIndex = 34;
@@ -189,7 +203,7 @@
             // 
             LabelAlturaD.AutoSize = true;
             LabelAlturaD.Font = new Font("Segoe UI", 9F);
-            LabelAlturaD.Location = new Point(9, 120);
+            LabelAlturaD.Location = new Point(10, 160);
             LabelAlturaD.Name = "LabelAlturaD";
             LabelAlturaD.Size = new Size(39, 15);
             LabelAlturaD.TabIndex = 33;
@@ -197,7 +211,7 @@
             // 
             // TextCalle
             // 
-            TextCalle.Location = new Point(76, 90);
+            TextCalle.Location = new Point(76, 124);
             TextCalle.Name = "TextCalle";
             TextCalle.Size = new Size(297, 25);
             TextCalle.TabIndex = 32;
@@ -206,7 +220,7 @@
             // 
             LabelCalleD.AutoSize = true;
             LabelCalleD.Font = new Font("Segoe UI", 9F);
-            LabelCalleD.Location = new Point(9, 90);
+            LabelCalleD.Location = new Point(10, 129);
             LabelCalleD.Name = "LabelCalleD";
             LabelCalleD.Size = new Size(33, 15);
             LabelCalleD.TabIndex = 31;
@@ -214,7 +228,7 @@
             // 
             // TextDNI
             // 
-            TextDNI.Location = new Point(76, 210);
+            TextDNI.Location = new Point(76, 248);
             TextDNI.Name = "TextDNI";
             TextDNI.Size = new Size(297, 25);
             TextDNI.TabIndex = 30;
@@ -223,7 +237,7 @@
             // 
             LabelApellidoD.AutoSize = true;
             LabelApellidoD.Font = new Font("Segoe UI", 9F);
-            LabelApellidoD.Location = new Point(10, 180);
+            LabelApellidoD.Location = new Point(10, 222);
             LabelApellidoD.Name = "LabelApellidoD";
             LabelApellidoD.Size = new Size(51, 15);
             LabelApellidoD.TabIndex = 29;
@@ -231,7 +245,7 @@
             // 
             // TextApellido
             // 
-            TextApellido.Location = new Point(76, 180);
+            TextApellido.Location = new Point(76, 217);
             TextApellido.Name = "TextApellido";
             TextApellido.Size = new Size(297, 25);
             TextApellido.TabIndex = 28;
@@ -240,7 +254,7 @@
             // 
             LabelNombreD.AutoSize = true;
             LabelNombreD.Font = new Font("Segoe UI", 9F);
-            LabelNombreD.Location = new Point(10, 150);
+            LabelNombreD.Location = new Point(9, 191);
             LabelNombreD.Name = "LabelNombreD";
             LabelNombreD.Size = new Size(51, 15);
             LabelNombreD.TabIndex = 27;
@@ -250,7 +264,7 @@
             // 
             LabelDNI.AutoSize = true;
             LabelDNI.Font = new Font("Segoe UI", 9F);
-            LabelDNI.Location = new Point(10, 210);
+            LabelDNI.Location = new Point(10, 253);
             LabelDNI.Name = "LabelDNI";
             LabelDNI.Size = new Size(27, 15);
             LabelDNI.TabIndex = 26;
@@ -444,6 +458,7 @@
             Controls.Add(ButtonCancelar);
             Name = "Impiscion_CD";
             Text = "Imposción CD";
+            Load += Impiscion_CD_Load;
             GrupoDestinatario.ResumeLayout(false);
             GrupoDestinatario.PerformLayout();
             GrupoCliente.ResumeLayout(false);
@@ -458,8 +473,6 @@
 
         private Label LabelImposicion;
         private GroupBox GrupoDestinatario;
-        private Button BotonBuscarD;
-        private TextBox TextLocalidad;
         private Label LabelLocalidadD;
         private Label LabelDestinoD;
         private Label LabelTELD;
@@ -492,5 +505,8 @@
         private Label LabelTelefono;
         private Label LabelApellido;
         private Label LabelNombre;
+        private Label label1;
+        private ComboBox ComboProvincias;
+        private ComboBox ComboLocalidad;
     }
 }

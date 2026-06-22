@@ -2,10 +2,10 @@
 {
     internal partial class ImposicionCallCenterModelo
     {
-        public class Localidad
+        public class Provincias
         {
-            public string Nombre { get; set; }
             public int idProvincia { get; set; }
+            public string nombreProvincia { get; set; }
         }
     }
 }

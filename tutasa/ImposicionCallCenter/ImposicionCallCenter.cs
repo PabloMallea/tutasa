@@ -1,4 +1,5 @@
-﻿using static tutasa.ImposicionCallCenter.ImposicionCallCenterModelo;
+﻿using tutasa.Imposicion_Agencia;
+using static tutasa.ImposicionCallCenter.ImposicionCallCenterModelo;
 
 namespace tutasa.ImposicionCallCenter
 {
@@ -26,6 +27,13 @@ namespace tutasa.ImposicionCallCenter
             {
                 ComboDimension.Items.Add(dimension);
             }
+
+            // --- NUEVO CÓDIGO: Cargar Provincias al iniciar la pantalla ---
+            List<ImposicionCallCenterModelo.Provincias> provincias = modelo.ObtenerProvincias();
+            ComboProvincias.DataSource = provincias;
+            ComboProvincias.DisplayMember = "nombreProvincia"; // Lo que el usuario lee
+            ComboProvincias.ValueMember = "idProvincia";       // El ID oculto
+            ComboProvincias.SelectedIndex = -1;                // Dejarlo vacío por defecto
         }
 
         private void LabelTamaño_Click(object sender, EventArgs e)
@@ -57,7 +65,7 @@ namespace tutasa.ImposicionCallCenter
                 return;
             }
 
-            string localidad = TextLocalidad.Text.Trim();
+            string localidad = ComboLocalidad.Text.Trim();
 
             List<ImposicionCallCenterModelo.Agencia> agencias = modelo.ObtenerAgencias(localidad);
 
@@ -161,77 +169,6 @@ namespace tutasa.ImposicionCallCenter
             TxtCuit.Tag = cuit;
         }
 
-        private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
-        {
-            // PARCHE VISUAL: Reiniciar siempre la dirección cuando se hace una nueva búsqueda
-            TextCalle.Clear();
-            TextAltura.Clear();
-            TextCalle.Enabled = true;
-            TextAltura.Enabled = true;
-
-            // Obtener localidad ingresada
-            string localidadIngresada = TextLocalidad.Text.Trim();
-
-            // 1. Validar que no esté vacío (Excepciones 5.1 y 5.2)
-            if (string.IsNullOrWhiteSpace(localidadIngresada))
-            {
-                MessageBox.Show(
-                    "El campo Localidad debe ser completado.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return;
-            }
-
-            // 2. Buscar localidad en el modelo (Excepción 6.1) -> Solo la encuentra si coincide exactamente
-            ImposicionCallCenterModelo.Localidad localidad = modelo.BuscarLocalidad(localidadIngresada);
-
-            // Validar existencia
-            if (localidad == null)
-            {
-                MessageBox.Show(
-                    "Localidad inexistente.",
-                    "Búsqueda",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                TextLocalidad.Clear();
-                ComboDestino.Items.Clear();
-                return;
-            }
-
-            // Limpiar destinos actuales -> Buena practica
-            ComboDestino.Items.Clear();
-
-            // Cargar destinos disponibles para la localidad
-            ComboDestino.Items.Add("Domicilio Destinatario");
-
-            List<ImposicionCallCenterModelo.Agencia> agencias = modelo.ObtenerAgencias(localidadIngresada);
-
-            List<ImposicionCallCenterModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidadIngresada);
-
-            // Agregar agencias
-            foreach (ImposicionCallCenterModelo.Agencia agencia in agencias)
-            {
-                ComboDestino.Items.Add(agencia.Nombre);
-            }
-
-            // Agregar CDs
-            foreach (ImposicionCallCenterModelo.CentroDistribucion cd in cds)
-            {
-                ComboDestino.Items.Add(cd.Nombre);
-            }
-
-            MessageBox.Show(
-                "Localidad encontrada correctamente.",
-                "Búsqueda",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
-        }
-
         private void ButtonConfirmar_Click(object sender, EventArgs e)
         {
             // Validar cliente seleccionado (No vacío)
@@ -247,7 +184,7 @@ namespace tutasa.ImposicionCallCenter
             }
 
             // Validar localidad destino (No vacío)
-            if (string.IsNullOrWhiteSpace(TextLocalidad.Text))
+            if (string.IsNullOrWhiteSpace(ComboLocalidad.Text))
             {
                 MessageBox.Show(
                     "Debe ingresar una localidad destino.",
@@ -427,14 +364,14 @@ namespace tutasa.ImposicionCallCenter
             else
             {
                 // Revisa si el destino seleccionado está en la lista de la localidad actual
-                if (modelo.ObtenerAgencias(TextLocalidad.Text.Trim()).Any(a => a.Nombre == destinoSeleccionado) ||
-                    modelo.ObtenerCD(TextLocalidad.Text.Trim()).Any(c => c.Nombre == destinoSeleccionado))
+                if (modelo.ObtenerAgencias(ComboLocalidad.Text.Trim()).Any(a => a.Nombre == destinoSeleccionado) ||
+                    modelo.ObtenerCD(ComboLocalidad.Text.Trim()).Any(c => c.Nombre == destinoSeleccionado))
                 {
                     destinoValido = true;
                 }
             }
 
-            if (modelo.BuscarLocalidad(TextLocalidad.Text.Trim()) == null || !destinoValido)
+            if (modelo.BuscarLocalidad(ComboLocalidad.Text.Trim()) == null || !destinoValido)
             {
                 MessageBox.Show("La localidad fue alterada después de la búsqueda o el destino no corresponde. Vuelva a buscar la localidad.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -444,7 +381,7 @@ namespace tutasa.ImposicionCallCenter
             ImposicionCallCenterModelo.Guia Guia = new ImposicionCallCenterModelo.Guia
             {
                 Cliente = cliente,
-                LocalidadDestino = TextLocalidad.Text.Trim(),
+                LocalidadDestino = ComboLocalidad.Text.Trim(),
                 Destino = ComboDestino.SelectedItem.ToString(),
                 CalleDestino = TextCalle.Text.Trim(),
                 AlturaDestino = TextAltura.Text.Trim(),
@@ -472,7 +409,8 @@ namespace tutasa.ImposicionCallCenter
                 // Limpiar formulario
                 TxtCuit.Clear();
                 TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
-                TextLocalidad.Clear();
+                ComboProvincias.SelectedIndex = -1;
+                ComboLocalidad.DataSource = null;
                 TextCalle.Clear();
                 TextAltura.Clear();
                 TextNombre.Clear();
@@ -511,7 +449,8 @@ namespace tutasa.ImposicionCallCenter
             // Limpiar formulario
             TxtCuit.Clear();
             TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
-            TextLocalidad.Clear();
+            ComboProvincias.SelectedIndex = -1;
+            ComboLocalidad.DataSource = null;
             TextCalle.Clear();
             TextAltura.Clear();
             TextNombre.Clear();
@@ -537,5 +476,55 @@ namespace tutasa.ImposicionCallCenter
             // (Asumiendo que esta pantalla se abrió desde un menú principal)
             // ACA FALTA LA LINEA PARA CERRAR, PERO AUN NO HAY MENU -> this.Close();
         }
+
+        private void ComboProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboProvincias.SelectedIndex == -1 || ComboProvincias.SelectedValue == null)
+            {
+                ComboLocalidad.DataSource = null;
+                return;
+            }
+
+            if (ComboProvincias.SelectedValue is int idProvincia)
+            {
+                List<ImposicionCallCenterModelo.Localidad> localidades = modelo.ObtenerLocalidadesPorProvincia(idProvincia);
+                ComboLocalidad.DataSource = localidades;
+                ComboLocalidad.DisplayMember = "Nombre";
+                ComboLocalidad.ValueMember = "Nombre";
+                ComboLocalidad.SelectedIndex = -1;
+            }
+
+            ComboDestino.Items.Clear();
+            TextCalle.Clear();
+            TextAltura.Clear();
+        }
+
+        private void ComboLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboDestino.Items.Clear();
+            TextCalle.Clear();
+            TextAltura.Clear();
+            TextCalle.Enabled = true;
+            TextAltura.Enabled = true;
+
+            if (ComboLocalidad.SelectedIndex == -1 || ComboLocalidad.SelectedValue == null) return;
+
+            string localidadSeleccionada = ComboLocalidad.SelectedValue.ToString();
+            ComboDestino.Items.Add("Domicilio Destinatario");
+
+            List<ImposicionCallCenterModelo.Agencia> agencias = modelo.ObtenerAgencias(localidadSeleccionada);
+            List<ImposicionCallCenterModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidadSeleccionada);
+
+            foreach (ImposicionCallCenterModelo.Agencia agencia in agencias)
+            {
+                ComboDestino.Items.Add(agencia.Nombre);
+            }
+            foreach (ImposicionCallCenterModelo.CentroDistribucion cd in cds)
+            {
+                ComboDestino.Items.Add(cd.Nombre);
+            }
+        }
+
+
     }
 }

@@ -17,6 +17,12 @@ namespace tutasa.Imposicion_CD
 
         private void Impiscion_CD_Load(object sender, EventArgs e)
         {
+            // --- Cargar Provincias al iniciar la pantalla ---
+            List<ImposicionCDModelo.Provincias> provincias = modelo.ObtenerProvincias();
+            ComboProvincias.DataSource = provincias;
+            ComboProvincias.DisplayMember = "nombreProvincia";
+            ComboProvincias.ValueMember = "idProvincia";
+            ComboProvincias.SelectedIndex = -1;
         }
 
         private void BotonBuscarC_Click(object sender, EventArgs e)
@@ -41,55 +47,56 @@ namespace tutasa.Imposicion_CD
             {
                 MessageBox.Show("El CUIT ingresado no corresponde a un cliente registrado.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TxtCuit.Clear();
-                // Limpiar los datos del cliente anterior si la búsqueda falla
                 LabelNombre.Text = "";
                 LabelApellido.Text = "";
                 LabelTelefono.Text = "";
                 return;
             }
 
-            // A diferencia del Call Center, acá solo mostramos 3 datos
             LabelNombre.Text = cliente.Nombre;
             LabelApellido.Text = cliente.Apellido;
             LabelTelefono.Text = cliente.Telefono;
-            // Guardamos el CUIT validado en el bolsillo secreto del TextBox
+
             TxtCuit.Tag = cuit;
         }
 
-        private void BotonBuscarLocalidad_Click(object sender, EventArgs e)
+        private void ComboProvincias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // PARCHE VISUAL: Reiniciar siempre la dirección cuando se hace una nueva búsqueda
+            if (ComboProvincias.SelectedIndex == -1 || ComboProvincias.SelectedValue == null)
+            {
+                ComboLocalidad.DataSource = null;
+                return;
+            }
+
+            if (ComboProvincias.SelectedValue is int idProvincia)
+            {
+                List<ImposicionCDModelo.Localidad> localidades = modelo.ObtenerLocalidadesPorProvincia(idProvincia);
+                ComboLocalidad.DataSource = localidades;
+                ComboLocalidad.DisplayMember = "Nombre";
+                ComboLocalidad.ValueMember = "Nombre";
+                ComboLocalidad.SelectedIndex = -1;
+            }
+
+            ComboDestino.Items.Clear();
+            TextCalle.Clear();
+            TextAltura.Clear();
+        }
+
+        private void ComboLocalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboDestino.Items.Clear();
             TextCalle.Clear();
             TextAltura.Clear();
             TextCalle.Enabled = true;
             TextAltura.Enabled = true;
 
-            string localidadIngresada = TextLocalidad.Text.Trim();
+            if (ComboLocalidad.SelectedIndex == -1 || ComboLocalidad.SelectedValue == null) return;
 
-            if (string.IsNullOrWhiteSpace(localidadIngresada))
-            {
-                // Mensaje original de tu código CD
-                MessageBox.Show("Debe ingresar una localidad.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            ImposicionCDModelo.Localidad localidad = modelo.BuscarLocalidad(localidadIngresada);
-
-            if (localidad == null)
-            {
-                // Mensaje original de tu código CD
-                MessageBox.Show("No se encontró la localidad ingresada.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TextLocalidad.Clear();
-                // Limpiar el combo para que no queden sucursales viejas
-                ComboDestino.Items.Clear();
-                return;
-            }
-
-            ComboDestino.Items.Clear();
+            string localidadSeleccionada = ComboLocalidad.SelectedValue.ToString();
             ComboDestino.Items.Add("Domicilio Destinatario");
 
-            List<ImposicionCDModelo.Agencia> agencias = modelo.ObtenerAgencias(localidadIngresada);
-            List<ImposicionCDModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidadIngresada);
+            List<ImposicionCDModelo.Agencia> agencias = modelo.ObtenerAgencias(localidadSeleccionada);
+            List<ImposicionCDModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidadSeleccionada);
 
             foreach (ImposicionCDModelo.Agencia agencia in agencias)
             {
@@ -100,8 +107,6 @@ namespace tutasa.Imposicion_CD
             {
                 ComboDestino.Items.Add(cd.Nombre);
             }
-
-            MessageBox.Show("Localidad encontrada correctamente.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ComboDestino_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +124,9 @@ namespace tutasa.Imposicion_CD
                 return;
             }
 
-            string localidad = TextLocalidad.Text.Trim();
+            // AHORA LEE DEL COMBO
+            string localidad = ComboLocalidad.Text.Trim();
+
             List<ImposicionCDModelo.Agencia> agencias = modelo.ObtenerAgencias(localidad);
             List<ImposicionCDModelo.CentroDistribucion> cds = modelo.ObtenerCD(localidad);
 
@@ -158,7 +165,8 @@ namespace tutasa.Imposicion_CD
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(TextLocalidad.Text))
+            // VALIDAMOS EL COMBO EN LUGAR DEL TEXTBOX VIEJO
+            if (string.IsNullOrWhiteSpace(ComboLocalidad.Text))
             {
                 MessageBox.Show("Debe ingresar una localidad destino.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -178,7 +186,6 @@ namespace tutasa.Imposicion_CD
 
             if (string.IsNullOrWhiteSpace(TextAltura.Text))
             {
-                // Adaptado de tu mensaje original (le saqué la palabra "numérica")
                 MessageBox.Show("Debe ingresar una altura destino.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -206,6 +213,7 @@ namespace tutasa.Imposicion_CD
             }
 
             string dniTexto = TextDNI.Text.Trim();
+
             if (string.IsNullOrWhiteSpace(dniTexto))
             {
                 MessageBox.Show("Debe ingresar un DNI.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -218,6 +226,7 @@ namespace tutasa.Imposicion_CD
             }
 
             string telefonoTexto = TextTEL.Text.Trim();
+
             if (string.IsNullOrWhiteSpace(telefonoTexto))
             {
                 MessageBox.Show("Debe ingresar un teléfono.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -231,7 +240,6 @@ namespace tutasa.Imposicion_CD
 
             // --- 1. VALIDACIÓN DEL PESO ---
 
-            // 1. Limpiamos y forzamos a que siempre use punto
             string textoPeso = TextPeso.Text.Trim().Replace(",", ".");
 
             if (string.IsNullOrWhiteSpace(textoPeso))
@@ -240,59 +248,30 @@ namespace tutasa.Imposicion_CD
                 return;
             }
 
-            // 2. Validar que sea un número decimal (usando InvariantCulture para que no falle en otras PCs) y positivo
             if (!decimal.TryParse(textoPeso, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal peso) || peso <= 0)
             {
                 MessageBox.Show("Debe ingresar un peso numérico válido y mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 3. Calculamos la dimensión final para guardarla en el objeto
             string dimensionFinal = modelo.CalcularDimension(peso);
 
-
-            // --- 2. CREACIÓN Y GUARDADO ---
-
             // --- PARCHE DE SEGURIDAD DEFINITIVO: Validación por llave primaria ---
-            // Verificamos si nunca se buscó (Tag nulo) o si el texto actual es distinto al que se validó
             if (TxtCuit.Tag == null || TxtCuit.Text.Trim() != TxtCuit.Tag.ToString())
             {
                 MessageBox.Show("El CUIT fue alterado o no ha sido validado. Por favor, presione el botón Buscar Cliente.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Si llegamos acá, es 100% seguro que el CUIT en pantalla es el que se buscó
             var cliente = modelo.BuscarCliente(TxtCuit.Text.Trim());
 
-            // PARCHE DE SEGURIDAD 2: Verifica que la Localidad exista y que el destino coincida con ella
-            string destinoSeleccionado = ComboDestino.SelectedItem.ToString();
-            bool destinoValido = false;
-
-            if (destinoSeleccionado == "Domicilio Destinatario")
-            {
-                destinoValido = true;
-            }
-            else
-            {
-                // Revisa si el destino seleccionado está en la lista de agencias o CDs de la localidad escrita actualmente
-                if (modelo.ObtenerAgencias(TextLocalidad.Text.Trim()).Any(a => a.Nombre == destinoSeleccionado) ||
-                    modelo.ObtenerCD(TextLocalidad.Text.Trim()).Any(c => c.Nombre == destinoSeleccionado))
-                {
-                    destinoValido = true;
-                }
-            }
-
-            if (modelo.BuscarLocalidad(TextLocalidad.Text.Trim()) == null || !destinoValido)
-            {
-                MessageBox.Show("La localidad fue alterada después de la búsqueda o el destino no corresponde. Vuelva a buscar la localidad.", "Validación de Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // ¡BORRAMOS EL VIEJO PARCHE 2 QUE VALIDABA LA LOCALIDAD A MANO!
 
             // --- CREACIÓN DE LA Guia ---
             ImposicionCDModelo.Guia Guia = new ImposicionCDModelo.Guia
             {
                 Cliente = cliente,
-                LocalidadDestino = TextLocalidad.Text.Trim(),
+                LocalidadDestino = ComboLocalidad.Text.Trim(), // AHORA TOMA DEL COMBO
                 Destino = ComboDestino.SelectedItem.ToString(),
                 CalleDestino = TextCalle.Text.Trim(),
                 AlturaDestino = TextAltura.Text.Trim(),
@@ -300,18 +279,15 @@ namespace tutasa.Imposicion_CD
                 ApellidoDestinatario = TextApellido.Text.Trim(),
                 DniDestinatario = dniTexto,
                 TelefonoDestinatario = telefonoTexto,
-                Peso = peso.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture), //Guardar como string siempre con punto, ignorando la compu local
+                Peso = peso.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
                 Dimension = dimensionFinal
             };
 
-            // --- GUARDADO CON MANEJO DE EXCEPCIONES (NUEVO) --- Acá se hizo esto porque antes nos comimos la funcionalidad, por eso se tocó
+            // --- GUARDADO CON MANEJO DE EXCEPCIONES --- 
             try
             {
-                // Intentamos guardar. Si falla un cálculo (ej: no hay tarifa en el JSON), salta al catch
-                // Atrapamos el número que nos devuelve el modelo
                 int numeroGuiaGenerado = modelo.GuardarGuia(Guia);
 
-                // Si pasamos la línea anterior, fue un éxito rotundo
                 MessageBox.Show(
                      $"Operación exitosa.\n\nEl paquete ha sido impuesto y admitido en el sistema.\nNúmero de Guía / Tracking: {numeroGuiaGenerado}",
                      "Confirmación",
@@ -321,8 +297,9 @@ namespace tutasa.Imposicion_CD
 
                 // --- 3. LIMPIEZA DE PANTALLA ---
                 TxtCuit.Clear();
-                TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
-                TextLocalidad.Clear();
+                TxtCuit.Tag = null;
+                ComboProvincias.SelectedIndex = -1; // NUEVA LIMPIEZA
+                ComboLocalidad.DataSource = null;   // NUEVA LIMPIEZA
                 TextCalle.Clear();
                 TextAltura.Clear();
                 TextNombre.Clear();
@@ -343,7 +320,6 @@ namespace tutasa.Imposicion_CD
             }
             catch (Exception ex)
             {
-                // Atrapamos la excepción del Modelo y se la mostramos al operador de forma prolija ->Suponiendo que el JSON no tiene algún dato necesario
                 MessageBox.Show(
                     ex.Message,
                     "Error de Regla de Negocio",
@@ -355,19 +331,15 @@ namespace tutasa.Imposicion_CD
 
         private void TextPeso_TextChanged(object sender, EventArgs e)
         {
-            // 1. Limpiamos y forzamos a que siempre use punto
             string textoPeso = TextPeso.Text.Trim().Replace(",", ".");
 
-            // 2. Validamos usando InvariantCulture (exactamente igual que en el botón)
             if (decimal.TryParse(textoPeso, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal peso) && peso > 0)
             {
-                // Si es válido, calculamos la dimensión y actualizamos solo el recuadro de la derecha
                 string dimensionCalculada = modelo.CalcularDimension(peso);
                 LabelTamaño.Text = dimensionCalculada;
             }
             else
             {
-                // Si el campo está vacío o se ingresa un valor no válido, volvemos al estado original
                 LabelTamaño.Text = "S | M | L | XL";
             }
         }
@@ -375,8 +347,9 @@ namespace tutasa.Imposicion_CD
         private void ButtonCancelar_Click_1(object sender, EventArgs e)
         {
             TxtCuit.Clear();
-            TxtCuit.Tag = null; // Vaciamos el bolsillo secreto
-            TextLocalidad.Clear();
+            TxtCuit.Tag = null;
+            ComboProvincias.SelectedIndex = -1; // NUEVA LIMPIEZA
+            ComboLocalidad.DataSource = null;   // NUEVA LIMPIEZA
             TextCalle.Clear();
             TextAltura.Clear();
             TextNombre.Clear();

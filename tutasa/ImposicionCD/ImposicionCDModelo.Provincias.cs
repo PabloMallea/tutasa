@@ -2,10 +2,10 @@
 {
     internal partial class ImposicionCDModelo
     {
-        public class Localidad
+        public class Provincias // ¡Nueva clase agregada!
         {
-            public string Nombre { get; set; }
             public int idProvincia { get; set; }
+            public string nombreProvincia { get; set; }
         }
     }
 }

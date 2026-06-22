@@ -12,10 +12,10 @@ namespace tutasa.Imposicion_CD
         // ----------------------------------------------------------------------
         public Cliente BuscarCliente(string cuit)
         {
-            // EL FIX: Usamos TryParse para que no explote si le mandan vacío o letras
             if (!long.TryParse(cuit, out long cuitNumerico)) return null;
 
             var clienteDelJson = ClientesAlmacen.clientes.Find(c => c.CuitCliente == cuitNumerico);
+
             if (clienteDelJson == null) return null;
 
             return new Cliente
@@ -30,13 +30,49 @@ namespace tutasa.Imposicion_CD
         public Localidad BuscarLocalidad(string nombre)
         {
             var localidadEntidad = LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == nombre);
+
             if (localidadEntidad == null) return null;
             return new Localidad { Nombre = localidadEntidad.NombreLocalidad };
         }
 
+        // --- NUEVOS MÉTODOS DE PROVINCIAS ---
+        public List<Provincias> ObtenerProvincias()
+        {
+            List<Provincias> listaProvincias = new List<Provincias>();
+
+            foreach (var provEntidad in ProvinciaAlmacen.provincias)
+            {
+                listaProvincias.Add(new Provincias
+                {
+                    idProvincia = provEntidad.idProvincia,
+                    nombreProvincia = provEntidad.nombreProvincia
+                });
+            }
+            return listaProvincias.OrderBy(p => p.nombreProvincia).ToList();
+        }
+
+        public List<Localidad> ObtenerLocalidadesPorProvincia(int idProvinciaSeleccionada)
+        {
+            List<Localidad> listaLocalidades = new List<Localidad>();
+
+            var localidadesFiltradas = LocalidadAlmacen.localidades.Where(l => l.idProvincia == idProvinciaSeleccionada);
+
+            foreach (var locEntidad in localidadesFiltradas)
+            {
+                listaLocalidades.Add(new Localidad
+                {
+                    Nombre = locEntidad.NombreLocalidad,
+                    idProvincia = locEntidad.idProvincia
+                });
+            }
+            return listaLocalidades.OrderBy(l => l.Nombre).ToList();
+        }
+        // ------------------------------------
+
         public List<CentroDistribucion> ObtenerCD(string localidad)
         {
             List<CentroDistribucion> resultado = new List<CentroDistribucion>();
+
             var localidadEntidad = LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == localidad);
             if (localidadEntidad == null) return resultado;
 
@@ -53,12 +89,14 @@ namespace tutasa.Imposicion_CD
         public List<Agencia> ObtenerAgencias(string localidad)
         {
             List<Agencia> resultado = new List<Agencia>();
+
             var localidadEntidad = LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == localidad);
             if (localidadEntidad == null) return resultado;
 
             foreach (var agenciaJson in AgenciasAlmacen.agencias)
             {
                 var cdDeLaAgencia = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == agenciaJson.IdCD);
+
                 if (cdDeLaAgencia != null && cdDeLaAgencia.IdLocalidad == localidadEntidad.IdLocalidad)
                 {
                     long alturaAgencia = 0;
@@ -71,12 +109,11 @@ namespace tutasa.Imposicion_CD
 
         public string CalcularDimension(decimal peso)
         {
-            // Usamos el Enum de los almacenes y lo convertimos a texto de forma segura
-            if (peso <= 2.5m) return tutasa.Almacenes.DimensionEnum.S.ToString();
-            if (peso <= 5m) return tutasa.Almacenes.DimensionEnum.M.ToString();
-            if (peso <= 10m) return tutasa.Almacenes.DimensionEnum.L.ToString();
+            if (peso <= 2.5m) return DimensionEnum.S.ToString();
+            if (peso <= 5m) return DimensionEnum.M.ToString();
+            if (peso <= 10m) return DimensionEnum.L.ToString();
 
-            return tutasa.Almacenes.DimensionEnum.XL.ToString();
+            return DimensionEnum.XL.ToString();
         }
 
         // ----------------------------------------------------------------------
@@ -84,13 +121,11 @@ namespace tutasa.Imposicion_CD
         // ----------------------------------------------------------------------
         public int GuardarGuia(Guia guiaLocal)
         {
-            tutasa.Almacenes.GuiaEntidad nuevaGuia = new tutasa.Almacenes.GuiaEntidad();
+            GuiaEntidad nuevaGuia = new GuiaEntidad();
 
-            // 1. Autoincremental
             int ultimoNumero = GuiaAlmacen.guias.Count > 0 ? GuiaAlmacen.guias.Max(g => g.NumeroGuia) : 0;
             nuevaGuia.NumeroGuia = ultimoNumero + 1;
 
-            // 2. Transcripción de datos
             nuevaGuia.FechaAlta = DateTime.Now;
             nuevaGuia.CuitCliente = long.Parse(guiaLocal.Cliente.Cuit);
             nuevaGuia.CalleDestino = guiaLocal.CalleDestino;
@@ -101,13 +136,11 @@ namespace tutasa.Imposicion_CD
             nuevaGuia.TelefonoDestinatario = guiaLocal.TelefonoDestinatario;
             nuevaGuia.Dimension = (DimensionEnum)Enum.Parse(typeof(DimensionEnum), guiaLocal.Dimension);
 
-            // 3. Reglas Fijas del Negocio (Estamos en un mostrador de CD)
             nuevaGuia.IdCDOrigen = tutasa.Program.IdCDActual;
             nuevaGuia.TipoRetiro = TipoRetiroEnum.RecibidoEnCD;
             nuevaGuia.IdAgenciaRetiro = 0;
             nuevaGuia.IntentosEntrega = 0;
 
-            // 4. Enrutamiento Inteligente del Destino
             if (guiaLocal.Destino == "Domicilio Destinatario")
             {
                 nuevaGuia.Destino = DestinoGuiaEnum.Domicilio;
@@ -117,13 +150,13 @@ namespace tutasa.Imposicion_CD
                 if (localidadEntidad != null)
                 {
                     var cdsEnLocalidad = CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
+
                     if (cdsEnLocalidad.Count > 0)
                     {
                         nuevaGuia.IdCDDestino = cdsEnLocalidad.OrderBy(cd => cd.IdCD).First().IdCD;
                     }
                     else
                     {
-                        // FIX LOGICO: Evitar que intente enviar a domicilio en una ciudad sin CD
                         throw new Exception($"Nuestra red logística aún no cuenta con un Centro de Distribución en {guiaLocal.LocalidadDestino} para procesar entregas a domicilio.");
                     }
                 }
@@ -134,15 +167,12 @@ namespace tutasa.Imposicion_CD
             }
             else
             {
-                // FIX NACIONAL: Filtramos estrictamente por la localidad de destino
                 var localidadEntidad = LocalidadAlmacen.localidades.Find(l => l.NombreLocalidad == guiaLocal.LocalidadDestino);
 
                 if (localidadEntidad != null)
                 {
-                    // 1. Aislamos solo los CDs que pertenecen a esa ciudad
                     var cdsEnLaLocalidad = CentroDistribucionAlmacen.CentrosDistribucion.FindAll(cd => cd.IdLocalidad == localidadEntidad.IdLocalidad);
 
-                    // 2. Buscamos la Agencia que se llame igual Y que pertenezca a la red de esos CDs locales
                     var agenciaDestino = AgenciasAlmacen.agencias.Find(a =>
                         a.NombreAgencia == guiaLocal.Destino &&
                         cdsEnLaLocalidad.Any(cd => cd.IdCD == a.IdCD)
@@ -156,8 +186,8 @@ namespace tutasa.Imposicion_CD
                     }
                     else
                     {
-                        // 3. Si no es agencia, verificamos si es un CD de esa misma ciudad local
                         var cdDestino = cdsEnLaLocalidad.Find(cd => cd.NombreCD == guiaLocal.Destino);
+
                         if (cdDestino != null)
                         {
                             nuevaGuia.Destino = DestinoGuiaEnum.CD;
@@ -172,14 +202,12 @@ namespace tutasa.Imposicion_CD
                 }
             }
 
-            // 5. Cálculos Económicos (Fusión)
             decimal tarifaBase = CalcularTarifaBase(nuevaGuia.IdCDOrigen, nuevaGuia.IdCDDestino, nuevaGuia.Dimension);
             decimal extras = CalcularExtras(nuevaGuia.TipoRetiro, nuevaGuia.Destino);
 
             nuevaGuia.MontoFacturar = tarifaBase + extras;
             CalcularYAsignarComisiones(nuevaGuia, nuevaGuia.Dimension);
 
-            // 6. Historial de Trazabilidad (Impuesta y Admitida instantáneamente)
             nuevaGuia.EstadoActual = EstadoGuiaEnum.Admitida;
             var cdOrigen = CentroDistribucionAlmacen.CentrosDistribucion.Find(cd => cd.IdCD == tutasa.Program.IdCDActual);
             string nombreUbicacion = cdOrigen != null ? cdOrigen.NombreCD : "Centro de Distribución";
@@ -194,14 +222,12 @@ namespace tutasa.Imposicion_CD
             nuevaGuia.Historial.Add(new MovimientoEstadoDto
             {
                 Estado = EstadoGuiaEnum.Admitida,
-                FechaHora = DateTime.Now.AddSeconds(1), // Retraso de un segundo visual para ordenamiento
+                FechaHora = DateTime.Now.AddSeconds(1),
                 Ubicacion = nombreUbicacion
             });
 
-            // 7. Impacto en Memoria
-            tutasa.Almacenes.GuiaAlmacen.guias.Add(nuevaGuia);
+            GuiaAlmacen.guias.Add(nuevaGuia);
 
-            // Retornamos el número que acabamos de crear hacia el formulario
             return nuevaGuia.NumeroGuia;
         }
 
@@ -229,16 +255,14 @@ namespace tutasa.Imposicion_CD
         {
             decimal totalExtras = 0;
 
-            // Extra por tipo de entrega (Recordemos que el retiro extra en este caso no aplica porque es en mostrador CD)
             if (destino == DestinoGuiaEnum.Agencia)
             {
-                var extraEntregaAgencia = tutasa.Almacenes.ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == tutasa.Almacenes.TipoExtraEnum.EntregaEnAgencia);
+                var extraEntregaAgencia = ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == TipoExtraEnum.EntregaEnAgencia);
                 if (extraEntregaAgencia != null) totalExtras += extraEntregaAgencia.Precio;
             }
             else if (destino == DestinoGuiaEnum.Domicilio)
             {
-                // Agregamos el cobro extra por llevar el paquete hasta la puerta de la casa
-                var extraEntregaDomicilio = tutasa.Almacenes.ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == tutasa.Almacenes.TipoExtraEnum.Entrega);
+                var extraEntregaDomicilio = ExtrasAlmacen.Extras.FirstOrDefault(e => e.Tipo == TipoExtraEnum.Entrega);
                 if (extraEntregaDomicilio != null) totalExtras += extraEntregaDomicilio.Precio;
             }
 
@@ -252,7 +276,6 @@ namespace tutasa.Imposicion_CD
             guia.ComisionesFleteroOrigen = 0;
             guia.ComisionesFleteroDestino = 0;
 
-            // Solo cobramos comisión de agencia de destino si el paquete termina allí
             if (guia.Destino == DestinoGuiaEnum.Agencia)
             {
                 var comisionAgencia = ComisionesAlmacen.comisiones.FirstOrDefault(c =>
@@ -260,7 +283,6 @@ namespace tutasa.Imposicion_CD
                 guia.ComisionesAgenciaDestino = comisionAgencia?.Precio ?? 0;
             }
 
-            // Comisión de Fletero de destino si se reparte por la ciudad o agencia
             if (guia.Destino == DestinoGuiaEnum.Domicilio || guia.Destino == DestinoGuiaEnum.Agencia)
             {
                 var comisionFletero = ComisionesAlmacen.comisiones.FirstOrDefault(c =>
