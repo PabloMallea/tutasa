@@ -1,28 +1,33 @@
 ﻿[
   {
     "IdLocalidad": 100,
-    "NombreLocalidad": "Buenos Aires"
+    "NombreLocalidad": "Buenos Aires",
+    "idProvincia": 1
   },
   {
     "IdLocalidad": 200,
-    "NombreLocalidad": "Rosario"
+    "NombreLocalidad": "Rosario",
+    "idProvincia": 2
   },
   {
     "IdLocalidad": 300,
-    "NombreLocalidad": "Cordoba"
+    "NombreLocalidad": "Cordoba",
+    "idProvincia": 3
   },
   {
     "IdLocalidad": 400,
-    "NombreLocalidad": "Mendoza"
+    "NombreLocalidad": "Mendoza",
+    "idProvincia": 4
   },
-    {
-        "IdLocalidad": 500,
-        "NombreLocalidad": "La Plata"
-    },
-    {
-        "IdLocalidad": 600,
-        "NombreLocalidad": "San Rafael"
-    }
-
+  {
+    "IdLocalidad": 500,
+    "NombreLocalidad": "La Plata",
+    "idProvincia": 1
+  },
+  {
+    "IdLocalidad": 600,
+    "NombreLocalidad": "San Rafael",
+    "idProvincia": 4
+  }
 ]
 

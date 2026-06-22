@@ -1,0 +1,18 @@
+[
+  {
+    "idProvincia": 1,
+    "nombreProvincia": "Buenos Aires"
+  },
+  {
+    "idProvincia": 2,
+    "nombreProvincia": "Santa Fe"
+  },
+  {
+    "idProvincia": 3,
+    "nombreProvincia": "Córdoba"
+  },
+  {
+    "idProvincia": 4,
+    "nombreProvincia": "Mendoza"
+  }
+]

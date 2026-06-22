@@ -4,12 +4,9 @@ using System.Text;
 
 namespace tutasa.Almacenes
 {
-    public class Localidad
+    public class Provincia
     {
-        public int IdLocalidad { get; set; }
-
-        public string NombreLocalidad { get; set; }
-
         public int idProvincia { get; set; }
+        public string nombreProvincia { get; set; }
     }
 }

@@ -62,6 +62,56 @@ namespace tutasa.Imposicion_Agencia
             return resultado;
         }
 
+        // -------------------------------------------------------------------------
+        // NUEVOS MÉTODOS PARA MANEJO DE PROVINCIAS Y LOCALIDADES (UI DESPLEGABLES)
+        // -------------------------------------------------------------------------
+
+        public List<Provincias> ObtenerProvincias()
+        {
+            List<Provincias> listaProvincias = new List<Provincias>();
+
+            // 1. Vamos al Almacén y traemos todas las entidades
+            foreach (var provEntidad in tutasa.Almacenes.ProvinciaAlmacen.provincias)
+            {
+                // 2. Mapeamos (traducimos) la entidad de BD a tu clase local del modelo
+                Provincias provLocal = new Provincias
+                {
+                    idProvincia = provEntidad.idProvincia,
+                    nombreProvincia = provEntidad.nombreProvincia
+                };
+
+                listaProvincias.Add(provLocal);
+            }
+
+            // 3. Devolvemos la lista ordenada alfabéticamente
+            return listaProvincias.OrderBy(p => p.nombreProvincia).ToList();
+        }
+
+        public List<Localidad> ObtenerLocalidadesPorProvincia(int idProvinciaSeleccionada)
+        {
+            List<Localidad> listaLocalidades = new List<Localidad>();
+
+            // 1. Filtramos en el Almacén solo las localidades de la provincia elegida
+            var localidadesFiltradas = tutasa.Almacenes.LocalidadAlmacen.localidades
+                                       .Where(l => l.idProvincia == idProvinciaSeleccionada);
+
+            // 2. Recorremos y mapeamos
+            foreach (var locEntidad in localidadesFiltradas)
+            {
+                Localidad locLocal = new Localidad
+                {
+                    // Ojo acá: mapeamos 'NombreLocalidad' del JSON al atributo 'Nombre' de tu clase local
+                    Nombre = locEntidad.NombreLocalidad,
+                    idProvincia = locEntidad.idProvincia
+                };
+
+                listaLocalidades.Add(locLocal);
+            }
+
+            // 3. Devolvemos ordenadas alfabéticamente
+            return listaLocalidades.OrderBy(l => l.Nombre).ToList();
+        }
+
         public List<CentroDistribucion> ObtenerCD(string localidad)
         {
             List<CentroDistribucion> resultado = new List<CentroDistribucion>();
