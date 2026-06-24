@@ -18,8 +18,8 @@ namespace tutasa
         };
         public static int IdCDActual = 1;
 
-        // NUEVA VARIABLE: Simula la agencia donde está logueado el empleado (CORDOBA)
-        public static int IdAgenciaActual = 203;
+        // NUEVA VARIABLE: Simula la agencia donde está logueado el empleado (BSAS)
+        public static int IdAgenciaActual = 202;
 
         /// <summary>
         ///  The main entry point for the application.

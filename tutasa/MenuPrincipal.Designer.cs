@@ -29,7 +29,6 @@ partial class MenuPrincipal
     private void InitializeComponent()
     {
         RuteoTransporteBtn = new Button();
-        comboBox1 = new ComboBox();
         label1 = new Label();
         RuteoUltimaMillaBtn = new Button();
         ImposiciónEnAgenciaBtn = new Button();
@@ -45,45 +44,33 @@ partial class MenuPrincipal
         CuentaCorrienteBtn = new Button();
         EmitirFacturaBtn = new Button();
         RdoCostosVsVentasBtn = new Button();
+        LabelCDActual = new Button();
         SuspendLayout();
         // 
         // RuteoTransporteBtn
         // 
-        RuteoTransporteBtn.Location = new Point(349, 173);
-        RuteoTransporteBtn.Margin = new Padding(3, 4, 3, 4);
+        RuteoTransporteBtn.Location = new Point(305, 130);
         RuteoTransporteBtn.Name = "RuteoTransporteBtn";
-        RuteoTransporteBtn.Size = new Size(243, 31);
+        RuteoTransporteBtn.Size = new Size(213, 23);
         RuteoTransporteBtn.TabIndex = 0;
         RuteoTransporteBtn.Text = "Ruteo Transporte";
         RuteoTransporteBtn.UseVisualStyleBackColor = true;
         RuteoTransporteBtn.Click += button1_Click;
         // 
-        // comboBox1
-        // 
-        comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-        comboBox1.FormattingEnabled = true;
-        comboBox1.Location = new Point(70, 49);
-        comboBox1.Margin = new Padding(3, 4, 3, 4);
-        comboBox1.Name = "comboBox1";
-        comboBox1.Size = new Size(243, 28);
-        comboBox1.TabIndex = 1;
-        comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-        // 
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(71, 25);
+        label1.Location = new Point(62, 19);
         label1.Name = "label1";
-        label1.Size = new Size(74, 20);
+        label1.Size = new Size(63, 15);
         label1.TabIndex = 2;
-        label1.Text = "Cd actual:";
+        label1.Text = "CD Actual:";
         // 
         // RuteoUltimaMillaBtn
         // 
-        RuteoUltimaMillaBtn.Location = new Point(71, 256);
-        RuteoUltimaMillaBtn.Margin = new Padding(3, 4, 3, 4);
+        RuteoUltimaMillaBtn.Location = new Point(62, 192);
         RuteoUltimaMillaBtn.Name = "RuteoUltimaMillaBtn";
-        RuteoUltimaMillaBtn.Size = new Size(243, 31);
+        RuteoUltimaMillaBtn.Size = new Size(213, 23);
         RuteoUltimaMillaBtn.TabIndex = 3;
         RuteoUltimaMillaBtn.Text = "Ruteo Ultima Milla";
         RuteoUltimaMillaBtn.UseVisualStyleBackColor = true;
@@ -91,10 +78,9 @@ partial class MenuPrincipal
         // 
         // ImposiciónEnAgenciaBtn
         // 
-        ImposiciónEnAgenciaBtn.Location = new Point(70, 90);
-        ImposiciónEnAgenciaBtn.Margin = new Padding(3, 4, 3, 4);
+        ImposiciónEnAgenciaBtn.Location = new Point(61, 68);
         ImposiciónEnAgenciaBtn.Name = "ImposiciónEnAgenciaBtn";
-        ImposiciónEnAgenciaBtn.Size = new Size(243, 31);
+        ImposiciónEnAgenciaBtn.Size = new Size(213, 23);
         ImposiciónEnAgenciaBtn.TabIndex = 4;
         ImposiciónEnAgenciaBtn.Text = "Imposición En Agencia";
         ImposiciónEnAgenciaBtn.UseVisualStyleBackColor = true;
@@ -102,10 +88,9 @@ partial class MenuPrincipal
         // 
         // ImposicionEnCallCenterBtn
         // 
-        ImposicionEnCallCenterBtn.Location = new Point(70, 132);
-        ImposicionEnCallCenterBtn.Margin = new Padding(3, 4, 3, 4);
+        ImposicionEnCallCenterBtn.Location = new Point(61, 99);
         ImposicionEnCallCenterBtn.Name = "ImposicionEnCallCenterBtn";
-        ImposicionEnCallCenterBtn.Size = new Size(243, 31);
+        ImposicionEnCallCenterBtn.Size = new Size(213, 23);
         ImposicionEnCallCenterBtn.TabIndex = 5;
         ImposicionEnCallCenterBtn.Text = "Imposición En Call Center";
         ImposicionEnCallCenterBtn.UseVisualStyleBackColor = true;
@@ -113,10 +98,9 @@ partial class MenuPrincipal
         // 
         // ImposicionEnCDBtn
         // 
-        ImposicionEnCDBtn.Location = new Point(71, 173);
-        ImposicionEnCDBtn.Margin = new Padding(3, 4, 3, 4);
+        ImposicionEnCDBtn.Location = new Point(62, 130);
         ImposicionEnCDBtn.Name = "ImposicionEnCDBtn";
-        ImposicionEnCDBtn.Size = new Size(243, 31);
+        ImposicionEnCDBtn.Size = new Size(213, 23);
         ImposicionEnCDBtn.TabIndex = 6;
         ImposicionEnCDBtn.Text = "Imposición En CD";
         ImposicionEnCDBtn.UseVisualStyleBackColor = true;
@@ -124,10 +108,9 @@ partial class MenuPrincipal
         // 
         // AdmisionBtn
         // 
-        AdmisionBtn.Location = new Point(70, 215);
-        AdmisionBtn.Margin = new Padding(3, 4, 3, 4);
+        AdmisionBtn.Location = new Point(61, 161);
         AdmisionBtn.Name = "AdmisionBtn";
-        AdmisionBtn.Size = new Size(243, 31);
+        AdmisionBtn.Size = new Size(213, 23);
         AdmisionBtn.TabIndex = 7;
         AdmisionBtn.Text = "Admisión";
         AdmisionBtn.UseVisualStyleBackColor = true;
@@ -135,10 +118,9 @@ partial class MenuPrincipal
         // 
         // EmisionUltimaMillaBtn
         // 
-        EmisionUltimaMillaBtn.Location = new Point(349, 90);
-        EmisionUltimaMillaBtn.Margin = new Padding(3, 4, 3, 4);
+        EmisionUltimaMillaBtn.Location = new Point(305, 68);
         EmisionUltimaMillaBtn.Name = "EmisionUltimaMillaBtn";
-        EmisionUltimaMillaBtn.Size = new Size(243, 31);
+        EmisionUltimaMillaBtn.Size = new Size(213, 23);
         EmisionUltimaMillaBtn.TabIndex = 8;
         EmisionUltimaMillaBtn.Text = "Emision Ultima Milla";
         EmisionUltimaMillaBtn.UseVisualStyleBackColor = true;
@@ -146,10 +128,9 @@ partial class MenuPrincipal
         // 
         // RendicionUltimaMillaBtn
         // 
-        RendicionUltimaMillaBtn.Location = new Point(348, 131);
-        RendicionUltimaMillaBtn.Margin = new Padding(3, 4, 3, 4);
+        RendicionUltimaMillaBtn.Location = new Point(304, 98);
         RendicionUltimaMillaBtn.Name = "RendicionUltimaMillaBtn";
-        RendicionUltimaMillaBtn.Size = new Size(243, 31);
+        RendicionUltimaMillaBtn.Size = new Size(213, 23);
         RendicionUltimaMillaBtn.TabIndex = 9;
         RendicionUltimaMillaBtn.Text = "Rendición Ultima Milla";
         RendicionUltimaMillaBtn.UseVisualStyleBackColor = true;
@@ -157,10 +138,9 @@ partial class MenuPrincipal
         // 
         // EmisionTransporteBtn
         // 
-        EmisionTransporteBtn.Location = new Point(349, 212);
-        EmisionTransporteBtn.Margin = new Padding(3, 4, 3, 4);
+        EmisionTransporteBtn.Location = new Point(305, 159);
         EmisionTransporteBtn.Name = "EmisionTransporteBtn";
-        EmisionTransporteBtn.Size = new Size(243, 31);
+        EmisionTransporteBtn.Size = new Size(213, 23);
         EmisionTransporteBtn.TabIndex = 10;
         EmisionTransporteBtn.Text = "Emision Transporte";
         EmisionTransporteBtn.UseVisualStyleBackColor = true;
@@ -168,10 +148,9 @@ partial class MenuPrincipal
         // 
         // RendicionTransporteBtn
         // 
-        RendicionTransporteBtn.Location = new Point(350, 256);
-        RendicionTransporteBtn.Margin = new Padding(3, 4, 3, 4);
+        RendicionTransporteBtn.Location = new Point(306, 192);
         RendicionTransporteBtn.Name = "RendicionTransporteBtn";
-        RendicionTransporteBtn.Size = new Size(243, 31);
+        RendicionTransporteBtn.Size = new Size(213, 23);
         RendicionTransporteBtn.TabIndex = 11;
         RendicionTransporteBtn.Text = "Rendición Transporte";
         RendicionTransporteBtn.UseVisualStyleBackColor = true;
@@ -179,10 +158,9 @@ partial class MenuPrincipal
         // 
         // EntregaEncomiendaBtn
         // 
-        EntregaEncomiendaBtn.Location = new Point(619, 88);
-        EntregaEncomiendaBtn.Margin = new Padding(3, 4, 3, 4);
+        EntregaEncomiendaBtn.Location = new Point(542, 66);
         EntregaEncomiendaBtn.Name = "EntregaEncomiendaBtn";
-        EntregaEncomiendaBtn.Size = new Size(243, 31);
+        EntregaEncomiendaBtn.Size = new Size(213, 23);
         EntregaEncomiendaBtn.TabIndex = 12;
         EntregaEncomiendaBtn.Text = "Entrega Encomienda";
         EntregaEncomiendaBtn.UseVisualStyleBackColor = true;
@@ -190,10 +168,9 @@ partial class MenuPrincipal
         // 
         // ConsultaEstadoBtn
         // 
-        ConsultaEstadoBtn.Location = new Point(619, 130);
-        ConsultaEstadoBtn.Margin = new Padding(3, 4, 3, 4);
+        ConsultaEstadoBtn.Location = new Point(542, 98);
         ConsultaEstadoBtn.Name = "ConsultaEstadoBtn";
-        ConsultaEstadoBtn.Size = new Size(243, 31);
+        ConsultaEstadoBtn.Size = new Size(213, 23);
         ConsultaEstadoBtn.TabIndex = 13;
         ConsultaEstadoBtn.Text = "Consulta Estado";
         ConsultaEstadoBtn.UseVisualStyleBackColor = true;
@@ -201,10 +178,9 @@ partial class MenuPrincipal
         // 
         // CuentaCorrienteBtn
         // 
-        CuentaCorrienteBtn.Location = new Point(619, 171);
-        CuentaCorrienteBtn.Margin = new Padding(3, 4, 3, 4);
+        CuentaCorrienteBtn.Location = new Point(542, 128);
         CuentaCorrienteBtn.Name = "CuentaCorrienteBtn";
-        CuentaCorrienteBtn.Size = new Size(243, 31);
+        CuentaCorrienteBtn.Size = new Size(213, 23);
         CuentaCorrienteBtn.TabIndex = 14;
         CuentaCorrienteBtn.Text = "Consulta Cuenta Corriente";
         CuentaCorrienteBtn.UseVisualStyleBackColor = true;
@@ -212,10 +188,9 @@ partial class MenuPrincipal
         // 
         // EmitirFacturaBtn
         // 
-        EmitirFacturaBtn.Location = new Point(619, 213);
-        EmitirFacturaBtn.Margin = new Padding(3, 4, 3, 4);
+        EmitirFacturaBtn.Location = new Point(542, 160);
         EmitirFacturaBtn.Name = "EmitirFacturaBtn";
-        EmitirFacturaBtn.Size = new Size(243, 31);
+        EmitirFacturaBtn.Size = new Size(213, 23);
         EmitirFacturaBtn.TabIndex = 15;
         EmitirFacturaBtn.Text = "Emitir Factura";
         EmitirFacturaBtn.UseVisualStyleBackColor = true;
@@ -223,20 +198,28 @@ partial class MenuPrincipal
         // 
         // RdoCostosVsVentasBtn
         // 
-        RdoCostosVsVentasBtn.Location = new Point(619, 254);
-        RdoCostosVsVentasBtn.Margin = new Padding(3, 4, 3, 4);
+        RdoCostosVsVentasBtn.Location = new Point(542, 190);
         RdoCostosVsVentasBtn.Name = "RdoCostosVsVentasBtn";
-        RdoCostosVsVentasBtn.Size = new Size(243, 31);
+        RdoCostosVsVentasBtn.Size = new Size(213, 23);
         RdoCostosVsVentasBtn.TabIndex = 16;
         RdoCostosVsVentasBtn.Text = "Rdos Costos vs Ventas";
         RdoCostosVsVentasBtn.UseVisualStyleBackColor = true;
         RdoCostosVsVentasBtn.Click += RdoCostosVsVentasBtn_Click;
         // 
+        // LabelCDActual
+        // 
+        LabelCDActual.Location = new Point(131, 15);
+        LabelCDActual.Name = "LabelCDActual";
+        LabelCDActual.Size = new Size(213, 23);
+        LabelCDActual.TabIndex = 17;
+        LabelCDActual.UseVisualStyleBackColor = true;
+        // 
         // MenuPrincipal
         // 
-        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(907, 321);
+        ClientSize = new Size(794, 241);
+        Controls.Add(LabelCDActual);
         Controls.Add(RdoCostosVsVentasBtn);
         Controls.Add(EmitirFacturaBtn);
         Controls.Add(CuentaCorrienteBtn);
@@ -252,9 +235,7 @@ partial class MenuPrincipal
         Controls.Add(ImposiciónEnAgenciaBtn);
         Controls.Add(RuteoUltimaMillaBtn);
         Controls.Add(label1);
-        Controls.Add(comboBox1);
         Controls.Add(RuteoTransporteBtn);
-        Margin = new Padding(3, 4, 3, 4);
         Name = "MenuPrincipal";
         Text = "MenuPrincipal";
         Load += MenuPrincipal_Load;
@@ -265,7 +246,6 @@ partial class MenuPrincipal
     #endregion
 
     private Button RuteoTransporteBtn;
-    private ComboBox comboBox1;
     private Label label1;
     private Button RuteoUltimaMillaBtn;
     private Button ImposiciónEnAgenciaBtn;
@@ -281,4 +261,5 @@ partial class MenuPrincipal
     private Button CuentaCorrienteBtn;
     private Button EmitirFacturaBtn;
     private Button RdoCostosVsVentasBtn;
+    private Button LabelCDActual;
 }

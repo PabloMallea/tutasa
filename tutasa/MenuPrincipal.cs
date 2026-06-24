@@ -16,22 +16,19 @@ public partial class MenuPrincipal : Form
 
     private void MenuPrincipal_Load(object sender, EventArgs e)
     {
-        comboBox1.Items.Clear();
+        // Buscamos en la base de datos el CD que coincide con el ID fijo de Program.cs
+        var cdActual = tutasa.Almacenes.CentroDistribucionAlmacen.CentrosDistribucion
+            .FirstOrDefault(cd => cd.IdCD == Program.IdCDActual);
 
-        comboBox1.Items.Add("CD Buenos Aires");
-        comboBox1.Items.Add("CD Rosario");
-        comboBox1.Items.Add("CD Cordoba");
-        comboBox1.Items.Add("CD Mendoza");
-        comboBox1.Items.Add("CD La Plata");
-        comboBox1.Items.Add("CD San Rafael");
-
-        comboBox1.SelectedIndex = 0;
-    }
-
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        //Estableces Program.IdCDActual al valor del combo.
-        Program.IdCDActual = comboBox1.SelectedIndex + 1;
+        if (cdActual != null)
+        {
+            // Dibujamos SOLO el nombre, porque tu diseño ya tiene el texto "CD Actual:"
+            LabelCDActual.Text = cdActual.NombreCD;
+        }
+        else
+        {
+            LabelCDActual.Text = "No encontrado";
+        }
     }
 
     private void ImposiciónEnAgenciaBtn_Click(object sender, EventArgs e)
