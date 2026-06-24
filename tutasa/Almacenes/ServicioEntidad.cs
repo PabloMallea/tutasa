@@ -17,5 +17,10 @@
         public int IdCDOrigen { get; set; }
 
         public int IdCDDestino { get; set; }
+
+        // Mejora para calcular capacidad de un servicio
+        public TipoServicioEnum TipoServicio { get; set; }
+
+        public bool Completo { get; set; }
     }
 }
